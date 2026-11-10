@@ -23,6 +23,14 @@
     { "id": "fc-red-seg-21", "front": "WEP, WPA2, WPA3 y Enterprise", "back": "WEP: inseguro. WPA2: AES. WPA3: el más fuerte. Enterprise: 802.1X + RADIUS (usuario individual)." },
     { "id": "fc-red-seg-22", "front": "Vulnerabilidades vs pentest", "back": "Análisis: detecta y lista. Pentest: explota con autorización para medir el impacto." },
     { "id": "fc-red-seg-23", "front": "Tratamiento del riesgo", "back": "Mitigar, transferir (seguro), aceptar o evitar." },
-    { "id": "fc-red-seg-24", "front": "Respaldo 3-2-1 y respuesta a incidentes", "back": "3 copias, 2 medios, 1 fuera. Incidentes: preparar, detectar, contener, erradicar, recuperar, aprender." }
+    { "id": "fc-red-seg-24", "front": "Respaldo 3-2-1 y respuesta a incidentes", "back": "3 copias, 2 medios, 1 fuera. Incidentes: preparar, detectar, contener, erradicar, recuperar, aprender." },
+    { "id": "fc-red-seg-25", "front": "AES: bloque y claves", "back": "Cifrado simétrico por bloques de 128 bits con claves de 128, 192 o 256 bits (FIPS 197)." },
+    { "id": "fc-red-seg-26", "front": "Cifrado autenticado (AEAD)", "back": "Cifra y además garantiza integridad y autenticidad en una sola operación. Ejemplos: AES-GCM y Ascon-AEAD128." },
+    { "id": "fc-red-seg-27", "front": "Criptografía ligera y Ascon", "back": "Para dispositivos restringidos (IoT, RFID, microcontroladores). NIST SP 800-232 estandariza Ascon: cifrado autenticado, hash (Ascon-Hash256) y XOF." },
+    { "id": "fc-red-seg-28", "front": "WEP, WPA, WPA2 y WPA3", "back": "WEP (RC4) está roto; WPA (TKIP) es obsoleto; WPA2 usa AES-CCMP; WPA3 agrega autenticación SAE contra ataques de diccionario fuera de línea." },
+    { "id": "fc-red-seg-29", "front": "Wi-Fi corporativo: WPA-Enterprise", "back": "802.1X con servidor RADIUS autentica a cada usuario con credenciales propias. WPA-Personal comparte una sola contraseña." },
+    { "id": "fc-red-seg-30", "front": "Evil twin", "back": "Punto de acceso falso con el mismo SSID de la red legítima para interceptar tráfico y credenciales." },
+    { "id": "fc-red-seg-31", "front": "Escaneo de vulnerabilidades vs. prueba de penetración", "back": "Escaneo: automatizado, identifica y reporta fallas. Pentest: con autorización, explota las fallas para demostrar el impacto." },
+    { "id": "fc-red-seg-32", "front": "CVE y CVSS", "back": "CVE identifica una vulnerabilidad pública. CVSS la puntúa de 0 a 10: baja 0.1–3.9, media 4–6.9, alta 7–8.9, crítica 9–10." }
   ]
 }

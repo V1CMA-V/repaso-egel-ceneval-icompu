@@ -10,6 +10,14 @@
     { "id": "fc-len-lec-08", "front": "Estructura de un ensayo y de un artículo de investigación", "back": "Ensayo: tesis, argumentos, conclusión. Artículo: introducción, método, resultados, discusión." },
     { "id": "fc-len-lec-09", "front": "Reseña vs resumen", "back": "Reseña: resume y valora. Resumen: solo condensa." },
     { "id": "fc-len-lec-10", "front": "Nota informativa", "back": "Pirámide invertida: lo más importante al inicio. Responde qué, quién, cuándo, dónde, cómo y por qué." },
-    { "id": "fc-len-lec-11", "front": "Convocatoria y cuento", "back": "Convocatoria: quién convoca, requisitos, fechas, bases. Cuento: narrador, personajes, conflicto, desenlace." }
+    { "id": "fc-len-lec-11", "front": "Convocatoria y cuento", "back": "Convocatoria: quién convoca, requisitos, fechas, bases. Cuento: narrador, personajes, conflicto, desenlace." },
+    { "id": "fc-len-lec-12", "front": "Reparto de los 30 reactivos de Comprensión lectora", "back": "Ámbito de estudio 12 (reseña académica, artículo de investigación), ámbito literario 12 (cuento, ensayo literario) y participación social 6 (convocatoria, nota informativa)." },
+    { "id": "fc-len-lec-13", "front": "Los tres procesos de lectura que se evalúan", "back": "Identificar información (evidente o no), interpretar (idea global o sentido de una frase) y evaluar la forma y el contenido. Cada texto trae preguntas de los tres." },
+    { "id": "fc-len-lec-14", "front": "Reseña vs. artículo de investigación", "back": "Reseña: resume y valora una obra (busca el juicio). Artículo de investigación: objetivo, método, resultados y discusión; separa datos de suposiciones." },
+    { "id": "fc-len-lec-15", "front": "Asociación no es causa", "back": "Si un texto solo compara porcentajes, puedes inferir una asociación, no que una variable cause la otra. Desconfía de opciones con «única causa», «siempre» o «garantiza»." },
+    { "id": "fc-len-lec-16", "front": "Cómo se responde una pregunta de convocatoria", "back": "Verifica cada requisito (edad, promedio, fechas, documentos) contra cada opción. Suele preguntar quién queda excluido o quién puede participar." },
+    { "id": "fc-len-lec-17", "front": "Cómo reconocer el narrador de un cuento", "back": "Primera persona: «yo», «mi abuelo», el protagonista cuenta. Tercera persona: nombra a los personajes («Lucía», «ella») y puede saber lo que piensan." },
+    { "id": "fc-len-lec-18", "front": "Tesis de un ensayo literario", "back": "Idea central que el autor defiende; suele anunciarse al inicio («sostengo que…», «defiendo que…») y se reafirma al final. Los ejemplos y metáforas la ilustran." },
+    { "id": "fc-len-lec-19", "front": "Opciones incorrectas típicas en lectura", "back": "Una verdadera en el mundo real pero ausente del texto, una que cambia un dato y una que exagera o generaliza. Compara cada opción con una frase concreta." }
   ]
 }

@@ -14,6 +14,10 @@
     { "id": "fc-sw-so-12", "front": "Condición de carrera", "back": "El resultado depende del orden de ejecución sobre un recurso compartido. Solución: exclusión mutua (mutex, semáforo)." },
     { "id": "fc-sw-so-13", "front": "Paginación vs segmentación", "back": "Paginación: bloques fijos, fragmentación interna. Segmentación: bloques variables, fragmentación externa." },
     { "id": "fc-sw-so-14", "front": "Memoria virtual, fallo de página y thrashing", "back": "Disco como extensión de la RAM. Fallo de página: la página no está en RAM. Thrashing: demasiados fallos." },
-    { "id": "fc-sw-so-15", "front": "FIFO, LRU y óptimo", "back": "FIFO: la más antigua (anomalía de Belady). LRU: la menos recientemente usada. Óptimo: no implementable (referencia)." }
+    { "id": "fc-sw-so-15", "front": "FIFO, LRU y óptimo", "back": "FIFO: la más antigua (anomalía de Belady). LRU: la menos recientemente usada. Óptimo: no implementable (referencia)." },
+    { "id": "fc-sw-so-16", "front": "x86: instrucciones básicas", "back": "MOV copia; ADD/SUB operan; CMP resta sin guardar y actualiza banderas (ZF, CF, SF, OF); JE/JNE saltan según banderas; PUSH resta 4 a ESP y guarda; CALL/RET llaman y regresan." },
+    { "id": "fc-sw-so-17", "front": "Little-endian en x86", "back": "El byte menos significativo va en la dirección más baja: 0x12345678 se guarda como 78 56 34 12." },
+    { "id": "fc-sw-so-18", "front": "Métodos y códigos HTTP", "back": "GET lee, POST crea (201 Created), PUT reemplaza, DELETE borra. 401 no autenticado, 403 sin permiso, 404 no existe, 500 error del servidor." },
+    { "id": "fc-sw-so-19", "front": "Enfoques de desarrollo móvil", "back": "Nativo (Kotlin o Swift): máximo rendimiento y dos bases de código. Multiplataforma (React Native, Flutter): una base de código. PWA: web instalable con acceso limitado al hardware." }
   ]
 }

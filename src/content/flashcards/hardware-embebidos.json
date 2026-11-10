@@ -17,6 +17,13 @@
     { "id": "fc-hw-emb-15", "front": "Acelerómetro, giroscopio, magnetómetro, IMU, GPS", "back": "Aceleración lineal/inclinación · velocidad angular · rumbo · combinación de los anteriores · posición (solo cielo abierto)." },
     { "id": "fc-hw-emb-16", "front": "Motor DC, servo y paso a paso", "back": "DC: PWM + puente H + diodo flyback. Servo: ángulo por ancho de pulso (1.5 ms = centro). Paso a paso: posición precisa en lazo abierto." },
     { "id": "fc-hw-emb-17", "front": "Relé conmutado por un MCU", "back": "Aísla la carga; la bobina necesita transistor y diodo de rueda libre (flyback)." },
-    { "id": "fc-hw-emb-18", "front": "CAN", "back": "Bus diferencial, multimaestro, muy robusto al ruido. Estándar automotriz e industrial." }
+    { "id": "fc-hw-emb-18", "front": "CAN", "back": "Bus diferencial, multimaestro, muy robusto al ruido. Estándar automotriz e industrial." },
+    { "id": "fc-hw-emb-19", "front": "Qué mide cada sensor inercial", "back": "Acelerómetro: aceleración (en reposo ≈ 1 g, sirve para inclinación). Giroscopio: velocidad angular en °/s. Magnetómetro: campo magnético, da el rumbo." },
+    { "id": "fc-hw-emb-20", "front": "Deriva del giroscopio y fusión de sensores", "back": "Al integrar la velocidad angular el error se acumula (deriva). Un filtro complementario o de Kalman combina giroscopio (corto plazo) y acelerómetro (largo plazo)." },
+    { "id": "fc-hw-emb-21", "front": "GPS: satélites necesarios", "back": "Cuatro satélites: tres para la posición por trilateración y uno para corregir el error del reloj del receptor. Funciona mal en interiores." },
+    { "id": "fc-hw-emb-22", "front": "Tecnologías inalámbricas: cuándo usar cada una", "back": "BLE: wearables de bajo consumo. Wi-Fi: alta velocidad. Zigbee: malla doméstica. LoRa: kilómetros con poca información. NFC: unos 4 cm." },
+    { "id": "fc-hw-emb-23", "front": "Motor a pasos y encoder", "back": "Pasos por vuelta = 360° ÷ ángulo por paso (1.8° → 200). Encoder: ángulo = (pulsos ÷ PPR) × 360°." },
+    { "id": "fc-hw-emb-24", "front": "MQTT en domótica e IoT", "back": "Protocolo ligero de publicación/suscripción: los dispositivos publican en un tema y se suscriben mediante un broker." },
+    { "id": "fc-hw-emb-25", "front": "Grados de libertad y cinemática", "back": "6 GDL para posicionar y orientar libremente en 3D. Cinemática directa: ángulos → posición del efector. Inversa: posición → ángulos." }
   ]
 }

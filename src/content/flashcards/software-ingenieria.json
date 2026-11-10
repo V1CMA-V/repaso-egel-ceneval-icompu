@@ -20,6 +20,10 @@
     { "id": "fc-sw-ing-18", "front": "Ruta crítica y holgura", "back": "La ruta más larga; holgura 0; define la duración mínima. Holgura de otra tarea = ruta crítica − su ruta." },
     { "id": "fc-sw-ing-19", "front": "Ley de Brooks y triple restricción", "back": "Agregar gente a un proyecto atrasado lo atrasa más. Triple restricción: alcance, tiempo y costo." },
     { "id": "fc-sw-ing-20", "front": "Tipos de factibilidad y ROI", "back": "Técnica, económica, operativa, legal, de tiempo. ROI = (beneficio − costo)/costo. VPN > 0 conviene." },
-    { "id": "fc-sw-ing-21", "front": "ERP vs CRM", "back": "ERP: integra procesos del negocio en un sistema único. CRM: relación con los clientes." }
+    { "id": "fc-sw-ing-21", "front": "ERP vs CRM", "back": "ERP: integra procesos del negocio en un sistema único. CRM: relación con los clientes." },
+    { "id": "fc-sw-ing-22", "front": "PMBOK 7 vs. PMBOK 6", "back": "PMBOK 7: 12 principios y 8 dominios de desempeño (Interesados, Equipo, Enfoque de desarrollo y ciclo de vida, Planificación, Trabajo, Entrega, Medición, Incertidumbre). PMBOK 6: 5 grupos de procesos y 10 áreas." },
+    { "id": "fc-sw-ing-23", "front": "Valor ganado: CPI y SPI", "back": "CPI = EV ÷ AC (costo); SPI = EV ÷ PV (cronograma). Menor que 1 = sobrecosto o retraso; mayor que 1 = bajo presupuesto o adelantado." },
+    { "id": "fc-sw-ing-24", "front": "Heurísticas de Nielsen más preguntadas", "back": "Visibilidad del estado (barra de progreso), prevención de errores (deshabilitar Enviar), consistencia, reconocer en lugar de recordar, control del usuario (deshacer)." },
+    { "id": "fc-sw-ing-25", "front": "Usabilidad y accesibilidad", "back": "ISO 9241-11: eficacia, eficiencia y satisfacción en un contexto de uso. Accesibilidad (WCAG): contenido perceptible, operable, comprensible y robusto (texto alternativo, subtítulos)." }
   ]
 }

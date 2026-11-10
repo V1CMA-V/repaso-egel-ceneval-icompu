@@ -21,6 +21,11 @@
     { "id": "fc-sw-dat-19", "front": "ACID", "back": "Atomicidad (todo o nada), Consistencia, Aislamiento y Durabilidad (lo confirmado persiste)." },
     { "id": "fc-sw-dat-20", "front": "OLTP vs OLAP y CAP", "back": "OLTP: transacciones diarias. OLAP: análisis histórico (ETL al data warehouse). CAP: solo 2 de Consistencia, Disponibilidad, tolerancia a Particiones." },
     { "id": "fc-sw-dat-21", "front": "Tipos de aprendizaje automático", "back": "Supervisado (etiquetas), no supervisado (clustering, K-means), por refuerzo (recompensas)." },
-    { "id": "fc-sw-dat-22", "front": "Precisión y recall", "back": "Precisión = VP/(VP+FP). Recall = VP/(VP+FN). Sobreajuste: bien en entrenamiento, mal con datos nuevos." }
+    { "id": "fc-sw-dat-22", "front": "Precisión y recall", "back": "Precisión = VP/(VP+FP). Recall = VP/(VP+FN). Sobreajuste: bien en entrenamiento, mal con datos nuevos." },
+    { "id": "fc-sw-dat-23", "front": "LLM, Transformer y alucinación", "back": "Los LLM se basan en Transformers (atención). Alucinación: respuesta plausible pero falsa. RAG la mitiga recuperando documentos confiables como contexto." },
+    { "id": "fc-sw-dat-24", "front": "Zero-shot, few-shot y fine-tuning", "back": "Zero-shot: sin ejemplos. Few-shot: ejemplos en el prompt sin cambiar los pesos. Fine-tuning: reentrena y modifica los pesos del modelo." },
+    { "id": "fc-sw-dat-25", "front": "Encadenamiento hacia adelante vs. hacia atrás", "back": "Adelante: de los hechos a las conclusiones. Atrás: parte de la meta y busca los hechos que la prueban. Sistema experto = base de conocimiento + motor de inferencia." },
+    { "id": "fc-sw-dat-26", "front": "Redes semánticas y ontologías", "back": "Red semántica: nodos y arcos etiquetados (es-un) con herencia de propiedades. Ontología: vocabulario formal de conceptos y relaciones de un dominio." },
+    { "id": "fc-sw-dat-27", "front": "A*: f = g + h", "back": "g: costo real desde el inicio. h: estimación del costo restante a la meta. Es óptimo si h no sobreestima (heurística admisible)." }
   ]
 }

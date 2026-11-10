@@ -13,6 +13,10 @@
     { "id": "fc-red-adm-11", "front": "Cableado horizontal", "back": "Máximo 90 m de cable permanente + 10 m de cordones = 100 m (TIA/EIA-568)." },
     { "id": "fc-red-adm-12", "front": "SNMP: puertos y piezas", "back": "UDP 161/162. Agente, gestor, MIB y traps (alertas espontáneas)." },
     { "id": "fc-red-adm-13", "front": "Latencia, jitter y throughput", "back": "Latencia: retardo. Jitter: variación de la latencia. Throughput: velocidad real lograda." },
-    { "id": "fc-red-adm-14", "front": "Secuencia de pruebas con ping", "back": "127.0.0.1 → IP propia → gateway → 8.8.8.8 → nombre (DNS)." }
+    { "id": "fc-red-adm-14", "front": "Secuencia de pruebas con ping", "back": "127.0.0.1 → IP propia → gateway → 8.8.8.8 → nombre (DNS)." },
+    { "id": "fc-red-adm-15", "front": "DHCP: mensajes DORA", "back": "Discover, Offer, Request, Acknowledge. El cliente descubre, el servidor ofrece, el cliente solicita y el servidor confirma." },
+    { "id": "fc-red-adm-16", "front": "PAT vs. NAT estático", "back": "PAT (NAT con sobrecarga): muchas IP privadas comparten una pública distinguidas por puerto. NAT estático: relación uno a uno." },
+    { "id": "fc-red-adm-17", "front": "STP y enrutamiento por prefijo más largo", "back": "STP evita bucles de capa 2 bloqueando enlaces redundantes. El router elige la ruta con el prefijo más largo (más específica)." },
+    { "id": "fc-red-adm-18", "front": "Monitoreo: SNMP, syslog y ping", "back": "SNMP consulta variables de una MIB. Syslog: severidad 0 (Emergency) la más grave a 7 (Debug). Ping al gateway correcto y a Internet fallido: falla más allá del gateway." }
   ]
 }

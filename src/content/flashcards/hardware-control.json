@@ -17,6 +17,11 @@
     { "id": "fc-hw-ctl-15", "front": "Lenguajes IEC 61131-3", "back": "LD (ladder), FBD, ST (texto estructurado), IL (obsoleto), SFC (Grafcet, procesos por etapas)." },
     { "id": "fc-hw-ctl-16", "front": "Lazo cerrado y bloques", "back": "T = G/(1+GH). Serie: se multiplica. Paralelo: se suma." },
     { "id": "fc-hw-ctl-17", "front": "Sobreimpulso y tiempo de establecimiento (2.º orden)", "back": "Mp = e^(−ζπ/√(1−ζ²)) (ζ=0.5 → 16 %). ts ≈ 4/(ζ·ωn)." },
-    { "id": "fc-hw-ctl-18", "front": "Sistema lineal, Fourier y Laplace", "back": "Lineal = superposición (sin offsets ni potencias). Fourier: tiempo → frecuencia. Laplace: ecuaciones diferenciales → algebraicas (G(s))." }
+    { "id": "fc-hw-ctl-18", "front": "Sistema lineal, Fourier y Laplace", "back": "Lineal = superposición (sin offsets ni potencias). Fourier: tiempo → frecuencia. Laplace: ecuaciones diferenciales → algebraicas (G(s))." },
+    { "id": "fc-hw-ctl-19", "front": "Teorema de Nyquist y aliasing", "back": "Hay que muestrear a más del doble de la frecuencia máxima (fs > 2·fmax). Si no, aparece aliasing: frecuencias falsas (7 kHz a 8 kHz se ve como 1 kHz)." },
+    { "id": "fc-hw-ctl-20", "front": "Resolución de la FFT", "back": "Δf = fs ÷ N. Con fs = 1000 Hz y N = 500 muestras la resolución es 2 Hz." },
+    { "id": "fc-hw-ctl-21", "front": "FIR vs. IIR", "back": "FIR: sin realimentación, siempre estable, posible fase lineal. IIR: con realimentación, más eficiente pero puede ser inestable." },
+    { "id": "fc-hw-ctl-22", "front": "Visión por computador: operaciones básicas", "back": "Imagen = matriz de píxeles (gris 8 bits: ancho × alto bytes). Bordes: convolución con Sobel. Binarizar: umbralización. Suavizar: filtro de media o gaussiano." },
+    { "id": "fc-hw-ctl-23", "front": "Control todo o nada con histéresis", "back": "El actuador solo tiene dos estados; la histéresis (dos umbrales) evita conmutar sin parar. Ejemplo: termostato que enciende a 20 °C y apaga a 22 °C." }
   ]
 }

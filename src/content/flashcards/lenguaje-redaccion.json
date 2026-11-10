@@ -18,6 +18,18 @@
     { "id": "fc-len-red-16", "front": "Dos puntos y punto y coma", "back": "Dos puntos: anuncian enumeración o cita (no después de un verbo). Punto y coma: separa oraciones relacionadas o elementos con comas internas." },
     { "id": "fc-len-red-17", "front": "Registro formal", "back": "Vocabulario preciso, tercera persona o usted, sin modismos, muletillas, diminutivos ni apócopes." },
     { "id": "fc-len-red-18", "front": "Cohesión y coherencia", "back": "Cohesión: conectores, pronombres, sinónimos. Coherencia: unidad temática y orden lógico." },
-    { "id": "fc-len-red-19", "front": "Ordenar enunciados", "back": "Primero la oración introductoria; los pronombres y conectores (Esto, Por ello, Sin embargo) dependen de la anterior; al final, la conclusión." }
+    { "id": "fc-len-red-19", "front": "Ordenar enunciados", "back": "Primero la oración introductoria; los pronombres y conectores (Esto, Por ello, Sin embargo) dependen de la anterior; al final, la conclusión." },
+    { "id": "fc-len-red-20", "front": "Estructura de Redacción indirecta", "back": "30 reactivos: ámbito de estudio 15 y de participación social 15. Tres dimensiones: comunicativa, gramatical y semántica, y ortográfica. No escribes: eliges el fragmento correcto." },
+    { "id": "fc-len-red-21", "front": "Géneros del ámbito de estudio", "back": "Artículo de divulgación científica (claro, con ejemplos), protocolo de proyecto de investigación (propuesta, sin resultados) y reseña (resume y valora)." },
+    { "id": "fc-len-red-22", "front": "Géneros del ámbito de participación social", "back": "Editorial de periódico (opinión institucional), convocatoria (fechas y requisitos) y carta de exposición de motivos (solicitud con razones, tono formal)." },
+    { "id": "fc-len-red-23", "front": "Protocolo vs. artículo de investigación", "back": "Protocolo: problema, objetivos, justificación y metodología por realizar; sin resultados. Artículo: estudio concluido con resultados y discusión." },
+    { "id": "fc-len-red-24", "front": "Editorial vs. nota informativa", "back": "Editorial: opina y exige («debe», «resulta inaceptable»). Nota informativa: expone hechos de forma objetiva, con lo más importante al inicio." },
+    { "id": "fc-len-red-25", "front": "Registro según el receptor", "back": "Formal para autoridades y profesores (usted, cortesía, sin coloquialismos). Cercano y claro para niños. Especializado solo para pares. Elige el que corresponde al lector." },
+    { "id": "fc-len-red-26", "front": "Tres tipos de cohesión", "back": "Gramatical: pronombres, conectores, elipsis y tiempos. Léxico-semántica: sinónimos e hiperónimos. Textual: orden, unidad del tema y progresión de las ideas." },
+    { "id": "fc-len-red-27", "front": "Concordancia con «agua», «área», «águila»", "back": "Llevan el artículo el/un pero los adjetivos van en femenino: el agua fría, un área despejada." },
+    { "id": "fc-len-red-28", "front": "Concordancia del pronombre con su antecedente", "back": "El pronombre coincide en género y número: los exámenes → los revisaron (no «lo revisaron»). Evita pronombres ambiguos con dos posibles referentes." },
+    { "id": "fc-len-red-29", "front": "por qué · porque · porqué", "back": "Por qué: pregunta o interrogativo indirecto («no sé por qué»). Porque: causa. Porqué: sustantivo («el porqué»)." },
+    { "id": "fc-len-red-30", "front": "a ver · haber · sino · si no · también · tan bien", "back": "A ver (mirar) ≠ haber (verbo). Sino (contraste) ≠ si no (condición). También (además) ≠ tan bien (intensidad)." },
+    { "id": "fc-len-red-31", "front": "hay · ahí · ay", "back": "Hay: verbo haber («hay que revisar»). Ahí: lugar. Ay: exclamación." }
   ]
 }
