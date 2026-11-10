@@ -1,0 +1,88 @@
+---
+title: 'Pruebas de software y calidad: verificación, validación, ISO 25010 y CMMI'
+summary: 'Niveles y tipos de prueba, caja blanca vs caja negra, complejidad ciclomática, verificación vs validación y modelos de calidad.'
+order: 4
+readMinutes: 13
+examWeight: 'Software 3.1 · Ingeniería de software'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Las **pruebas** ejecutan el software con la intención de **encontrar defectos**; no pueden demostrar que no hay errores, solo reducir el riesgo. La **calidad** es el grado en que el producto y el proceso cumplen los requisitos y las necesidades del usuario.
+</Callout>
+
+## Niveles de prueba
+
+| Nivel | Qué prueba | Quién |
+| --- | --- | --- |
+| **Unitarias** | Un **módulo, función o clase** aislado | Desarrollador |
+| **De integración** | La **interacción entre módulos** (interfaces) | Desarrollo / QA |
+| **De sistema** | El **sistema completo** frente a los requisitos | QA |
+| **De aceptación** | El **usuario o cliente** confirma que sirve (**alfa**: en el sitio del desarrollador; **beta**: con usuarios reales) | Cliente |
+
+Otros tipos:
+
+- **Regresión**: comprobar que **un cambio nuevo no rompió** lo que ya funcionaba.
+- **Humo (smoke)**: revisión **rápida** de que lo **básico funciona** antes de seguir probando.
+- **Rendimiento / carga / estrés**: comportamiento con **mucha carga** o **más allá de los límites**.
+- **Seguridad, usabilidad, compatibilidad**.
+- **TDD**: escribir la **prueba antes** del código.
+
+## Caja blanca vs caja negra
+
+| | **Caja blanca (estructural)** | **Caja negra (funcional)** |
+| --- | --- | --- |
+| Conocimiento | **Conoce el código** interno | **Solo entradas y salidas** (requisitos) |
+| Técnicas | **Cobertura de sentencias, de ramas (decisiones) y de caminos**; **complejidad ciclomática** | **Partición de equivalencia**, **análisis de valores límite**, **tablas de decisión**, grafos causa-efecto |
+| Típica en | **Pruebas unitarias** | **Pruebas de sistema y aceptación** |
+
+**Complejidad ciclomática** (mide caminos independientes):
+
+$$V(G) = E - N + 2$$
+
+con $E$ = aristas y $N$ = nodos del grafo de flujo (o **número de decisiones + 1**). Ejemplo: $E = 11$, $N = 9$ → $V(G) = 4$ → se necesitan **4 casos de prueba** para cubrir los caminos básicos.
+
+**Valores límite**: si un campo acepta edades de **18 a 65**, se prueban **17, 18, 19, 64, 65 y 66**. **Partición de equivalencia**: se divide en clases (menores de 18, 18–65, mayores de 65) y se prueba **un valor por clase**.
+
+<Callout type="tip">
+"**Probar sin ver el código, con valores límite**" → **caja negra**. "**Cubrir todas las ramas de un `if`**" → **caja blanca**. Complejidad ciclomática → siempre **caja blanca**.
+</Callout>
+
+## Verificación vs validación
+
+- **Verificación**: *¿estamos construyendo el producto **correctamente**?* → cumple la **especificación** (revisiones, inspecciones, pruebas estáticas, análisis de código).
+- **Validación**: *¿estamos construyendo el **producto correcto**?* → cumple las **necesidades reales del usuario** (pruebas con el usuario, aceptación).
+
+## Calidad
+
+- **ISO/IEC 25010** (calidad del producto): **adecuación funcional, eficiencia de desempeño, compatibilidad, usabilidad, fiabilidad, seguridad, mantenibilidad y portabilidad**.
+- **CMMI** (madurez del **proceso**): **niveles 1 a 5**: 1 Inicial (caótico), 2 Gestionado, 3 Definido, 4 Gestionado cuantitativamente, 5 En optimización.
+- **ISO 9001**: gestión de la calidad. **ISO/IEC 12207**: procesos del ciclo de vida.
+- **Aseguramiento de la calidad (QA)**: **previene** defectos mejorando el **proceso**. **Control de calidad (QC)**: **detecta** defectos en el **producto**.
+- **Métricas**: **densidad de defectos**, cobertura de pruebas, **MTBF** (tiempo medio entre fallas).
+
+<Callout type="importante">
+- **Verificación** = ¿lo hicimos **bien**? **Validación** = ¿hicimos **lo correcto**?
+- **Regresión** = no romper lo anterior. **Humo** = revisión rápida de lo básico.
+- **V(G) = E − N + 2**.
+- **CMMI** mide la **madurez del proceso** (niveles 1–5); **ISO 25010** la **calidad del producto**.
+- **QA previene (proceso)**; **QC detecta (producto)**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **verificación** con **validación**.
+- Pensar que **cobertura del 100 % de líneas** garantiza que no hay errores.
+- Usar **caja negra** para medir **cobertura de ramas** (eso es caja blanca).
+- Confundir **QA** (proceso) con **QC** (producto).
+</Callout>
+
+## Ejemplo resuelto
+
+> Un formulario acepta edades de 18 a 65 años. ¿Qué valores deben probarse con el análisis de valores límite?
+
+**17, 18, 65 y 66** (y valores internos cercanos como 19 y 64). Los errores se concentran en los bordes de los rangos.

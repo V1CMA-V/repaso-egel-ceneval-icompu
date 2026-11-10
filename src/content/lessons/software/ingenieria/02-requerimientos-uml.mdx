@@ -1,0 +1,92 @@
+---
+title: 'Requerimientos, historias de usuario y UML'
+summary: 'Tipos de requerimientos, cómo obtenerlos y validarlos, redacción de historias de usuario y los diagramas y relaciones UML que se preguntan.'
+order: 2
+readMinutes: 13
+examWeight: 'Software 3.1 · Ingeniería de software'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Un **requerimiento** describe **lo que el sistema debe hacer** o **las condiciones bajo las cuales debe operar**. La **ingeniería de requerimientos** es el proceso de descubrirlos, documentarlos y mantenerlos. **UML (Lenguaje Unificado de Modelado)** es la notación estándar para **modelar** el sistema con diagramas.
+</Callout>
+
+## Tipos de requerimientos
+
+- **Funcionales (RF)**: **qué hace** el sistema (funciones, servicios). Ej.: "El sistema permitirá a los usuarios registrar un pedido."
+- **No funcionales (RNF)**: **cómo lo hace** o restricciones de calidad: **rendimiento, seguridad, usabilidad, disponibilidad, escalabilidad, portabilidad**. Ej.: "El sistema responderá en **menos de 2 segundos**", "**disponibilidad de 99.9 %**".
+- **De dominio**: reglas propias del negocio o de la normativa (ej. cálculo de impuestos).
+- **Del usuario** (alto nivel, lenguaje natural) vs **del sistema** (detallados, técnicos).
+
+<Callout type="tip">
+Si el requerimiento habla de **tiempo, rendimiento, seguridad, facilidad de uso o disponibilidad** → **no funcional**. Si describe **una función o acción** → **funcional**.
+</Callout>
+
+## Proceso de ingeniería de requerimientos
+
+1. **Obtención (elicitación)**: **entrevistas, encuestas/cuestionarios, observación (etnografía), talleres, análisis de documentos, prototipos, casos de uso**.
+2. **Análisis**: detectar conflictos, ambigüedades y prioridades.
+3. **Especificación**: documentar en un **SRS (Software Requirements Specification)** claro, completo, **consistente y verificable**.
+4. **Validación**: confirmar con los interesados que **es lo que realmente necesitan** (revisiones, prototipos).
+5. **Gestión del cambio y trazabilidad**: seguir cada requerimiento a lo largo del proyecto.
+
+**Historia de usuario** (metodologías ágiles): *"Como [rol], quiero [funcionalidad], para [beneficio]"*, acompañada de **criterios de aceptación** que definen cuándo está terminada. Ej.: "Como cliente, quiero guardar mis direcciones, para no escribirlas en cada compra." Siguen el criterio **INVEST** (Independiente, Negociable, Valiosa, Estimable, Pequeña, Testeable).
+
+## UML: tipos de diagramas
+
+| Categoría | Diagramas | Qué muestran |
+| --- | --- | --- |
+| **Estructura** | **Clases**, objetos, componentes, despliegue, paquetes | **Partes estáticas** del sistema |
+| **Comportamiento** | **Casos de uso**, **actividades**, **estados**, **secuencia**, comunicación | **Cómo se comporta** a lo largo del tiempo |
+
+- **Casos de uso**: **actores** (quienes interactúan) y **funcionalidades** del sistema. Relación **`include`**: el caso **siempre** usa a otro. Relación **`extend`**: comportamiento **opcional**.
+- **Secuencia**: **mensajes entre objetos ordenados en el tiempo** (eje vertical).
+- **Actividades**: **flujo de trabajo** (similar a un diagrama de flujo, con decisiones y paralelismo).
+- **Estados**: **estados de un objeto** y las **transiciones** entre ellos (ej. un pedido: creado → pagado → enviado).
+- **Clases**: **clases, atributos, métodos y relaciones**.
+
+## Relaciones en el diagrama de clases
+
+| Relación | Símbolo | Significado |
+| --- | --- | --- |
+| **Asociación** | Línea simple | Las clases **se conocen o usan** |
+| **Agregación** | **Rombo vacío** | "**Tiene un**": la **parte puede existir sola** (Equipo–Jugador) |
+| **Composición** | **Rombo lleno** | Agregación **fuerte**: la **parte no existe sin el todo** (Casa–Habitación) |
+| **Herencia / generalización** | **Flecha con triángulo vacío** | "**Es un**" (Perro hereda de Animal) |
+| **Dependencia** | Flecha **punteada** | Una clase **usa temporalmente** a otra |
+| **Realización** | Punteada con triángulo vacío | Una clase **implementa una interfaz** |
+
+**Multiplicidad**: `1`, `0..1`, `1..*`, `*` (muchos).
+
+<Callout type="tip">
+**Agregación vs composición**: pregunta **"si borro el todo, ¿desaparecen las partes?"**. **Sí** → **composición** (rombo lleno). **No** → **agregación** (rombo vacío). Una **Universidad** y sus **Departamentos** suele ser composición; un **Equipo** y sus **Jugadores**, agregación.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **RNF** = rendimiento, seguridad, usabilidad... ("responde en menos de 2 s").
+- **Obtención**: entrevistas, encuestas, observación, talleres. **Validación** confirma que el requerimiento es lo que el usuario necesita.
+- **Historia de usuario**: Como [rol], quiero [función], para [beneficio].
+- **Composición** (rombo lleno) ≠ **agregación** (rombo vacío). **Herencia** = "es un".
+- **include** = siempre; **extend** = opcional.
+- **Secuencia** = mensajes en el tiempo; **estados** = ciclo de vida de un objeto.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Clasificar "responde en menos de 2 s" como **funcional**.
+- Confundir **agregación** y **composición**.
+- Usar un diagrama de **clases** para mostrar **el orden de mensajes** en el tiempo (corresponde al de **secuencia**).
+- Considerar que la **validación** de requerimientos es lo mismo que la **verificación** del código.
+</Callout>
+
+## Ejemplo resuelto
+
+> ¿Qué diagrama UML usarías para mostrar cómo un cliente, el sitio web y el sistema de pagos intercambian mensajes al realizar una compra, en orden cronológico?
+
+Un **diagrama de secuencia**: muestra los objetos como líneas de vida y los mensajes ordenados en el tiempo.

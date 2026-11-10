@@ -1,0 +1,87 @@
+---
+title: 'Paradigmas de programación y programación orientada a objetos'
+summary: 'Estructurado, orientado a objetos, funcional, lógico y por eventos; pilares de la POO, sobrecarga vs sobreescritura, clases abstractas e interfaces, y tipado.'
+order: 1
+readMinutes: 11
+examWeight: 'Software 3.2 · Programación y software base (13 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Un **paradigma de programación** es un **estilo o modelo** para organizar y escribir programas. No es un lenguaje: muchos lenguajes soportan varios paradigmas (Python, Java, JavaScript).
+</Callout>
+
+## Principales paradigmas
+
+| Paradigma | Idea | Características / ejemplos |
+| --- | --- | --- |
+| **Estructurado** | Todo programa se construye con **secuencia, selección (`if`) e iteración (`while`, `for`)**, **sin saltos arbitrarios (`goto`)** | C, Pascal; descompone en funciones |
+| **Orientado a objetos (POO)** | Modela el problema con **objetos** que combinan **datos y comportamiento** | Java, C#, C++, Python |
+| **Funcional** | Computación como **evaluación de funciones puras**, **inmutabilidad**, sin efectos secundarios | Haskell, Lisp; `map`, `filter`, `reduce` |
+| **Lógico (declarativo)** | Se describen **hechos y reglas** y el motor **infiere** respuestas | **Prolog** |
+| **Orientado a eventos** | El flujo lo dictan **eventos** (clics, mensajes, señales) y sus manejadores | Interfaces gráficas, JavaScript, sistemas embebidos |
+| **Imperativo vs declarativo** | Imperativo: **cómo** hacerlo paso a paso. Declarativo: **qué** se quiere (SQL, HTML) | |
+| **Concurrente / paralelo** | Varias tareas **al mismo tiempo** | Hilos, procesos |
+
+<Callout type="tip">
+**"Hechos y reglas, inferencia"** → **lógico (Prolog)**. **"Funciones puras e inmutabilidad"** → **funcional**. **"Responde a clics o mensajes"** → **orientado a eventos**. **"Secuencia, selección e iteración"** → **estructurado**.
+</Callout>
+
+## Los cuatro pilares de la POO
+
+1. **Abstracción**: modelar **solo lo esencial** de un objeto, ocultando detalles irrelevantes.
+2. **Encapsulamiento**: **ocultar el estado interno** (atributos privados) y exponer solo **métodos** controlados; protege la integridad de los datos.
+3. **Herencia**: una **subclase** reutiliza y extiende los atributos y métodos de una **superclase** (relación "**es un**").
+4. **Polimorfismo**: **el mismo mensaje produce comportamientos distintos** según el objeto que lo recibe (`figura.area()` calcula distinto para un círculo y un cuadrado).
+
+**Clase** = **plantilla**; **objeto** = **instancia** de una clase. **Constructor** inicializa el objeto. **Atributos** = datos; **métodos** = comportamiento.
+
+## Conceptos que se confunden
+
+| Concepto | Significado |
+| --- | --- |
+| **Sobrecarga (overloading)** | **Mismo nombre**, **distintos parámetros**, en la **misma clase** (se resuelve al **compilar**) |
+| **Sobreescritura (overriding)** | La **subclase redefine** un método heredado con la **misma firma** (polimorfismo en **tiempo de ejecución**) |
+| **Clase abstracta** | **No se puede instanciar**; puede tener métodos con y sin implementación |
+| **Interfaz** | **Contrato** de métodos **sin implementación** (una clase puede implementar varias) |
+| **Modificadores de acceso** | `public` (todos), `protected` (la clase y sus subclases), `private` (solo la clase) |
+| **Miembro estático** | Pertenece a la **clase**, no a cada objeto |
+
+<Callout type="tip">
+**Sobrecarga**: mismo nombre y **distintos parámetros** (misma clase). **Sobreescritura**: **subclase** redefine el método heredado. La regla: **sobre-C**arga = **C**ompilación; **sobre-E**scritura = **E**jecución (polimorfismo).
+</Callout>
+
+## Datos, paso de parámetros y tipado
+
+- **Paso por valor**: se **copia** el valor; modificar el parámetro **no altera** la variable original. **Por referencia**: se pasa la **dirección**; los cambios **sí afectan** al original.
+- **Tipado estático**: los tipos se verifican **al compilar** (Java, C#). **Dinámico**: se verifican **al ejecutar** (Python, JavaScript). **Fuerte** vs **débil**: qué tan estrictas son las conversiones entre tipos.
+- **Recolección de basura (garbage collector)**: libera automáticamente la memoria que ya no se usa (Java, Python).
+- **Excepciones**: mecanismo para manejar errores en tiempo de ejecución (`try/catch/finally`).
+
+## Importante recordar
+
+<Callout type="importante">
+- **POO**: abstracción, encapsulamiento, herencia, polimorfismo.
+- **Encapsulamiento** = ocultar estado; **herencia** = "es un"; **polimorfismo** = mismo mensaje, distinta respuesta.
+- **Sobrecarga** (mismo nombre, otros parámetros) ≠ **sobreescritura** (subclase redefine).
+- **Clase abstracta**: no se instancia. **Interfaz**: contrato sin implementación.
+- **Funcional** = funciones puras e inmutabilidad; **lógico** = hechos y reglas (Prolog).
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **sobrecarga** con **sobreescritura**.
+- Intentar **instanciar una clase abstracta o una interfaz**.
+- Confundir **encapsulamiento** con **abstracción** (ocultar estado vs ocultar complejidad).
+- Creer que el paso **por valor** modifica la variable original.
+</Callout>
+
+## Ejemplo resuelto
+
+> Una clase `Animal` tiene el método `hacerSonido()`. `Perro` y `Gato` heredan de ella y lo redefinen. Al llamar `animal.hacerSonido()` sobre una lista de animales, cada uno emite su sonido. ¿Qué concepto se aplica?
+
+**Polimorfismo** (basado en **herencia** y **sobreescritura**): el mismo mensaje produce comportamientos distintos según el objeto.

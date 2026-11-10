@@ -1,0 +1,68 @@
+---
+title: 'Ciclo de vida del software y metodologías ágiles (Scrum, Kanban, XP)'
+summary: 'Cascada, prototipos, incremental, espiral y modelo V; cuándo conviene cada uno y cómo funcionan Scrum, Kanban y XP.'
+order: 1
+readMinutes: 12
+examWeight: 'Software 3.1 · Ingeniería de software (16 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **ciclo de vida del software** son las **etapas** por las que pasa un sistema: **requerimientos → análisis → diseño → implementación (codificación) → pruebas → despliegue → mantenimiento**. Un **modelo de proceso** define **cómo se ordenan y repiten** esas etapas.
+</Callout>
+
+## Modelos de proceso: ¿cuál elegir?
+
+| Modelo | Idea | Conviene cuando… | Limitación |
+| --- | --- | --- | --- |
+| **Cascada** | Fases **secuenciales**; no se regresa | Requerimientos **claros y estables**, proyectos pequeños o muy regulados | **No maneja bien el cambio**; el cliente ve el producto **hasta el final** |
+| **Prototipos** | Se construye una **versión rápida** para que el usuario valide | Requerimientos **confusos o poco claros** | Riesgo de que el prototipo "se quede" como producto final |
+| **Incremental / iterativo** | Se entrega por **partes funcionales** (incrementos) | Se necesita **valor temprano**; recursos limitados | Requiere buena arquitectura base |
+| **Espiral** | Iteraciones con **análisis de riesgos** en cada vuelta | **Proyectos grandes, costosos y riesgosos** | Complejo, requiere experiencia en riesgos |
+| **Modelo V** | Cada fase de desarrollo tiene su **nivel de pruebas** asociado | **Alta calidad y verificación** (sistemas críticos) | Rígido |
+| **RAD** | Desarrollo **rápido** con componentes y prototipos, equipos pequeños | Plazos cortos, sistemas **modularizables** | No sirve para sistemas de alto rendimiento o riesgo |
+| **Ágil** | Ciclos **cortos**, **cliente involucrado**, respuesta al cambio | **Requerimientos cambiantes** | Menor documentación; exige disciplina |
+
+<Callout type="tip">
+Palabras clave: **"requisitos claros y estables"** → **cascada**. **"El cliente no sabe bien qué quiere"** → **prototipos**. **"Riesgos grandes y costos altos"** → **espiral**. **"Cada fase con su prueba"** → **modelo V**. **"Entregas cortas y cambio constante"** → **ágil**.
+</Callout>
+
+## Manifiesto ágil (valores)
+
+**Individuos e interacciones** sobre procesos y herramientas · **software funcionando** sobre documentación exhaustiva · **colaboración con el cliente** sobre negociación contractual · **responder al cambio** sobre seguir un plan.
+
+## Scrum
+
+- **Roles**: **Product Owner** (representa al cliente y **prioriza el backlog**), **Scrum Master** (facilita y **elimina impedimentos**) y **Equipo de desarrollo** (autoorganizado, construye el incremento).
+- **Eventos**: **Sprint** (iteración de **1 a 4 semanas**), **Sprint Planning** (qué se hará), **Daily Scrum** (15 min: qué hice, qué haré, impedimentos), **Sprint Review** (se muestra el incremento al cliente) y **Retrospectiva** (cómo mejorar el proceso).
+- **Artefactos**: **Product Backlog** (lista priorizada de todo lo pendiente), **Sprint Backlog** (lo elegido para el sprint) e **Incremento** (producto potencialmente entregable).
+- **Definición de "terminado" (DoD)**: criterios comunes para considerar completo un elemento.
+
+## Kanban y XP
+
+- **Kanban**: **tablero visual** (Por hacer / En curso / Hecho) con **límite de trabajo en curso (WIP)** para evitar cuellos de botella; flujo continuo, sin sprints fijos.
+- **XP (Extreme Programming)**: prácticas técnicas: **programación en pares**, **TDD** (pruebas antes del código), **integración continua**, **refactorización**, **entregas pequeñas**, propiedad colectiva del código.
+
+<Callout type="importante">
+- **Scrum** = iteraciones (sprints) con roles y eventos definidos. **Kanban** = flujo continuo con **límite WIP**. **XP** = prácticas de ingeniería (**pares, TDD, CI**).
+- **Cascada** no maneja bien **requerimientos cambiantes**.
+- El **Product Owner** prioriza; el **Scrum Master** no es "jefe del equipo", elimina obstáculos.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Elegir **cascada** para un proyecto con requerimientos cambiantes.
+- Pensar que **ágil = sin documentación ni planeación** (se planifica en ciclos cortos).
+- Atribuir al **Scrum Master** la tarea de **priorizar** el backlog (es del Product Owner).
+- Confundir **Sprint Review** (se muestra el producto) con **Retrospectiva** (se mejora el proceso).
+</Callout>
+
+## Ejemplo resuelto
+
+> Una startup desarrolla una app cuya idea cambia cada mes según la retroalimentación de sus usuarios. Quiere entregas frecuentes. ¿Qué enfoque usa?
+
+Una **metodología ágil**, por ejemplo **Scrum** con sprints de 2 semanas: las entregas cortas y la revisión constante con el cliente permiten absorber los cambios.

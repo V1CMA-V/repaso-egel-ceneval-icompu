@@ -1,0 +1,19 @@
+{
+  "cards": [
+    { "id": "fc-sw-so-01", "front": "Los 4 pilares de la POO", "back": "Abstracción, encapsulamiento, herencia y polimorfismo." },
+    { "id": "fc-sw-so-02", "front": "Sobrecarga vs sobreescritura", "back": "Sobrecarga: mismo nombre y distintos parámetros (misma clase). Sobreescritura: la subclase redefine un método heredado." },
+    { "id": "fc-sw-so-03", "front": "Clase abstracta e interfaz", "back": "Clase abstracta: no se instancia. Interfaz: contrato de métodos sin implementación." },
+    { "id": "fc-sw-so-04", "front": "Paradigmas: funcional, lógico, por eventos, estructurado", "back": "Funciones puras e inmutabilidad · hechos y reglas (Prolog) · responde a eventos · secuencia, selección e iteración." },
+    { "id": "fc-sw-so-05", "front": "Compilador vs intérprete", "back": "Compilador: traduce todo antes de ejecutar. Intérprete: línea por línea. Java: híbrido (bytecode + JVM)." },
+    { "id": "fc-sw-so-06", "front": "Fases de un compilador y sus errores", "back": "Léxico (tokens, símbolo inválido) → sintáctico (estructura) → semántico (tipos y declaraciones) → código intermedio → optimización → generación." },
+    { "id": "fc-sw-so-07", "front": "Jerarquía de Chomsky", "back": "Tipo 3 regular → autómata finito · Tipo 2 libre de contexto → autómata de pila · Tipo 1 sensible al contexto · Tipo 0 → máquina de Turing." },
+    { "id": "fc-sw-so-08", "front": "AFD vs AFN y gramática ambigua", "back": "Reconocen los mismos lenguajes. Ambigua: una cadena con más de un árbol de derivación." },
+    { "id": "fc-sw-so-09", "front": "Proceso vs hilo y estados de un proceso", "back": "Proceso: memoria propia. Hilos: comparten memoria. Estados: nuevo, listo, ejecución, bloqueado, terminado." },
+    { "id": "fc-sw-so-10", "front": "FCFS, SJF, Round Robin y prioridades", "back": "FCFS: efecto convoy. SJF: menor espera promedio, inanición. RR: quantum por turnos. Prioridades: inanición, resuelta con envejecimiento." },
+    { "id": "fc-sw-so-11", "front": "Las 4 condiciones del deadlock", "back": "Exclusión mutua, retención y espera, no expropiación y espera circular (todas a la vez). Banquero: evitación." },
+    { "id": "fc-sw-so-12", "front": "Condición de carrera", "back": "El resultado depende del orden de ejecución sobre un recurso compartido. Solución: exclusión mutua (mutex, semáforo)." },
+    { "id": "fc-sw-so-13", "front": "Paginación vs segmentación", "back": "Paginación: bloques fijos, fragmentación interna. Segmentación: bloques variables, fragmentación externa." },
+    { "id": "fc-sw-so-14", "front": "Memoria virtual, fallo de página y thrashing", "back": "Disco como extensión de la RAM. Fallo de página: la página no está en RAM. Thrashing: demasiados fallos." },
+    { "id": "fc-sw-so-15", "front": "FIFO, LRU y óptimo", "back": "FIFO: la más antigua (anomalía de Belady). LRU: la menos recientemente usada. Óptimo: no implementable (referencia)." }
+  ]
+}

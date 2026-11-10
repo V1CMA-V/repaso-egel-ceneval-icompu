@@ -1,0 +1,90 @@
+---
+title: 'Normalización, modelo E-R, transacciones ACID, NoSQL y OLAP'
+summary: 'Cómo detectar qué forma normal viola una tabla, diseñar relaciones 1:N y N:M, entender ACID y problemas de concurrencia, y distinguir SQL de NoSQL y OLTP de OLAP.'
+order: 5
+readMinutes: 14
+examWeight: 'Software 3.3 · Datos y algoritmos'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **normalización** organiza las tablas para **eliminar redundancia** y evitar **anomalías** de inserción, actualización y borrado. Se aplica en etapas llamadas **formas normales** (1FN, 2FN, 3FN, BCNF). El **modelo entidad-relación (E-R)** representa los datos como **entidades, atributos y relaciones**.
+</Callout>
+
+## Formas normales
+
+| Forma | Regla | Se viola cuando… |
+| --- | --- | --- |
+| **1FN** | Valores **atómicos**; **sin grupos repetidos** | Una celda guarda una **lista** ("555-1, 555-2") o hay columnas `tel1`, `tel2` |
+| **2FN** | 1FN y **sin dependencias parciales** de una **clave compuesta** | Un atributo depende **solo de parte** de la clave |
+| **3FN** | 2FN y **sin dependencias transitivas** | Un atributo **no clave** depende de **otro no clave** |
+| **BCNF** | **Todo determinante es clave candidata** | Hay una dependencia cuyo lado izquierdo **no es clave** |
+
+**Ejemplo 2FN**: `Detalle(id_pedido, id_producto, cantidad, nombre_producto)` con clave compuesta **(id_pedido, id_producto)**. `nombre_producto` depende **solo de `id_producto`** → **dependencia parcial** → viola **2FN**. Solución: crear una tabla **`Producto(id_producto, nombre)`**.
+
+**Ejemplo 3FN**: `Empleado(id, nombre, id_depto, nombre_depto)`. `nombre_depto` depende de `id_depto` (que **no es clave**), y `id_depto` depende de `id` → **dependencia transitiva** → viola **3FN**. Solución: tabla **`Departamento(id_depto, nombre_depto)`**.
+
+<Callout type="tip">
+Truco: **¿la clave es compuesta?** Si un atributo depende de **solo una parte** → **2FN**. Si un atributo depende de **otro atributo que no es clave** → **3FN**. Si hay **listas en una celda** → **1FN**.
+</Callout>
+
+**Desnormalizar** (a propósito) **duplica datos** para **acelerar lecturas**, típico en data warehouses y reportes.
+
+## Modelo E-R
+
+- **Entidad**: objeto del negocio (Cliente, Pedido). **Atributo**: propiedad (nombre). **Atributo clave**: identifica la entidad.
+- **Cardinalidad**: **1:1**, **1:N** (un cliente, muchos pedidos), **N:M** (estudiantes y materias).
+- Una relación **N:M** **no existe directamente** en el modelo relacional: se resuelve con una **tabla intermedia (asociativa)** que contiene las **dos claves foráneas** (ej. `Inscripcion(id_estudiante, id_materia)`).
+- En 1:N, la **clave foránea** va en el lado **"muchos"** (`Pedido.id_cliente`).
+
+## Transacciones y ACID
+
+Una **transacción** es un conjunto de operaciones que se ejecutan **como una unidad**. **ACID**:
+
+| Propiedad | Significado | Ejemplo |
+| --- | --- | --- |
+| **A**tomicidad | **Todo o nada** | Una transferencia que falla tras restar a una cuenta se **deshace** |
+| **C**onsistencia | Pasa de un **estado válido a otro** respetando reglas | Los saldos nunca quedan negativos si hay una restricción |
+| **A**islamiento | Las transacciones concurrentes **no se estorban** | Dos usuarios no ven datos a medias del otro |
+| **D**urabilidad | Lo **confirmado (COMMIT)** **persiste** aunque falle el sistema | Tras `COMMIT`, el dato sobrevive a un apagón |
+
+**Problemas de concurrencia**: **lectura sucia** (lee datos **no confirmados**), **lectura no repetible** (la misma fila cambia entre dos lecturas), **lectura fantasma** (aparecen filas nuevas en una repetición de consulta). Los **bloqueos (locks)** previenen estos problemas, pero pueden causar **deadlock** entre transacciones.
+
+<Callout type="tip">
+Pregunta típica: **"se resta de una cuenta y el sistema cae antes de sumar a la otra; ¿qué propiedad obliga a deshacer todo?"** → **Atomicidad**. Si lo confirmado se pierde tras un apagón, falló la **Durabilidad**.
+</Callout>
+
+## NoSQL, CAP y OLTP/OLAP
+
+- **NoSQL** (no relacional): **clave-valor** (Redis), **documentos** (MongoDB), **columnas** (Cassandra), **grafos** (Neo4j). Prioriza **escalabilidad horizontal y flexibilidad** de esquema; suele seguir **BASE** (*Basically Available, Soft state, Eventual consistency*).
+- **Teorema CAP**: en un sistema distribuido solo se garantizan **dos de tres**: **C**onsistencia, **D**isponibilidad (*Availability*) y **tolerancia a P**articiones.
+- **OLTP**: **muchas transacciones pequeñas** del día a día (ventas, reservaciones); datos **normalizados** y actuales.
+- **OLAP / data warehouse**: **análisis histórico** y reportes sobre grandes volúmenes; datos **desnormalizados** (esquema estrella). **ETL** = **Extraer, Transformar, Cargar** hacia el almacén.
+
+## Importante recordar
+
+<Callout type="importante">
+- **2FN**: dependencia **parcial** (clave compuesta). **3FN**: dependencia **transitiva**.
+- **N:M** → **tabla intermedia**. **FK** en el lado "muchos".
+- **ACID**: Atomicidad (todo o nada), Consistencia, Aislamiento, Durabilidad.
+- **Lectura sucia** = datos no confirmados.
+- **CAP**: solo **2 de 3**. **OLTP** operación diaria; **OLAP** análisis; **ETL** carga el almacén.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **2FN** con **3FN**.
+- Intentar representar una relación **N:M** con una sola clave foránea.
+- Creer que **NoSQL** "no tiene esquema ni consistencia" en absoluto (cambia el **equilibrio**, no es mejor siempre).
+- Confundir **OLTP** (transaccional) con **OLAP** (analítico).
+</Callout>
+
+## Ejemplo resuelto
+
+> Una tabla `Alumno(id, nombre, id_carrera, nombre_carrera)` ¿viola alguna forma normal?
+
+`nombre_carrera` depende de `id_carrera` (no clave) → **dependencia transitiva** → viola **3FN**. Se separa en `Carrera(id_carrera, nombre_carrera)` y `Alumno(id, nombre, id_carrera)`.

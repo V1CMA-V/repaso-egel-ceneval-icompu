@@ -1,0 +1,25 @@
+{
+  "cards": [
+    { "id": "fc-sw-ing-01", "front": "¿Cuándo usar cascada, prototipos, espiral, modelo V y ágil?", "back": "Cascada: requisitos estables. Prototipos: requisitos confusos. Espiral: proyectos grandes con riesgos. Modelo V: pruebas por fase. Ágil: requisitos cambiantes." },
+    { "id": "fc-sw-ing-02", "front": "Roles de Scrum", "back": "Product Owner (prioriza el backlog), Scrum Master (quita impedimentos), Equipo de desarrollo." },
+    { "id": "fc-sw-ing-03", "front": "Eventos de Scrum", "back": "Sprint (1–4 semanas), Planning, Daily, Review (muestra el incremento) y Retrospectiva (mejora el proceso)." },
+    { "id": "fc-sw-ing-04", "front": "Kanban y XP", "back": "Kanban: tablero con límite de trabajo en curso (WIP). XP: pares, TDD, integración continua, refactorización." },
+    { "id": "fc-sw-ing-05", "front": "Funcional vs no funcional", "back": "Funcional: qué hace el sistema. No funcional: cómo lo hace (rendimiento, seguridad, usabilidad, disponibilidad)." },
+    { "id": "fc-sw-ing-06", "front": "Historia de usuario", "back": "Como [rol], quiero [funcionalidad], para [beneficio], con criterios de aceptación." },
+    { "id": "fc-sw-ing-07", "front": "Agregación vs composición", "back": "Agregación: rombo vacío, la parte puede existir sola. Composición: rombo lleno, la parte no existe sin el todo." },
+    { "id": "fc-sw-ing-08", "front": "include vs extend en casos de uso", "back": "include: comportamiento obligatorio. extend: comportamiento opcional." },
+    { "id": "fc-sw-ing-09", "front": "Alta cohesión y bajo acoplamiento", "back": "Cohesión: qué tan relacionadas están las responsabilidades de un módulo (alta). Acoplamiento: dependencia entre módulos (baja)." },
+    { "id": "fc-sw-ing-10", "front": "Patrones: Singleton, Factory, Observer, Strategy, Adapter", "back": "Una sola instancia · crea objetos · notifica cambios · algoritmo intercambiable · compatibiliza interfaces." },
+    { "id": "fc-sw-ing-11", "front": "SOLID", "back": "Responsabilidad única · abierto/cerrado · sustitución de Liskov · segregación de interfaces · inversión de dependencias." },
+    { "id": "fc-sw-ing-12", "front": "Tipos de mantenimiento", "back": "Correctivo (errores), adaptativo (entorno), perfectivo (mejoras), preventivo (evitar fallas)." },
+    { "id": "fc-sw-ing-13", "front": "Niveles de prueba", "back": "Unitarias → integración → sistema → aceptación (alfa y beta). Regresión: no romper lo anterior. Humo: revisión rápida." },
+    { "id": "fc-sw-ing-14", "front": "Caja blanca vs caja negra", "back": "Blanca: conoce el código (cobertura, V(G) = E − N + 2). Negra: entradas y salidas (valores límite, equivalencia)." },
+    { "id": "fc-sw-ing-15", "front": "Verificación vs validación", "back": "Verificación: ¿construimos el producto correctamente? Validación: ¿construimos el producto correcto?" },
+    { "id": "fc-sw-ing-16", "front": "ISO 25010, CMMI, QA y QC", "back": "ISO 25010: calidad del producto. CMMI: madurez del proceso (1–5). QA previene (proceso); QC detecta (producto)." },
+    { "id": "fc-sw-ing-17", "front": "PERT", "back": "E = (O + 4M + P)/6. Ejemplo: 2, 5, 14 → 6 días." },
+    { "id": "fc-sw-ing-18", "front": "Ruta crítica y holgura", "back": "La ruta más larga; holgura 0; define la duración mínima. Holgura de otra tarea = ruta crítica − su ruta." },
+    { "id": "fc-sw-ing-19", "front": "Ley de Brooks y triple restricción", "back": "Agregar gente a un proyecto atrasado lo atrasa más. Triple restricción: alcance, tiempo y costo." },
+    { "id": "fc-sw-ing-20", "front": "Tipos de factibilidad y ROI", "back": "Técnica, económica, operativa, legal, de tiempo. ROI = (beneficio − costo)/costo. VPN > 0 conviene." },
+    { "id": "fc-sw-ing-21", "front": "ERP vs CRM", "back": "ERP: integra procesos del negocio en un sistema único. CRM: relación con los clientes." }
+  ]
+}

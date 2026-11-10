@@ -1,0 +1,121 @@
+---
+title: 'SQL: consultas, JOIN, agrupaciones, DDL/DML, claves e índices'
+summary: 'Cómo leer y escribir consultas SELECT con filtros, JOIN y agregaciones; diferencia entre WHERE y HAVING; DELETE, TRUNCATE y DROP; claves e índices.'
+order: 4
+readMinutes: 14
+examWeight: 'Software 3.3 · Datos y algoritmos (SQL no vino en el seminario: depende de tu estudio)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+**SQL (Structured Query Language)** es el lenguaje estándar para **definir, consultar y manipular bases de datos relacionales**. Se organiza en familias:
+
+- **DDL** (definición): `CREATE`, `ALTER`, `DROP`.
+- **DML** (manipulación): `INSERT`, `UPDATE`, `DELETE`, `SELECT`.
+- **DCL** (control de permisos): `GRANT`, `REVOKE`.
+- **TCL** (transacciones): `COMMIT`, `ROLLBACK`, `SAVEPOINT`.
+</Callout>
+
+## Estructura de una consulta y orden lógico
+
+```sql
+SELECT   d.nombre, COUNT(e.id) AS total
+FROM     departamentos d
+JOIN     empleados e ON e.depto_id = d.id
+WHERE    e.activo = 1
+GROUP BY d.nombre
+HAVING   COUNT(e.id) > 5
+ORDER BY total DESC;
+```
+
+El **orden lógico de ejecución** no es el orden en que se escribe:
+
+**FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY**
+
+- **WHERE** filtra **filas** **antes** de agrupar (**no admite funciones de agregación**).
+- **HAVING** filtra **grupos** **después** de `GROUP BY` (sí admite agregaciones).
+
+<Callout type="tip">
+**"Departamentos con más de 5 empleados"** → condición sobre un **conteo** → **`HAVING COUNT(*) > 5`**, nunca `WHERE`.
+</Callout>
+
+## JOIN
+
+| Tipo | Devuelve |
+| --- | --- |
+| **INNER JOIN** | Solo las filas con **coincidencia en ambas** tablas |
+| **LEFT JOIN** | **Todas** las de la tabla **izquierda** + coincidencias (NULL si no hay) |
+| **RIGHT JOIN** | **Todas** las de la derecha + coincidencias |
+| **FULL JOIN** | **Todas** de ambas (con NULL donde no coincidan) |
+| **CROSS JOIN** | **Producto cartesiano** (cada fila con cada fila: n × m) |
+
+Ejemplo: `Clientes` (4 filas: A, B, C, D) y `Pedidos` (A tiene 2, B tiene 1, C y D ninguno).
+
+- **INNER JOIN** → **3** filas (solo quienes tienen pedidos).
+- **LEFT JOIN** desde Clientes → **5** filas (2 + 1 + C con NULL + D con NULL).
+
+<Callout type="tip">
+**"Todos los clientes, aunque no tengan pedidos"** → **LEFT JOIN** desde clientes. Para encontrar **clientes SIN pedidos**: LEFT JOIN y filtrar **`WHERE pedidos.id IS NULL`**.
+</Callout>
+
+## Agregaciones y NULL
+
+- Funciones: **`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`**.
+- **`COUNT(*)`** cuenta **todas las filas**; **`COUNT(columna)`** **ignora los NULL**. Si una tabla tiene 5 filas y 2 NULL en `telefono`: `COUNT(*) = 5`, `COUNT(telefono) = 3`.
+- `NULL` significa **"desconocido"**: se compara con **`IS NULL` / `IS NOT NULL`**, nunca con `= NULL`. Cualquier comparación normal con NULL da **desconocido**.
+- Toda columna del `SELECT` que **no esté dentro de una agregación** debe aparecer en el **`GROUP BY`**.
+- **`DISTINCT`** elimina duplicados; **`LIKE`** busca patrones (`%` = cualquier cadena, `_` = un carácter); **`IN`**, **`BETWEEN`** filtran rangos.
+- **Subconsulta**: una consulta dentro de otra (en `WHERE`, `FROM` o `SELECT`): `WHERE salario > (SELECT AVG(salario) FROM empleados)`.
+
+## DELETE, TRUNCATE y DROP
+
+| Comando | Qué hace | ¿Se puede deshacer? |
+| --- | --- | --- |
+| **DELETE** | Borra **filas** (con `WHERE`, solo las indicadas) | **Sí**, dentro de una transacción (`ROLLBACK`) |
+| **TRUNCATE** | **Vacía toda la tabla** (conserva la estructura) | Normalmente **no** (DDL) |
+| **DROP** | **Elimina la tabla completa** (estructura y datos) | **No** |
+
+## Claves e índices
+
+- **PRIMARY KEY**: identifica **de forma única** cada fila; **única y no nula**. Una tabla solo tiene **una** (puede ser **compuesta**).
+- **FOREIGN KEY**: columna que **referencia** la clave primaria de otra tabla; garantiza la **integridad referencial** (no puede existir un pedido de un cliente inexistente).
+- **UNIQUE**: no repite valores (puede haber varios por tabla). **NOT NULL**, **CHECK**, **DEFAULT**: restricciones de dominio.
+- **Índice**: estructura auxiliar (suele ser un **árbol B+**) que **acelera las lecturas y búsquedas**, pero **hace más lentas las escrituras** (`INSERT/UPDATE/DELETE`) y **ocupa espacio**.
+- **Vista**: consulta guardada que se usa como tabla virtual (simplifica y restringe el acceso).
+
+## Importante recordar
+
+<Callout type="importante">
+- Orden lógico: **FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY**.
+- **WHERE** = filas, **HAVING** = grupos.
+- **COUNT(columna) ignora NULL**; **IS NULL**, no `= NULL`.
+- **LEFT JOIN** conserva todo lo de la izquierda.
+- **DELETE** (filas, reversible) vs **TRUNCATE** (vacía) vs **DROP** (elimina la tabla).
+- **Índice**: lecturas más rápidas, escrituras más lentas.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Usar **`WHERE COUNT(*) > 5`** (da error: usa `HAVING`).
+- Comparar con **`= NULL`**.
+- Usar **INNER JOIN** cuando se piden "todos aunque no tengan registros relacionados".
+- Olvidar el **WHERE** en un `DELETE` o `UPDATE` (afecta **todas** las filas).
+- Creer que `COUNT(columna)` cuenta también los NULL.
+</Callout>
+
+## Ejemplo resuelto
+
+> ¿Cómo se obtienen los clientes que **nunca** han hecho un pedido?
+
+```sql
+SELECT c.nombre
+FROM   clientes c
+LEFT JOIN pedidos p ON p.cliente_id = c.id
+WHERE  p.id IS NULL;
+```
+
+El `LEFT JOIN` conserva todos los clientes; los que no tienen pedido quedan con `p.id` en NULL.

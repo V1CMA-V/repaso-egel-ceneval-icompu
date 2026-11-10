@@ -1,0 +1,92 @@
+---
+title: 'Arquitectura, patrones de diseño, SOLID, mantenimiento y control de versiones'
+summary: 'Estilos arquitectónicos (capas, MVC, microservicios), cohesión y acoplamiento, patrones comunes, principios SOLID, tipos de mantenimiento y herramientas de versiones.'
+order: 3
+readMinutes: 12
+examWeight: 'Software 3.1 · Ingeniería de software'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **arquitectura de software** define la **estructura de alto nivel** del sistema: sus **componentes, responsabilidades y cómo se comunican**. El **diseño** baja ese nivel a **clases, módulos y patrones**. La meta general es **alta cohesión y bajo acoplamiento**.
+</Callout>
+
+- **Cohesión**: qué tan **relacionadas** están las responsabilidades **dentro** de un módulo. **Alta** = bueno (hace una cosa bien).
+- **Acoplamiento**: qué tanto **depende** un módulo de **otros**. **Bajo** = bueno (se puede cambiar sin romper los demás).
+
+## Estilos arquitectónicos
+
+| Estilo | Idea | Ventaja / nota |
+| --- | --- | --- |
+| **En capas** | Presentación → lógica de negocio → acceso a datos | **Separación de responsabilidades**, fácil de mantener |
+| **MVC** | **Modelo** (datos/reglas), **Vista** (interfaz), **Controlador** (recibe entradas y coordina) | Separa la **interfaz** de la **lógica** |
+| **Cliente-servidor** | Los clientes piden servicios a un servidor | Centraliza datos y lógica |
+| **Microservicios** | Muchos **servicios pequeños e independientes** | **Escalan y se despliegan por separado**; más complejidad operativa |
+| **Monolítico** | Todo en una sola aplicación | Simple al inicio; difícil de escalar por partes |
+| **SOA** | Servicios reutilizables que se comunican por mensajes/interfaces | Integración empresarial |
+| **Orientado a eventos / publicación-suscripción** | Componentes reaccionan a **eventos** | Bajo acoplamiento |
+
+<Callout type="tip">
+**"Separar interfaz, datos y lógica de control"** → **MVC**. **"Escalar y desplegar partes de forma independiente"** → **microservicios**. **"Presentación, negocio y datos"** → **capas**.
+</Callout>
+
+## Patrones de diseño
+
+- **Creacionales**: **Singleton** (**una sola instancia** global, ej. configuración), **Factory** (**crea objetos** sin exponer la clase concreta), **Builder**.
+- **Estructurales**: **Adapter** (**compatibiliza interfaces** incompatibles), **Decorator** (agrega funciones a un objeto dinámicamente), **Facade** (interfaz **simple** para un subsistema complejo).
+- **De comportamiento**: **Observer** (**notifica** a varios objetos cuando cambia otro: eventos, suscripciones), **Strategy** (**algoritmo intercambiable** en tiempo de ejecución), **Command**, **Iterator**.
+
+## Principios SOLID
+
+| Letra | Principio | Idea |
+| --- | --- | --- |
+| **S** | **Responsabilidad única** | Una clase debe tener **una sola razón para cambiar** |
+| **O** | **Abierto/cerrado** | **Abierta a extensión, cerrada a modificación** |
+| **L** | **Sustitución de Liskov** | Una **subclase** debe poder **sustituir** a su superclase sin romper el programa |
+| **I** | **Segregación de interfaces** | Mejor **varias interfaces pequeñas** que una grande |
+| **D** | **Inversión de dependencias** | Depender de **abstracciones**, no de clases concretas |
+
+## Mantenimiento del software
+
+| Tipo | Objetivo |
+| --- | --- |
+| **Correctivo** | **Corregir errores** (bugs) |
+| **Adaptativo** | Ajustar a **cambios de entorno** (nuevo sistema operativo, ley, hardware) |
+| **Perfectivo** | **Mejorar o añadir funciones**, rendimiento |
+| **Preventivo** | **Evitar fallas futuras** (refactorización, reducir deuda técnica) |
+
+El **mantenimiento suele ser la fase más costosa** del ciclo de vida.
+
+## Control de versiones e integración continua
+
+- **Control de versiones (Git)**: **repositorio**, **commit** (guarda un cambio), **branch** (rama de trabajo paralelo), **merge** (fusiona ramas), **conflicto** (cambios incompatibles), **pull request** (revisión antes de fusionar).
+- **CI/CD**: **integración continua** (compilar y probar automáticamente cada cambio) y **entrega/despliegue continuo** (publicar de forma automatizada).
+- **Gestión de la configuración**: controlar versiones y cambios de todos los artefactos.
+
+## Importante recordar
+
+<Callout type="importante">
+- **Alta cohesión, bajo acoplamiento.**
+- **MVC** = Modelo, Vista, Controlador. **Microservicios** = servicios pequeños e independientes.
+- **Singleton** = una instancia; **Observer** = notifica cambios; **Strategy** = algoritmo intercambiable; **Adapter** = compatibiliza interfaces; **Factory** = crea objetos.
+- **SOLID**: S única responsabilidad, O abierto/cerrado, L Liskov, I segregación de interfaces, D inversión de dependencias.
+- **Mantenimiento**: correctivo (errores), adaptativo (entorno), perfectivo (mejoras), preventivo (evitar fallas).
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **cohesión** con **acoplamiento** (queremos la primera **alta** y la segunda **baja**).
+- Llamar **mantenimiento correctivo** al que agrega funciones nuevas (es **perfectivo**).
+- Confundir **Adapter** con **Facade** (el primero **adapta una interfaz**; el segundo **simplifica** un subsistema).
+- Creer que los **microservicios** siempre son mejores que un monolito.
+</Callout>
+
+## Ejemplo resuelto
+
+> Una aplicación debe permitir cambiar en tiempo de ejecución el método de pago (tarjeta, transferencia, efectivo) sin modificar la clase que procesa el pedido. ¿Qué patrón conviene?
+
+**Strategy**: cada método de pago es un algoritmo intercambiable detrás de una misma interfaz; el procesador de pedidos solo depende de la abstracción (cumple abierto/cerrado e inversión de dependencias).

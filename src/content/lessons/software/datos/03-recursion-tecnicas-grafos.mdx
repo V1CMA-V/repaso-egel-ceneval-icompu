@@ -1,0 +1,89 @@
+---
+title: 'Recursión, técnicas de diseño de algoritmos y grafos'
+summary: 'Caso base y paso recursivo, divide y vencerás, programación dinámica, algoritmos voraces, backtracking y los algoritmos clásicos de grafos (BFS, DFS, Dijkstra).'
+order: 3
+readMinutes: 13
+examWeight: 'Software 3.3 · Datos y algoritmos'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **recursión** resuelve un problema **definiéndolo en términos de una versión más pequeña de sí mismo**. Toda función recursiva necesita:
+
+1. **Caso base**: la condición que **detiene** la recursión (devuelve un resultado directo).
+2. **Paso recursivo**: llama a la función con un problema **más cercano al caso base**.
+
+**Sin caso base** (o sin acercarse a él) la recursión **nunca termina** y produce **desbordamiento de pila (stack overflow)**.
+</Callout>
+
+```
+factorial(n):
+  si n <= 1: devolver 1          // caso base
+  devolver n * factorial(n - 1)  // paso recursivo
+
+fib(n):                           // Fibonacci ingenuo: O(2^n)
+  si n <= 1: devolver n
+  devolver fib(n-1) + fib(n-2)
+```
+
+Cada llamada ocupa un **marco en la pila de llamadas**. El **Fibonacci ingenuo** es **$O(2^n)$** porque **recalcula** los mismos subproblemas muchas veces; con **memoización** baja a **$O(n)$**.
+
+<Callout type="tip">
+Ante una función recursiva, busca primero: **¿cuál es el caso base?** y **¿el argumento se acerca a él?** Si falta alguna de las dos, el código es incorrecto.
+</Callout>
+
+## Técnicas de diseño
+
+| Técnica | Idea | Ejemplos |
+| --- | --- | --- |
+| **Divide y vencerás** | **Divide** en subproblemas **independientes**, resuelve cada uno y **combina** | **Merge sort, quicksort, búsqueda binaria** |
+| **Programación dinámica (PD)** | Subproblemas que **se repiten (traslapan)**: **guarda** resultados (memoización/tabla) | **Fibonacci eficiente, mochila, subsecuencia común más larga, cambio de monedas óptimo** |
+| **Voraz (greedy)** | En cada paso elige **lo mejor localmente**, sin retroceder | **Huffman, Kruskal, Prim, Dijkstra**, cambio de monedas (solo con ciertos sistemas) |
+| **Backtracking (vuelta atrás)** | **Prueba** una opción y **retrocede** si no lleva a la solución | **N reinas, sudoku**, laberintos |
+| **Fuerza bruta** | Prueba **todas** las posibilidades | Contraseñas, subconjuntos |
+
+<Callout type="importante">
+**Voraz no siempre es óptimo.** Con monedas de **1, 3 y 4** y monto **6**, el voraz toma 4 + 1 + 1 = **3 monedas**, pero el óptimo es 3 + 3 = **2 monedas** (se obtiene con **programación dinámica**).
+</Callout>
+
+- **Divide y vencerás** vs **PD**: en D&V los subproblemas son **independientes**; en PD **se traslapan** y por eso conviene guardar resultados.
+
+## Grafos: algoritmos clásicos
+
+- **BFS (búsqueda en anchura)**: usa una **cola**, explora **por niveles**. Encuentra el **camino más corto en número de aristas** en grafos **sin pesos**.
+- **DFS (búsqueda en profundidad)**: usa una **pila** (o recursión), baja lo más posible antes de retroceder. Sirve para **detectar ciclos, ordenamiento topológico, componentes conexos**.
+- **Dijkstra**: **camino mínimo** desde un origen en grafos con **pesos no negativos** (usa una cola de prioridad). Con **pesos negativos** no funciona (usar **Bellman-Ford**).
+- **A\***: Dijkstra con **heurística** (rapidez en mapas y videojuegos).
+- **Árbol de expansión mínima**: conecta todos los nodos con el **menor peso total**: **Prim** y **Kruskal** (ambos voraces).
+- **Ordenamiento topológico**: ordena un **grafo dirigido acíclico (DAG)** respetando dependencias (compilar módulos, prerrequisitos).
+
+<Callout type="tip">
+**"Camino más corto sin pesos"** → **BFS**. **"Con pesos positivos"** → **Dijkstra**. **"Conectar todos los nodos con costo mínimo"** → **Prim/Kruskal**. **"Orden de dependencias"** → **topológico**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- Recursión = **caso base + paso recursivo**; sin caso base → **desbordamiento de pila**.
+- Fibonacci ingenuo: **$O(2^n)$**; con memoización: **$O(n)$**.
+- **D&V**: subproblemas independientes. **PD**: subproblemas que se traslapan. **Voraz**: decisión local, **no siempre óptimo**.
+- **BFS → cola**; **DFS → pila**; **Dijkstra → pesos no negativos**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Olvidar el **caso base** o no acercarse a él.
+- Usar **voraz** esperando siempre el óptimo.
+- Usar **Dijkstra con aristas de peso negativo**.
+- Confundir **BFS** (cola, por niveles) con **DFS** (pila, profundidad).
+</Callout>
+
+## Ejemplo resuelto
+
+> Se necesita hallar la ruta con menos paradas entre dos estaciones de un metro (todas las conexiones cuentan igual). ¿Qué algoritmo conviene?
+
+**BFS**: en un grafo sin pesos, explorar por niveles garantiza el camino con **menor número de aristas**.

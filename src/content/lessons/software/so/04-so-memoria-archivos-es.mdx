@@ -1,0 +1,96 @@
+---
+title: 'Sistemas operativos: memoria, paginación, reemplazo de páginas, archivos y E/S'
+summary: 'Paginación vs segmentación, fragmentación, memoria virtual, algoritmos de reemplazo (FIFO, LRU, óptimo), sistemas de archivos y tipos de sistemas operativos.'
+order: 4
+readMinutes: 13
+examWeight: 'Software 3.2 · Programación y software base'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **gestión de memoria** del SO decide **qué parte de la memoria usa cada proceso**, lo **protege** de los demás y permite que los programas **superen el tamaño de la RAM** mediante la **memoria virtual**.
+</Callout>
+
+## Asignación de memoria y fragmentación
+
+- **Fragmentación interna**: **espacio desperdiciado dentro** de un bloque asignado (ocurre con **bloques fijos**, por ejemplo la **última página**).
+- **Fragmentación externa**: **huecos libres pequeños y separados** que, sumados, alcanzarían pero **no son contiguos** (ocurre con **bloques de tamaño variable**, como en la segmentación). Se combate con la **compactación**.
+- Estrategias de asignación contigua: **primer ajuste, mejor ajuste, peor ajuste**.
+
+## Paginación y segmentación
+
+| | **Paginación** | **Segmentación** |
+| --- | --- | --- |
+| División | Bloques **fijos** (páginas lógicas y **marcos** físicos del mismo tamaño) | Bloques **lógicos de tamaño variable** (código, datos, pila) |
+| Fragmentación | **Interna** (última página) | **Externa** |
+| Visible al programador | No | Sí (refleja la estructura del programa) |
+| Traducción | **Tabla de páginas**: página virtual → marco físico | **Tabla de segmentos** (base y límite) |
+
+**Ejemplo de fragmentación interna**: un proceso de **72 766 bytes** con páginas de **2 048 bytes** necesita $\lceil 72\,766 / 2\,048 \rceil = 36$ páginas ($36 \times 2\,048 = 73\,728$). Fragmentación interna = $73\,728 - 72\,766 = 962$ bytes.
+
+Una **dirección virtual** se divide en **número de página** y **desplazamiento (offset)**; el **TLB** es una **caché de traducciones** de la tabla de páginas que acelera el acceso.
+
+<Callout type="tip">
+**Paginación → fragmentación interna** (bloques fijos). **Segmentación → fragmentación externa** (bloques variables).
+</Callout>
+
+## Memoria virtual
+
+Usa el **disco** como extensión de la RAM: solo se mantienen en memoria las páginas necesarias (**paginación por demanda**).
+
+- **Fallo de página (page fault)**: se accede a una página **que no está en RAM**; el SO la **carga del disco** (muy lento).
+- **Reemplazo de páginas**: si no hay marcos libres, se **expulsa** una página.
+- **Hiperpaginación (thrashing)**: **demasiados fallos de página**; el sistema pasa más tiempo **moviendo páginas** que ejecutando.
+- **Localidad de referencia**: los programas tienden a usar **las mismas páginas cercanas** en el tiempo; por eso la memoria virtual funciona.
+
+## Algoritmos de reemplazo de páginas
+
+| Algoritmo | Expulsa… | Nota |
+| --- | --- | --- |
+| **FIFO** | La página **más antigua** en memoria | Simple; puede sufrir la **anomalía de Belady** (más marcos → **más** fallos) |
+| **LRU** | La **menos recientemente usada** | Buen rendimiento; costoso de implementar exacto |
+| **Óptimo** | La que **se usará más tarde** (o nunca) | **Imposible de implementar** (requiere conocer el futuro); sirve de **referencia** |
+
+**Ejemplo** (3 marcos) con la secuencia **7, 0, 1, 2, 0, 3, 0, 4**:
+
+- **FIFO**: 7 fallos (solo el segundo `0` es acierto).
+- **LRU**: **6** fallos (los dos `0` posteriores son aciertos).
+
+## Archivos y E/S
+
+- **Sistema de archivos**: organiza el almacenamiento en **archivos y directorios**. Ejemplos: **FAT32, NTFS** (Windows), **ext4** (Linux), **APFS** (macOS). El **i-nodo** guarda los **metadatos** de un archivo en Unix.
+- **Asignación de archivos**: contigua, enlazada, **indexada**.
+- **Dispositivos de E/S**: **polling**, **interrupciones**, **DMA** (acceso directo a memoria: la transferencia sin intervención de la CPU). **Spooling**: cola en disco para dispositivos lentos (impresora). **Buffering/caché**: amortigua diferencias de velocidad.
+- **Planificación de disco** (HDD): **FCFS, SSTF** (más cercano), **SCAN (ascensor)**.
+
+## Tipos de sistemas operativos
+
+**Por lotes**, **de tiempo compartido** (varios usuarios simultáneos), **de tiempo real** (duro o blando), **distribuidos** (varios equipos que parecen uno solo), **embebidos** (dispositivos dedicados), **móviles**, **en red**.
+
+## Importante recordar
+
+<Callout type="importante">
+- **Paginación = fija → interna; segmentación = variable → externa.**
+- **TLB** = caché de la tabla de páginas.
+- **Fallo de página** = página no presente en RAM. **Thrashing** = demasiados fallos.
+- **FIFO** puede mostrar la **anomalía de Belady**; **LRU** expulsa la menos recientemente usada; **óptimo** no es implementable.
+- **DMA** transfiere sin la CPU; **spooling** para impresoras.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **fragmentación interna** con **externa**.
+- Pensar que **más marcos de página** siempre reducen los fallos (con FIFO puede suceder lo contrario).
+- Creer que la **memoria virtual** aumenta la RAM física (la **simula** con disco, más lenta).
+- Decir que el algoritmo **óptimo** se usa en sistemas reales.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un sistema usa páginas de 4 KB. ¿Cuánta fragmentación interna genera un proceso de 10 KB?
+
+Necesita 3 páginas (12 KB). La fragmentación interna es $12 - 10 = 2$ KB (en la última página).

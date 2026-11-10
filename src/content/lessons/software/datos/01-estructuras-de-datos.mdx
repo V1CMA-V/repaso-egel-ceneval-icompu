@@ -1,0 +1,94 @@
+---
+title: 'Estructuras de datos: arreglos, listas, pilas, colas, árboles, grafos y hash'
+summary: 'Qué hace cada estructura, cuánto cuestan sus operaciones y cómo elegir la correcta para un caso; recorridos de árboles y manejo de colisiones.'
+order: 1
+readMinutes: 14
+examWeight: 'Software 3.3 · Datos y algoritmos (21 reactivos: la subárea de mayor peso)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Una **estructura de datos** es una forma de **organizar y almacenar datos** para que ciertas operaciones (buscar, insertar, borrar, recorrer) sean **eficientes**. No existe una mejor estructura universal: **se elige según la operación más frecuente** del problema.
+</Callout>
+
+## Estructuras lineales
+
+| Estructura | Idea clave | Costos típicos |
+| --- | --- | --- |
+| **Arreglo** | Posiciones **contiguas**, acceso directo por índice | Acceso **O(1)**; insertar o borrar en medio **O(n)** (hay que desplazar) |
+| **Lista ligada** | **Nodos** con puntero al siguiente (o al anterior en la doble) | Insertar al inicio **O(1)**; buscar **O(n)**; no hay acceso por índice |
+| **Pila (stack)** | **LIFO**: el último en entrar es el primero en salir (`push`/`pop`) | **O(1)** |
+| **Cola (queue)** | **FIFO**: el primero en entrar es el primero en salir (`enqueue`/`dequeue`) | **O(1)** |
+| **Cola doble (deque)** | Inserta y quita por **ambos extremos** | **O(1)** |
+
+- **Pila**: botón **deshacer**, historial de navegación, **llamadas a funciones (recursión)**, evaluar expresiones **posfijas**, balancear paréntesis.
+- **Cola**: **turnos**, cola de impresión, planificación de procesos, **BFS**.
+
+<Callout type="tip">
+Palabras clave del enunciado: **"deshacer / el último"** → **pila**; **"turnos / en orden de llegada"** → **cola**; **"acceso por posición"** → **arreglo**; **"muchas inserciones al inicio"** → **lista ligada**.
+</Callout>
+
+## Árboles
+
+- **Árbol binario de búsqueda (BST)**: para cada nodo, **izquierda = menores, derecha = mayores**. Buscar es **O(log n)** si está **balanceado** y **O(n)** si se degenera en una "lista" (por ejemplo al insertar datos ya ordenados).
+- **AVL**: BST **autobalanceado**; el **factor de balance** (altura izquierda − derecha) de cada nodo es **−1, 0 o 1**. Garantiza **O(log n)**.
+- **Heap (montículo)**: árbol casi completo donde el **máximo (o mínimo) está en la raíz**. Insertar y extraer **O(log n)**. Se usa para **colas de prioridad** y **heapsort**.
+
+**Recorridos** (ejemplo con el BST de insertar 50, 30, 70, 20, 40, 60, 80):
+
+| Recorrido | Orden | Resultado |
+| --- | --- | --- |
+| **Preorden** | **R**aíz, Izq, Der | 50, 30, 20, 40, 70, 60, 80 |
+| **Inorden** | Izq, **R**aíz, Der | **20, 30, 40, 50, 60, 70, 80** (¡ordenado!) |
+| **Postorden** | Izq, Der, **R**aíz | 20, 40, 30, 60, 80, 70, 50 |
+| **Por niveles (BFS)** | Nivel por nivel | 50, 30, 70, 20, 40, 60, 80 |
+
+<Callout type="tip">
+**El inorden de un BST siempre sale en orden ascendente.** Preorden sirve para **copiar** un árbol; postorden, para **borrarlo** (hijos antes que el padre).
+</Callout>
+
+## Tablas hash
+
+Una **función hash** convierte la clave en una **posición** de un arreglo. Búsqueda, inserción y borrado son **O(1) en promedio** (**O(n) en el peor caso**).
+
+- **Colisión**: dos claves caen en la misma posición (ej. con `h(k) = k mod 7`, las claves 15, 22 y 8 caen todas en la posición 1).
+- **Encadenamiento**: cada posición guarda **una lista** de elementos.
+- **Direccionamiento abierto**: se busca **otra posición libre** (sondeo lineal, cuadrático, doble hash).
+- Una buena función hash **distribuye uniformemente**; un **factor de carga** alto empeora el rendimiento.
+
+## Grafos
+
+Un **grafo** son **nodos (vértices)** y **aristas**; puede ser **dirigido** o no, **con pesos** o sin ellos.
+
+- **Matriz de adyacencia**: tabla n × n; **consulta rápida** de si existe una arista, pero usa **O(n²)** de espacio (mala para grafos con pocas aristas).
+- **Lista de adyacencia**: cada nodo guarda sus vecinos; **ahorra espacio** en grafos **dispersos**.
+- Aplicaciones: **redes, mapas, redes sociales, dependencias**.
+
+## Importante recordar
+
+<Callout type="importante">
+- **Pila = LIFO; cola = FIFO.**
+- **Inorden de un BST = orden ascendente.**
+- **AVL** siempre balanceado → O(log n); un BST común puede degenerar a O(n).
+- **Heap**: máximo/mínimo en la raíz; base de la **cola de prioridad**.
+- **Hash**: O(1) promedio; las colisiones se resuelven con **encadenamiento** o **direccionamiento abierto**.
+- Grafo disperso → **lista de adyacencia**; denso → **matriz**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Decir que insertar en medio de un **arreglo** es O(1) (hay que desplazar elementos).
+- Creer que un **BST** siempre da O(log n) (solo si está balanceado).
+- Confundir **pila** y **cola**.
+- Pensar que **hash** garantiza O(1): en el peor caso (muchas colisiones) es O(n).
+</Callout>
+
+## Ejemplo resuelto
+
+> Un editor de texto debe permitir "deshacer" los últimos cambios, del más reciente al más antiguo. ¿Qué estructura usa?
+
+Una **pila**: cada acción se apila (`push`) y deshacer extrae la última (`pop`), ya que el último cambio es el primero que se revierte (LIFO).

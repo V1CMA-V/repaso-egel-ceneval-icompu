@@ -1,0 +1,107 @@
+---
+title: 'Estimación, ruta crítica, factibilidad y sistemas empresariales (ERP/CRM)'
+summary: 'PERT, ruta crítica, COCOMO y puntos de función, ley de Brooks, triple restricción, tipos de factibilidad (ROI y periodo de recuperación) y sistemas de información empresariales.'
+order: 5
+readMinutes: 13
+examWeight: 'Software 3.1 · Ingeniería de software'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **administración de proyectos de software** planifica, estima, controla **alcance, tiempo y costo**, y decide si un proyecto **conviene** (factibilidad). Se apoya en técnicas de **estimación** y **programación**.
+</Callout>
+
+## Estimación
+
+- **PERT (estimación por tres puntos)**: con tiempo **optimista (O)**, **más probable (M)** y **pesimista (P)**:
+
+$$E = \frac{O + 4M + P}{6}$$
+
+Ejemplo: $O = 2$, $M = 5$, $P = 14$ → $E = (2 + 20 + 14)/6 = 6$ días. La **desviación estándar** es $(P - O)/6$.
+
+- **COCOMO**: modelo que estima **esfuerzo (persona-mes) y tiempo** a partir de las **líneas de código (KLOC)**.
+- **Puntos de función**: miden el **tamaño funcional** (entradas, salidas, consultas, archivos) **independiente del lenguaje**.
+- **Puntos de historia** (ágil): tamaño **relativo** de una historia; **velocidad** = puntos completados por sprint.
+- **Juicio de expertos**, **analogía** (comparar con proyectos pasados), **Planning Poker**.
+
+<Callout type="tip">
+PERT da más peso al caso **más probable** (×4). Si $O = 4$, $M = 6$, $P = 14$ → $E = (4 + 24 + 14)/6 = 7$.
+</Callout>
+
+## Ruta crítica (CPM) y Gantt
+
+- **Ruta crítica**: la **secuencia más larga** de tareas dependientes; determina la **duración mínima** del proyecto. Sus tareas tienen **holgura cero**: cualquier retraso **retrasa el proyecto**.
+- **Holgura (float)**: cuánto puede **retrasarse una tarea** sin afectar el proyecto.
+- **Diagrama de Gantt**: barras de **tareas contra el tiempo**. **Diagrama de red (PERT/CPM)**: muestra dependencias.
+
+Ejemplo: A (3 días) → B (4) → D (2) y A → C (6) → D.
+
+- Ruta A-B-D = 3 + 4 + 2 = **9 días**.
+- Ruta A-C-D = 3 + 6 + 2 = **11 días** → **ruta crítica** (el proyecto dura **11 días**).
+- Holgura de B = 11 − 9 = **2 días**.
+
+## Administración y riesgos
+
+- **Triple restricción**: **alcance, tiempo y costo**; la **calidad** queda en el centro y se ve afectada si se mueve alguna.
+- **Ley de Brooks**: *"agregar personal a un proyecto de software atrasado lo atrasa más"* (curva de aprendizaje y mayor comunicación).
+- **Riesgos**: **identificar → analizar (probabilidad × impacto) → planear respuesta → monitorear**.
+- **Costos**: directos e indirectos, **fijos y variables**. **Punto de equilibrio**: cuando los ingresos igualan a los costos.
+
+## Estudio de factibilidad
+
+| Tipo | Pregunta |
+| --- | --- |
+| **Técnica** | ¿Existe la **tecnología** y los conocimientos para hacerlo? |
+| **Económica** | ¿**Conviene** el costo frente al beneficio? |
+| **Operativa** | ¿Los **usuarios y la organización** lo adoptarán y operarán? |
+| **Legal** | ¿Cumple **leyes, licencias y normativa**? |
+| **De tiempo (calendario)** | ¿Se puede entregar en el **plazo** requerido? |
+
+**Indicadores económicos**:
+
+$$ROI = \frac{\text{beneficio} - \text{costo}}{\text{costo}} \times 100\%$$
+
+Ejemplo: costo $200\,000$, beneficio $260\,000$ → $ROI = 60\,000/200\,000 = 30\,\%$.
+
+- **Periodo de recuperación (payback)**: tiempo para **recuperar la inversión**.
+- **VPN (valor presente neto)**: beneficios y costos **traídos a valor presente**; si **VPN > 0**, el proyecto **conviene**.
+- **Relación beneficio/costo** > 1 → conviene.
+
+## Sistemas de información empresariales
+
+- **ERP (Enterprise Resource Planning)**: **integra** los procesos del negocio (finanzas, inventarios, compras, manufactura, recursos humanos) en **un solo sistema con una base de datos común**. Ej.: SAP, Odoo.
+- **CRM (Customer Relationship Management)**: gestiona la **relación con los clientes** (ventas, marketing, servicio, historial de contactos).
+- **SCM**: cadena de suministro. **BI**: inteligencia de negocios. **TPS**: procesamiento de transacciones.
+
+<Callout type="tip">
+**"Integrar finanzas, inventarios y compras en un solo sistema"** → **ERP**. **"Dar seguimiento a clientes, ventas y servicio"** → **CRM**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **PERT**: $E = (O + 4M + P)/6$.
+- **Ruta crítica** = secuencia **más larga**, holgura **0**, define la duración del proyecto.
+- **Ley de Brooks**: más gente a un proyecto tardío lo retrasa más.
+- **Triple restricción**: alcance, tiempo y costo.
+- **ROI** = (beneficio − costo)/costo. **VPN > 0** = conviene.
+- **ERP** integra procesos; **CRM** gestiona clientes.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que **agregar programadores** acelera siempre un proyecto atrasado.
+- Confundir la **ruta crítica** con la ruta **más corta**.
+- Sumar **O + M + P** y dividir entre 3 (PERT pondera **M** × 4).
+- Confundir **factibilidad técnica** (¿se puede?) con **económica** (¿conviene?).
+</Callout>
+
+## Ejemplo resuelto
+
+> Un proyecto cuesta 200 000 y se espera un beneficio de 260 000. ¿Cuál es el ROI y conviene?
+
+$ROI = (260\,000 - 200\,000)/200\,000 = 30\,\%$: es **positivo**, por lo que económicamente conviene (a falta de comparar con alternativas y el periodo de recuperación).

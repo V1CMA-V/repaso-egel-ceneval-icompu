@@ -1,0 +1,78 @@
+---
+title: 'Inteligencia artificial básica y aprendizaje automático'
+summary: 'Tipos de aprendizaje, sobreajuste, métricas (exactitud, precisión, recall), redes neuronales, sistemas expertos y búsqueda heurística.'
+order: 6
+readMinutes: 9
+examWeight: 'Software 3.3 · Datos y algoritmos (≈ 1 h de estudio en tu plan)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **inteligencia artificial (IA)** busca que las máquinas realicen tareas que requieren inteligencia humana. El **aprendizaje automático (machine learning)** es la rama en la que el sistema **aprende patrones a partir de datos** en lugar de seguir reglas escritas a mano.
+</Callout>
+
+## Tipos de aprendizaje
+
+| Tipo | Datos | Ejemplos |
+| --- | --- | --- |
+| **Supervisado** | Con **etiquetas** (respuesta conocida) | **Clasificación** (¿spam o no?), **regresión** (predecir un precio) |
+| **No supervisado** | **Sin etiquetas** | **Clustering** (K-means: agrupar clientes), reducción de dimensiones |
+| **Por refuerzo** | El agente aprende por **recompensas y castigos** al interactuar | Robots, juegos, vehículos autónomos |
+
+<Callout type="tip">
+**"Datos con etiquetas / respuesta conocida"** → **supervisado**. **"Agrupar sin saber de antemano los grupos"** → **no supervisado (clustering)**. **"Recompensa por acertar"** → **refuerzo**.
+</Callout>
+
+## Entrenamiento, sobreajuste y métricas
+
+- Los datos se dividen en **entrenamiento**, **validación** (ajustar el modelo) y **prueba** (medir el desempeño final con datos nunca vistos).
+- **Sobreajuste (overfitting)**: el modelo funciona **muy bien con los datos de entrenamiento y mal con datos nuevos** (memorizó en lugar de generalizar). Se combate con **más datos, regularización, validación cruzada y modelos más simples**. **Subajuste**: funciona mal incluso en entrenamiento.
+- **Matriz de confusión**: **VP** (verdaderos positivos), **FP** (falsos positivos), **FN** (falsos negativos), **VN**.
+
+$$\text{Exactitud} = \frac{VP + VN}{\text{total}} \qquad \text{Precisión} = \frac{VP}{VP + FP} \qquad \text{Recall} = \frac{VP}{VP + FN}$$
+
+- **Precisión**: de lo que **predije positivo**, **cuánto realmente lo era**.
+- **Recall (sensibilidad)**: de los **positivos reales**, **cuántos encontré**.
+
+Ejemplo: VP = 40, FP = 10, FN = 20 → precisión $= 40/50 = 0.8$; recall $= 40/60 \approx 0.67$.
+
+<Callout type="importante">
+En un **diagnóstico médico** de una enfermedad grave importa un **recall alto** (no dejar pasar enfermos: minimizar **FN**). En un **filtro de spam** importa una **precisión alta** (no mandar correos buenos a spam: minimizar **FP**). La **exactitud** engaña con **clases desbalanceadas** (99 % de negativos).
+</Callout>
+
+## Otros conceptos de IA
+
+- **Redes neuronales**: **capas de neuronas** conectadas con **pesos**; aprenden ajustándolos mediante **retropropagación** (*backpropagation*) y un **descenso del gradiente**. El **aprendizaje profundo (deep learning)** usa muchas capas.
+- **Sistemas expertos**: **base de conocimiento (reglas SI–ENTONCES)** + **motor de inferencia**. No aprenden solos.
+- **Búsqueda heurística (A\*)**: usa una **estimación** para llegar más rápido al objetivo.
+- **Procesamiento de lenguaje natural (PLN)**: entender y generar lenguaje humano (traductores, chatbots).
+- **Visión por computadora**: interpretar imágenes y video.
+- **Algoritmos conocidos**: **K-NN** (vecinos cercanos), **árboles de decisión**, **K-means** (no supervisado), **regresión lineal/logística**, **SVM**.
+
+## Importante recordar
+
+<Callout type="importante">
+- **Supervisado = etiquetas**; **no supervisado = sin etiquetas (clustering, K-means)**; **refuerzo = recompensas**.
+- **Sobreajuste** = excelente en entrenamiento, malo con datos nuevos.
+- **Precisión** = VP/(VP+FP). **Recall** = VP/(VP+FN).
+- **Sistema experto** = reglas + motor de inferencia.
+- Redes neuronales aprenden con **retropropagación**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **clasificación** (categoría) con **regresión** (valor numérico).
+- Medir el modelo con los **mismos datos con los que se entrenó**.
+- Confiar solo en la **exactitud** con clases muy desbalanceadas.
+- Confundir **precisión** con **recall**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un modelo detecta fraude. Hay 1 000 transacciones, 10 son fraudes. El modelo marca todo como "no fraude". ¿Qué exactitud tiene y por qué es engañosa?
+
+Acierta 990 de 1 000 → **99 % de exactitud**, pero tiene **recall = 0 %** (no detectó ningún fraude). La exactitud engaña con clases desbalanceadas.

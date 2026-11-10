@@ -1,0 +1,296 @@
+{
+  "questions": [
+    {
+      "id": "sw-so-0101",
+      "lesson": "software/so/01-paradigmas-poo",
+      "text": "Una clase Animal tiene el método hacerSonido(). Perro y Gato heredan de ella y lo redefinen. Al recorrer una lista de animales y llamar animal.hacerSonido(), cada uno emite su propio sonido. ¿Qué concepto de la POO se aplica?",
+      "options": ["Encapsulamiento", "Polimorfismo", "Abstracción", "Sobrecarga"],
+      "answer": 1,
+      "explanation": "Polimorfismo: el mismo mensaje produce comportamientos diferentes según el objeto que lo recibe, apoyado en la herencia y la sobreescritura de métodos.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0102",
+      "lesson": "software/so/01-paradigmas-poo",
+      "text": "Una clase Calculadora define dos métodos llamados sumar: uno que recibe dos enteros y otro que recibe dos números decimales. ¿Cómo se llama esta característica?",
+      "options": ["Sobreescritura", "Herencia", "Sobrecarga", "Encapsulamiento"],
+      "answer": 2,
+      "explanation": "Misma clase, mismo nombre de método y distintos parámetros es sobrecarga (overloading). La sobreescritura ocurre cuando una subclase redefine un método heredado con la misma firma.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0103",
+      "lesson": "software/so/01-paradigmas-poo",
+      "text": "La clase Empleado define calcularPago(). La subclase Gerente define calcularPago() con la misma firma, pero con una fórmula distinta. ¿Qué concepto se aplica?",
+      "options": ["Sobreescritura (overriding)", "Sobrecarga (overloading)", "Constructor", "Método estático"],
+      "answer": 0,
+      "explanation": "Cuando una subclase redefine un método heredado con la misma firma, se trata de sobreescritura. Es la base del polimorfismo en tiempo de ejecución.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0104",
+      "lesson": "software/so/01-paradigmas-poo",
+      "text": "En un paradigma de programación se describen hechos y reglas, y un motor de inferencia deduce las respuestas a las consultas. Prolog es un ejemplo. ¿De qué paradigma se trata?",
+      "options": ["Funcional", "Estructurado", "Orientado a eventos", "Lógico"],
+      "answer": 3,
+      "explanation": "El paradigma lógico (declarativo) expresa conocimiento como hechos y reglas y deja que el motor infiera. El funcional se basa en funciones puras e inmutabilidad.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0105",
+      "lesson": "software/so/01-paradigmas-poo",
+      "text": "Un estilo de programación evita los efectos secundarios, usa funciones puras que siempre devuelven el mismo resultado para los mismos argumentos y prefiere datos inmutables. ¿De qué paradigma se trata?",
+      "options": ["Lógico", "Imperativo", "Funcional", "Orientado a objetos"],
+      "answer": 2,
+      "explanation": "Funciones puras e inmutabilidad son los pilares del paradigma funcional (Haskell, Lisp).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0106",
+      "lesson": "software/so/01-paradigmas-poo",
+      "text": "En la clase CuentaBancaria el atributo saldo es privado y solo puede modificarse mediante los métodos depositar() y retirar(), que validan los montos. ¿Qué principio de la POO se aplica?",
+      "options": ["Herencia", "Encapsulamiento", "Polimorfismo", "Abstracción"],
+      "answer": 1,
+      "explanation": "Encapsulamiento: ocultar el estado interno y permitir su acceso solo mediante métodos controlados, protegiendo la integridad de los datos.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0107",
+      "lesson": "software/so/01-paradigmas-poo",
+      "text": "Un programador intenta crear un objeto directamente de una clase declarada como abstracta con la instrucción new. ¿Qué ocurre?",
+      "options": [
+        "Se crea el objeto con todos sus atributos en nulo",
+        "El compilador marca un error porque una clase abstracta no puede instanciarse",
+        "La clase se convierte automáticamente en interfaz",
+        "Se instancia solo si es pública"
+      ],
+      "answer": 1,
+      "explanation": "Las clases abstractas no se pueden instanciar: sirven de base para subclases concretas que implementen sus métodos abstractos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0201",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "Un compilador procesa la instrucción  int x = \"hola\" + 5;  La estructura es sintácticamente válida, pero se suma una cadena con un entero. ¿En qué fase se detecta el error?",
+      "options": ["Análisis léxico", "Análisis sintáctico", "Análisis semántico", "Generación de código"],
+      "answer": 2,
+      "explanation": "Los tipos incompatibles se revisan en el análisis semántico. El léxico solo reconoce tokens y el sintáctico verifica la estructura según la gramática.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0202",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "En un programa aparece la línea  total = precio @ 3;  donde el símbolo @ no pertenece al alfabeto del lenguaje. ¿Qué fase del compilador lo detecta?",
+      "options": ["Análisis léxico", "Análisis sintáctico", "Análisis semántico", "Optimización"],
+      "answer": 0,
+      "explanation": "El analizador léxico convierte los caracteres en tokens y rechaza símbolos que no pertenecen al lenguaje: es un error léxico.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0203",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "A un programa le falta un paréntesis de cierre en una expresión: if (x > 5 { ... }. ¿En qué fase se detecta el error?",
+      "options": ["Análisis léxico", "Análisis sintáctico", "Análisis semántico", "Optimización"],
+      "answer": 1,
+      "explanation": "Los tokens son válidos, pero la secuencia no respeta la gramática del lenguaje (falta un paréntesis). Esto es un error sintáctico.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0204",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "Java compila el código fuente a bytecode, que posteriormente ejecuta una máquina virtual (JVM). ¿Cómo se clasifica este enfoque?",
+      "options": [
+        "Ensamblador",
+        "Intérprete puro",
+        "Compilador puro a código nativo",
+        "Híbrido: compilación a bytecode más ejecución en una máquina virtual"
+      ],
+      "answer": 3,
+      "explanation": "Java combina compilación (a bytecode) con interpretación o compilación JIT en la JVM, por lo que es un modelo híbrido.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0205",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "Según la jerarquía de Chomsky, ¿qué máquina reconoce los lenguajes regulares, descritos por expresiones regulares?",
+      "options": ["Un autómata finito", "Un autómata de pila", "Una máquina de Turing", "Un autómata linealmente acotado"],
+      "answer": 0,
+      "explanation": "Los lenguajes regulares (tipo 3) se reconocen con autómatas finitos. El autómata de pila reconoce lenguajes libres de contexto y la máquina de Turing, los recursivamente enumerables.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0206",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "Se desea reconocer cadenas del lenguaje {aⁿbⁿ | n ≥ 1} (la misma cantidad de a que de b). ¿Cuál es la máquina más sencilla capaz de hacerlo?",
+      "options": [
+        "Un autómata finito, porque el lenguaje es regular",
+        "Un autómata de pila, porque necesita contar y el lenguaje no es regular",
+        "Solo una expresión regular",
+        "Ninguna máquina puede reconocerlo"
+      ],
+      "answer": 1,
+      "explanation": "Un autómata finito tiene memoria limitada y no puede contar un número arbitrario de símbolos. El lenguaje es libre de contexto y lo reconoce un autómata de pila.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-so-0207",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "¿Cuál afirmación sobre autómatas finitos deterministas (AFD) y no deterministas (AFN) es correcta?",
+      "options": [
+        "Los AFN reconocen más lenguajes que los AFD",
+        "Los AFD reconocen más lenguajes que los AFN",
+        "Ambos reconocen exactamente la misma clase de lenguajes (los regulares)",
+        "Ninguno reconoce lenguajes regulares"
+      ],
+      "answer": 2,
+      "explanation": "Todo AFN puede convertirse en un AFD equivalente (aunque con más estados), por lo que ambos reconocen los mismos lenguajes regulares.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0208",
+      "lesson": "software/so/02-compiladores-automatas-gramaticas",
+      "text": "Una gramática permite generar dos árboles de derivación distintos para una misma cadena. ¿Cómo se denomina esa gramática?",
+      "options": ["Regular", "Ambigua", "Determinista", "Sensible al contexto"],
+      "answer": 1,
+      "explanation": "Una gramática es ambigua cuando existe una cadena con más de un árbol de derivación. Esto es problemático en lenguajes de programación porque la interpretación no es única.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0301",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "Un sistema de tiempo compartido necesita que cada proceso reciba la CPU por turnos, durante un intervalo fijo, para garantizar equidad. ¿Qué algoritmo de planificación usa?",
+      "options": ["SJF", "Round Robin", "Prioridades estrictas", "FCFS"],
+      "answer": 1,
+      "explanation": "Round Robin asigna a cada proceso un quantum de CPU de forma rotativa, y es expropiativo. SJF atiende primero al más corto y FCFS, por orden de llegada.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0302",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "Llegan al mismo tiempo tres procesos con duraciones de 24, 3 y 3 ms, en ese orden. Con FCFS, ¿cuál es el tiempo de espera promedio?",
+      "options": ["3 ms", "10 ms", "17 ms", "27 ms"],
+      "answer": 2,
+      "explanation": "Con FCFS esperan 0, 24 y 27 ms: (0 + 24 + 27)/3 = 17 ms. Es el efecto convoy: el proceso largo, al ir primero, retrasa a los cortos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0303",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "Con los mismos procesos (24, 3 y 3 ms, llegando al instante 0), se aplica SJF. ¿Cuál es el tiempo de espera promedio?",
+      "options": ["5.67 ms", "17 ms", "9 ms", "3 ms"],
+      "answer": 3,
+      "explanation": "SJF los ordena: 3, 3, 24. Esperan 0, 3 y 6 ms: (0 + 3 + 6)/3 = 3 ms. SJF es óptimo en tiempo de espera promedio, aunque puede dejar sin atender a los procesos largos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0304",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "Con los mismos procesos (24, 3 y 3 ms, en ese orden, llegando al instante 0), se aplica Round Robin con un quantum de 4 ms. ¿Cuál es el tiempo de espera promedio?",
+      "options": ["3 ms", "17 ms", "5.67 ms", "8 ms"],
+      "answer": 2,
+      "explanation": "P1 usa 0–4; P2, 4–7; P3, 7–10; P1 termina 10–30. Esperas: P1 = 6, P2 = 4 y P3 = 7. Promedio: (6 + 4 + 7)/3 = 5.67 ms.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-so-0305",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "En un sistema con planificación por prioridades, los procesos de baja prioridad nunca llegan a ejecutarse porque siempre aparecen procesos de mayor prioridad. ¿Qué técnica resuelve el problema?",
+      "options": [
+        "Envejecimiento (aging): aumentar gradualmente la prioridad de los procesos que esperan",
+        "Deshabilitar las interrupciones",
+        "Aumentar la frecuencia de los cambios de contexto",
+        "Eliminar el planificador"
+      ],
+      "answer": 0,
+      "explanation": "La inanición se evita con el envejecimiento: cuanto más tiempo espera un proceso, mayor prioridad adquiere hasta que se ejecuta.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0306",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "¿Cuál de las siguientes NO es una condición necesaria para que ocurra un deadlock (interbloqueo)?",
+      "options": [
+        "Exclusión mutua",
+        "Espera circular",
+        "Retención y espera",
+        "Expropiación de recursos"
+      ],
+      "answer": 3,
+      "explanation": "La condición necesaria es la NO expropiación: los recursos no pueden quitarse a la fuerza. Si se pudieran expropiar, el deadlock se rompería.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0307",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "Dos hilos incrementan a la vez un contador compartido sin ningún mecanismo de protección y, a veces, el resultado final es menor al esperado. ¿Cuál es el problema y la solución?",
+      "options": [
+        "Deadlock; reiniciar el sistema",
+        "Condición de carrera; proteger la sección crítica con exclusión mutua (mutex o semáforo)",
+        "Inanición; aplicar envejecimiento",
+        "Thrashing; aumentar la memoria"
+      ],
+      "answer": 1,
+      "explanation": "El resultado depende del orden de ejecución de los hilos sobre un recurso compartido: condición de carrera. Se resuelve serializando el acceso con un mutex, semáforo o monitor.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0401",
+      "lesson": "software/so/04-so-memoria-archivos-es",
+      "text": "Un sistema pagina la memoria en bloques de 2 048 bytes. Un proceso ocupa 72 766 bytes. ¿Cuánta fragmentación interna se genera?",
+      "options": ["962 bytes", "2 048 bytes", "72 766 bytes", "0 bytes"],
+      "answer": 0,
+      "explanation": "Se necesitan 36 páginas (72 766/2 048 = 35.5, se redondea hacia arriba), que ocupan 73 728 bytes. La fragmentación interna es 73 728 − 72 766 = 962 bytes, desperdiciados en la última página.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-so-0402",
+      "lesson": "software/so/04-so-memoria-archivos-es",
+      "text": "¿Qué tipo de fragmentación se presenta principalmente con segmentación (bloques de tamaño variable)?",
+      "options": ["Interna", "Externa", "Ninguna", "Ambas por igual"],
+      "answer": 1,
+      "explanation": "Los segmentos de tamaño variable dejan huecos libres pequeños y no contiguos: fragmentación externa. La paginación, con bloques fijos, genera fragmentación interna.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-so-0403",
+      "lesson": "software/so/04-so-memoria-archivos-es",
+      "text": "Con 3 marcos de memoria y la secuencia de referencias de página 7, 0, 1, 2, 0, 3, 0, 4, ¿cuántos fallos de página producen FIFO y LRU?",
+      "options": [
+        "FIFO 6 y LRU 7",
+        "8 fallos en ambos",
+        "6 fallos en ambos",
+        "FIFO 7 y LRU 6"
+      ],
+      "answer": 3,
+      "explanation": "FIFO falla en 7, 0, 1, 2, 3, 0 y 4 (7 fallos). LRU conserva el 0, que se usa seguido, y falla solo en 7, 0, 1, 2, 3 y 4 (6 fallos), porque los dos accesos posteriores al 0 son aciertos.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-so-0404",
+      "lesson": "software/so/04-so-memoria-archivos-es",
+      "text": "Un servidor con muy poca RAM ejecuta muchos procesos. El disco está al 100 % de uso, la CPU casi ociosa y los programas avanzan muy lentamente. ¿Qué fenómeno ocurre?",
+      "options": ["Deadlock", "Inanición", "Hiperpaginación (thrashing)", "Fragmentación interna"],
+      "answer": 2,
+      "explanation": "Con memoria insuficiente se generan fallos de página constantes y el sistema pasa más tiempo intercambiando páginas con el disco que ejecutando código: thrashing.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0405",
+      "lesson": "software/so/04-so-memoria-archivos-es",
+      "text": "Con FIFO, al aumentar el número de marcos de página de 3 a 4 para la secuencia 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5, los fallos suben de 9 a 10. ¿Cómo se llama este fenómeno?",
+      "options": ["Anomalía de Belady", "Localidad de referencia", "Hiperpaginación", "Efecto convoy"],
+      "answer": 0,
+      "explanation": "La anomalía de Belady es el aumento de fallos de página al agregar marcos, que puede ocurrir con FIFO. LRU y el óptimo no la presentan.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0406",
+      "lesson": "software/so/04-so-memoria-archivos-es",
+      "text": "Se necesita transferir un bloque grande de datos del disco a la memoria sin que la CPU copie byte por byte. ¿Qué mecanismo se usa?",
+      "options": ["Spooling", "DMA (acceso directo a memoria)", "Polling", "Paginación"],
+      "answer": 1,
+      "explanation": "El controlador DMA mueve datos entre dispositivos y memoria sin intervención de la CPU, que solo se interrumpe al finalizar. El spooling es una cola en disco para dispositivos lentos como impresoras.",
+      "difficulty": "facil"
+    }
+  ]
+}

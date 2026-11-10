@@ -1,0 +1,26 @@
+{
+  "cards": [
+    { "id": "fc-sw-dat-01", "front": "Pila vs cola", "back": "Pila: LIFO (deshacer, recursión). Cola: FIFO (turnos, impresión, BFS)." },
+    { "id": "fc-sw-dat-02", "front": "Recorridos de un árbol", "back": "Preorden: R-I-D · Inorden: I-R-D (BST ordenado) · Postorden: I-D-R · Niveles: BFS." },
+    { "id": "fc-sw-dat-03", "front": "BST vs AVL", "back": "BST: O(log n) si está balanceado, O(n) si se degenera. AVL: autobalanceado, siempre O(log n)." },
+    { "id": "fc-sw-dat-04", "front": "Tabla hash: costo y colisiones", "back": "O(1) promedio, O(n) peor caso. Colisiones: encadenamiento o direccionamiento abierto." },
+    { "id": "fc-sw-dat-05", "front": "Matriz vs lista de adyacencia", "back": "Matriz: consulta rápida, O(n²) de espacio. Lista: ahorra espacio en grafos dispersos." },
+    { "id": "fc-sw-dat-06", "front": "Orden de complejidades", "back": "O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ) < O(n!)." },
+    { "id": "fc-sw-dat-07", "front": "Complejidad de ciclos", "back": "Uno = O(n). Anidados = O(n²). Contador que se duplica o parte = O(log n)." },
+    { "id": "fc-sw-dat-08", "front": "Merge sort vs quicksort", "back": "Merge: O(n log n) siempre, estable, memoria extra. Quick: promedio O(n log n), peor O(n²), no estable, en sitio." },
+    { "id": "fc-sw-dat-09", "front": "Búsqueda binaria", "back": "O(log n) y exige datos ordenados. 1 millón de elementos ≈ 20 comparaciones." },
+    { "id": "fc-sw-dat-10", "front": "Recursión y Fibonacci", "back": "Necesita caso base y paso recursivo. Fibonacci ingenuo: O(2ⁿ); con memoización: O(n)." },
+    { "id": "fc-sw-dat-11", "front": "D&V, PD, voraz y backtracking", "back": "D&V: subproblemas independientes. PD: subproblemas traslapados. Voraz: decisión local (no siempre óptimo). Backtracking: probar y retroceder." },
+    { "id": "fc-sw-dat-12", "front": "BFS, DFS y Dijkstra", "back": "BFS: cola, camino más corto sin pesos. DFS: pila/recursión. Dijkstra: pesos no negativos." },
+    { "id": "fc-sw-dat-13", "front": "WHERE vs HAVING", "back": "WHERE filtra filas antes de agrupar. HAVING filtra grupos después de GROUP BY (admite agregaciones)." },
+    { "id": "fc-sw-dat-14", "front": "Orden lógico de una consulta SQL", "back": "FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY." },
+    { "id": "fc-sw-dat-15", "front": "JOIN y COUNT con NULL", "back": "INNER: solo coincidencias. LEFT: todo lo de la izquierda. COUNT(*) cuenta filas; COUNT(columna) ignora NULL. NULL: IS NULL." },
+    { "id": "fc-sw-dat-16", "front": "DELETE, TRUNCATE y DROP", "back": "DELETE: filas (reversible en transacción). TRUNCATE: vacía la tabla. DROP: elimina la tabla." },
+    { "id": "fc-sw-dat-17", "front": "1FN, 2FN, 3FN y BCNF", "back": "1FN: atómicos. 2FN: sin dependencias parciales. 3FN: sin dependencias transitivas. BCNF: todo determinante es clave candidata." },
+    { "id": "fc-sw-dat-18", "front": "Relación N:M en el modelo relacional", "back": "Se resuelve con una tabla intermedia que contiene las claves foráneas de ambas tablas." },
+    { "id": "fc-sw-dat-19", "front": "ACID", "back": "Atomicidad (todo o nada), Consistencia, Aislamiento y Durabilidad (lo confirmado persiste)." },
+    { "id": "fc-sw-dat-20", "front": "OLTP vs OLAP y CAP", "back": "OLTP: transacciones diarias. OLAP: análisis histórico (ETL al data warehouse). CAP: solo 2 de Consistencia, Disponibilidad, tolerancia a Particiones." },
+    { "id": "fc-sw-dat-21", "front": "Tipos de aprendizaje automático", "back": "Supervisado (etiquetas), no supervisado (clustering, K-means), por refuerzo (recompensas)." },
+    { "id": "fc-sw-dat-22", "front": "Precisión y recall", "back": "Precisión = VP/(VP+FP). Recall = VP/(VP+FN). Sobreajuste: bien en entrenamiento, mal con datos nuevos." }
+  ]
+}

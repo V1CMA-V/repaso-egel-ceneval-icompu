@@ -1,0 +1,95 @@
+---
+title: 'Sistemas operativos: procesos, hilos, planificación, sincronización y deadlock'
+summary: 'Funciones del SO, procesos vs hilos y sus estados, algoritmos de planificación con ejemplos de tiempo de espera, condiciones de carrera, semáforos y las cuatro condiciones del deadlock.'
+order: 3
+readMinutes: 14
+examWeight: 'Software 3.2 · Programación y software base'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **sistema operativo (SO)** es el software que **administra los recursos de hardware** y ofrece servicios a las aplicaciones. Sus funciones principales: **gestión de procesos, de memoria, de archivos y de dispositivos (E/S)**, además de la **interfaz con el usuario** y la **seguridad**.
+</Callout>
+
+- **Kernel (núcleo)**: parte central del SO. **Monolítico** (todo en el núcleo: rápido) vs **microkernel** (solo lo esencial en el núcleo; el resto en servicios: más modular).
+- **Modo usuario vs modo kernel**: los programas corren en **modo usuario** (restringido) y piden servicios al kernel mediante **llamadas al sistema (system calls)**.
+- **Shell**: interfaz que interpreta los comandos del usuario.
+
+## Procesos e hilos
+
+- **Proceso**: programa **en ejecución** con su **propio espacio de memoria**. **Hilo (thread)**: unidad de ejecución dentro de un proceso; **los hilos de un proceso comparten memoria** (más ligeros, pero requieren sincronización).
+- **PCB (bloque de control de proceso)**: estructura con la información del proceso (estado, registros, PC, prioridad, memoria).
+- **Estados**: **nuevo → listo → ejecución → bloqueado (espera E/S) → terminado**. De ejecución se pasa a **listo** si se le acaba el quantum (o lo expropian) y a **bloqueado** si espera E/S.
+- **Cambio de contexto**: **guardar el estado** del proceso actual y **cargar** el del siguiente; es **sobrecarga** (tiempo sin trabajo útil).
+- **Demonio (daemon)**: proceso en **segundo plano** que ofrece un servicio. **Tiempo real**: el SO garantiza **respuesta en plazos** (**duro**: fallar un plazo es una falla; **blando**: tolera retrasos).
+
+## Planificación de la CPU
+
+| Algoritmo | Idea | Ojo |
+| --- | --- | --- |
+| **FCFS** | **Primero en llegar, primero en atenderse** (sin expropiación) | **Efecto convoy**: un proceso largo retrasa a todos |
+| **SJF** | Primero el **trabajo más corto** | Da el **menor tiempo de espera promedio**; puede causar **inanición** de los largos |
+| **Prioridades** | Atiende por **prioridad** | **Inanición** de los de baja prioridad; se resuelve con **envejecimiento (aging)** |
+| **Round Robin** | Cada proceso recibe un **quantum** por turnos (**expropiativo**) | **Equitativo**; quantum muy **pequeño** → mucho cambio de contexto; muy **grande** → se parece a FCFS |
+
+**Ejemplo** (llegan todos en el instante 0): **P1 = 24 ms, P2 = 3 ms, P3 = 3 ms**.
+
+- **FCFS** (P1, P2, P3): esperas 0, 24, 27 → promedio **17 ms**.
+- **SJF** (P2, P3, P1): esperas 0, 3, 6 → promedio **3 ms**.
+- **Round Robin, quantum 4**: P1 espera 6, P2 espera 4, P3 espera 7 → promedio **5.67 ms**.
+
+<Callout type="tip">
+**Tiempo de espera** = tiempo total en la cola de listos (= **fin − llegada − duración**). **SJF** es óptimo en **espera promedio**, pero puede dejar sin atender a los procesos largos.
+</Callout>
+
+## Sincronización
+
+- **Condición de carrera**: el resultado **depende del orden** en que se ejecutan procesos o hilos que acceden a un **recurso compartido**.
+- **Sección crítica**: parte del código que **accede al recurso compartido** y debe ejecutarse con **exclusión mutua**.
+- Mecanismos: **mutex/cerrojo**, **semáforos** (contadores con `wait`/`signal`), **monitores**.
+- Problemas clásicos: **productor-consumidor**, **lectores-escritores**, **cena de los filósofos**.
+
+## Deadlock (interbloqueo)
+
+Procesos **bloqueados esperándose entre sí** para siempre. Se requiere que se cumplan **las cuatro condiciones a la vez**:
+
+1. **Exclusión mutua**: el recurso no se comparte.
+2. **Retención y espera**: tiene recursos y **pide más**.
+3. **No expropiación**: no se le pueden **quitar** los recursos a la fuerza.
+4. **Espera circular**: una **cadena cerrada** de procesos donde cada uno espera un recurso del siguiente.
+
+**Manejo**: **prevención** (romper una condición, por ejemplo pedir todos los recursos a la vez), **evitación** (**algoritmo del banquero**: solo concede si el estado sigue "seguro"), **detección y recuperación** (terminar procesos o expropiar), o **ignorarlo** (avestruz).
+
+<Callout type="importante">
+- **Deadlock exige las 4 condiciones a la vez.** Si se pueden **expropiar** recursos, no hay deadlock (no se cumple la condición **no expropiación**).
+- **Inanición ≠ deadlock**: en la inanición un proceso espera indefinidamente pero el sistema avanza.
+- **Condición de carrera** → usar **exclusión mutua** (mutex, semáforo).
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Proceso** = memoria propia; **hilos** = comparten memoria del proceso.
+- **FCFS** convoy; **SJF** mejor espera promedio pero inanición; **Round Robin** quantum; **prioridades** + envejecimiento.
+- Deadlock: **exclusión mutua, retención y espera, no expropiación, espera circular**.
+- **Banquero** = evitación de deadlock.
+- **Cambio de contexto** = sobrecarga.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que deadlock ocurre con **una sola** de las cuatro condiciones.
+- Pensar que **SJF** es siempre "justo".
+- Confundir **proceso** con **hilo** (memoria propia vs compartida).
+- Decir que un quantum **muy pequeño** mejora todo (aumenta los cambios de contexto).
+</Callout>
+
+## Ejemplo resuelto
+
+> Con Round Robin y quantum de 4 ms, P1 (24 ms), P2 (3 ms) y P3 (3 ms) llegan en el instante 0, en ese orden. ¿Cuánto espera P2?
+
+P1 usa la CPU de 0 a 4. P2 empieza en el 4 y termina en 7 (necesita solo 3 ms). Su tiempo de espera es **4 ms**.

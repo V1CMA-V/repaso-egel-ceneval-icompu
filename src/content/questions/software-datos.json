@@ -1,0 +1,462 @@
+{
+  "questions": [
+    {
+      "id": "sw-dat-0101",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "Un editor de texto debe permitir deshacer los cambios del más reciente al más antiguo. ¿Qué estructura de datos se adapta de forma natural a este comportamiento?",
+      "options": ["Una cola", "Una pila", "Un árbol AVL", "Una tabla hash"],
+      "answer": 1,
+      "explanation": "Deshacer sigue el orden LIFO: el último cambio es el primero que se revierte, lo que describe una pila (push al hacer una acción, pop al deshacer).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0102",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "Un servidor de impresión debe atender los documentos exactamente en el orden en que llegaron. ¿Qué estructura es la más adecuada?",
+      "options": ["Un heap", "Una cola (FIFO)", "Una pila", "Un árbol AVL"],
+      "answer": 1,
+      "explanation": "El orden de llegada es FIFO: el primero en entrar es el primero en salir, que es el comportamiento de una cola. Un heap atendería por prioridad, no por llegada.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0103",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "Se insertan, en este orden, las claves 50, 30, 70, 20, 40, 60 y 80 en un árbol binario de búsqueda inicialmente vacío. ¿Cuál es el recorrido en preorden?",
+      "options": [
+        "20, 30, 40, 50, 60, 70, 80",
+        "50, 30, 70, 20, 40, 60, 80",
+        "20, 40, 30, 60, 80, 70, 50",
+        "50, 30, 20, 40, 70, 60, 80"
+      ],
+      "answer": 3,
+      "explanation": "Preorden: raíz, subárbol izquierdo, subárbol derecho → 50, 30, 20, 40, 70, 60, 80. La primera opción es el inorden, la segunda es por niveles y la tercera es el postorden.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0104",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "Un programador inserta las claves 10, 20, 30, 40 y 50, en ese orden, en un árbol binario de búsqueda sin balanceo. ¿Cuál es el costo de buscar la clave 50?",
+      "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+      "answer": 2,
+      "explanation": "Al insertar datos ya ordenados el árbol se degenera en una lista: cada clave queda como hijo derecho de la anterior, por lo que buscar el último elemento recorre los n nodos. Un AVL evitaría esto.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0105",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "En una tabla hash de 7 posiciones con la función h(k) = k mod 7 se insertan las claves 15, 22 y 8. ¿Qué ocurre y cómo se resuelve?",
+      "options": [
+        "Se pierden los datos duplicados",
+        "La tabla se reinicia automáticamente",
+        "Se produce un desbordamiento de pila",
+        "Las tres claves colisionan en la posición 1; se resuelve con encadenamiento o direccionamiento abierto"
+      ],
+      "answer": 3,
+      "explanation": "15, 22 y 8 dejan residuo 1 al dividirse entre 7, por lo que caen en la misma posición (colisión). Se resuelven guardando una lista en esa posición (encadenamiento) o buscando otra posición libre (direccionamiento abierto).",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0106",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "Una red social con millones de usuarios, donde cada uno tiene en promedio pocas decenas de amigos, se modela como un grafo. ¿Qué representación ahorra más espacio?",
+      "options": [
+        "Lista de adyacencia",
+        "Matriz de adyacencia",
+        "Un arreglo ordenado de usuarios",
+        "Una pila de relaciones"
+      ],
+      "answer": 0,
+      "explanation": "El grafo es disperso (pocas aristas respecto al máximo posible). La lista de adyacencia ocupa espacio proporcional a nodos + aristas; una matriz ocuparía O(n²), inviable con millones de usuarios.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0107",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "Se requiere listar todas las claves de un árbol binario de búsqueda en orden ascendente. ¿Qué recorrido se debe aplicar?",
+      "options": ["Preorden", "Postorden", "Inorden", "Por niveles"],
+      "answer": 2,
+      "explanation": "En un BST, el recorrido inorden (izquierda, raíz, derecha) visita las claves en orden ascendente.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0201",
+      "lesson": "software/datos/02-complejidad-ordenamiento-busqueda",
+      "text": "¿Cuál es la complejidad temporal del siguiente fragmento de pseudocódigo?",
+      "code": "para i desde 1 hasta n:\n    para j desde 1 hasta i:\n        hacer_algo()",
+      "options": ["O(n)", "O(n log n)", "O(n²)", "O(2ⁿ)"],
+      "answer": 2,
+      "explanation": "La instrucción interna se ejecuta 1 + 2 + … + n = n(n+1)/2 veces, que es O(n²). Aunque el ciclo interno depende de i, el orden de crecimiento sigue siendo cuadrático.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0202",
+      "lesson": "software/datos/02-complejidad-ordenamiento-busqueda",
+      "text": "¿Cuál es la complejidad del siguiente ciclo?",
+      "code": "i = 1\nmientras i < n:\n    i = i * 2",
+      "options": ["O(n)", "O(log n)", "O(1)", "O(n²)"],
+      "answer": 1,
+      "explanation": "El contador se duplica en cada vuelta, así que llega a n en log₂(n) iteraciones. Cuando el contador se multiplica o divide por una constante, la complejidad es logarítmica.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0203",
+      "lesson": "software/datos/02-complejidad-ordenamiento-busqueda",
+      "text": "Se deben ordenar registros primero por ciudad y después, sin romper ese orden, por apellido. Se necesita además un tiempo O(n log n) garantizado. ¿Qué algoritmo es el adecuado?",
+      "options": ["Quicksort", "Ordenamiento por selección", "Burbuja", "Merge sort"],
+      "answer": 3,
+      "explanation": "Merge sort es estable (conserva el orden relativo de claves iguales) y garantiza O(n log n) en todos los casos. Quicksort y selección no son estables y burbuja es estable pero O(n²).",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0204",
+      "lesson": "software/datos/02-complejidad-ordenamiento-busqueda",
+      "text": "Se aplica quicksort, con el primer elemento como pivote, a un arreglo que ya está ordenado. ¿Cuál es su complejidad en ese caso?",
+      "options": ["O(n²)", "O(n log n)", "O(n)", "O(log n)"],
+      "answer": 0,
+      "explanation": "Con un pivote que siempre es el menor (o mayor) elemento, las particiones quedan desbalanceadas (0 y n−1 elementos) y el algoritmo degenera a O(n²). Su promedio sí es O(n log n).",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0205",
+      "lesson": "software/datos/02-complejidad-ordenamiento-busqueda",
+      "text": "En un arreglo ordenado de 1 048 576 elementos (2²⁰) se usa búsqueda binaria. ¿Cuántas comparaciones se necesitan, como máximo, de forma aproximada?",
+      "options": ["1 048 576", "1 024", "512", "20"],
+      "answer": 3,
+      "explanation": "La búsqueda binaria descarta la mitad en cada paso, por lo que necesita log₂(2²⁰) = 20 comparaciones aproximadamente. Una búsqueda lineal podría necesitar más de un millón.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0206",
+      "lesson": "software/datos/02-complejidad-ordenamiento-busqueda",
+      "text": "Un desarrollador aplica búsqueda binaria a una lista de identificadores sin ordenar y obtiene resultados erróneos. ¿Cuál es la causa?",
+      "options": [
+        "La búsqueda binaria exige que los datos estén ordenados",
+        "La búsqueda binaria es siempre O(n)",
+        "Solo funciona con listas ligadas",
+        "Requiere una tabla hash auxiliar"
+      ],
+      "answer": 0,
+      "explanation": "La búsqueda binaria depende del orden: compara con el elemento central y descarta una mitad. Sin orden, esa suposición es falsa y puede descartar justo donde está el valor.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0207",
+      "lesson": "software/datos/02-complejidad-ordenamiento-busqueda",
+      "text": "Un arreglo de 10 000 elementos está casi ordenado: solo unos pocos elementos están fuera de lugar. ¿Cuál de estos algoritmos simples se comporta mejor?",
+      "options": [
+        "Ordenamiento por selección",
+        "Ordenamiento por inserción",
+        "Heapsort",
+        "Quicksort con pivote fijo en el primer elemento"
+      ],
+      "answer": 1,
+      "explanation": "La inserción se acerca a O(n) con datos casi ordenados, porque cada elemento se desplaza muy poco. La selección siempre hace O(n²) comparaciones y quicksort con pivote fijo se degrada con datos ordenados.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0301",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Se define la siguiente función recursiva y se invoca f(5). ¿Qué ocurre?",
+      "code": "f(n):\n    devolver n * f(n - 1)",
+      "options": [
+        "Devuelve 120",
+        "Se produce un desbordamiento de pila porque no tiene caso base",
+        "Devuelve 0",
+        "Marca un error de tipos en tiempo de compilación"
+      ],
+      "answer": 1,
+      "explanation": "Toda recursión necesita un caso base que la detenga. Sin él, la función se llama indefinidamente hasta agotar la pila de llamadas (stack overflow). Para factorial, el caso base sería n ≤ 1.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0302",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "La versión recursiva ingenua de Fibonacci fib(n) = fib(n−1) + fib(n−2) recalcula los mismos subproblemas muchas veces. ¿Cuál es su complejidad y cómo se mejora?",
+      "options": [
+        "O(n log n); no tiene mejora posible",
+        "O(n); con memoización pasa a O(log n)",
+        "O(2ⁿ); con memoización o programación dinámica baja a O(n)",
+        "O(n²); con divide y vencerás baja a O(n)"
+      ],
+      "answer": 2,
+      "explanation": "La recursión ingenua genera un árbol de llamadas que crece exponencialmente (≈ O(2ⁿ)). Guardando los resultados ya calculados (memoización o tabla de programación dinámica), cada subproblema se resuelve una sola vez: O(n).",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0303",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Se tienen monedas de 1, 3 y 4 unidades y se desea pagar 6 con el menor número de monedas. ¿Qué afirmación es correcta?",
+      "options": [
+        "El algoritmo voraz y el óptimo usan 2 monedas",
+        "El algoritmo voraz siempre da la solución óptima",
+        "Ambos métodos necesitan 3 monedas",
+        "El voraz usa 3 monedas (4+1+1) pero el óptimo usa 2 (3+3), que se obtiene con programación dinámica"
+      ],
+      "answer": 3,
+      "explanation": "El algoritmo voraz elige siempre la moneda mayor posible (4), y termina con 4 + 1 + 1 = 3 monedas. El óptimo, 3 + 3, usa 2. Los algoritmos voraces no siempre dan el óptimo global; programación dinámica sí lo garantiza.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-dat-0304",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Se desea encontrar la ruta con menos paradas entre dos estaciones de un metro, donde todas las conexiones tienen el mismo costo. ¿Qué algoritmo es el más adecuado?",
+      "options": [
+        "BFS (búsqueda en anchura, con cola)",
+        "DFS (búsqueda en profundidad, con pila)",
+        "Dijkstra con aristas de peso negativo",
+        "Kruskal"
+      ],
+      "answer": 0,
+      "explanation": "En un grafo sin pesos, BFS explora por niveles y garantiza el camino con el menor número de aristas. DFS no garantiza el camino más corto y Kruskal calcula un árbol de expansión mínima.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0305",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "El problema de las N reinas (colocar N reinas en un tablero sin que se ataquen) suele resolverse probando posiciones y retrocediendo cuando una colocación no lleva a una solución. ¿Qué técnica es?",
+      "options": ["Divide y vencerás", "Algoritmo voraz", "Backtracking (vuelta atrás)", "Programación dinámica"],
+      "answer": 2,
+      "explanation": "Probar una opción y retroceder al detectar que no funciona es la esencia del backtracking; es también la técnica típica del sudoku y los laberintos.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0306",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "En una red de carreteras con tiempos de viaje positivos se necesita la ruta de menor tiempo desde una ciudad hacia todas las demás. ¿Qué algoritmo se usa?",
+      "options": ["Dijkstra", "BFS sin considerar pesos", "DFS", "Prim"],
+      "answer": 0,
+      "explanation": "Dijkstra calcula caminos mínimos desde un origen en grafos con pesos no negativos. BFS ignora los pesos y Prim construye un árbol de expansión mínima, no caminos mínimos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0401",
+      "lesson": "software/datos/04-sql",
+      "text": "Se desea listar los departamentos que tienen más de 5 empleados. ¿Cuál consulta es correcta?",
+      "options": [
+        "SELECT depto FROM empleados WHERE COUNT(*) > 5",
+        "SELECT depto, COUNT(*) FROM empleados GROUP BY depto HAVING COUNT(*) > 5",
+        "SELECT depto FROM empleados ORDER BY COUNT(*) > 5",
+        "SELECT depto FROM empleados GROUP BY depto WHERE COUNT(*) > 5"
+      ],
+      "answer": 1,
+      "explanation": "La condición sobre un resultado agregado (conteo) se aplica a los grupos, es decir, con HAVING después de GROUP BY. WHERE no admite funciones de agregación.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0402",
+      "lesson": "software/datos/04-sql",
+      "text": "La tabla Clientes tiene 4 filas (A, B, C y D). En Pedidos, A tiene 2 pedidos, B tiene 1, y C y D ninguno. ¿Cuántas filas devuelve Clientes LEFT JOIN Pedidos?",
+      "options": ["3", "4", "5", "8"],
+      "answer": 2,
+      "explanation": "El LEFT JOIN conserva todas las filas de Clientes: A aporta 2, B aporta 1 y C y D aportan una fila cada uno con NULL en los datos del pedido. Total: 2 + 1 + 1 + 1 = 5. Un INNER JOIN devolvería solo 3.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0403",
+      "lesson": "software/datos/04-sql",
+      "text": "Una tabla Empleados tiene 5 filas y la columna telefono contiene NULL en 2 de ellas. ¿Qué devuelve SELECT COUNT(*), COUNT(telefono) FROM Empleados?",
+      "options": ["5 y 5", "3 y 5", "3 y 3", "5 y 3"],
+      "answer": 3,
+      "explanation": "COUNT(*) cuenta todas las filas (5). COUNT(columna) ignora los valores NULL, por lo que cuenta solo 3.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0404",
+      "lesson": "software/datos/04-sql",
+      "text": "Un analista ejecuta DELETE FROM clientes (sin WHERE) dentro de una transacción que aún no confirma y se da cuenta del error. ¿Qué puede hacer?",
+      "options": [
+        "Nada: DELETE nunca se puede revertir",
+        "Ejecutar ROLLBACK antes de confirmar con COMMIT",
+        "Ejecutar DROP TABLE clientes para restaurar la tabla",
+        "Ejecutar TRUNCATE TABLE clientes"
+      ],
+      "answer": 1,
+      "explanation": "DELETE es una operación DML y, dentro de una transacción abierta, se revierte con ROLLBACK. DROP y TRUNCATE eliminan o vacían la tabla y no recuperan nada.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0405",
+      "lesson": "software/datos/04-sql",
+      "text": "La consulta SELECT * FROM contactos WHERE telefono = NULL devuelve 0 filas aunque hay registros sin teléfono. ¿Cuál es la causa y la corrección?",
+      "options": [
+        "Falta un GROUP BY",
+        "NULL equivale a 0, por lo que debe compararse con = 0",
+        "Comparar con = NULL nunca es verdadero; debe usarse IS NULL",
+        "El índice de la tabla está corrupto"
+      ],
+      "answer": 2,
+      "explanation": "NULL representa un valor desconocido y cualquier comparación normal con él da desconocido, no verdadero. Se debe usar IS NULL (o IS NOT NULL).",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0406",
+      "lesson": "software/datos/04-sql",
+      "text": "Una tabla con millones de filas sufre consultas lentas al buscar por correo electrónico y casi no recibe escrituras. ¿Qué medida conviene y qué efecto secundario tiene?",
+      "options": [
+        "Crear un índice sobre el correo: acelera las lecturas, con un pequeño costo en escrituras y espacio",
+        "Crear un índice: acelera lecturas y también INSERT y UPDATE",
+        "Eliminar la clave primaria",
+        "Aplicar TRUNCATE a la tabla"
+      ],
+      "answer": 0,
+      "explanation": "Un índice evita recorrer toda la tabla y acelera búsquedas, pero cada INSERT/UPDATE/DELETE debe mantenerlo actualizado, lo que lo hace más lento, y ocupa espacio adicional.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0407",
+      "lesson": "software/datos/04-sql",
+      "text": "Al intentar insertar un pedido con id_cliente = 999 que no existe en la tabla Clientes, el motor de base de datos rechaza la operación. ¿Qué mecanismo lo provoca?",
+      "options": ["PRIMARY KEY", "UNIQUE", "FOREIGN KEY (integridad referencial)", "DEFAULT"],
+      "answer": 2,
+      "explanation": "La clave foránea garantiza integridad referencial: un valor de id_cliente debe existir en la tabla referenciada. PRIMARY KEY y UNIQUE controlan repeticiones, no referencias.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0501",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "La tabla Detalle(id_pedido, id_producto, cantidad, nombre_producto) tiene clave primaria compuesta (id_pedido, id_producto), y nombre_producto depende únicamente de id_producto. ¿Qué forma normal viola?",
+      "options": ["1FN", "2FN", "3FN", "BCNF únicamente; cumple 2FN"],
+      "answer": 1,
+      "explanation": "Un atributo que depende solo de una parte de la clave compuesta es una dependencia parcial, que viola 2FN. Se corrige separando una tabla Producto(id_producto, nombre).",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0502",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "La tabla Alumno(id, nombre, id_carrera, nombre_carrera) tiene como clave primaria id. nombre_carrera depende de id_carrera. ¿Qué forma normal se viola?",
+      "options": ["1FN", "2FN", "3FN", "Ninguna, cumple todas"],
+      "answer": 2,
+      "explanation": "nombre_carrera depende de id_carrera, que no es clave: es una dependencia transitiva (id → id_carrera → nombre_carrera), por lo que se viola 3FN. No es 2FN porque la clave no es compuesta.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0503",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "Una tabla Cliente guarda en una sola celda varios teléfonos separados por comas ('555-1111, 555-2222'). ¿Qué forma normal se viola?",
+      "options": [
+        "1FN, porque los valores no son atómicos",
+        "2FN",
+        "3FN",
+        "Ninguna, es un diseño válido"
+      ],
+      "answer": 0,
+      "explanation": "La primera forma normal exige valores atómicos y sin grupos repetidos. Se corrige creando una tabla Telefono(id_cliente, numero) con una fila por número.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0504",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "En un sistema escolar, un estudiante puede inscribirse en muchas materias y cada materia tiene muchos estudiantes. ¿Cómo se modela correctamente esta relación N:M en un esquema relacional?",
+      "options": [
+        "Guardando una lista de materias en una celda de Estudiante",
+        "Agregando una clave foránea de materia en la tabla Estudiante",
+        "Agregando una clave foránea de estudiante en la tabla Materia",
+        "Con una tabla intermedia Inscripcion que contiene las claves foráneas de ambas tablas"
+      ],
+      "answer": 3,
+      "explanation": "Las relaciones N:M se resuelven con una tabla asociativa que contiene las claves de ambas entidades. Las otras opciones solo representan relaciones 1:N o violan 1FN.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0505",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "Una transferencia bancaria resta dinero de la cuenta A y el sistema falla antes de sumarlo a la cuenta B. ¿Qué propiedad ACID obliga a deshacer la operación completa?",
+      "options": ["Atomicidad", "Aislamiento", "Durabilidad", "Consistencia"],
+      "answer": 0,
+      "explanation": "La atomicidad exige que una transacción se ejecute completa o no se ejecute en absoluto. Si falla a la mitad, se revierte lo hecho.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0506",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "Un cliente recibe la confirmación de que su compra se registró (COMMIT), pero tras un corte de energía el servidor reinicia y la compra ya no aparece. ¿Qué propiedad ACID se violó?",
+      "options": ["Atomicidad", "Aislamiento", "Consistencia", "Durabilidad"],
+      "answer": 3,
+      "explanation": "La durabilidad garantiza que lo confirmado con COMMIT persiste aunque el sistema falle (mediante registros de transacciones o journaling en disco).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0507",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "La transacción T1 lee un saldo que T2 modificó pero aún no confirmó; después T2 hace ROLLBACK, y T1 trabajó con un dato que nunca existió oficialmente. ¿Qué problema de concurrencia ocurrió?",
+      "options": ["Lectura fantasma", "Lectura no repetible", "Lectura sucia", "Deadlock"],
+      "answer": 2,
+      "explanation": "Leer datos no confirmados de otra transacción es una lectura sucia, y revela un aislamiento insuficiente. La no repetible es cuando una misma fila cambia entre dos lecturas, y la fantasma, cuando aparecen filas nuevas.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0508",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "Una cadena de tiendas necesita ejecutar reportes históricos pesados sobre años de ventas sin afectar el sistema de punto de venta. ¿Cuál es la mejor solución?",
+      "options": [
+        "Ejecutar los reportes directamente sobre la base transaccional (OLTP)",
+        "Cargar los datos con un proceso ETL a un data warehouse (OLAP) y consultar allí",
+        "Sustituir la base de datos por una tabla hash",
+        "Convertir todas las tablas a una sola columna"
+      ],
+      "answer": 1,
+      "explanation": "OLTP está optimizado para muchas transacciones pequeñas; el análisis histórico se hace en un almacén de datos OLAP, alimentado con ETL (extraer, transformar, cargar), para no competir con la operación diaria.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0601",
+      "lesson": "software/datos/06-inteligencia-artificial-basica",
+      "text": "Un equipo entrena un modelo con miles de correos previamente marcados como spam o no spam. ¿Qué tipo de aprendizaje utiliza?",
+      "options": ["No supervisado", "Supervisado", "Por refuerzo", "Evolutivo"],
+      "answer": 1,
+      "explanation": "Los datos tienen etiquetas (la respuesta conocida), y el objetivo es clasificar: aprendizaje supervisado. El no supervisado trabaja sin etiquetas.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0602",
+      "lesson": "software/datos/06-inteligencia-artificial-basica",
+      "text": "Una empresa quiere segmentar a sus clientes en grupos con comportamientos similares, sin saber de antemano cuáles son esos grupos. ¿Qué enfoque es el adecuado?",
+      "options": [
+        "Regresión lineal",
+        "Clasificación supervisada",
+        "K-means (aprendizaje no supervisado)",
+        "Aprendizaje por refuerzo"
+      ],
+      "answer": 2,
+      "explanation": "Agrupar sin etiquetas es clustering, un caso de aprendizaje no supervisado, cuyo ejemplo clásico es K-means.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0603",
+      "lesson": "software/datos/06-inteligencia-artificial-basica",
+      "text": "Un modelo logra 98 % de aciertos con los datos de entrenamiento, pero solo 62 % con datos nuevos que nunca vio. ¿Qué problema presenta?",
+      "options": [
+        "Subajuste",
+        "Exactitud correcta, no hay problema",
+        "Etiquetas incorrectas en el entrenamiento",
+        "Sobreajuste (overfitting)"
+      ],
+      "answer": 3,
+      "explanation": "Un buen desempeño en entrenamiento y malo con datos nuevos indica que el modelo memorizó en lugar de generalizar: sobreajuste. El subajuste se manifiesta con mal desempeño también en entrenamiento.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0604",
+      "lesson": "software/datos/06-inteligencia-artificial-basica",
+      "text": "Un clasificador obtiene VP = 40, FP = 10 y FN = 20. ¿Cuáles son su precisión y su recall?",
+      "options": [
+        "Precisión 0.80 y recall 0.67",
+        "Precisión 0.67 y recall 0.80",
+        "Precisión 0.50 y recall 0.80",
+        "Precisión 0.80 y recall 0.50"
+      ],
+      "answer": 0,
+      "explanation": "Precisión = VP/(VP+FP) = 40/50 = 0.80. Recall = VP/(VP+FN) = 40/60 ≈ 0.67. La precisión mide qué tan acertadas son las predicciones positivas; el recall, cuántos positivos reales se detectaron.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0605",
+      "lesson": "software/datos/06-inteligencia-artificial-basica",
+      "text": "En el diagnóstico de una enfermedad grave, la prioridad es no dejar pasar ningún caso real. ¿Qué métrica interesa maximizar?",
+      "options": ["Precisión", "Recall (sensibilidad)", "Exactitud", "Tamaño del conjunto de entrenamiento"],
+      "answer": 1,
+      "explanation": "El recall mide la proporción de casos positivos reales que el modelo detecta; maximizarlo reduce los falsos negativos (enfermos no detectados). La exactitud puede engañar con clases desbalanceadas.",
+      "difficulty": "media"
+    }
+  ]
+}

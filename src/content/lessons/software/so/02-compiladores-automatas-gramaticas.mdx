@@ -1,0 +1,96 @@
+---
+title: 'Compiladores, autómatas, expresiones regulares y gramáticas'
+summary: 'Diferencia entre compilador e intérprete, las fases de compilación y qué error se detecta en cada una, autómatas finitos y la jerarquía de Chomsky.'
+order: 2
+readMinutes: 12
+examWeight: 'Software 3.2 · Programación y software base'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Un **compilador** **traduce** el código fuente de un lenguaje de alto nivel a **código objeto o máquina**, **antes** de ejecutarlo. Un **intérprete** lo **ejecuta línea por línea** sin generar un ejecutable previo. Un **ensamblador** traduce **lenguaje ensamblador** a código máquina.
+</Callout>
+
+## Compilador vs intérprete
+
+| | **Compilador** | **Intérprete** |
+| --- | --- | --- |
+| Traducción | **Todo el programa** antes de ejecutar | **Línea por línea**, durante la ejecución |
+| Velocidad de ejecución | **Mayor** (código ya traducido) | Menor |
+| Errores | Se detectan **antes de ejecutar** | Se detectan **al llegar** a la línea |
+| Ejemplos | C, C++, Go | Python (modo clásico), JavaScript, Bash |
+
+- **Híbrido**: **Java** compila a **bytecode** y la **JVM** lo interpreta o compila en tiempo de ejecución (**JIT**).
+- **Enlazador (linker)**: **une módulos y bibliotecas** en un ejecutable. **Cargador (loader)**: lo **sube a memoria** para ejecutarlo.
+- **Preprocesador**: expande macros e inclusiones (`#include`).
+
+## Fases de un compilador
+
+| Fase | Qué hace | Error que detecta |
+| --- | --- | --- |
+| **1. Análisis léxico** | Lee caracteres y produce **tokens** (palabras reservadas, identificadores, números, operadores) | **Léxico**: símbolo o palabra **inválida** (`@var`, `3x`) |
+| **2. Análisis sintáctico** | Verifica que los tokens sigan la **gramática** y construye un **árbol sintáctico** | **Sintáctico**: **estructura incorrecta** (falta un `;` o un paréntesis) |
+| **3. Análisis semántico** | Revisa **significado**: **tipos**, variables declaradas, ámbitos | **Semántico**: **tipos incompatibles**, **variable no declarada** |
+| **4. Código intermedio** | Genera una representación independiente de la máquina | — |
+| **5. Optimización** | Mejora velocidad o tamaño | — |
+| **6. Generación de código** | Produce el código objeto para la máquina destino | — |
+
+Las tres primeras forman el **análisis (front-end)**; las últimas, la **síntesis (back-end)**. La **tabla de símbolos** guarda información sobre los identificadores.
+
+<Callout type="tip">
+Para ubicar un error: **símbolo raro** → **léxico**. **Falta un paréntesis o `;`** → **sintáctico**. **Sumar un entero con una cadena o usar una variable no declarada** → **semántico**. ¡Un error de tipos **no** es sintáctico!
+</Callout>
+
+## Autómatas y expresiones regulares
+
+- **Autómata finito**: máquina con **estados**, **transiciones**, un **estado inicial** y **estados de aceptación**. Sirve para reconocer patrones. Una cadena es **aceptada** si termina en un estado de aceptación.
+- **AFD (determinista)**: **una sola transición** por estado y símbolo. **AFN (no determinista)**: puede tener **varias** (o ε-transiciones). **Reconocen exactamente los mismos lenguajes** (todo AFN se puede convertir en un AFD).
+- **Expresiones regulares**: describen **lenguajes regulares**. Operadores: **concatenación**, **unión (`|`)**, **cerradura de Kleene (`*`, cero o más)**, `+` (uno o más), `?` (opcional). Ej.: `a(b|c)*` acepta `a`, `ab`, `acb`, `abcbc`.
+- Se usan en el **análisis léxico**, búsquedas y validaciones (correos, teléfonos).
+
+## Gramáticas y jerarquía de Chomsky
+
+Una **gramática** define la **sintaxis** de un lenguaje con **reglas de producción**. Tiene **símbolos terminales** (los del lenguaje), **no terminales**, un **símbolo inicial** y **producciones**. Una gramática es **ambigua** si **una cadena tiene más de un árbol de derivación**.
+
+| Tipo | Lenguaje | Máquina que lo reconoce |
+| --- | --- | --- |
+| **3** | **Regular** (expresiones regulares) | **Autómata finito** (AFD/AFN) |
+| **2** | **Libre de contexto** | **Autómata de pila** |
+| **1** | **Sensible al contexto** | Autómata linealmente acotado |
+| **0** | **Recursivamente enumerable** | **Máquina de Turing** |
+
+- Las gramáticas **libres de contexto** (notación **BNF**) describen la **sintaxis de los lenguajes de programación**; el **análisis léxico** usa lenguajes **regulares**.
+- **Cada tipo contiene al siguiente más restringido** (regular ⊂ libre de contexto ⊂ sensible al contexto ⊂ recursivamente enumerable).
+- El lenguaje $\{a^n b^n \mid n \ge 1\}$ **no es regular** (requiere "contar"), pero sí **libre de contexto** (autómata de pila).
+
+<Callout type="tip">
+**"Memoria limitada, sin contar" → autómata finito**. **"Necesita contar o equilibrar paréntesis" → autómata de pila**. **"Cómputo general" → máquina de Turing**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Compilador** traduce **todo antes**; **intérprete**, **línea por línea**.
+- **Léxico → tokens; sintáctico → estructura/gramática; semántico → tipos y declaraciones.**
+- **AFD y AFN reconocen los mismos lenguajes.**
+- **Regular → autómata finito; libre de contexto → autómata de pila; recursivamente enumerable → Turing.**
+- Gramática **ambigua** = una cadena con más de un árbol de derivación.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Marcar como **sintáctico** un error de **tipos** (es **semántico**).
+- Creer que un **AFN** reconoce más lenguajes que un **AFD**.
+- Decir que los **lenguajes regulares** necesitan una pila.
+- Confundir **compilador** con **ensamblador** o con **enlazador**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un compilador marca error en la línea `int x = "hola" + 5;` aunque la estructura es válida. ¿En qué fase se detecta?
+
+En el **análisis semántico**: la sintaxis es correcta, pero se intenta sumar una **cadena** con un **entero** (tipos incompatibles).
