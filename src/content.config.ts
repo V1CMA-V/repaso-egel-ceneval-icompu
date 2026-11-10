@@ -20,8 +20,9 @@ export const questionSchema = z.object({
   /** reading passage shown above the question (comprensión lectora) */
   passage: z.string().optional(),
   code: z.string().optional(),
-  options: z.array(z.string()).min(3).max(4),
-  answer: z.number().int().min(0).max(3),
+  // el examen real usa reactivos de opción múltiple con tres opciones (guía EGEL Plus ICOMPU)
+  options: z.array(z.string()).length(3),
+  answer: z.number().int().min(0).max(2),
   explanation: z.string(),
   difficulty: z.enum(['facil', 'media', 'dificil']).default('media'),
 });

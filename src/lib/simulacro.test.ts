@@ -8,20 +8,20 @@ const make = (area: string, n: number): BankQuestion[] =>
     area,
     section: `${area}/x`,
     text: 'q',
-    options: ['a', 'b', 'c', 'd'],
+    options: ['a', 'b', 'c'],
     answer: 1,
     explanation: '',
   }));
 
-const bank = [...make('hardware', 100), ...make('redes', 80), ...make('software', 100), ...make('lenguaje', 50)];
+const bank = [...make('hardware', 100), ...make('redes', 80), ...make('software', 100), ...make('lenguaje', 120)];
 
 describe('buildSim', () => {
-  it('completo respeta la composición del examen real (49/41/50 + 30)', () => {
+  it('completo respeta la composición del examen real (49/41/50 + 60)', () => {
     const sim = buildSim('completo', bank, 1000);
     expect(sim.phases).toHaveLength(2);
     expect(sim.phases[0]!.ids).toHaveLength(140);
     expect(sim.phases[0]!.minutes).toBe(420);
-    expect(sim.phases[1]!.ids).toHaveLength(30);
+    expect(sim.phases[1]!.ids).toHaveLength(60);
     expect(sim.phases[1]!.minutes).toBe(120);
     const disc = sim.phases[0]!.ids;
     expect(disc.filter((id) => id.startsWith('hardware')).length).toBe(49);

@@ -17,7 +17,7 @@ interface Props {
   onFinish?: (questions: Question[], result: ScoreResult) => void;
 }
 
-const LETTERS = ['A', 'B', 'C', 'D'];
+const LETTERS = ['A', 'B', 'C'];
 
 export default function Quiz({ sectionKey, title, questions, graded = true, limit, onFinish }: Props) {
   const p = useStore(progress);
@@ -100,7 +100,7 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
       {!result && (
         <p className="mt-1 text-xs text-[color:var(--muted)]">
           ⌨ Con la pregunta resaltada, pulsa <kbd className="rounded border border-[color:var(--line)] px-1.5 py-0.5 font-mono text-[0.7rem]">1</kbd>–
-          <kbd className="rounded border border-[color:var(--line)] px-1.5 py-0.5 font-mono text-[0.7rem]">4</kbd> para responder (A–D).
+          <kbd className="rounded border border-[color:var(--line)] px-1.5 py-0.5 font-mono text-[0.7rem]">3</kbd> para responder (A–C).
         </p>
       )}
 

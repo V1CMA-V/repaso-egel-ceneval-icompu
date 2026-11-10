@@ -10,10 +10,10 @@ Sitio web para prepararse para el **EGEL Plus de Ingeniería en Computación (IC
 | --- | --- |
 | **Lecciones** | Hardware, Redes, Software y Lenguaje y Comunicación, con explicación detallada, tips, errores comunes, ejemplo resuelto y preguntas de práctica. |
 | **Exámenes de sección** | 12 preguntas al azar por sección; se aprueban con 70 % y tienen 5 intentos por hora. |
-| **Preguntas tipo CENEVAL** | Casos aplicados con opciones A–D y explicación de cada respuesta. Las de lectura incluyen su texto. |
+| **Preguntas tipo CENEVAL** | Casos aplicados con tres opciones (A–C), como en el examen real, y explicación de cada respuesta. Las de lectura incluyen su texto. |
 | **Flashcards** | Repetición espaciada (SM-2 simplificado) con sesión diaria. |
 | **Práctica mixta** (`/practica`) | Preguntas al azar por área o sección, o solo de tu Tabla de errores. |
-| **Simulacros** (`/simulacro`) | Completo (Disciplinar 140 reactivos en 7 h + Lenguaje 30 en 2 h) y mini por área, con cronómetro, marcar para revisar y revisión al final. El avance sobrevive a una recarga. |
+| **Simulacros** (`/simulacro`) | Completo (Disciplinar 140 reactivos en 7 h + Lenguaje 60 en 2 h) y mini por área, con cronómetro, marcar para revisar y revisión al final. El avance sobrevive a una recarga. |
 | **Tabla de errores** | Acumula tus fallos; acertar de nuevo los va quitando. |
 | **Progreso y ritmo** | Contador de días al examen y cálculo de lecciones/tiempo pendientes según tu avance. |
 
@@ -74,10 +74,10 @@ src/
 
 Áreas y secciones (ver `src/lib/curriculum.ts`):
 
-- **Hardware**: electrónica, arquitectura, embebidos y control
-- **Redes**: diseño, administración y seguridad
-- **Software**: ingeniería, programación y software base, datos y algoritmos
-- **Lenguaje**: comprensión lectora y redacción indirecta
+- **Hardware** (49): circuitos y electrónica, arquitectura, embebidos, automatización y control
+- **Redes** (41): diseño, administración, seguridad y evaluación
+- **Software** (50): ingeniería, programación y software base, manejo de datos y algoritmos
+- **Lenguaje** (60): comprensión lectora (30) y redacción indirecta (30)
 
 ## Agregar contenido
 
@@ -114,14 +114,14 @@ Agrega objetos a `src/content/questions/<area>-<seccion>.json` (`{ "questions": 
   "text": "Enunciado…",
   "passage": "Texto de lectura opcional",
   "code": "Código opcional",
-  "options": ["A", "B", "C", "D"],
+  "options": ["A", "B", "C"],
   "answer": 2,
   "explanation": "Por qué es correcta y por qué fallan las demás.",
   "difficulty": "media"
 }
 ```
 
-- `options`: de 3 a 4 opciones; `answer` es el índice (0–3).
+- `options`: exactamente 3 opciones (como el examen real); `answer` es el índice (0–2).
 - `difficulty`: `facil`, `media` o `dificil`.
 - Los `id` deben ser únicos en todo el banco. Las preguntas de una lección aparecen como práctica al final de ella.
 
@@ -145,4 +145,4 @@ El sitio es **100 % estático** (`dist/`) y se puede publicar en Vercel, Cloudfl
 
 - El banco de preguntas se sirve como `/bank.json`, generado en el build, para la práctica mixta y los simulacros.
 - El avance de un simulacro en curso se guarda en `localStorage` (`ceneval:sim`) y el progreso general en `ceneval:progress`.
-- Las respuestas y cálculos del contenido fueron redactados para estudio y no se contrastaron con la guía oficial: revísalos antes de confiar en ellos.
+- La estructura (reactivos por subárea, 3 opciones de respuesta, Lenguaje con 60 reactivos, 9 h) sigue la guía oficial de diciembre de 2026. La guía no lista temas por subárea, así que el contenido se basa en sus descriptores de desempeño, temarios de Lenguaje y bibliografía. Las respuestas y cálculos fueron redactados para estudio: revísalos antes de confiar en ellos.

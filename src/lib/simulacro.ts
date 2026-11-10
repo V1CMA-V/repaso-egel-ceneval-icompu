@@ -29,18 +29,18 @@ export interface AreaScore {
   total: number;
 }
 
-/** Reactivos del examen real (Sección Disciplinar = 140). */
+/** Reactivos del examen real (guía dic. 2026): Disciplinar = 140, Lenguaje y Comunicación = 60 (30 lectura + 30 redacción). */
 export const COMPOSICION: Record<'hardware' | 'redes' | 'software', number> = { hardware: 49, redes: 41, software: 50 };
-export const LENGUAJE_N = 30;
+export const LENGUAJE_N = 60;
 export const MINI_N: Record<'hardware' | 'redes' | 'software' | 'lenguaje', number> = {
   hardware: 12,
   redes: 14,
   software: 16,
-  lenguaje: 15,
+  lenguaje: 30,
 };
-/** Minutos por reactivo: Disciplinar 8:30–13:00 + 14:30–17:00 = 7 h / 140; Lenguaje 17:00–19:00 = 2 h / 30. */
+/** Minutos por reactivo: Disciplinar 8:30–13:00 + 14:30–17:00 = 7 h / 140; Lenguaje 17:00–19:00 = 2 h / 60. */
 export const MIN_PER_Q = 3;
-export const MIN_PER_Q_LANG = 4;
+export const MIN_PER_Q_LANG = 2;
 export const DISCIPLINAR_MINUTES = 420;
 export const LENGUAJE_MINUTES = 120;
 export const TARGET = 0.7;
@@ -48,7 +48,7 @@ export const TARGET = 0.7;
 export const SIM_INFO: Record<SimMode, { label: string; desc: string }> = {
   completo: {
     label: 'Simulacro completo',
-    desc: 'Como el examen real: Disciplinar (140 reactivos, 7 h) y Lenguaje y Comunicación (30 reactivos, 2 h). Con receso entre partes. Tu avance se guarda si recargas la página.',
+    desc: 'Como el examen real: Disciplinar (140 reactivos, 7 h) y Lenguaje y Comunicación (60 reactivos, 2 h). Con receso entre partes. Tu avance se guarda si recargas la página.',
   },
   hardware: { label: 'Mini simulacro · Hardware', desc: 'Reactivos de Hardware con tiempo límite, sin retroalimentación hasta el final.' },
   redes: { label: 'Mini simulacro · Redes', desc: 'Reactivos de Redes con tiempo límite, sin retroalimentación hasta el final.' },

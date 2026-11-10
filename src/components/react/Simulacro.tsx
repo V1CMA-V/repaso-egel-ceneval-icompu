@@ -19,7 +19,7 @@ import {
   type SimState,
 } from '@/lib/simulacro';
 
-const LETTERS = ['A', 'B', 'C', 'D'];
+const LETTERS = ['A', 'B', 'C'];
 const areaTitle = (slug: string) => AREAS.find((a) => a.slug === slug)?.title ?? slug;
 const percent = (n: number) => `${Math.round(n * 100)} %`;
 
@@ -362,7 +362,7 @@ export default function Simulacro() {
         <p className="mt-2 text-xs text-[color:var(--muted)]">
           Naranja = contestada · aro ámbar = marcada · contorno = actual
           <br />
-          ⌨ <b>1–4</b> responden (A–D) · <b>←</b> <b>→</b> cambian de pregunta · <b>F</b> marca o desmarca
+          ⌨ <b>1–3</b> responden (A–C) · <b>←</b> <b>→</b> cambian de pregunta · <b>F</b> marca o desmarca
         </p>
       </nav>
 
