@@ -1,0 +1,25 @@
+---
+import Base from '@/layouts/Base.astro';
+import Quiz from '@/components/react/Quiz';
+import { AREAS } from '@/lib/curriculum';
+import { getSectionQuestions } from '@/lib/content';
+
+export function getStaticPaths() {
+  return AREAS.flatMap((a) =>
+    a.sections.map((s) => ({ params: { area: a.slug, section: s.slug }, props: { key: s.key, title: s.title, code: s.code } })),
+  );
+}
+
+const { key, title, code } = Astro.props;
+const questions = await getSectionQuestions(key);
+---
+
+<Base title={`Examen: ${title}`}>
+  <p class="text-xs uppercase tracking-widest text-accent">Examen de sección {code}</p>
+  <h1 class="font-display mt-1 text-4xl font-extrabold">Examen: {title}</h1>
+  {questions.length === 0 ? (
+    <p class="panel mt-6 p-6 text-sm">Todavía no hay preguntas para esta sección.</p>
+  ) : (
+    <div class="mt-4"><Quiz client:load sectionKey={key} title={title} questions={questions} limit={12} /></div>
+  )}
+</Base>

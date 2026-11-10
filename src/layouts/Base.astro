@@ -1,0 +1,49 @@
+---
+import '@/styles/global.css';
+import Sidebar from '@/components/react/Sidebar';
+import { getSidebarAreas } from '@/lib/content';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Plataforma de estudio para el EGEL Plus ICOMPU (CENEVAL)' } = Astro.props;
+const areas = await getSidebarAreas();
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} · EGEL ICOMPU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      try {
+        const t = JSON.parse(localStorage.getItem('ceneval:theme') ?? '"dark"');
+        document.documentElement.classList.toggle('dark', t !== 'light');
+      } catch {}
+    </script>
+  </head>
+  <body class="min-h-screen">
+    <input id="nav-toggle" type="checkbox" class="peer hidden" />
+    <label for="nav-toggle" class="panel fixed left-3 top-3 z-30 px-3 py-2 text-sm lg:hidden">☰ Menú</label>
+    <aside
+      class="fixed inset-y-0 left-0 z-20 hidden w-80 border-r border-[color:var(--line)] bg-[color:var(--bg)] pt-12 peer-checked:block lg:block lg:pt-0"
+    >
+      <Sidebar client:load areas={areas} currentPath={currentPath} />
+    </aside>
+    <main class="mx-auto max-w-3xl px-5 py-16 lg:ml-80 lg:max-w-none lg:px-12 lg:py-10">
+      <div class="mx-auto max-w-3xl">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

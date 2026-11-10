@@ -1,0 +1,168 @@
+---
+import Base from '@/layouts/Base.astro';
+import { AREAS } from '@/lib/curriculum';
+import { getAllCards, getAllQuestions, getLessons, getSidebarAreas } from '@/lib/content';
+import Countdown from '@/components/react/Countdown';
+import StudyPlan from '@/components/react/StudyPlan';
+
+const lessons = await getLessons();
+const questions = await getAllQuestions();
+const cards = await getAllCards();
+const sidebarAreas = await getSidebarAreas();
+const first = lessons.sort((a, b) => a.id.localeCompare(b.id))[0];
+
+const stats = [
+  { n: lessons.length, label: 'lecciones' },
+  { n: AREAS.reduce((n, a) => n + a.sections.length, 0), label: 'secciones' },
+  { n: questions.length, label: 'preguntas tipo CENEVAL' },
+  { n: cards.length, label: 'flashcards' },
+];
+
+const areas = AREAS.map((a) => ({
+  ...a,
+  sections: a.sections.map((s) => ({
+    ...s,
+    lessons: lessons
+      .filter((l) => l.id.startsWith(`${s.key}/`))
+      .sort((x, y) => x.data.order - y.data.order),
+  })),
+}));
+
+const faqs = [
+  {
+    q: '¿Qué es el EGEL Plus ICOMPU?',
+    a: 'Es el Examen General para el Egreso de la Licenciatura de CENEVAL para Ingeniería en Computación. La sección Disciplinar evalúa Hardware, Redes y Software; además hay una sección de Lenguaje y Comunicación.',
+  },
+  {
+    q: '¿Cómo se califica y qué necesito para aprobar?',
+    a: 'El Índice Ceneval va de 700 a 1300: 1000 es Satisfactorio y 1150 Sobresaliente. Dentro de la sección Disciplinar el modelo es compensatorio, así que un área fuerte puede cubrir una débil. El error no se penaliza: responde todo.',
+  },
+  {
+    q: '¿Cuánto pesa cada área?',
+    a: 'Disciplinar tiene 140 reactivos: Hardware 49 (35%), Redes 41 (29%) y Software 50 (36%). En Redes, Seguridad es la subárea más pesada, con 17 reactivos.',
+  },
+  {
+    q: '¿Cómo está organizado cada tema?',
+    a: 'Cada lección explica el concepto, da un tip, lista lo importante a recordar y los errores comunes, resuelve un ejemplo y cierra con preguntas de práctica con opciones A–D. Al final de cada sección hay un examen que se aprueba con 70%.',
+  },
+  {
+    q: '¿Cuál es la mejor forma de estudiar con esta plataforma?',
+    a: 'Estudia un tema y practica el mismo día. Descarta opciones antes de elegir. Registra tus fallos en la Tabla de errores, repasa las flashcards a diario y reserva un día a la semana para práctica mixta.',
+  },
+  {
+    q: '¿Se guarda mi progreso?',
+    a: 'Sí, en este navegador (sin cuenta). Si quieres llevarlo a otro dispositivo, expórtalo e impórtalo desde la página de Progreso.',
+  },
+  {
+    q: '¿Es material oficial de CENEVAL?',
+    a: 'No. Es material de estudio independiente. Úsalo junto con la guía oficial y los exámenes de práctica de CENEVAL.',
+  },
+];
+---
+
+<Base title="Inicio" description="Prepárate para el EGEL Plus ICOMPU (CENEVAL) con lecciones, exámenes por sección y flashcards.">
+  <section class="relative overflow-hidden rounded-3xl border border-[color:var(--line)] bg-[color:var(--panel)] px-6 py-12 sm:px-10 sm:py-16">
+    <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl"></div>
+    <p class="text-xs font-bold uppercase tracking-[0.25em] text-accent">EGEL Plus · Ingeniería en Computación</p>
+    <h1 class="font-display mt-4 text-5xl font-extrabold leading-[1.05] sm:text-6xl">
+      Prepárate para el <span class="text-accent">CENEVAL ICOMPU</span>
+    </h1>
+    <p class="mt-5 max-w-2xl font-display text-lg leading-relaxed text-[color:var(--muted)]">
+      Repaso completo por bloques —Hardware, Redes, Software y Lenguaje— con explicaciones detalladas, tips, errores
+      comunes, preguntas tipo CENEVAL, examen por sección, flashcards con repetición espaciada y tabla de errores.
+    </p>
+    <dl class="mt-8 flex flex-wrap gap-3">
+      {stats.map((s) => (
+        <div class="panel px-4 py-2 text-center">
+          <dt class="sr-only">{s.label}</dt>
+          <dd><span class="font-display text-2xl font-extrabold text-accent">{s.n}</span> <span class="text-xs text-[color:var(--muted)]">{s.label}</span></dd>
+        </div>
+      ))}
+    </dl>
+    <div class="mt-8 flex flex-wrap gap-3">
+      {first && (
+        <a href={`/leccion/${first.id}`} class="rounded-xl bg-accent px-6 py-3 text-sm font-bold text-white shadow-lg shadow-accent/30 hover:brightness-110">
+          Comenzar →
+        </a>
+      )}
+      <a href="#temario" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">Ver temario</a>
+      <a href="/flashcards" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">🃏 Flashcards</a>
+      <a href="/practica" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">🎯 Práctica mixta</a>
+      <a href="/simulacro" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">📝 Simulacros</a>
+    </div>
+  </section>
+
+  <div class="mt-6 max-w-md"><Countdown client:load /></div>
+
+  <section id="plan" class="mt-16 scroll-mt-8">
+    <StudyPlan client:load areas={sidebarAreas} />
+  </section>
+
+  <section id="temario" class="mt-16 scroll-mt-8">
+    <h2 class="font-display text-4xl font-extrabold">Temario</h2>
+    <p class="mt-2 text-sm text-[color:var(--muted)]">Cada subtema es un enlace directo a su lección.</p>
+
+    <div class="mt-8 space-y-8">
+      {areas.map((a, ai) => {
+        const total = a.sections.reduce((n, s) => n + s.lessons.length, 0);
+        return (
+          <article class="panel p-6">
+            <header class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="font-display text-2xl font-extrabold">
+                <span class="mr-2 text-4xl text-accent">{String(ai + 1).padStart(2, '0')}</span>{a.title}
+              </h3>
+              <p class="text-xs uppercase tracking-widest text-[color:var(--muted)]">
+                {total} {total === 1 ? 'lección' : 'lecciones'}
+                {a.reactivos > 0 && ` · ${a.reactivos} reactivos (${a.weight})`}
+              </p>
+            </header>
+
+            <div class="mt-5 grid gap-5 md:grid-cols-2">
+              {a.sections.map((s) => (
+                <div class="rounded-xl border border-[color:var(--line)] p-4">
+                  <p class="flex items-baseline justify-between gap-2 font-display font-bold">
+                    <span><span class="mr-1 text-accent">{s.code}</span>{s.title}</span>
+                    <span class="shrink-0 text-xs font-normal text-[color:var(--muted)]">
+                      {s.lessons.length > 0 ? `${s.lessons.length} ${s.lessons.length === 1 ? 'lección' : 'lecciones'}` : 'próximamente'}
+                    </span>
+                  </p>
+                  {s.lessons.length > 0 && (
+                    <ol class="mt-3 space-y-1 text-sm">
+                      {s.lessons.map((l, li) => (
+                        <li>
+                          <a href={`/leccion/${l.id}`} class="flex gap-2 rounded px-2 py-1 hover:bg-accent/10 hover:text-accent">
+                            <span class="text-[color:var(--muted)]">{String(li + 1).padStart(2, '0')}</span>
+                            <span>{l.data.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                  <a href={`/examen/${s.key}`} class="mt-3 inline-block text-xs font-bold text-accent hover:underline">📋 Examen de la sección →</a>
+                </div>
+              ))}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section id="faq" class="mt-16 scroll-mt-8">
+    <h2 class="font-display text-4xl font-extrabold">Preguntas frecuentes</h2>
+    <div class="mt-6 space-y-3">
+      {faqs.map((f) => (
+        <details class="panel group p-4">
+          <summary class="cursor-pointer list-none font-display font-bold marker:hidden">
+            <span class="mr-2 text-accent group-open:hidden">+</span><span class="mr-2 hidden text-accent group-open:inline">−</span>{f.q}
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-[color:var(--muted)]">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <footer class="mt-16 border-t border-[color:var(--line)] pt-6 text-xs text-[color:var(--muted)]">
+    Material de estudio independiente, no afiliado a CENEVAL.
+  </footer>
+</Base>

@@ -1,0 +1,13 @@
+---
+import Base from '@/layouts/Base.astro';
+import Flashcards from '@/components/react/Flashcards';
+import { getAllCards } from '@/lib/content';
+
+const cards = await getAllCards();
+---
+
+<Base title="Flashcards">
+  <h1 class="font-display text-4xl font-extrabold">Flashcards</h1>
+  <p class="mt-2 text-sm text-[color:var(--muted)]">Repetición espaciada: las que dominas aparecen cada vez más tarde.</p>
+  <div class="mt-6"><Flashcards client:load cards={cards} /></div>
+</Base>

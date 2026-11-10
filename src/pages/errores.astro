@@ -1,0 +1,15 @@
+---
+import Base from '@/layouts/Base.astro';
+import Errors from '@/components/react/Errors';
+import { getAllQuestions } from '@/lib/content';
+
+const questions = await getAllQuestions();
+---
+
+<Base title="Tabla de errores">
+  <h1 class="font-display text-4xl font-extrabold">Tabla de errores</h1>
+  <p class="mt-2 text-sm text-[color:var(--muted)]">
+    Preguntas que fallaste. Acertarlas de nuevo en un examen las va quitando de la lista. Es tu repaso final.
+  </p>
+  <div class="mt-6"><Errors client:load questions={questions} /></div>
+</Base>

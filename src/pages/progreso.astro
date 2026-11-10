@@ -1,0 +1,17 @@
+---
+import Base from '@/layouts/Base.astro';
+import ProgressPanel from '@/components/react/ProgressPanel';
+import StudyPlan from '@/components/react/StudyPlan';
+import { getSidebarAreas } from '@/lib/content';
+import { EXAM_START } from '@/lib/curriculum';
+
+const areas = await getSidebarAreas();
+---
+
+<Base title="Progreso">
+  <h1 class="font-display text-4xl font-extrabold">Tu progreso</h1>
+  <div class="mt-6">
+    <ProgressPanel client:load areas={areas} examStart={EXAM_START} tools />
+  </div>
+  <div class="mt-12"><StudyPlan client:load areas={areas} /></div>
+</Base>

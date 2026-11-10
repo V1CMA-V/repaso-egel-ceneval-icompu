@@ -1,0 +1,23 @@
+---
+interface Props {
+  type?: 'que' | 'tip' | 'importante' | 'error' | 'examen';
+  title?: string;
+}
+const { type = 'tip', title } = Astro.props;
+const styles = {
+  que: { icon: '📘', label: '¿Qué es?', cls: 'border-sky-500/40 bg-sky-500/10' },
+  tip: { icon: '💡', label: 'Tip', cls: 'border-emerald-500/40 bg-emerald-500/10' },
+  importante: { icon: '⚠️', label: 'Importante recordar', cls: 'border-amber-500/50 bg-amber-500/10' },
+  error: { icon: '🚫', label: 'Error común', cls: 'border-red-500/40 bg-red-500/10' },
+  examen: { icon: '🎯', label: 'Cómo cae en el examen', cls: 'border-fuchsia-500/40 bg-fuchsia-500/10' },
+}[type];
+---
+
+<aside class={`not-prose my-6 rounded-xl border p-4 ${styles.cls}`}>
+  <p class="mb-2 text-xs font-bold uppercase tracking-widest">
+    <span aria-hidden="true">{styles.icon}</span> {title ?? styles.label}
+  </p>
+  <div class="callout-body text-[0.95rem] leading-relaxed [&_p]:my-1 [&_ul]:my-1 [&_ul]:list-disc [&_ul]:pl-5">
+    <slot />
+  </div>
+</aside>

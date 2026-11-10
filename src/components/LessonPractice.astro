@@ -1,0 +1,27 @@
+---
+import Quiz from './react/Quiz';
+import { getSectionQuestions } from '@/lib/content';
+
+interface Props {
+  lessonId: string;
+  sectionKey: string;
+  title: string;
+}
+const { lessonId, sectionKey, title } = Astro.props;
+const questions = (await getSectionQuestions(sectionKey)).filter((q) => q.lesson === lessonId);
+---
+
+{
+  questions.length > 0 && (
+    <section class="mt-12" id="practica">
+      <h2 class="font-display border-t border-[color:var(--line)] pt-6 text-3xl font-extrabold">Preguntas de práctica</h2>
+      <p class="mt-2 text-sm text-[color:var(--muted)]">
+        Estilo CENEVAL: casos aplicados con opciones A–D. Al enviar verás la explicación de cada una. No cuentan para el
+        examen de sección.
+      </p>
+      <div class="mt-4">
+        <Quiz client:load sectionKey={sectionKey} title={title} questions={questions} graded={false} />
+      </div>
+    </section>
+  )
+}

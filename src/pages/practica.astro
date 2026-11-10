@@ -1,0 +1,14 @@
+---
+import Base from '@/layouts/Base.astro';
+import PracticeMixta from '@/components/react/PracticeMixta';
+---
+
+<Base title="Práctica mixta">
+  <p class="text-xs uppercase tracking-widest text-accent">Domingo de práctica mixta</p>
+  <h1 class="font-display mt-1 text-4xl font-extrabold">Práctica mixta</h1>
+  <p class="mt-2 text-sm text-[color:var(--muted)]">
+    Preguntas al azar de todo lo que ya viste (o del área y la sección que elijas). Tus fallos se agregan a la Tabla de
+    errores y los aciertos la van vaciando. Con la opción "solo mis errores" repasas únicamente lo que te cuesta.
+  </p>
+  <div class="mt-6"><PracticeMixta client:only="react" /></div>
+</Base>
