@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { gradeCard, progress } from '@/lib/progress';
 import { isDue, type Grade } from '@/lib/sm2';
+import RichText from './RichText';
 
 interface Card {
   id: string;
@@ -69,7 +70,7 @@ export default function Flashcards({ cards }: { cards: Card[] }) {
             aria-label={flipped ? 'Ocultar respuesta' : 'Mostrar respuesta'}
           >
             <span className="font-display text-xl font-semibold leading-snug">
-              {flipped ? current.back : current.front}
+              <RichText>{flipped ? current.back : current.front}</RichText>
             </span>
           </button>
           {!flipped ? (

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { loadBank, type BankQuestion } from '@/lib/bank';
+import RichText from './RichText';
 import { AREAS } from '@/lib/curriculum';
 import { progress, recordSim, simActive } from '@/lib/progress';
 import {
@@ -175,8 +176,8 @@ export default function Simulacro() {
                   <p className="text-xs uppercase tracking-widest text-[color:var(--muted)]">
                     {i + 1} · {areaTitle(q.area)}
                   </p>
-                  {q.passage && <blockquote className="mt-2 whitespace-pre-line border-l-4 border-accent pl-3 text-sm text-[color:var(--muted)]">{q.passage}</blockquote>}
-                  <p className="mt-2 font-display font-semibold">{q.text}</p>
+                  {q.passage && <blockquote className="mt-2 whitespace-pre-line border-l-4 border-accent pl-3 text-sm text-[color:var(--muted)]"><RichText>{q.passage}</RichText></blockquote>}
+                  <p className="mt-2 font-display font-semibold"><RichText>{q.text}</RichText></p>
                   {q.code && (
                     <pre className="mt-2 overflow-x-auto rounded-lg border border-[color:var(--line)] bg-black/20 p-3 text-sm">
                       <code>{q.code}</code>
@@ -189,14 +190,14 @@ export default function Simulacro() {
                         className={oi === q.answer ? 'font-semibold text-emerald-600 dark:text-emerald-400' : oi === given ? 'text-red-500' : ''}
                       >
                         <b className="mr-1">{LETTERS[oi]})</b>
-                        {o}
+                        <RichText>{o}</RichText>
                         {oi === q.answer && ' ✓'}
                         {oi === given && oi !== q.answer && ' ✗ (tu respuesta)'}
                       </li>
                     ))}
                   </ul>
                   {given === undefined && <p className="mt-1 text-xs text-red-500">Sin contestar</p>}
-                  <p className="mt-2 rounded-lg bg-[color:var(--line)]/40 p-3 text-sm">{q.explanation}</p>
+                  <p className="mt-2 rounded-lg bg-[color:var(--line)]/40 p-3 text-sm"><RichText>{q.explanation}</RichText></p>
                 </li>
               );
             })}
@@ -258,7 +259,7 @@ export default function Simulacro() {
           <div className="flex items-start justify-between gap-3">
             <div className="flex gap-3">
               <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">{sim.idx + 1}</span>
-              <p className="font-display text-lg font-semibold leading-snug">{q.text}</p>
+              <p className="font-display text-lg font-semibold leading-snug"><RichText>{q.text}</RichText></p>
             </div>
             <button
               onClick={() => update({ flags: flagged.has(q.id) ? sim.flags.filter((f) => f !== q.id) : [...sim.flags, q.id] })}
@@ -271,7 +272,7 @@ export default function Simulacro() {
             </button>
           </div>
           {q.passage && (
-            <blockquote className="mt-3 whitespace-pre-line rounded-lg border-l-4 border-accent bg-[color:var(--line)]/30 p-3 text-sm leading-relaxed">{q.passage}</blockquote>
+            <blockquote className="mt-3 whitespace-pre-line rounded-lg border-l-4 border-accent bg-[color:var(--line)]/30 p-3 text-sm leading-relaxed"><RichText>{q.passage}</RichText></blockquote>
           )}
           {q.code && (
             <pre className="mt-3 overflow-x-auto rounded-lg border border-[color:var(--line)] bg-black/20 p-3 text-sm">
@@ -293,7 +294,7 @@ export default function Simulacro() {
                 />
                 <span>
                   <b className="mr-1 text-accent">{LETTERS[oi]})</b>
-                  {opt}
+                  <RichText>{opt}</RichText>
                 </span>
               </label>
             ))}

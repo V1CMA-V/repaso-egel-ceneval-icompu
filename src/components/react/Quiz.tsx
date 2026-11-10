@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { progress, recordExam } from '@/lib/progress';
+import RichText from './RichText';
 import { attemptsLeft, neededToPass, score, shuffle, type Question, type ScoreResult, MAX_ATTEMPTS_PER_HOUR } from '@/lib/scoring';
 
 interface Props {
@@ -81,11 +82,11 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">
                   {i + 1}
                 </span>
-                <p className="font-display text-lg font-semibold leading-snug">{q.text}</p>
+                <p className="font-display text-lg font-semibold leading-snug"><RichText>{q.text}</RichText></p>
               </div>
               {q.passage && (
                 <blockquote className="mt-3 whitespace-pre-line rounded-lg border-l-4 border-accent bg-[color:var(--line)]/30 p-3 text-sm leading-relaxed">
-                  {q.passage}
+                  <RichText>{q.passage}</RichText>
                 </blockquote>
               )}
               {q.code && (
@@ -114,7 +115,7 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
                       />
                       <span>
                         <b className="mr-1 text-accent">{LETTERS[oi]})</b>
-                        {opt}
+                        <RichText>{opt}</RichText>
                       </span>
                     </label>
                   );
@@ -122,7 +123,7 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
               </div>
               {result && (
                 <p className="mt-3 rounded-lg bg-[color:var(--line)]/40 p-3 text-sm">
-                  <strong>{wrong ? 'Incorrecta.' : 'Correcta.'} Respuesta: {LETTERS[q.answer]}.</strong> {q.explanation}
+                  <strong>{wrong ? 'Incorrecta.' : 'Correcta.'} Respuesta: {LETTERS[q.answer]}.</strong> <RichText>{q.explanation}</RichText>
                 </p>
               )}
             </li>

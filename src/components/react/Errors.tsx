@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { progress } from '@/lib/progress';
+import RichText from './RichText';
 import type { Question } from '@/lib/scoring';
 
 export default function Errors({ questions }: { questions: Question[] }) {
@@ -20,15 +21,15 @@ export default function Errors({ questions }: { questions: Question[] }) {
         <li key={q.id} className="panel p-4">
           <button className="w-full text-left" onClick={() => setOpen(open === q.id ? null : q.id)}>
             <span className="mr-2 rounded bg-red-500/20 px-2 py-0.5 text-xs">×{p.errors[q.id]!.count}</span>
-            <span className="font-display font-semibold">{q.text}</span>
+            <span className="font-display font-semibold"><RichText>{q.text}</RichText></span>
           </button>
           {open === q.id && (
             <div className="mt-3 text-sm">
               {q.passage && (
-                <blockquote className="mb-2 whitespace-pre-line border-l-4 border-accent pl-3 text-[color:var(--muted)]">{q.passage}</blockquote>
+                <blockquote className="mb-2 whitespace-pre-line border-l-4 border-accent pl-3 text-[color:var(--muted)]"><RichText>{q.passage}</RichText></blockquote>
               )}
-              <p><strong>Correcta:</strong> {q.options[q.answer]}</p>
-              <p className="mt-1 text-[color:var(--muted)]">{q.explanation}</p>
+              <p><strong>Correcta:</strong> <RichText>{q.options[q.answer]!}</RichText></p>
+              <p className="mt-1 text-[color:var(--muted)]"><RichText>{q.explanation}</RichText></p>
             </div>
           )}
         </li>
