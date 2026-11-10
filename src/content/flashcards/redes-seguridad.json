@@ -1,0 +1,28 @@
+{
+  "cards": [
+    { "id": "fc-red-seg-01", "front": "Tríada CIA", "back": "Confidencialidad, Integridad, Disponibilidad. Extras: autenticación y no repudio." },
+    { "id": "fc-red-seg-02", "front": "IDS vs IPS", "back": "IDS detecta y alerta (pasivo). IPS detecta y bloquea (en línea)." },
+    { "id": "fc-red-seg-03", "front": "¿Con qué clave cifro un mensaje para Ana?", "back": "Con la clave pública de Ana." },
+    { "id": "fc-red-seg-04", "front": "¿Con qué clave firmo un mensaje?", "back": "Con mi clave privada; se verifica con mi pública." },
+    { "id": "fc-red-seg-05", "front": "DoS vs DDoS", "back": "DoS: una fuente. DDoS: muchas fuentes (botnet). Afectan la disponibilidad." },
+    { "id": "fc-red-seg-06", "front": "Firma digital da…", "back": "Integridad, autenticación y no repudio." },
+    { "id": "fc-red-seg-07", "front": "AES, RSA, SHA-256: ¿qué tipo es cada uno?", "back": "AES: simétrico. RSA: asimétrico. SHA-256: hash." },
+    { "id": "fc-red-seg-08", "front": "¿Para qué sirve una DMZ?", "back": "Aislar servidores públicos de la red interna detrás de un firewall." },
+    { "id": "fc-red-seg-09", "front": "Puertos: HTTP, HTTPS, SSH, DNS, SMTP, DHCP", "back": "80 · 443 · 22 · 53 · 25 · 67/68" },
+    { "id": "fc-red-seg-10", "front": "Regla para razonar un ataque", "back": "\"Cambia\" = integridad, \"ve\" = confidencialidad, \"cae\" = disponibilidad." },
+    { "id": "fc-red-seg-11", "front": "Virus, gusano y troyano", "back": "Virus: infecta archivos. Gusano: se propaga solo por la red. Troyano: se disfraza de programa legítimo." },
+    { "id": "fc-red-seg-12", "front": "SQLi vs XSS", "back": "SQLi: código SQL en una entrada (defensa: consultas parametrizadas). XSS: scripts que verán otros usuarios (defensa: escapar la salida)." },
+    { "id": "fc-red-seg-13", "front": "AAA", "back": "Autenticación, Autorización y Accounting (RADIUS/TACACS+)." },
+    { "id": "fc-red-seg-14", "front": "Firewall: sin estado, con estado, proxy, NGFW", "back": "Paquete a paquete · recuerda conexiones · entiende la aplicación · todo lo anterior + inspección profunda." },
+    { "id": "fc-red-seg-15", "front": "IPsec: AH vs ESP", "back": "AH: autentica (integridad). ESP: cifra y autentica." },
+    { "id": "fc-red-seg-16", "front": "Algoritmos: AES, RSA, ECC, DH, SHA-256, MD5", "back": "AES: simétrico · RSA/ECC: asimétricos · DH: intercambio de claves · SHA-256: hash · MD5 y SHA-1: obsoletos." },
+    { "id": "fc-red-seg-17", "front": "Contraseñas en una BD", "back": "Hash con sal (bcrypt, Argon2). Nunca cifrado reversible ni texto plano." },
+    { "id": "fc-red-seg-18", "front": "¿Qué da la firma digital y qué no?", "back": "Da integridad, autenticidad y no repudio. NO da confidencialidad." },
+    { "id": "fc-red-seg-19", "front": "Certificado X.509 y CA", "back": "Une una clave pública con una identidad, firmado por una autoridad certificadora. PKI administra certificados y revocación." },
+    { "id": "fc-red-seg-20", "front": "Reemplazos seguros", "back": "HTTP → HTTPS (443) · Telnet → SSH (22) · FTP → SFTP/FTPS · DNS → DNSSEC (firma)." },
+    { "id": "fc-red-seg-21", "front": "WEP, WPA2, WPA3 y Enterprise", "back": "WEP: inseguro. WPA2: AES. WPA3: el más fuerte. Enterprise: 802.1X + RADIUS (usuario individual)." },
+    { "id": "fc-red-seg-22", "front": "Vulnerabilidades vs pentest", "back": "Análisis: detecta y lista. Pentest: explota con autorización para medir el impacto." },
+    { "id": "fc-red-seg-23", "front": "Tratamiento del riesgo", "back": "Mitigar, transferir (seguro), aceptar o evitar." },
+    { "id": "fc-red-seg-24", "front": "Respaldo 3-2-1 y respuesta a incidentes", "back": "3 copias, 2 medios, 1 fuera. Incidentes: preparar, detectar, contener, erradicar, recuperar, aprender." }
+  ]
+}

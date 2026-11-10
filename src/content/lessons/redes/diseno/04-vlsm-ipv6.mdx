@@ -1,0 +1,87 @@
+---
+title: 'VLSM e IPv6'
+summary: 'Cómo repartir un bloque IPv4 entre áreas de distinto tamaño sin desperdiciar direcciones y cómo leer, comprimir y clasificar direcciones IPv6.'
+order: 4
+readMinutes: 12
+examWeight: 'Redes 2.1 · Diseño de redes'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+- **VLSM (Variable Length Subnet Mask)**: permite usar **máscaras de distinto tamaño** dentro de una misma red, ajustando cada subred a lo que **realmente** necesita para **no desperdiciar direcciones**.
+- **IPv6**: sucesor de IPv4. Usa direcciones de **128 bits** (≈ $3.4 \times 10^{38}$), resuelve el agotamiento de IPv4 y simplifica el direccionamiento.
+</Callout>
+
+## VLSM paso a paso
+
+1. **Ordena** los requerimientos de **mayor a menor** número de hosts.
+2. Para cada uno elige la **máscara más pequeña** que alcance: hosts + 2 ≤ tamaño del bloque.
+3. Asigna cada bloque **justo donde terminó el anterior** (sin traslapes).
+
+**Ejemplo**: desde **192.168.10.0/24** hay que dar servicio a **100, 50, 20 y 2** hosts.
+
+| Requerimiento | Bloque necesario | Prefijo | Rango asignado | Broadcast |
+| --- | --- | --- | --- | --- |
+| **100 hosts** | 128 | **/25** | 192.168.10.0 – .127 | .127 |
+| **50 hosts** | 64 | **/26** | .128 – .191 | .191 |
+| **20 hosts** | 32 | **/27** | .192 – .223 | .223 |
+| **2 hosts** (enlace) | 4 | **/30** | .224 – .227 | .227 |
+
+Quedan libres de .228 en adelante para crecer.
+
+<Callout type="tip">
+Siempre empieza por la **subred más grande**: así los bloques quedan **alineados** a múltiplos de su tamaño. Si empiezas por la pequeña, puedes dejar huecos o traslapar.
+</Callout>
+
+## IPv6: formato y compresión
+
+- **128 bits** = **8 grupos de 16 bits** en hexadecimal separados por `:`.
+- Reglas de compresión: (1) se pueden **omitir los ceros a la izquierda** de cada grupo; (2) una secuencia de grupos en cero se reemplaza por **`::` una sola vez**.
+
+`2001:0db8:0000:0000:0000:ff00:0042:8329` → **`2001:db8::ff00:42:8329`**
+
+- **No existe broadcast**: se usa **multicast** y **anycast**.
+- **NDP** (Neighbor Discovery) **sustituye a ARP**.
+- **SLAAC**: autoconfiguración sin servidor DHCP.
+- La **subred típica es /64** (64 bits de red + 64 de interfaz).
+
+| Dirección | Tipo |
+| --- | --- |
+| **::1** | Loopback |
+| **fe80::/10** | **Link-local** (solo en el enlace local; se genera siempre) |
+| **2000::/3** | **Global unicast** (enrutable en Internet) |
+| **fc00::/7** | **Local única (ULA)**, equivalente a "privadas" |
+| **ff00::/8** | **Multicast** |
+
+**Transición IPv4 → IPv6**: **doble pila** (ambos protocolos a la vez), **túneles** y **traducción (NAT64)**.
+
+<Callout type="tip">
+Distingue de un vistazo: empieza con **fe80** → link-local; empieza con **2** o **3** → global; empieza con **fc/fd** → privada (ULA); empieza con **ff** → multicast.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **VLSM**: ordenar de **mayor a menor**; máscara mínima que alcance.
+- **IPv6**: 128 bits, `::` **solo una vez**, **sin broadcast**, **NDP** reemplaza ARP, subred típica **/64**.
+- **fe80::/10** link-local · **2000::/3** global · **fc00::/7** ULA · **ff00::/8** multicast.
+- Doble pila, túneles y NAT64 para convivir con IPv4.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Usar `::` **dos veces** en la misma dirección (sería ambiguo).
+- Buscar el **broadcast** en IPv6 (no existe).
+- Asignar subredes VLSM **empezando por la más pequeña**.
+- Olvidar que el **bloque** de VLSM debe contener hosts **+ 2** (red y broadcast).
+</Callout>
+
+## Ejemplo resuelto
+
+> Comprime `fe80:0000:0000:0000:02a0:c9ff:fe12:3456`.
+
+Quita ceros a la izquierda → `fe80:0:0:0:2a0:c9ff:fe12:3456`; reemplaza los tres grupos de ceros por `::` → **`fe80::2a0:c9ff:fe12:3456`**.

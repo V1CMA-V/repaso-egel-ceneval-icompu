@@ -1,0 +1,73 @@
+---
+title: 'Criptografía: simétrica, asimétrica, hash y firma'
+summary: 'Qué clave usar para cifrar o firmar, y qué algoritmo corresponde a cada tipo.'
+order: 3
+readMinutes: 7
+examWeight: 'Seguridad: 17 reactivos'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **criptografía** transforma información para protegerla. Tres herramientas:
+
+- **Cifrado simétrico**: **una sola clave** para cifrar y descifrar. Rápido. Ej.: **AES**, 3DES.
+- **Cifrado asimétrico**: **par de claves** (pública y privada). Lo que se cifra con una se descifra con la otra. Más lento. Ej.: **RSA**, ECC.
+- **Hash**: función de un solo sentido que produce una **huella** de tamaño fijo. Ej.: **SHA-256** (MD5 y SHA-1 están obsoletos).
+</Callout>
+
+## Conceptos clave
+
+- **Problema de la simétrica**: ¿cómo compartes la clave de forma segura? La asimétrica lo resuelve, y en la práctica (TLS) se usa asimétrica para **intercambiar una clave simétrica** y luego simétrica para los datos.
+- **Firma digital** = hash del mensaje cifrado con la **clave privada** del emisor. Da **integridad, autenticación y no repudio**.
+- **Certificado digital**: une una clave pública a una identidad, firmado por una **autoridad certificadora (CA)**.
+
+| Quiero… | Uso la clave… |
+| --- | --- |
+| **Cifrar** para que solo Ana lo lea | **Pública de Ana** |
+| **Descifrar** lo que me mandaron cifrado | **Mi privada** |
+| **Firmar** un mensaje | **Mi privada** |
+| **Verificar** la firma de Ana | **Pública de Ana** |
+
+## Cómo se usa
+
+1. ¿Piden **confidencialidad**? → cifrado (clave pública del destinatario, o clave simétrica compartida).
+2. ¿Piden **integridad**? → hash.
+3. ¿Piden **autenticidad + no repudio**? → firma digital.
+
+<Callout type="tip">
+Regla de oro: **cifrar = pública del otro; firmar = mi privada.** Nunca se comparte la clave privada.
+</Callout>
+
+## Algoritmos que debes ubicar
+
+| Tipo | Algoritmos | Notas |
+| --- | --- | --- |
+| **Simétrico** | **AES** (128/192/256), 3DES, ChaCha20 | **DES es obsoleto**; AES es el estándar actual |
+| **Asimétrico** | **RSA**, **ECC** (claves más cortas con la misma seguridad) | Intercambio de claves y firma |
+| **Intercambio de claves** | **Diffie-Hellman** | Acuerda una clave secreta por un canal inseguro **sin enviarla** |
+| **Hash** | **SHA-256**, SHA-3 | **MD5 y SHA-1 están obsoletos** |
+
+**Escalabilidad de claves**: para que $n$ personas se comuniquen **en privado por pares** con cifrado simétrico se necesitan $n(n-1)/2$ claves (10 personas → **45**); con asimétrico, solo **$n$ pares** de claves (10 personas → 10 pares).
+
+## Importante recordar
+
+<Callout type="importante">
+- Un **hash no se "descifra"**: es irreversible. Para contraseñas se usa hash con **sal (salt)**.
+- Con **n** usuarios que quieren comunicarse en pares con simétrica se necesitan n(n−1)/2 claves; con asimétrica solo **n** pares.
+- **HTTPS = HTTP sobre TLS**: usa certificados (asimétrica) y claves de sesión (simétrica).
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+Creer que se firma con la clave pública. **Se firma con la privada** y cualquiera verifica con la pública.
+</Callout>
+
+## Ejemplo resuelto
+
+> Beto quiere enviar un contrato a Ana asegurando que solo ella lo lea y que Ana sepa que fue Beto.
+
+Beto **firma** con su clave privada (autenticidad) y **cifra** con la clave pública de Ana (confidencialidad).

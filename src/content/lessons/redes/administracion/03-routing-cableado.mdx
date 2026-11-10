@@ -1,0 +1,96 @@
+---
+title: 'Enrutamiento (estático, RIP, OSPF, BGP) y cableado estructurado'
+summary: 'Cómo decide un router, cuándo usar rutas estáticas o dinámicas, características de RIP/OSPF/EIGRP/BGP y reglas del cableado estructurado.'
+order: 3
+readMinutes: 12
+examWeight: 'Redes 2.2 · Administración de redes'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **enrutamiento** es el proceso por el que un **router** decide por qué interfaz reenviar un paquete usando su **tabla de rutas**. Las rutas pueden agregarse **a mano (estáticas)** o aprenderse **automáticamente (dinámicas)** mediante protocolos de enrutamiento.
+</Callout>
+
+## Tabla de rutas
+
+- El router elige la **coincidencia de prefijo más largo** (la ruta más específica). Si la IP destino es 10.1.1.5 y existen 10.0.0.0/8 y 10.1.1.0/24, gana **/24**.
+- **Ruta predeterminada (default, 0.0.0.0/0)**: se usa si no hay otra coincidencia (salida a Internet).
+- Si hay varias fuentes para una misma red, se prefiere la de menor **distancia administrativa (AD)**:
+
+| Origen de la ruta | AD |
+| --- | --- |
+| **Red conectada** | 0 |
+| **Estática** | 1 |
+| EIGRP | 90 |
+| **OSPF** | 110 |
+| **RIP** | 120 |
+
+(**Menor AD = más confiable**).
+
+## Estático vs dinámico
+
+| | **Estático** | **Dinámico** |
+| --- | --- | --- |
+| Configuración | **Manual** | Automática (protocolo) |
+| Sobrecarga de CPU/ancho de banda | **Ninguna** | Algo |
+| Adaptación a fallas | **No** (hay que cambiarlo a mano) | **Sí** |
+| Ideal para | **Redes pequeñas**, rutas por defecto, stubs | **Redes medianas y grandes** |
+
+## Protocolos dinámicos
+
+- **RIP**: **vector distancia**, métrica = **saltos**, **máximo 15 saltos** (16 = inalcanzable). Simple, lento y para redes pequeñas.
+- **OSPF**: **estado de enlace**, usa **costo** (según ancho de banda) y el algoritmo de **Dijkstra**, organiza la red en **áreas**, **converge rápido**. Es estándar abierto; típico en redes empresariales.
+- **EIGRP**: **propietario de Cisco** (híbrido).
+- **BGP**: protocolo **entre sistemas autónomos (AS)**; es el que **conecta los ISP en Internet**.
+
+**IGP** (dentro de un AS): RIP, OSPF, EIGRP. **EGP** (entre AS): **BGP**.
+
+<Callout type="tip">
+**"Red empresarial grande, convergencia rápida, estándar abierto"** → **OSPF**. **"Pequeña, simple, máximo 15 saltos"** → **RIP**. **"Entre proveedores de Internet / sistemas autónomos"** → **BGP**.
+</Callout>
+
+## Cableado estructurado (TIA/EIA-568)
+
+Subsistemas:
+
+1. **Área de trabajo**: PC, teléfonos y sus cordones.
+2. **Cableado horizontal**: del **cuarto de telecomunicaciones** a la toma del área de trabajo. **Máximo 90 m de cable permanente + 10 m de cordones = 100 m**.
+3. **Cableado vertical o backbone**: une pisos/edificios (suele ser **fibra**).
+4. **Cuarto de telecomunicaciones**: racks, patch panels, switches de piso.
+5. **Cuarto de equipos**: servidores y equipos principales.
+6. **Acometida**: entrada de los servicios externos al edificio.
+
+**Cables UTP**: **directo** = **mismo estándar en ambos extremos** (T568B–T568B) para conectar **dispositivos distintos** (PC–switch); **cruzado** = **568A en un extremo y 568B en el otro** (equipos iguales, hoy Auto-MDIX lo hace innecesario).
+
+<Callout type="importante">
+- **Horizontal: 90 m + 10 m de cordones = 100 m.**
+- **Backbone**: fibra para distancias y velocidad.
+- **Directo** = misma norma en ambos extremos; **cruzado** = 568A ↔ 568B.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Prefijo más largo** gana; menor **AD** = más confiable.
+- **RIP**: 15 saltos; **OSPF**: costo y áreas; **BGP**: entre AS.
+- **Estático** para redes pequeñas; **dinámico** se adapta a fallas.
+- Ruta por defecto: **0.0.0.0/0**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que una ruta **/8** gana a una **/24** (gana la **más específica**).
+- Usar **RIP** en una red grande de más de 15 saltos.
+- Confundir **IGP** (dentro de un AS) con **BGP** (entre AS).
+- Extender el cableado horizontal más allá de **90 m** permanentes.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un router tiene las rutas 10.0.0.0/8 → R1 y 10.1.1.0/24 → R2. ¿Por dónde envía un paquete a 10.1.1.50?
+
+Por **R2**: ambas rutas coinciden, pero **/24** es más específica que /8 (prefijo más largo).

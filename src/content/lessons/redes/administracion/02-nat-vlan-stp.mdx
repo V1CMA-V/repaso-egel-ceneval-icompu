@@ -1,0 +1,73 @@
+---
+title: 'NAT/PAT, VLAN, troncales 802.1Q y STP'
+summary: 'Cómo una sola IP pública sirve a toda una oficina, cómo segmentar una red con VLAN, qué es un troncal y por qué se necesita STP.'
+order: 2
+readMinutes: 12
+examWeight: 'Redes 2.2 · Administración de redes'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## NAT y PAT
+
+<Callout type="que">
+**NAT (Network Address Translation)** traduce **direcciones IP privadas a públicas** (y al revés) en el router o firewall de salida a Internet. Resuelve el **agotamiento de IPv4** y oculta la estructura interna.
+</Callout>
+
+| Tipo | Cómo funciona | Caso típico |
+| --- | --- | --- |
+| **NAT estático** | **1 a 1**: una privada ↔ una pública fija | Publicar un **servidor interno** |
+| **NAT dinámico** | Asigna de un **pool** de públicas | Pocas públicas disponibles |
+| **PAT / NAT overload** | **Muchas privadas** salen con **una sola pública**, diferenciadas por **número de puerto** | **Una IP pública para toda la oficina** o el hogar |
+
+<Callout type="tip">
+**"200 equipos, una sola IP pública"** → **PAT** (NAT con sobrecarga). **"Quiero que el servidor web interno sea accesible desde Internet con siempre la misma IP"** → **NAT estático** (o reenvío de puertos).
+</Callout>
+
+## VLAN
+
+Una **VLAN (red de área local virtual)** divide un **mismo switch físico** en **varias redes lógicas** separadas a **nivel de capa 2**. Cada VLAN es su propio **dominio de broadcast** y suele tener su **propia subred IP**.
+
+**Ventajas**: **segmentación** por departamento (ventas, finanzas, invitados), **seguridad**, menos tráfico de broadcast y administración flexible (no importa dónde esté físicamente el usuario).
+
+- **Puerto de acceso**: pertenece a **una sola VLAN** (el de una PC, impresora o teléfono).
+- **Puerto troncal (trunk)**: transporta **varias VLAN** entre switches (o hacia un router), etiquetando cada trama con **802.1Q**.
+- **Comunicación entre VLAN**: las VLAN **no se ven entre sí** aunque estén en el mismo switch. Se necesita **enrutamiento de capa 3**: un **router (router-on-a-stick)** o un **switch capa 3**.
+
+<Callout type="tip">
+Si dos PC **del mismo switch** pero en **distinta VLAN** no se comunican, **no es un problema de cable**: falta **enrutamiento de capa 3 entre VLAN**.
+</Callout>
+
+## STP (Spanning Tree Protocol)
+
+Los enlaces **redundantes** entre switches dan tolerancia a fallos, pero crean **bucles de capa 2** que provocan **tormentas de broadcast** (el tráfico circula sin parar y colapsa la red). **STP (802.1D)** y su versión rápida **RSTP (802.1w)** **bloquean lógicamente** los enlaces redundantes y los reactivan si falla el principal. Para ello eligen un **puente raíz (root bridge)**.
+
+<Callout type="importante">
+- **Tormenta de broadcast** + enlaces redundantes entre switches → **falta STP**.
+- STP **no suma ancho de banda**; solo evita bucles y da respaldo.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **PAT** = muchas privadas → una pública (por **puertos**). **NAT estático** = 1 a 1.
+- **VLAN** = dominio de broadcast separado; **acceso** (1 VLAN) vs **troncal 802.1Q** (varias).
+- Entre VLAN se necesita **capa 3**.
+- **STP/RSTP** evita **bucles** de capa 2.
+- Los **switches** no separan broadcast sin VLAN; los **routers** sí.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **PAT** con **NAT estático**.
+- Pensar que dos VLAN se comunican solo por estar en el mismo switch.
+- Conectar switches **con enlaces redundantes sin STP**.
+- Creer que NAT **cifra** el tráfico (solo traduce direcciones).
+</Callout>
+
+## Ejemplo resuelto
+
+> Una empresa tiene Ventas y Finanzas conectadas al mismo switch. Quiere que no vean el tráfico del otro, pero que ambos accedan a un servidor común. ¿Qué configura?
+
+Crea **dos VLAN** (una por departamento) con subredes distintas y habilita **enrutamiento de capa 3** (router o switch L3), aplicando **ACL** para permitir solo el acceso al servidor.

@@ -1,0 +1,89 @@
+---
+title: 'Protocolos seguros y evaluación de seguridad'
+summary: 'HTTPS/TLS, SSH, SFTP, IPsec, WPA2/WPA3 y 802.1X; análisis de vulnerabilidades, pentest, SIEM, riesgo, respaldos 3-2-1 y respuesta a incidentes.'
+order: 5
+readMinutes: 11
+examWeight: 'Redes 2.3 · Seguridad y evaluación'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Los **protocolos seguros** aplican cifrado, autenticación e integridad a los servicios de red. La **evaluación de seguridad** identifica debilidades y riesgos **antes** de que un atacante las aproveche, y define cómo **responder** cuando algo ocurre.
+</Callout>
+
+## Protocolos seguros
+
+| Inseguro | Reemplazo seguro | Puerto | Nota |
+| --- | --- | --- | --- |
+| **HTTP** | **HTTPS** (HTTP sobre **TLS**) | 80 → **443** | Cifra y autentica al servidor con certificado |
+| **Telnet** | **SSH** | 23 → **22** | Administración remota cifrada |
+| **FTP** | **SFTP** (sobre SSH) o **FTPS** (FTP con TLS) | 21 → 22 / 990 | Credenciales y datos cifrados |
+| **DNS** | **DNSSEC** | 53 | **Firma** las respuestas (autenticidad, no cifra) |
+| **SMTP/POP3/IMAP** | Versiones con **TLS** | 465/587, 995, 993 | |
+| Túneles | **IPsec** (VPN capa 3) | — | AH autentica; **ESP cifra y autentica** |
+
+**TLS** usa el esquema **híbrido**: la **asimétrica** (certificado) autentica al servidor y acuerda una **clave de sesión**; después todo se cifra con **simétrica** (AES). **SSL** es su predecesor obsoleto.
+
+### Seguridad Wi-Fi
+
+| Estándar | Estado |
+| --- | --- |
+| **WEP** | **Inseguro**, se rompe en minutos |
+| **WPA2** (AES-CCMP) | Seguro con contraseña robusta |
+| **WPA3** (SAE) | **El más fuerte**; protege contra ataques de diccionario offline |
+| **Modo Enterprise** | **802.1X + RADIUS**: autenticación **individual** por usuario/certificado |
+
+<Callout type="tip">
+**Contraseña compartida entre todos** → modo **Personal (PSK)**. **Cada empleado con su propio usuario** → **Enterprise (802.1X + RADIUS)**. Nunca **WEP**.
+</Callout>
+
+## Evaluación de seguridad
+
+- **Análisis de vulnerabilidades**: **busca y lista** debilidades con escáneres (automatizado, bajo impacto). No las explota.
+- **Prueba de penetración (pentest)**: **intenta explotar** las vulnerabilidades como lo haría un atacante, **con autorización** previa, para medir el impacto real.
+- **Riesgo** = **amenaza × vulnerabilidad × impacto**. Tratamiento: **mitigar** (controles), **transferir** (seguro, tercerización), **aceptar** (se asume) o **evitar** (se elimina la actividad).
+- **SIEM**: **centraliza y correlaciona logs** de firewalls, servidores y aplicaciones para detectar incidentes.
+- **Respaldo 3-2-1**: **3** copias, en **2** medios distintos, **1** fuera del sitio. Se **prueba la restauración** periódicamente.
+- **ISO/IEC 27001**: estándar de **sistema de gestión de seguridad de la información (SGSI)**.
+
+## Respuesta a incidentes
+
+1. **Preparación** (planes, roles, herramientas).
+2. **Detección y análisis**.
+3. **Contención** (aislar el equipo afectado de la red).
+4. **Erradicación** (eliminar la causa: malware, cuenta comprometida).
+5. **Recuperación** (restaurar desde respaldos limpios y vigilar).
+6. **Lecciones aprendidas**.
+
+<Callout type="tip">
+Ante un equipo con **ransomware**: **primero contener** (desconectarlo de la red/Wi-Fi), **no apagarlo bruscamente ni pagar**, y luego erradicar y restaurar desde respaldo.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **HTTPS 443**, **SSH 22** (reemplaza Telnet), **SFTP** (reemplaza FTP), **IPsec** para VPN, **DNSSEC** firma DNS.
+- **WPA3 > WPA2 >> WEP**; **Enterprise = 802.1X + RADIUS**.
+- **Vulnerabilidades** = detectar; **pentest** = explotar con autorización.
+- **Riesgo**: mitigar, transferir, aceptar, evitar.
+- **SIEM** correlaciona logs. **3-2-1** = 3 copias, 2 medios, 1 externa.
+- Incidentes: preparar → detectar → **contener** → erradicar → recuperar → aprender.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que **HTTPS** hace seguro a un sitio (solo protege el **canal**, no garantiza que el sitio sea honesto).
+- Confundir **análisis de vulnerabilidades** con **pentest**.
+- Creer que **DNSSEC cifra** (autentica las respuestas).
+- Restaurar sin **erradicar** primero la causa del incidente.
+</Callout>
+
+## Ejemplo resuelto
+
+> Una empresa contrata un seguro contra ciberataques para cubrir pérdidas económicas. ¿Qué estrategia de tratamiento del riesgo aplica?
+
+**Transferir** el riesgo (al aseguradora). No elimina la amenaza; traslada el costo del impacto.

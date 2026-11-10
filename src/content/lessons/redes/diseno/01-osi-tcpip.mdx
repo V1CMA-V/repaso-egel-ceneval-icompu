@@ -1,0 +1,125 @@
+---
+title: 'Modelo OSI y TCP/IP, TCP vs UDP y puertos'
+summary: 'Las 7 capas, sus unidades de datos (PDU), el encapsulamiento, el handshake de TCP, UDP y los puertos que debes conocer de memoria.'
+order: 1
+readMinutes: 12
+examWeight: 'Redes 2.1 · Diseño de redes (11 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **modelo OSI** divide la comunicación en **7 capas**, cada una con una función y que solo habla con la capa de arriba y la de abajo. El **modelo TCP/IP** es la versión práctica de **4 capas** sobre la que funciona Internet. Sirven para **ubicar un problema o un dispositivo** ("¿en qué capa opera un router?").
+</Callout>
+
+## Las 7 capas del modelo OSI
+
+| # | Capa | PDU | Qué hace / ejemplos |
+| --- | --- | --- | --- |
+| 7 | **Aplicación** | Datos | Servicios al usuario: **HTTP, FTP, SMTP, DNS, DHCP** |
+| 6 | **Presentación** | Datos | **Formato, cifrado, compresión** (TLS se ubica aquí o en la 5) |
+| 5 | **Sesión** | Datos | **Abrir, mantener y cerrar** sesiones |
+| 4 | **Transporte** | **Segmento** | **TCP, UDP, puertos**, control de flujo |
+| 3 | **Red** | **Paquete** | **IP, ICMP, enrutamiento** · **router** |
+| 2 | **Enlace de datos** | **Trama** | **MAC, ARP, Ethernet, VLAN** · **switch** |
+| 1 | **Física** | **Bits** | Cables, señales, **hub**, repetidor |
+
+<Callout type="tip">
+Regla mnemotécnica de arriba hacia abajo: **A**plicación, **P**resentación, **S**esión, **T**ransporte, **R**ed, **E**nlace, **F**ísica ("**A**ún **P**ienso **S**olo **T**odo **R**ápido **E**n **F**ísica"). Y las PDU de abajo hacia arriba: **bits → trama → paquete → segmento → datos**.
+</Callout>
+
+## TCP/IP y encapsulamiento
+
+| Capa TCP/IP | Equivale a OSI | Ejemplos |
+| --- | --- | --- |
+| **Aplicación** | 5, 6 y 7 | HTTP, DNS, SMTP |
+| **Transporte** | 4 | TCP, UDP |
+| **Internet** | 3 | IP, ICMP |
+| **Acceso a red** | 1 y 2 | Ethernet, Wi-Fi |
+
+**Encapsulamiento**: al enviar, cada capa **agrega su encabezado** (datos → segmento → paquete → trama → bits). Al recibir ocurre el **desencapsulamiento**, en sentido contrario.
+
+- **ARP**: resuelve **IP → MAC** dentro de la **misma red**.
+- **ICMP**: mensajes de control y error; lo usan **ping** y **traceroute**.
+- Dirección **MAC** (48 bits, capa 2, identifica la tarjeta en la red local) vs **IP** (capa 3, identifica al host en la red y cambia al cambiar de red).
+
+## TCP vs UDP
+
+| | **TCP** | **UDP** |
+| --- | --- | --- |
+| Conexión | **Orientado a conexión** | **Sin conexión** |
+| Fiabilidad | **Fiable**: confirmaciones (ACK), **retransmite**, ordena | **Sin garantías** |
+| Velocidad | Más lento (sobrecarga) | **Rápido, ligero** |
+| Usos | Web, correo, transferencia de archivos, SSH | **DNS, DHCP, VoIP, streaming, TFTP, SNMP** |
+
+**Handshake de 3 pasos de TCP**: **SYN → SYN-ACK → ACK**. Los puertos identifican **procesos** (servicios) dentro del host.
+
+<Callout type="tip">
+¿Prefiere **velocidad sobre fiabilidad** (voz, video en vivo, juegos)? → **UDP**. ¿Necesita que **todo llegue completo y en orden** (archivos, páginas, correo)? → **TCP**.
+</Callout>
+
+## Puertos que hay que saber
+
+| Servicio | Puerto | Servicio | Puerto |
+| --- | --- | --- | --- |
+| FTP | 20/21 | HTTP | **80** |
+| **SSH / SFTP** | **22** | POP3 | 110 |
+| Telnet | 23 | NTP | 123 |
+| SMTP | 25 | IMAP | 143 |
+| **DNS** | **53** | SNMP | 161/162 |
+| **DHCP** | **67/68** | **HTTPS** | **443** |
+| TFTP | 69 | RDP | 3389 |
+
+Los puertos **0–1023** son **bien conocidos**; **1024–49151** registrados; el resto, **dinámicos/efímeros** (los usa el cliente).
+
+## Tipos de transmisión y estándares IEEE
+
+| Transmisión | A quién llega | Ejemplo |
+| --- | --- | --- |
+| **Unicast** | A **un** destino | Navegar a un sitio web |
+| **Broadcast** | A **todos** los de la red local | ARP, DHCP Discover (**no existe en IPv6**) |
+| **Multicast** | A un **grupo** suscrito | Video IPTV, descubrimiento de vecinos |
+| **Anycast** | Al **más cercano** de un grupo | Servidores DNS raíz, CDN |
+
+Estándares que debes ubicar por su número:
+
+| Estándar | Qué define |
+| --- | --- |
+| **IEEE 802.3** | **Ethernet** (cableado) |
+| **IEEE 802.11** | **Wi-Fi** (n, ac, ax) |
+| **IEEE 802.15.1 / 802.15.4** | Bluetooth / Zigbee |
+| **IEEE 802.1Q** | **VLAN** y etiquetado troncal |
+| **IEEE 802.1D / 802.1w** | **STP / RSTP** |
+| **IEEE 802.1X** | **Control de acceso** por puerto (con RADIUS) |
+| **TIA/EIA-568** | **Cableado estructurado** |
+
+<Callout type="tip">
+Los números de **802.x** se preguntan como "**¿qué estándar define…?**": **3 = cable, 11 = Wi-Fi, 1Q = VLAN, 1X = autenticación por puerto**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Router = capa 3; switch = capa 2; hub = capa 1.**
+- PDU: **segmento (4) → paquete (3) → trama (2) → bits (1)**.
+- **TCP**: SYN → SYN-ACK → ACK. **UDP**: DNS, DHCP, VoIP.
+- **ARP** resuelve IP → MAC; **ICMP** = ping.
+- **Seguros vs inseguros**: SSH(22) en vez de Telnet(23); HTTPS(443) en vez de HTTP(80); SFTP en vez de FTP.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Poner al **switch** en la capa 3 (un switch normal es capa 2).
+- Confundir **segmento** (transporte) con **paquete** (red) y **trama** (enlace).
+- Pensar que UDP "no sirve": es ideal cuando la **velocidad** importa más que la fiabilidad.
+- Mezclar **MAC** (local) con **IP** (lógica, enrutable).
+</Callout>
+
+## Ejemplo resuelto
+
+> Una videollamada se entrecorta, pero cuando un paquete se pierde no conviene retransmitirlo porque llegaría tarde. ¿Qué protocolo de transporte es el adecuado?
+
+**UDP**: no retransmite ni establece conexión; prioriza la baja latencia. En TCP, esperar la retransmisión **retrasaría** todo el flujo.

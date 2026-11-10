@@ -1,0 +1,89 @@
+---
+title: 'Topologías, medios de transmisión y dispositivos'
+summary: 'Estrella, malla, bus y anillo; UTP, fibra y coaxial; hub, switch, router y punto de acceso; dominios de colisión y de broadcast; Wi-Fi.'
+order: 2
+readMinutes: 11
+examWeight: 'Redes 2.1 · Diseño de redes'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **diseño de una red** define cómo se **conectan** los equipos (**topología**), por **qué medio** viaja la señal (cable o aire) y con **qué dispositivos** se interconectan.
+</Callout>
+
+## Topologías
+
+| Topología | Cómo es | Ventaja | Desventaja |
+| --- | --- | --- | --- |
+| **Estrella** | Todos conectados a un **nodo central** (switch) | **La más común**; si falla un nodo no cae la red; fácil de administrar | Si falla el **switch central**, cae todo |
+| **Malla** | Cada nodo conectado con otros (completa: con todos) | **Máxima redundancia** | **Cara y compleja**; enlaces = $n(n-1)/2$ |
+| **Bus** | Un **solo cable** compartido | Barata | **Una falla del cable afecta a todos**; colisiones |
+| **Anillo** | Cada nodo con **dos vecinos** | Orden de acceso predecible | Una ruptura puede interrumpir (salvo doble anillo) |
+| **Árbol / híbrida** | Combina estrellas jerárquicas | Escalable | Depende del nodo raíz |
+
+Una **malla completa de 6 nodos** requiere $6 \cdot 5 / 2 = 15$ enlaces.
+
+<Callout type="tip">
+Pregunta clásica: **"¿qué ocurre si falla el dispositivo central?"** En **estrella**, cae toda la red; en **malla**, casi nada (hay rutas alternas); en **bus**, si se rompe el cable, falla el segmento.
+</Callout>
+
+## Medios de transmisión
+
+- **UTP (par trenzado sin blindaje)**: **máximo 100 m por segmento**. **Cat5e** = 1 Gbps · **Cat6** = hasta 10 Gbps a ≈ 55 m · **Cat6a** = 10 Gbps hasta 100 m. Conector **RJ-45**. Sensible a interferencia (STP lo blinda).
+- **Fibra óptica**: transmite **luz**, **inmune a la interferencia electromagnética**, gran ancho de banda y distancia.
+  - **Monomodo**: **láser**, núcleo muy delgado, **kilómetros**.
+  - **Multimodo**: **LED/láser corto**, núcleo mayor, **cientos de metros** (dentro de edificios o campus).
+- **Coaxial**: antiguo en LAN; hoy en **TV por cable e Internet por cable**.
+- **Inalámbrico**: ondas de radio (Wi-Fi, Bluetooth, celular).
+
+<Callout type="tip">
+**Distancia larga o ambiente con ruido eléctrico (fábrica)** → **fibra**. **Conexión normal de oficina hasta 100 m** → **UTP Cat5e/Cat6**. **Entre edificios a kilómetros** → **fibra monomodo**.
+</Callout>
+
+## Dispositivos de red
+
+| Dispositivo | Capa | Qué hace | Dominios |
+| --- | --- | --- | --- |
+| **Hub** | 1 | **Repite** lo que recibe a **todos** los puertos | **Un solo** dominio de colisión |
+| **Switch** | 2 | Aprende **MAC** y envía solo al puerto destino | **Un dominio de colisión por puerto**; **un** dominio de broadcast (salvo VLAN) |
+| **Router** | 3 | Conecta **redes distintas** y enruta por **IP** | **Separa dominios de broadcast** |
+| **Punto de acceso (AP)** | 2 | Conecta clientes Wi-Fi a la red cableada | — |
+| **Firewall** | 3–7 | Filtra tráfico | — |
+
+- **Dominio de colisión**: zona donde dos equipos que transmiten a la vez **chocan**. El switch lo **elimina** (en full-duplex).
+- **Dominio de broadcast**: zona donde llega un mensaje **a todos**. Solo los **routers** (o **VLAN**) lo **dividen**.
+
+## Wi-Fi
+
+- **2.4 GHz**: **mayor alcance**, **más interferencia** (microondas, Bluetooth); canales **sin traslape: 1, 6 y 11**.
+- **5 GHz**: **más rápido, menor alcance**, más canales.
+- Estándares: **802.11n** (Wi-Fi 4), **802.11ac** (Wi-Fi 5), **802.11ax** (Wi-Fi 6).
+- Seguridad: **WPA2/WPA3** (nunca WEP).
+
+## Importante recordar
+
+<Callout type="importante">
+- **Estrella** = la más usada (y su punto único de falla es el switch).
+- **Malla**: $n(n-1)/2$ enlaces.
+- **UTP: 100 m máximo.** **Fibra**: sin interferencia; **monomodo = km**, **multimodo = cientos de m**.
+- **Switch**: un dominio de colisión por puerto, **mismo broadcast**. **Router**: separa broadcast.
+- **2.4 GHz**: alcance; **5 GHz**: velocidad.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que un **switch separa dominios de broadcast** (lo hacen routers o VLAN).
+- Dar más de **100 m** a un segmento UTP sin repetidor o switch.
+- Confundir **monomodo** (láser, largo alcance) con **multimodo** (corto alcance).
+- Instalar redes en **2.4 GHz** con canales que se traslapan.
+</Callout>
+
+## Ejemplo resuelto
+
+> Una red tiene 8 PC conectadas a un **hub**. ¿Cuántos dominios de colisión hay? Si se sustituye por un **switch**, ¿cuántos habrá?
+
+Con el hub hay **1** dominio de colisión (todos comparten). Con un switch de 8 puertos hay **8** (uno por puerto).

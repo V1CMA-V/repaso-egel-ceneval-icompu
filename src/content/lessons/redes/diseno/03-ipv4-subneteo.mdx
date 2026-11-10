@@ -1,0 +1,105 @@
+---
+title: 'Direccionamiento IPv4 y subneteo'
+summary: 'Clases, rangos privados, máscara y CIDR; cómo calcular red, broadcast, rango de hosts y número de hosts útiles paso a paso.'
+order: 3
+readMinutes: 15
+examWeight: 'Redes 2.1 · Subneteo (la habilidad más "enseñable" de Redes)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Una **dirección IPv4** tiene **32 bits** escritos como cuatro **octetos** decimales (`192.168.1.100`). Se divide en **parte de red** y **parte de host** mediante la **máscara de subred** (`255.255.255.0`) o su equivalente en **prefijo CIDR** (`/24` = 24 bits de red). **Subnetear** es partir una red en **subredes** más pequeñas tomando prestados bits de host.
+</Callout>
+
+## Clases, privadas y especiales
+
+| Clase | Primer octeto | Máscara por defecto |
+| --- | --- | --- |
+| **A** | 1–126 | /8 |
+| **B** | 128–191 | /16 |
+| **C** | 192–223 | /24 |
+| **D** | 224–239 | Multicast |
+| **E** | 240–255 | Experimental |
+
+- **127.0.0.0/8**: **loopback** (`127.0.0.1` = el propio equipo).
+- **Privadas (RFC 1918)**: **10.0.0.0/8** · **172.16.0.0 – 172.31.255.255 (/12)** · **192.168.0.0/16**. No se enrutan en Internet (necesitan **NAT**).
+- **APIPA**: **169.254.0.0/16**: el equipo se la asigna **cuando no obtuvo respuesta de un servidor DHCP**.
+- **Dirección de red**: host en **0** (primera). **Broadcast**: host en **1** (última).
+
+## La tabla que debes memorizar
+
+| Prefijo | Máscara | Tamaño de bloque | Hosts útiles |
+| --- | --- | --- | --- |
+| /24 | 255.255.255.0 | 256 | **254** |
+| /25 | 255.255.255.128 | 128 | **126** |
+| /26 | 255.255.255.192 | 64 | **62** |
+| /27 | 255.255.255.224 | 32 | **30** |
+| /28 | 255.255.255.240 | 16 | **14** |
+| /29 | 255.255.255.248 | 8 | **6** |
+| /30 | 255.255.255.252 | 4 | **2** |
+
+Fórmulas:
+
+- **Hosts útiles** $= 2^h - 2$ ($h$ = bits de host; se restan **red y broadcast**).
+- **Subredes** $= 2^s$ ($s$ = bits prestados).
+- **Tamaño de bloque** $= 256 -$ valor de la máscara en el **octeto interesante**.
+
+<Callout type="tip">
+Para **cuántos hosts** → cuenta los bits de host: $32 - \text{prefijo}$. /27 → 5 bits → $2^5 - 2 = 30$. Para **la máscara de N hosts**: busca la menor potencia $2^h$ tal que $2^h - 2 \ge N$.
+</Callout>
+
+## Método rápido (4 pasos)
+
+Ejemplo: **192.168.1.100/26**.
+
+1. **Octeto interesante**: el que no es 0 ni 255 en la máscara (255.255.255.**192** → el 4.º).
+2. **Bloque** $= 256 - 192 = 64$ → bloques: 0, 64, 128, 192.
+3. **Red**: el múltiplo de 64 **menor o igual** a 100 → **.64**. **Broadcast** = siguiente red − 1 → **.127**.
+4. **Rango de hosts**: **.65 a .126** (62 hosts).
+
+Resultado: red **192.168.1.64**, primer host .65, último host .126, broadcast **.127**.
+
+**Ejemplo con octeto intermedio**: **172.16.45.200/20** → máscara 255.255.**240**.0 → bloque $256 - 240 = 16$ en el **3.er octeto**. 45 está en el bloque 32–47. **Red 172.16.32.0**, **broadcast 172.16.47.255**, hosts 172.16.32.1 a 172.16.47.254, hosts útiles $2^{12} - 2 = 4094$.
+
+<Callout type="tip">
+Si la máscara afecta al **3.er octeto**, el broadcast termina en **.255** y la red en **.0**; si afecta al **4.º**, todo se decide con el último octeto.
+</Callout>
+
+## Dividir una red en subredes
+
+> Dividir **192.168.10.0/24** en **4 subredes** iguales.
+
+- $2^s \ge 4$ → $s = 2$ bits prestados → nuevo prefijo **/26**, bloque 64.
+- Subredes: **.0/26, .64/26, .128/26, .192/26**, cada una con **62 hosts útiles**.
+
+> Una oficina necesita **500 equipos**. ¿Máscara mínima?
+
+$2^9 - 2 = 510 \ge 500$ → 9 bits de host → **/23** (255.255.254.0). Un /24 solo da 254.
+
+## Importante recordar
+
+<Callout type="importante">
+- **Siempre resta 2** (red y broadcast) al contar hosts.
+- **Bloque ≠ hosts útiles**: un /26 tiene bloque 64 pero **62** hosts.
+- **/30 = 2 hosts**: enlaces punto a punto entre routers.
+- **Privadas**: 10/8, 172.16–31/12, 192.168/16. **APIPA**: 169.254/16 → no hubo DHCP.
+- **Dos hosts están en la misma red** si tienen la **misma dirección de red** aplicando la máscara.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Olvidar restar 2 (decir que un /27 tiene 32 hosts).
+- Confundir el **bloque** con el **número de hosts**.
+- Calcular la dirección de red con el **bloque equivocado** (usar 32 en lugar de 64).
+- Decir que 172.32.0.0 es privada (el rango privado llega hasta **172.31**).
+</Callout>
+
+## Ejemplo resuelto
+
+> ¿A qué red pertenece **192.168.1.130/26**?
+
+Bloque 64 → bloques 0, 64, **128**, 192. 130 está en el bloque 128–191, así que pertenece a **192.168.1.128/26** (broadcast .191).

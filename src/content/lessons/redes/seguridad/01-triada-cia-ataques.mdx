@@ -1,0 +1,108 @@
+---
+title: 'Tríada CIA y tipos de ataque'
+summary: 'Los tres pilares de la seguridad de la información y cómo identificar qué ataque vulnera cuál.'
+order: 1
+readMinutes: 6
+examWeight: 'Seguridad: 17 reactivos (la subárea más pesada de Redes)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **seguridad de la información** protege los datos y los sistemas que los manejan. Se apoya en la **tríada CIA**:
+
+- **Confidencialidad**: solo quien está autorizado puede ver la información.
+- **Integridad**: la información no se altera sin autorización.
+- **Disponibilidad**: los sistemas y datos están accesibles cuando se necesitan.
+
+Se complementa con **autenticación** (comprobar quién eres), **autorización** (qué puedes hacer) y **no repudio** (no puedes negar que hiciste algo).
+</Callout>
+
+## Por qué cae en el examen
+
+<Callout type="examen">
+Los reactivos son **casos aplicados**: te describen un incidente y preguntas _qué propiedad se vulneró_ o _qué tipo de ataque es_. Si dominas la relación ataque → propiedad afectada, descartas dos opciones rápido.
+</Callout>
+
+## Conceptos clave
+
+| Ataque | Qué hace | Propiedad que rompe |
+| --- | --- | --- |
+| **Sniffing / espionaje** | Captura tráfico de la red | Confidencialidad |
+| **Man-in-the-middle (MitM)** | Se interpone entre dos partes, lee y/o modifica | Confidencialidad e integridad |
+| **Phishing** | Engaña al usuario para robar credenciales | Confidencialidad (ingeniería social) |
+| **DoS / DDoS** | Satura un servicio con peticiones | Disponibilidad |
+| **Inyección SQL** | Mete código SQL en un campo de entrada | Integridad y confidencialidad |
+| **Spoofing (ARP/IP/DNS)** | Falsifica una identidad o dirección | Autenticación / integridad |
+| **Ransomware** | Cifra datos y pide rescate | Disponibilidad |
+| **Fuerza bruta** | Prueba contraseñas hasta acertar | Autenticación |
+
+## Cómo se usa (modos de razonar)
+
+1. Lee el caso y pregunta: **¿qué se perdió?** ¿Secreto (C), cambio no autorizado (I) o servicio caído (D)?
+2. Identifica la **técnica** por la palabra clave: "saturar" → DoS, "interponerse" → MitM, "correo falso" → phishing.
+3. Si piden la **contramedida**, relaciona: cifrado → C, hashes/firmas → I, redundancia y respaldos → D.
+
+<Callout type="tip">
+Descarta con la regla: **"cambia" = Integridad, "ve" = Confidencialidad, "cae" = Disponibilidad**.
+</Callout>
+
+## Malware y otros ataques que debes reconocer
+
+| Ataque | Qué es | Defensa típica |
+| --- | --- | --- |
+| **Phishing / ingeniería social** | Engaña a la **persona** para que entregue datos o instale algo | Capacitación, filtro de correo, **MFA** |
+| **Virus** | Código que **infecta archivos** y necesita que se ejecute el archivo huésped | Antivirus/EDR, parches |
+| **Gusano (worm)** | **Se propaga solo** por la red, sin intervención del usuario | Parches, segmentación |
+| **Troyano** | Se **disfraza** de programa legítimo | No ejecutar software no confiable |
+| **Ransomware** | **Cifra los datos** y pide rescate (afecta la **disponibilidad**) | **Respaldos fuera de línea (3-2-1)**, parches, EDR |
+| **Spyware / keylogger** | Espía la actividad y registra teclas | Antimalware, MFA |
+| **DoS / DDoS** | Satura el servicio | Rate limiting, CDN, filtrado |
+| **MITM** | Se interpone y lee o modifica el tráfico | **TLS**, VPN, validar certificados |
+| **Spoofing** | Suplanta IP, MAC, ARP o DNS | Port security, DAI, DNSSEC |
+| **Inyección SQL** | Mete código SQL en un campo de entrada (ej. `' OR '1'='1`) | **Consultas parametrizadas**, validar entradas |
+| **XSS** | Inyecta **scripts** en una página que verán otros usuarios | **Sanitizar y escapar** la salida |
+| **Fuerza bruta / diccionario** | Prueba contraseñas | Bloqueo de cuenta, contraseñas largas, MFA |
+| **Sniffing** | Captura tráfico | Cifrado (HTTPS, SSH) |
+| **Día cero (zero-day)** | Vulnerabilidad **sin parche conocido** | Defensa en profundidad, monitoreo |
+
+<Callout type="tip">
+Distingue **virus** (necesita un archivo huésped y acción del usuario) de **gusano** (se propaga **solo** por la red) y de **troyano** (se **disfraza**). **SQLi** ataca la **base de datos** a través de un formulario; **XSS** ataca a **otros usuarios** del sitio con scripts.
+</Callout>
+
+## Principios de defensa y AAA
+
+- **AAA**: **A**utenticación (¿quién eres?), **A**utorización (¿qué puedes hacer?) y **A**dministración/contabilidad (*accounting*: ¿qué hiciste?). Se implementa con servidores **RADIUS** o **TACACS+**.
+- **MFA (autenticación multifactor)**: combina **algo que sabes** (contraseña), **algo que tienes** (token, celular) y **algo que eres** (huella).
+- **Defensa en profundidad**: **varias capas** de control; si una falla, otra detiene al atacante.
+- **Mínimo privilegio**: cada usuario solo tiene el acceso **indispensable**.
+- **Zero Trust**: **nunca confiar, siempre verificar**, incluso dentro de la red.
+
+## Importante recordar
+
+<Callout type="importante">
+- DoS viene de **una** fuente; **DDoS** de **muchas** (botnet).
+- Una **vulnerabilidad** es la debilidad; la **amenaza** es lo que puede explotarla; el **riesgo** es la probabilidad × impacto.
+- El **principio de mínimo privilegio** da a cada usuario solo los permisos que necesita.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+Confundir **autenticación** (¿quién eres?) con **autorización** (¿qué puedes hacer?). Primero te autentican, después te autorizan.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un atacante intercepta las credenciales que un empleado envía por HTTP en una red Wi-Fi abierta, sin modificar nada.
+
+Solo **observa** el tráfico → vulnera la **confidencialidad** (sniffing). Si además hubiera cambiado los datos en tránsito, sería MitM y también se vulneraría la integridad.
+
+## Preguntas ejemplo
+
+Practica con el examen de la sección al terminar las tres lecciones. Mientras, responde mentalmente:
+
+1. Una tienda en línea queda inaccesible por miles de peticiones simultáneas. ¿Qué propiedad se afectó? _(Disponibilidad)_
+2. Un correo falso del "banco" pide tu NIP. ¿Qué ataque es? _(Phishing)_

@@ -1,0 +1,82 @@
+---
+title: 'Hash, firma digital, certificados y PKI'
+summary: 'Cómo verificar integridad, qué garantiza exactamente una firma digital, cómo se protegen las contraseñas y qué papel juegan certificados y autoridades certificadoras.'
+order: 4
+readMinutes: 11
+examWeight: 'Redes 2.3 · Seguridad (17 reactivos: la subárea más pesada de Redes)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+- **Función hash**: convierte cualquier dato en una **huella de tamaño fijo** (SHA-256 → 256 bits). Es **unidireccional** (no se puede revertir) y un cambio mínimo en la entrada **cambia por completo** la salida.
+- **Firma digital**: se calcula el **hash del documento** y ese hash se **cifra con la clave privada del emisor**. Da **integridad, autenticidad y no repudio**.
+- **Certificado digital (X.509)**: documento que **vincula una clave pública con una identidad** (persona, sitio web) y está **firmado por una autoridad certificadora (CA)**.
+</Callout>
+
+## Hash
+
+**Propiedades**: salida de **tamaño fijo**, **determinista** (misma entrada → mismo hash), **resistente a colisiones** (es muy difícil encontrar dos entradas con el mismo hash) y **no reversible**.
+
+**Usos**:
+
+- **Verificar integridad**: comparar el hash publicado de una descarga con el calculado localmente.
+- **Almacenar contraseñas**: se guarda el **hash**, no la contraseña. Se agrega una **sal (salt)** aleatoria por usuario para que dos contraseñas iguales no den el mismo hash y para evitar **tablas arcoíris**. Lo ideal es usar algoritmos **lentos** diseñados para esto (**bcrypt, Argon2, PBKDF2**).
+- **HMAC**: hash **con clave secreta**; da integridad **y autenticidad** entre quienes comparten la clave.
+
+**Algoritmos**: **SHA-256 / SHA-3** (vigentes). **MD5 y SHA-1** son **obsoletos** (se encontraron colisiones).
+
+<Callout type="tip">
+"¿Cómo verifico que el archivo que descargué **no fue alterado**?" → **hash (SHA-256)**. "¿Cómo guardo contraseñas?" → **hash con sal**, **nunca cifrado reversible** ni texto plano.
+</Callout>
+
+## Firma digital paso a paso
+
+**Firmar (emisor)**: calcula el hash del documento → lo cifra con su **clave privada** → envía documento + firma.
+**Verificar (receptor)**: descifra la firma con la **clave pública del emisor** → calcula el hash del documento recibido → **compara**: si coinciden, el documento **no cambió** y **lo firmó quien tiene esa clave privada**.
+
+| Propiedad | ¿La da la firma digital? |
+| --- | --- |
+| **Integridad** | **Sí** |
+| **Autenticidad** | **Sí** |
+| **No repudio** | **Sí** |
+| **Confidencialidad** | **No** (el documento viaja legible; hay que **cifrarlo además**) |
+
+<Callout type="importante">
+Para obtener **todo**: **firmar con tu clave privada** (autenticidad + no repudio) y **cifrar con la clave pública del destinatario** (confidencialidad).
+</Callout>
+
+## Certificados y PKI
+
+- Un certificado contiene: **identidad del titular**, **su clave pública**, **fechas de validez**, **emisor (CA)** y la **firma de la CA**.
+- La **autoridad certificadora (CA)** es un tercero **de confianza** que garantiza que esa clave pertenece a esa identidad. Tu navegador y sistema operativo traen una lista de **CA raíz** confiables.
+- **PKI (infraestructura de clave pública)**: conjunto de **CA, certificados, políticas y listas de revocación (CRL / OCSP)**.
+- **Advertencia del navegador** ("conexión no privada"): certificado **vencido**, emitido por **CA desconocida**, o con un **nombre que no coincide** con el sitio.
+- **Auto-firmado**: lo firma el propio titular; sirve en pruebas, pero **no es confiable** para el público.
+
+## Importante recordar
+
+<Callout type="importante">
+- **Hash**: irreversible, tamaño fijo, integridad. **MD5 y SHA-1 obsoletos.**
+- **Firma digital** = hash firmado con la **privada del emisor**; se verifica con la **pública del emisor**. **No da confidencialidad.**
+- Contraseñas: **hash con sal** (bcrypt/Argon2).
+- **Certificado X.509**: clave pública + identidad, firmado por una **CA**. **PKI** administra certificados y revocación.
+- **HMAC** = hash con clave.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Decir que la firma digital **cifra el mensaje** (solo garantiza integridad, autenticidad y no repudio).
+- Creer que un hash se puede **descifrar**.
+- Guardar contraseñas **cifradas con AES** (reversibles) en lugar de con hash y sal.
+- Firmar con la **clave pública**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Beto envía un contrato a Ana. Quiere que Ana pueda comprobar que él lo escribió, que nadie lo modificó, y que solo ella pueda leerlo. ¿Qué hace?
+
+**Firma** el hash del contrato con su **clave privada** (autenticidad, integridad, no repudio) y **cifra** el contenido con la **clave pública de Ana** (confidencialidad).

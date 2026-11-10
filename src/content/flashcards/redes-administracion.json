@@ -1,0 +1,18 @@
+{
+  "cards": [
+    { "id": "fc-red-adm-01", "front": "Proceso DHCP", "back": "DORA: Discover, Offer, Request, Acknowledge. UDP 67/68. Entrega IP, máscara, gateway y DNS." },
+    { "id": "fc-red-adm-02", "front": "¿Cuándo se usa un DHCP relay?", "back": "Cuando el servidor DHCP está en otra red: el broadcast no cruza routers." },
+    { "id": "fc-red-adm-03", "front": "Registros DNS: A, AAAA, CNAME, MX, NS, PTR", "back": "IPv4 · IPv6 · alias · correo · servidores de nombres · inverso (IP → nombre)." },
+    { "id": "fc-red-adm-04", "front": "Síntomas por servicio", "back": "169.254.x.x = DHCP · ping a IP sí, a nombres no = DNS · llega a su red pero no a Internet = gateway/NAT." },
+    { "id": "fc-red-adm-05", "front": "NAT estático, dinámico y PAT", "back": "Estático: 1 a 1. Dinámico: pool de públicas. PAT: muchas privadas → 1 pública por puertos." },
+    { "id": "fc-red-adm-06", "front": "VLAN: acceso vs troncal", "back": "Acceso: una VLAN. Troncal: varias VLAN etiquetadas con 802.1Q. Entre VLAN se necesita capa 3." },
+    { "id": "fc-red-adm-07", "front": "¿Para qué sirve STP?", "back": "Evita bucles de capa 2 y tormentas de broadcast con enlaces redundantes (802.1D / RSTP 802.1w)." },
+    { "id": "fc-red-adm-08", "front": "Estático vs dinámico", "back": "Estático: simple, redes pequeñas, no se adapta a fallas. Dinámico: se adapta (RIP, OSPF, EIGRP, BGP)." },
+    { "id": "fc-red-adm-09", "front": "RIP, OSPF, EIGRP y BGP", "back": "RIP: 15 saltos. OSPF: costo, áreas, estándar abierto. EIGRP: Cisco. BGP: entre sistemas autónomos." },
+    { "id": "fc-red-adm-10", "front": "Prefijo más largo y distancia administrativa", "back": "Gana la ruta más específica. Menor AD = más confiable: conectada 0, estática 1, EIGRP 90, OSPF 110, RIP 120." },
+    { "id": "fc-red-adm-11", "front": "Cableado horizontal", "back": "Máximo 90 m de cable permanente + 10 m de cordones = 100 m (TIA/EIA-568)." },
+    { "id": "fc-red-adm-12", "front": "SNMP: puertos y piezas", "back": "UDP 161/162. Agente, gestor, MIB y traps (alertas espontáneas)." },
+    { "id": "fc-red-adm-13", "front": "Latencia, jitter y throughput", "back": "Latencia: retardo. Jitter: variación de la latencia. Throughput: velocidad real lograda." },
+    { "id": "fc-red-adm-14", "front": "Secuencia de pruebas con ping", "back": "127.0.0.1 → IP propia → gateway → 8.8.8.8 → nombre (DNS)." }
+  ]
+}

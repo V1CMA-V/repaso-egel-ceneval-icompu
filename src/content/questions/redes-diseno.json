@@ -1,0 +1,317 @@
+{
+  "questions": [
+    {
+      "id": "red-dis-0101",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "Un analista captura tráfico en un switch y observa unidades de datos que contienen direcciones MAC de origen y de destino. ¿En qué capa del modelo OSI trabaja ese encabezado?",
+      "options": ["Red", "Transporte", "Enlace de datos", "Sesión"],
+      "answer": 2,
+      "explanation": "Las direcciones MAC pertenecen a la capa 2 (enlace de datos), cuya unidad es la trama. La capa de red utiliza direcciones IP y su unidad es el paquete.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0102",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "Un dispositivo debe decidir por qué interfaz enviar un paquete basándose en la dirección IP de destino y conectar así dos redes distintas. ¿En qué capa opera?",
+      "options": ["Capa 3 (red)", "Capa 2 (enlace)", "Capa 4 (transporte)", "Capa 1 (física)"],
+      "answer": 0,
+      "explanation": "Decidir rutas con direcciones IP es la función de la capa de red; el dispositivo es un router. El switch opera en capa 2 con direcciones MAC y el hub en capa 1.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0103",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "Una aplicación de videollamada pierde ocasionalmente un paquete, pero retransmitirlo haría que llegara demasiado tarde para ser útil. ¿Qué protocolo de transporte conviene usar?",
+      "options": [
+        "TCP, porque garantiza que cada paquete llegue en orden",
+        "UDP, porque no retransmite ni establece conexión y prioriza la baja latencia",
+        "ICMP, porque confirma cada paquete con un eco",
+        "ARP, porque resuelve las direcciones de los participantes"
+      ],
+      "answer": 1,
+      "explanation": "En tiempo real es preferible perder un paquete que esperar su retransmisión, por lo que se usa UDP (sin conexión, ligero). TCP añadiría retardos. ICMP y ARP no son protocolos de transporte de datos de usuario.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0104",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "¿Cuál es el orden correcto de los mensajes del establecimiento de una conexión TCP (handshake de tres pasos)?",
+      "options": [
+        "SYN, ACK, SYN-ACK",
+        "SYN-ACK, SYN, ACK",
+        "ACK, SYN, SYN-ACK",
+        "SYN, SYN-ACK, ACK"
+      ],
+      "answer": 3,
+      "explanation": "El cliente envía SYN, el servidor responde con SYN-ACK y el cliente confirma con ACK. Las demás secuencias no corresponden al protocolo.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0105",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "Un administrador configura un switch desde un equipo remoto usando Telnet (puerto 23) y descubre que sus credenciales viajan en texto claro. ¿Qué alternativa segura debe usar y por qué puerto?",
+      "options": [
+        "SSH, por el puerto 22",
+        "FTP, por el puerto 21",
+        "HTTP, por el puerto 80",
+        "SNMP, por el puerto 161"
+      ],
+      "answer": 0,
+      "explanation": "SSH ofrece administración remota cifrada y sustituye a Telnet; usa el puerto 22. FTP y HTTP transmiten sin cifrar y SNMP es para monitoreo, no para consola remota.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0106",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "La PC A quiere enviar un mensaje a la PC B de su misma red local y solo conoce la dirección IP de B. ¿Qué protocolo obtiene la dirección MAC de B?",
+      "options": ["DNS", "ICMP", "ARP", "DHCP"],
+      "answer": 2,
+      "explanation": "ARP resuelve direcciones IP a MAC dentro de la red local. DNS traduce nombres a IP, DHCP asigna direcciones e ICMP envía mensajes de control como ping.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0201",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "Se diseña una red en malla completa que interconecta 6 nodos. ¿Cuántos enlaces físicos se necesitan?",
+      "options": ["6", "12", "15", "30"],
+      "answer": 2,
+      "explanation": "En una malla completa los enlaces son n(n−1)/2 = 6 × 5 / 2 = 15. El valor 30 resulta de olvidar dividir entre 2, ya que cada enlace se cuenta dos veces.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0202",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "En una oficina con topología en estrella, un switch central conecta 30 equipos. ¿Qué sucede si el switch central falla y cómo se reduce ese riesgo?",
+      "options": [
+        "Solo se desconecta el equipo cuyo cable falla; la red sigue igual aunque falle el switch",
+        "Se pierde la comunicación de todos los equipos conectados a ese switch; el riesgo se reduce con redundancia (enlaces o switches adicionales)",
+        "La red se reconfigura sola como una topología de bus",
+        "No ocurre nada porque cada equipo se comunica directamente con los demás"
+      ],
+      "answer": 1,
+      "explanation": "El nodo central es el punto único de falla de la estrella. Se mitiga con equipos y enlaces redundantes. La falla de un equipo o cable individual sí afecta solo a ese equipo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0203",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "Dos edificios separados 2 km necesitan un enlace de alta velocidad inmune a la interferencia de motores industriales. ¿Qué medio es el más adecuado?",
+      "options": ["Cable UTP Cat6a", "Fibra óptica multimodo", "Fibra óptica monomodo", "Cable coaxial"],
+      "answer": 2,
+      "explanation": "La fibra monomodo (láser, núcleo delgado) alcanza kilómetros y no sufre interferencia electromagnética. El UTP está limitado a 100 m y la multimodo a cientos de metros.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0204",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "Un switch de 24 puertos, sin VLAN configuradas, conecta 24 computadoras. ¿Cuántos dominios de colisión y cuántos dominios de broadcast existen?",
+      "options": [
+        "1 de colisión y 1 de broadcast",
+        "24 de colisión y 24 de broadcast",
+        "1 de colisión y 24 de broadcast",
+        "24 de colisión y 1 de broadcast"
+      ],
+      "answer": 3,
+      "explanation": "El switch crea un dominio de colisión por puerto (24), pero sin VLAN todos los puertos comparten un único dominio de broadcast. Para dividir el broadcast se requiere un router o VLAN.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0205",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "En un edificio de oficinas los usuarios cercanos a los puntos de acceso sufren lentitud por interferencia en 2.4 GHz, provocada por muchas redes vecinas. ¿Qué ajuste mejora la situación?",
+      "options": [
+        "Migrar a 5 GHz, aceptando un menor alcance a cambio de más velocidad y menos interferencia",
+        "Usar los canales 2, 3 y 4 de 2.4 GHz porque están menos saturados",
+        "Cambiar el cifrado a WEP para aumentar la velocidad",
+        "Sustituir los puntos de acceso por un hub"
+      ],
+      "answer": 0,
+      "explanation": "5 GHz ofrece más canales y velocidad con menos interferencia, aunque con menor alcance. En 2.4 GHz solo los canales 1, 6 y 11 no se traslapan; WEP es inseguro y un hub no aplica a Wi-Fi.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0206",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "Un técnico instala un cable UTP Cat6 de 130 m entre una PC y un switch, y la conexión falla de forma intermitente. ¿Cuál es la causa y la solución?",
+      "options": [
+        "Cat6 no soporta 1 Gbps; usar Cat5",
+        "Se excede el máximo de 100 m del segmento UTP; añadir un switch intermedio o usar fibra",
+        "Falta un servidor DHCP en la red",
+        "El conector RJ-45 debe sustituirse por un conector coaxial"
+      ],
+      "answer": 1,
+      "explanation": "El estándar limita un segmento UTP a 100 m; más allá aumentan la atenuación y los errores. Se resuelve segmentando con un switch o con fibra.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0301",
+      "lesson": "redes/diseno/03-ipv4-subneteo",
+      "text": "Un host tiene la dirección 192.168.1.130/26. ¿A qué red pertenece?",
+      "options": ["192.168.1.64", "192.168.1.128", "192.168.1.192", "192.168.1.0"],
+      "answer": 1,
+      "explanation": "Con /26 el bloque es de 64: las redes son .0, .64, .128 y .192. El 130 está entre .128 y .191, por lo que pertenece a 192.168.1.128 (broadcast .191).",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0302",
+      "lesson": "redes/diseno/03-ipv4-subneteo",
+      "text": "En una subred /27 se desea instalar 28 PC, 1 impresora, 1 router (gateway) y 1 servidor, es decir, 31 dispositivos con dirección. ¿Cuántos hosts útiles ofrece la subred y alcanza?",
+      "options": [
+        "32 hosts; sí alcanza",
+        "30 hosts; no alcanza, falta una dirección",
+        "30 hosts; sí alcanza",
+        "62 hosts; sí alcanza"
+      ],
+      "answer": 1,
+      "explanation": "Un /27 tiene 5 bits de host: 2⁵ − 2 = 30 hosts útiles (se restan red y broadcast). Con 31 dispositivos no alcanza; se necesitaría un /26 (62 hosts).",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0303",
+      "lesson": "redes/diseno/03-ipv4-subneteo",
+      "text": "Un área de la empresa necesita direccionar 50 equipos. ¿Qué máscara es la más eficiente?",
+      "options": ["/25", "/27", "/26", "/28"],
+      "answer": 2,
+      "explanation": "Un /26 da 62 hosts útiles, suficiente para 50. Un /27 solo ofrece 30 y un /28 solo 14, mientras que un /25 (126) funciona pero desperdicia más direcciones.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0304",
+      "lesson": "redes/diseno/03-ipv4-subneteo",
+      "text": "¿Cuál es la dirección de broadcast de la red a la que pertenece el host 172.16.45.200/20?",
+      "options": ["172.16.47.255", "172.16.45.255", "172.16.255.255", "172.16.63.255"],
+      "answer": 0,
+      "explanation": "La máscara /20 es 255.255.240.0: el bloque es 256 − 240 = 16 en el tercer octeto. El 45 está en el bloque 32–47, por lo que la red es 172.16.32.0 y el broadcast 172.16.47.255.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "red-dis-0305",
+      "lesson": "redes/diseno/03-ipv4-subneteo",
+      "text": "Una sucursal necesita direccionar 500 equipos en una sola subred. ¿Cuál es la máscara de prefijo más pequeña (la que desperdicia menos) que lo permite?",
+      "options": ["/22", "/24", "/25", "/23"],
+      "answer": 3,
+      "explanation": "Se necesitan 9 bits de host: 2⁹ − 2 = 510 ≥ 500, por lo que el prefijo es /23 (255.255.254.0). Un /24 solo da 254 hosts y un /22 (1022) es más grande de lo necesario.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0306",
+      "lesson": "redes/diseno/03-ipv4-subneteo",
+      "text": "Con la máscara 255.255.255.224, ¿cuál par de hosts está en la misma subred?",
+      "options": [
+        "192.168.5.30 y 192.168.5.33",
+        "192.168.5.60 y 192.168.5.64",
+        "192.168.5.95 y 192.168.5.96",
+        "192.168.5.35 y 192.168.5.60"
+      ],
+      "answer": 3,
+      "explanation": "La máscara .224 (/27) tiene bloques de 32: 0–31, 32–63, 64–95, 96–127… Los hosts .35 y .60 caen en el bloque 32–63. En los otros pares cada host cae en bloques diferentes.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0307",
+      "lesson": "redes/diseno/03-ipv4-subneteo",
+      "text": "Una computadora muestra la dirección 169.254.10.5 y no puede salir de su red local. ¿Cuál es la causa más probable?",
+      "options": [
+        "No obtuvo respuesta de un servidor DHCP y se autoasignó una dirección APIPA",
+        "El servidor DNS está caído",
+        "El cable es de categoría 5",
+        "El NAT del router está mal configurado"
+      ],
+      "answer": 0,
+      "explanation": "Las direcciones 169.254.0.0/16 son APIPA: el sistema las asigna cuando no recibe una respuesta DHCP. Un problema de DNS o NAT no produce ese tipo de dirección.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0401",
+      "lesson": "redes/diseno/04-vlsm-ipv6",
+      "text": "Se reparte 192.168.10.0/24 mediante VLSM entre áreas con 100, 50, 20 y 2 hosts, asignando de mayor a menor. ¿Qué subred corresponde al área de 20 hosts?",
+      "options": ["192.168.10.128/26", "192.168.10.192/27", "192.168.10.224/30", "192.168.10.64/27"],
+      "answer": 1,
+      "explanation": "Primero 100 hosts → /25 (.0–.127); luego 50 → /26 (.128–.191); luego 20 → /27 (.192–.223); por último 2 → /30 (.224–.227). Los 20 hosts quedan en 192.168.10.192/27.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "red-dis-0402",
+      "lesson": "redes/diseno/04-vlsm-ipv6",
+      "text": "Al aplicar VLSM, ¿en qué orden conviene asignar las subredes y por qué?",
+      "options": [
+        "De menor a mayor, para llenar primero los huecos pequeños",
+        "En orden alfabético por nombre de área",
+        "De mayor a menor número de hosts, para mantener los bloques alineados sin traslapes",
+        "En cualquier orden, el resultado es idéntico"
+      ],
+      "answer": 2,
+      "explanation": "Empezar por los bloques más grandes mantiene los bloques alineados a múltiplos de su tamaño y evita traslapes o huecos inutilizables.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0403",
+      "lesson": "redes/diseno/04-vlsm-ipv6",
+      "text": "¿Cuál es la forma comprimida correcta de la dirección IPv6 2001:0db8:0000:0000:0000:ff00:0042:8329?",
+      "options": [
+        "2001:db8::ff00:42:8329",
+        "2001:db8::ff:42:8329",
+        "2001:db8::ff00::42:8329",
+        "2001:db8:ff00:42:8329"
+      ],
+      "answer": 0,
+      "explanation": "Se eliminan los ceros a la izquierda de cada grupo y los tres grupos consecutivos de ceros se reemplazan por '::'. La opción con dos '::' es inválida, y las otras alteran el contenido (ff00 no es ff, y faltan grupos).",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0404",
+      "lesson": "redes/diseno/04-vlsm-ipv6",
+      "text": "Una interfaz muestra la dirección fe80::1a2b:3c4d:5e6f:7a8b. ¿Qué tipo de dirección IPv6 es?",
+      "options": ["Global unicast", "Multicast", "Local única (ULA)", "Link-local"],
+      "answer": 3,
+      "explanation": "El prefijo fe80::/10 corresponde a direcciones link-local, válidas solo en el enlace local. Global unicast empieza con 2 o 3, ULA con fc/fd y multicast con ff.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-dis-0405",
+      "lesson": "redes/diseno/04-vlsm-ipv6",
+      "text": "Un administrador intenta enviar un mensaje a todos los hosts de un segmento IPv6 mediante broadcast. ¿Qué ocurre?",
+      "options": [
+        "Se utiliza la dirección 255.255.255.255 como en IPv4",
+        "Se usa la dirección ff02::ffff, reservada al broadcast IPv6",
+        "IPv6 no tiene broadcast; se emplea multicast (por ejemplo, todos los nodos ff02::1)",
+        "Se resuelve con ARP, que existe también en IPv6"
+      ],
+      "answer": 2,
+      "explanation": "IPv6 eliminó el broadcast; usa multicast y anycast. Además, NDP reemplaza a ARP.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0406",
+      "lesson": "redes/diseno/04-vlsm-ipv6",
+      "text": "Una empresa tiene servidores que solo funcionan con IPv4 y necesita que clientes IPv6 los usen durante la migración, sin reescribir las aplicaciones. ¿Qué mecanismo es adecuado?",
+      "options": [
+        "Doble pila o traducción mediante NAT64",
+        "Ampliar la máscara de subred IPv4",
+        "Usar direcciones APIPA",
+        "Apagar IPv4 de forma inmediata"
+      ],
+      "answer": 0,
+      "explanation": "La transición se logra con doble pila (ambos protocolos), túneles o traducción (NAT64). Cambiar la máscara no resuelve la incompatibilidad y apagar IPv4 dejaría sin servicio a los sistemas heredados.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0107",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "Un administrador debe elegir el estándar que define el etiquetado de tramas para transportar varias VLAN por un mismo enlace troncal entre switches. ¿Cuál corresponde?",
+      "options": ["IEEE 802.3", "IEEE 802.11", "IEEE 802.1Q", "IEEE 802.1X"],
+      "answer": 2,
+      "explanation": "802.1Q define el etiquetado de VLAN en troncales. 802.3 es Ethernet, 802.11 es Wi-Fi y 802.1X es el control de acceso por puerto con autenticación (RADIUS).",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0108",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "Un servicio de IPTV debe enviar el mismo flujo de video únicamente a los usuarios que lo solicitaron, sin saturar la red enviándolo a todos y sin duplicarlo uno por uno. ¿Qué tipo de transmisión es el adecuado?",
+      "options": ["Unicast", "Broadcast", "Multicast", "Loopback"],
+      "answer": 2,
+      "explanation": "Multicast envía un solo flujo a un grupo de suscriptores. Unicast duplicaría el flujo por cada usuario y broadcast lo enviaría a todos, incluso a quienes no lo pidieron.",
+      "difficulty": "media"
+    }
+  ]
+}

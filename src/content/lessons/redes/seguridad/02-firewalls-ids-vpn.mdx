@@ -1,0 +1,75 @@
+---
+title: 'Firewalls, IDS/IPS y VPN'
+summary: 'Las herramientas que filtran, vigilan y protegen el tráfico: cuándo usar cada una.'
+order: 2
+readMinutes: 6
+examWeight: 'Seguridad: 17 reactivos'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+- **Firewall**: filtra el tráfico entre redes según reglas (IP, puerto, protocolo, estado de la conexión).
+- **IDS** (Intrusion Detection System): **detecta** actividad sospechosa y **alerta**.
+- **IPS** (Intrusion Prevention System): detecta y además **bloquea** el tráfico malicioso.
+- **VPN**: crea un **túnel cifrado** sobre una red pública (Internet) para comunicar sitios o usuarios remotos de forma segura.
+</Callout>
+
+## Conceptos clave
+
+- **Firewall sin estado (stateless)**: evalúa cada paquete por separado. **Con estado (stateful)**: recuerda las conexiones y solo deja pasar respuestas a tráfico iniciado desde dentro.
+- **DMZ**: zona intermedia donde se colocan servidores públicos (web, correo) para que, si los comprometen, no den acceso directo a la red interna.
+- **Política por defecto**: lo más seguro es **denegar todo y permitir solo lo necesario** (_deny by default_).
+- **IDS por firmas** reconoce ataques conocidos; **por anomalías** detecta desviaciones del comportamiento normal (más falsos positivos).
+- **VPN sitio a sitio** une dos redes; **VPN de acceso remoto** conecta a un usuario. Protocolos típicos: **IPsec**, **SSL/TLS**, OpenVPN.
+
+## Cómo se usa
+
+1. El firewall perimetral va **entre Internet y la red interna**; las reglas se evalúan **de arriba hacia abajo** y gana la primera coincidencia.
+2. Un IDS se conecta en modo **pasivo** (copia del tráfico); un IPS va **en línea** (por donde pasa el tráfico), por eso puede bloquear.
+3. La VPN se configura con autenticación (contraseña, certificados, MFA) y cifrado.
+
+<Callout type="tip">
+Pregunta clave para IDS vs IPS: ¿el enunciado dice **"bloquea"/"previene"**? → IPS. ¿Dice **"alerta"/"notifica"**? → IDS.
+</Callout>
+
+## Tipos de firewall y otros controles
+
+| Tipo | Qué analiza |
+| --- | --- |
+| **De filtrado de paquetes (sin estado)** | Cada paquete por **IP, puerto y protocolo**, sin recordar nada |
+| **Con estado (stateful)** | Recuerda las **conexiones**; deja pasar las respuestas a tráfico iniciado desde dentro |
+| **Proxy / de aplicación** | **Entiende el contenido** de la aplicación (HTTP) y actúa como intermediario |
+| **NGFW (siguiente generación)** | Con estado + **inspección profunda**, control de aplicaciones, prevención de intrusiones |
+
+- **ACL (lista de control de acceso)**: reglas de **permitir/denegar** en routers o switches; se leen **de arriba abajo**, gana la primera coincidencia y al final hay un **"denegar todo" implícito**.
+- **NIDS** vigila **la red**; **HIDS** vigila **un equipo**.
+- **Honeypot**: **señuelo** expuesto a propósito para **estudiar al atacante** y desviarlo de sistemas reales.
+- **Segmentación** (VLAN, DMZ, zonas): limita hasta dónde puede avanzar un atacante.
+- **IPsec** (VPN en **capa 3**): **AH** solo **autentica** (integridad); **ESP** **cifra y autentica**. **SSL/TLS VPN** funciona por navegador o cliente ligero.
+
+<Callout type="tip">
+**"Permitir solo las respuestas a lo que yo inicié"** → firewall **con estado**. **"Entender qué hay dentro del tráfico web"** → **proxy / NGFW**. **"Equipo trampa para estudiar al atacante"** → **honeypot**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- Puertos comunes que debes poder reconocer: **HTTP 80, HTTPS 443, SSH 22, DNS 53, SMTP 25, DHCP 67/68**.
+- Un firewall **no protege** contra amenazas internas ni contra tráfico permitido pero malicioso (por ejemplo, phishing por correo).
+- Una VPN protege el **tránsito**; no sustituye al antivirus ni a las buenas prácticas del equipo.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+Decir que el IDS bloquea ataques. **El IDS solo detecta y avisa**; quien bloquea es el IPS o el firewall.
+</Callout>
+
+## Ejemplo resuelto
+
+> La empresa publica un servidor web y quiere que, si lo comprometen, el atacante no llegue a la base de datos interna.
+
+Se coloca el servidor en una **DMZ**, con el firewall permitiendo solo el tráfico necesario hacia la red interna.

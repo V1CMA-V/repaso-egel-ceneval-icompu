@@ -1,0 +1,92 @@
+---
+title: 'DHCP y DNS'
+summary: 'Cómo un equipo obtiene su configuración IP (proceso DORA) y cómo se traducen nombres a direcciones; tipos de registros DNS y cómo diagnosticar fallas.'
+order: 1
+readMinutes: 10
+examWeight: 'Redes 2.2 · Administración de redes (13 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+- **DHCP (Dynamic Host Configuration Protocol)**: asigna **automáticamente** la configuración de red a los equipos: **dirección IP, máscara, puerta de enlace (gateway) y servidores DNS**.
+- **DNS (Domain Name System)**: **traduce nombres de dominio a direcciones IP** (y al revés), para que usemos `ejemplo.com` en lugar de una IP.
+
+**No los mezcles**: DHCP **da IP**; DNS **resuelve nombres**.
+</Callout>
+
+## DHCP y el proceso DORA
+
+DHCP usa **UDP 67 (servidor) y 68 (cliente)**. Como el cliente aún no tiene IP, el primer mensaje es un **broadcast**:
+
+1. **D**iscover: el cliente **busca** un servidor DHCP (broadcast).
+2. **O**ffer: el servidor **ofrece** una IP.
+3. **R**equest: el cliente **solicita** (acepta) la oferta.
+4. **A**cknowledge: el servidor **confirma** y entrega el arrendamiento (**lease**).
+
+Conceptos importantes:
+
+- **Arrendamiento (lease)**: tiempo que la IP queda asignada; se **renueva** antes de expirar.
+- **Reserva por MAC**: el servidor **siempre** da la misma IP a un equipo (impresoras, servidores).
+- **Rango (scope) y exclusiones**: direcciones que se reparten y las que se reservan para equipos con IP fija.
+- **DHCP relay (ip helper-address)**: un router **reenvía** las solicitudes cuando el servidor DHCP está en **otra red**, porque el broadcast no cruza routers.
+- Si no hay respuesta, el equipo toma una **IP APIPA (169.254.x.x)**.
+
+<Callout type="tip">
+Síntoma **"el equipo tiene IP 169.254.x.x"** → falló DHCP (servidor caído, sin relay, o cable/puerto/VLAN incorrecto). Es la pista clásica del examen.
+</Callout>
+
+## DNS
+
+Usa **UDP 53** para consultas y **TCP 53** para transferencias de zona o respuestas grandes. La resolución pasa por **caché local → servidor DNS recursivo → raíz → TLD (.com) → servidor autoritativo**, y las respuestas se guardan según el **TTL**.
+
+| Registro | Función |
+| --- | --- |
+| **A** | Nombre → dirección **IPv4** |
+| **AAAA** | Nombre → dirección **IPv6** |
+| **CNAME** | **Alias** de otro nombre |
+| **MX** | Servidor de **correo** del dominio |
+| **NS** | **Servidores de nombres** autoritativos |
+| **PTR** | Búsqueda **inversa** (IP → nombre) |
+| **TXT** | Texto (SPF, verificación de dominio) |
+| **SOA** | Datos de autoridad de la zona |
+
+<Callout type="tip">
+Pista para elegir registro: **"correo"** → MX · **"alias"** → CNAME · **"IPv6"** → AAAA · **"IP → nombre"** → PTR.
+</Callout>
+
+## Diagnóstico típico
+
+| Síntoma | Causa probable |
+| --- | --- |
+| IP **169.254.x.x** | No hubo respuesta **DHCP** |
+| Hace **ping a una IP** pero **no a nombres** | Falla **DNS** (o DNS mal configurado) |
+| Llega a su red pero **no a Internet** | **Gateway** o **NAT** |
+| Correo llega a otro servidor | Registro **MX** incorrecto |
+
+## Importante recordar
+
+<Callout type="importante">
+- **DORA** = Discover, Offer, Request, Acknowledge. DHCP: **UDP 67/68**; DNS: **UDP/TCP 53**.
+- DHCP entrega **IP + máscara + gateway + DNS**.
+- **Relay** cuando el servidor DHCP está en otra red.
+- **A** = IPv4, **AAAA** = IPv6, **MX** = correo, **CNAME** = alias, **PTR** = inverso.
+- **169.254.x.x** = falló DHCP.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Atribuir a **DNS** un problema de **IP 169.254** (es DHCP).
+- Creer que el **broadcast DHCP** cruza un router sin relay.
+- Confundir **A** con **CNAME** (A apunta a una IP; CNAME, a otro nombre).
+- Poner **TCP** como único transporte de DNS (la mayoría de consultas usa UDP).
+</Callout>
+
+## Ejemplo resuelto
+
+> Un usuario puede abrir `8.8.8.8` en el navegador, pero no `google.com`. ¿Qué falla?
+
+Tiene conectividad IP, pero **no resuelve nombres**: el problema está en **DNS** (servidor DNS mal configurado o inaccesible).

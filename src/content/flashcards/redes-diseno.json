@@ -1,0 +1,21 @@
+{
+  "cards": [
+    { "id": "fc-red-dis-01", "front": "Las 7 capas OSI (de la 7 a la 1)", "back": "Aplicación, Presentación, Sesión, Transporte, Red, Enlace, Física." },
+    { "id": "fc-red-dis-02", "front": "PDU por capa", "back": "Transporte: segmento · Red: paquete · Enlace: trama · Física: bits." },
+    { "id": "fc-red-dis-03", "front": "¿En qué capa operan router, switch y hub?", "back": "Router: 3 (red) · Switch: 2 (enlace) · Hub: 1 (física)." },
+    { "id": "fc-red-dis-04", "front": "TCP vs UDP", "back": "TCP: conexión, fiable, retransmite (web, correo). UDP: sin conexión, rápido (DNS, DHCP, VoIP, streaming)." },
+    { "id": "fc-red-dis-05", "front": "Handshake de TCP", "back": "SYN → SYN-ACK → ACK." },
+    { "id": "fc-red-dis-06", "front": "Puertos: FTP, SSH, Telnet, SMTP, DNS, DHCP, HTTP, HTTPS, RDP", "back": "21 · 22 · 23 · 25 · 53 · 67/68 · 80 · 443 · 3389." },
+    { "id": "fc-red-dis-07", "front": "ARP vs ICMP", "back": "ARP: IP → MAC en la LAN. ICMP: ping y mensajes de error." },
+    { "id": "fc-red-dis-08", "front": "Enlaces de una malla completa con n nodos", "back": "n(n−1)/2 (6 nodos → 15)." },
+    { "id": "fc-red-dis-09", "front": "Límite del UTP y categorías", "back": "100 m por segmento. Cat5e = 1 Gbps; Cat6 = 10 Gbps hasta 55 m; Cat6a = 10 Gbps hasta 100 m." },
+    { "id": "fc-red-dis-10", "front": "Fibra monomodo vs multimodo", "back": "Monomodo: láser, kilómetros. Multimodo: cientos de metros. Inmune a interferencia electromagnética." },
+    { "id": "fc-red-dis-11", "front": "Dominios de colisión y broadcast", "back": "Hub: 1 colisión. Switch: 1 colisión por puerto, 1 broadcast. Router/VLAN: separan broadcast." },
+    { "id": "fc-red-dis-12", "front": "Hosts útiles, subredes y bloque", "back": "Hosts = 2^h − 2 · Subredes = 2^s · Bloque = 256 − máscara del octeto interesante." },
+    { "id": "fc-red-dis-13", "front": "/24 /25 /26 /27 /28 /29 /30: hosts útiles", "back": "254 · 126 · 62 · 30 · 14 · 6 · 2." },
+    { "id": "fc-red-dis-14", "front": "IPs privadas y APIPA", "back": "10/8 · 172.16–172.31/12 · 192.168/16. APIPA: 169.254.0.0/16 (no hubo DHCP)." },
+    { "id": "fc-red-dis-15", "front": "VLSM: ¿en qué orden?", "back": "De mayor a menor número de hosts, cada bloque justo donde terminó el anterior." },
+    { "id": "fc-red-dis-16", "front": "IPv6 en pocas palabras", "back": "128 bits, '::' una sola vez, sin broadcast, NDP reemplaza ARP, subred típica /64." },
+    { "id": "fc-red-dis-17", "front": "Prefijos IPv6", "back": "fe80::/10 link-local · 2000::/3 global · fc00::/7 ULA · ff00::/8 multicast · ::1 loopback." }
+  ]
+}

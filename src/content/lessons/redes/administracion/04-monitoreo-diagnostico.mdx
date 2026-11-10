@@ -1,0 +1,87 @@
+---
+title: 'Monitoreo, QoS y diagnóstico de fallas por capas'
+summary: 'SNMP, ping, traceroute, Wireshark y métricas de red; cómo priorizar tráfico con QoS y cómo diagnosticar problemas de forma ordenada.'
+order: 4
+readMinutes: 9
+examWeight: 'Redes 2.2 · Administración de redes'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+**Administrar una red** incluye **vigilar** su estado (monitoreo), **garantizar rendimiento** a los servicios críticos (QoS) y **encontrar la causa** cuando algo falla (diagnóstico).
+</Callout>
+
+## Herramientas de monitoreo
+
+- **SNMP (UDP 161/162)**: consulta y vigila dispositivos. Piezas: **agente** (en el equipo), **gestor/NMS**, **MIB** (base de variables) y **traps** (alertas que el agente envía por iniciativa propia). **SNMPv3** agrega **autenticación y cifrado**.
+- **ping (ICMP)**: comprueba **alcanzabilidad** y mide **latencia**.
+- **traceroute / tracert**: muestra la **ruta salto a salto** (usa **TTL**) y ayuda a ubicar **dónde se corta** la conexión.
+- **Syslog**: centraliza **registros** (logs) de dispositivos.
+- **NetFlow**: estadísticas de **flujos** de tráfico (quién consume el ancho de banda).
+- **Analizador de paquetes (Wireshark)**: captura y decodifica el tráfico.
+- **nslookup / dig**: pruebas de DNS. **ipconfig / ifconfig**: configuración IP local.
+
+## Métricas de red
+
+| Métrica | Significado |
+| --- | --- |
+| **Ancho de banda** | Capacidad máxima del enlace (bps) |
+| **Rendimiento (throughput)** | Velocidad **real** lograda |
+| **Latencia** | **Retardo** de ida (o ida y vuelta) |
+| **Jitter** | **Variación** de la latencia (crítico en voz/video) |
+| **Pérdida de paquetes** | % de paquetes que no llegan |
+| **Disponibilidad** | % de tiempo operativo (ej. 99.9 %) |
+
+**QoS (Quality of Service)** **prioriza** el tráfico sensible (**voz y video**) sobre el menos crítico (descargas) mediante **clasificación, marcado y colas**, para mantener baja latencia y jitter.
+
+<Callout type="tip">
+**"Las llamadas VoIP se entrecortan cuando alguien descarga un archivo grande"** → falta **QoS** (priorizar voz). Y **"la voz tiene eco/entrecortada por variación en los retardos"** → **jitter**.
+</Callout>
+
+## Diagnóstico por capas
+
+Empieza por **abajo** y sube (o divide la red a la mitad):
+
+| Síntoma | Capa / causa probable |
+| --- | --- |
+| **Sin enlace (link down)**, led apagado | **Capa 1**: cable, puerto, conector |
+| **IP 169.254.x.x** | **DHCP** |
+| Ping a la **IP** funciona, **a nombres no** | **DNS** |
+| Llega a su **red local** pero **no a Internet** | **Gateway** o **NAT** |
+| Una **VLAN** no ve a otra | Falta **enrutamiento** entre VLAN |
+| Se cae **todo** de forma intermitente con enlaces redundantes | **Bucle** (falta STP) |
+| Muchos usuarios **lentos** a ciertas horas | **Congestión**: revisar con NetFlow y QoS |
+
+**Secuencia útil**: ping a **127.0.0.1** (pila TCP/IP local) → ping a **la IP propia** → ping al **gateway** → ping a una **IP de Internet** (8.8.8.8) → ping a un **nombre** (DNS).
+
+<Callout type="tip">
+Si el ping al **gateway falla** pero a sí mismo funciona, el problema está **entre el equipo y su gateway** (cable, VLAN, switch). Si el ping a **8.8.8.8 funciona pero a nombres no**, es **DNS**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **SNMP**: UDP **161/162**, agentes, MIB, **traps**.
+- **traceroute** localiza **el salto** donde falla (usa TTL); **ping** usa **ICMP**.
+- **Jitter** = variación de la latencia; **latencia** = retardo.
+- **QoS** prioriza **voz y video**.
+- Diagnóstico **por capas**, de abajo hacia arriba.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **ancho de banda** (capacidad) con **rendimiento** (velocidad real).
+- Pensar que **ping bloqueado** significa que el host está caído (muchos firewalls bloquean ICMP).
+- Atribuir a "Internet lento" un problema de **DNS**.
+- Usar **SNMPv1/v2c** sin protección en redes expuestas.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un usuario no abre ninguna página, pero puede hacer ping a su gateway y a 8.8.8.8. ¿Dónde está el problema?
+
+La conectividad IP es correcta hasta Internet, así que el fallo es de **resolución de nombres: DNS**.

@@ -1,0 +1,280 @@
+{
+  "questions": [
+    {
+      "id": "red-adm-0101",
+      "lesson": "redes/administracion/01-dhcp-dns",
+      "text": "Una computadora recién conectada a la red aún no tiene dirección IP. ¿Cuál es el primer mensaje que envía para obtener configuración y por qué se manda como broadcast?",
+      "options": [
+        "Request, porque ya conoce al servidor DHCP",
+        "Discover, como broadcast, porque aún no tiene IP ni sabe dónde está el servidor",
+        "Offer, para informar a los demás equipos de su existencia",
+        "Acknowledge, para confirmar que está lista"
+      ],
+      "answer": 1,
+      "explanation": "DORA empieza con el DHCP Discover, que se envía por broadcast porque el cliente carece de IP y desconoce al servidor. Offer y Acknowledge los envía el servidor.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0102",
+      "lesson": "redes/administracion/01-dhcp-dns",
+      "text": "El servidor DHCP está en la red del centro de datos, pero los equipos de una sucursal obtienen direcciones 169.254.x.x. Los cables y puertos están bien. ¿Cuál es la solución más probable?",
+      "options": [
+        "Aumentar el TTL de los registros DNS",
+        "Habilitar NAT estático en la sucursal",
+        "Configurar un DHCP relay (ip helper-address) en el router de la sucursal",
+        "Eliminar la puerta de enlace de los equipos"
+      ],
+      "answer": 2,
+      "explanation": "El broadcast DHCP Discover no cruza routers. El relay reenvía las solicitudes al servidor DHCP remoto. Por eso los equipos se autoasignan una dirección APIPA (169.254.x.x) al no obtener respuesta.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "red-adm-0103",
+      "lesson": "redes/administracion/01-dhcp-dns",
+      "text": "Una empresa cambia de proveedor de correo electrónico. ¿Qué registro DNS debe modificar para que el correo llegue al nuevo servidor?",
+      "options": ["A", "PTR", "CNAME", "MX"],
+      "answer": 3,
+      "explanation": "El registro MX indica los servidores de correo de un dominio. A apunta a IPv4, PTR hace la búsqueda inversa y CNAME crea alias.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0104",
+      "lesson": "redes/administracion/01-dhcp-dns",
+      "text": "Se desea que www.empresa.com apunte al mismo destino que empresa.com sin duplicar la dirección IP en la zona DNS. ¿Qué tipo de registro se usa?",
+      "options": ["CNAME", "AAAA", "NS", "SOA"],
+      "answer": 0,
+      "explanation": "CNAME crea un alias que apunta a otro nombre; si la IP cambia, solo se modifica el registro destino. AAAA es para IPv6, NS indica servidores de nombres y SOA contiene datos de autoridad de la zona.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0105",
+      "lesson": "redes/administracion/01-dhcp-dns",
+      "text": "Un usuario puede hacer ping a 8.8.8.8 con éxito, pero el navegador no abre google.com. ¿Qué servicio es el más probable causa de la falla?",
+      "options": ["DHCP", "La puerta de enlace", "DNS", "El cable de red"],
+      "answer": 2,
+      "explanation": "Si hay conectividad IP hacia Internet pero no se resuelven nombres, el problema es DNS (servidor mal configurado o inalcanzable).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0106",
+      "lesson": "redes/administracion/01-dhcp-dns",
+      "text": "Una impresora de red debe conservar siempre la misma dirección IP, pero se desea administrarla de forma centralizada desde el servidor DHCP. ¿Qué se configura?",
+      "options": [
+        "Excluir todo el rango de direcciones",
+        "Una reserva DHCP vinculada a la dirección MAC de la impresora",
+        "Una dirección APIPA fija",
+        "Un NAT estático hacia Internet"
+      ],
+      "answer": 1,
+      "explanation": "La reserva por MAC hace que el servidor entregue siempre la misma IP a ese equipo, manteniendo la administración centralizada. APIPA y NAT no sirven para este propósito.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0201",
+      "lesson": "redes/administracion/02-nat-vlan-stp",
+      "text": "Doscientos equipos con direcciones IP privadas deben salir a Internet compartiendo una única dirección IP pública. ¿Qué técnica se usa?",
+      "options": ["DHCP", "NAT estático", "PAT (NAT con sobrecarga)", "VLAN"],
+      "answer": 2,
+      "explanation": "PAT traduce muchas direcciones privadas a una sola pública diferenciando las conexiones por número de puerto. NAT estático es 1 a 1 y DHCP solo asigna direcciones.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0202",
+      "lesson": "redes/administracion/02-nat-vlan-stp",
+      "text": "Un servidor web interno debe ser accesible desde Internet y estar siempre asociado a la misma dirección IP pública. ¿Qué configuración corresponde?",
+      "options": [
+        "NAT estático (traducción 1 a 1) o reenvío de puertos",
+        "PAT con una IP pública dinámica compartida",
+        "Una dirección APIPA",
+        "Un puerto troncal 802.1Q"
+      ],
+      "answer": 0,
+      "explanation": "Publicar un servicio interno de manera estable requiere NAT estático (o port forwarding) hacia ese servidor. PAT dinámico no garantiza una asociación fija entrante.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0203",
+      "lesson": "redes/administracion/02-nat-vlan-stp",
+      "text": "Dos PC conectadas al mismo switch, pero en las VLAN 10 y 20, no pueden comunicarse entre sí. ¿Qué se necesita?",
+      "options": [
+        "Cambiar el cable por fibra óptica",
+        "Enrutamiento de capa 3 (router o switch de capa 3)",
+        "Agregar un hub entre ambas",
+        "Aumentar la velocidad del puerto"
+      ],
+      "answer": 1,
+      "explanation": "Cada VLAN es un dominio de broadcast distinto; para comunicarse necesitan un dispositivo que enrute entre ellas, como un router o un switch capa 3.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0204",
+      "lesson": "redes/administracion/02-nat-vlan-stp",
+      "text": "El enlace entre dos switches debe transportar tráfico de las VLAN 10, 20 y 30 al mismo tiempo. ¿Qué configuración se utiliza?",
+      "options": [
+        "Un puerto de acceso asignado a la VLAN 10",
+        "El estándar 802.11",
+        "STP en modo bloqueado",
+        "Un puerto troncal (trunk) con etiquetado 802.1Q"
+      ],
+      "answer": 3,
+      "explanation": "Un puerto troncal transporta varias VLAN etiquetando cada trama con 802.1Q. Un puerto de acceso solo lleva una VLAN; 802.11 es Wi-Fi.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0205",
+      "lesson": "redes/administracion/02-nat-vlan-stp",
+      "text": "Para dar tolerancia a fallas, se conectan dos switches con dos cables en paralelo. Al poco tiempo la red colapsa por una tormenta de broadcast. ¿Qué mecanismo faltó?",
+      "options": ["DNS", "NAT", "STP (Spanning Tree Protocol)", "Un cable de mejor categoría"],
+      "answer": 2,
+      "explanation": "Los enlaces redundantes de capa 2 crean bucles. STP bloquea lógicamente uno de los enlaces y lo reactiva si el principal falla, evitando la tormenta.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0206",
+      "lesson": "redes/administracion/02-nat-vlan-stp",
+      "text": "Se desea que los invitados de una empresa usen la red sin tener acceso a los equipos internos. ¿Cuál es la mejor práctica?",
+      "options": [
+        "Crear una VLAN dedicada con subred propia y filtrar su acceso con ACL o firewall",
+        "Ponerlos en la misma VLAN que los empleados con otra contraseña",
+        "Conectarlos mediante un hub",
+        "Desactivar DHCP para los invitados"
+      ],
+      "answer": 0,
+      "explanation": "Una VLAN separada con su propia subred y reglas de filtrado (ACL/firewall) aísla el tráfico de invitados. Una contraseña distinta no separa el tráfico si comparten la misma red.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0301",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "Un router tiene las rutas 10.0.0.0/8 hacia R1, 10.1.1.0/24 hacia R2 y 0.0.0.0/0 hacia R3. ¿Hacia dónde reenvía un paquete con destino 10.1.1.50?",
+      "options": ["R1", "R2", "R3", "Lo descarta"],
+      "answer": 1,
+      "explanation": "El router elige la coincidencia de prefijo más largo: 10.1.1.0/24 es más específica que /8 y que la ruta por defecto, así que usa R2.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0302",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "¿Qué protocolo de enrutamiento se usa para intercambiar rutas entre sistemas autónomos, como los proveedores de Internet?",
+      "options": ["RIP", "OSPF", "BGP", "EIGRP"],
+      "answer": 2,
+      "explanation": "BGP es el protocolo de enrutamiento exterior entre sistemas autónomos y sostiene el enrutamiento de Internet. RIP, OSPF y EIGRP son protocolos internos (IGP).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0303",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "Una empresa con equipos de varios fabricantes y 50 routers requiere un protocolo dinámico de estándar abierto, que converja rápido y permita dividir la red en áreas. ¿Cuál elige?",
+      "options": ["RIP", "EIGRP", "Rutas estáticas", "OSPF"],
+      "answer": 3,
+      "explanation": "OSPF es un protocolo de estado de enlace, estándar abierto, rápido en converger y organizado por áreas. EIGRP es propietario de Cisco y RIP escala mal (máximo 15 saltos).",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0304",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "Una red usa RIP con 18 routers conectados en cadena. ¿Qué sucede con los destinos más lejanos?",
+      "options": [
+        "Los destinos a más de 15 saltos se consideran inalcanzables",
+        "Funcionan con normalidad porque RIP no tiene límite de saltos",
+        "RIP se convierte automáticamente en OSPF",
+        "La métrica sube a 255 pero siguen alcanzables"
+      ],
+      "answer": 0,
+      "explanation": "RIP usa el número de saltos como métrica y el máximo es 15; 16 significa inalcanzable. Por eso no es adecuado para redes grandes.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0305",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "Un router aprende la red 192.168.50.0/24 por OSPF (distancia administrativa 110) y también la tiene configurada como ruta estática (distancia administrativa 1). ¿Cuál usa?",
+      "options": ["La de OSPF", "La estática", "Ambas con balanceo de carga", "Ninguna, por conflicto"],
+      "answer": 1,
+      "explanation": "Entre rutas de distintas fuentes para el mismo prefijo gana la de menor distancia administrativa (más confiable). La estática (1) supera a OSPF (110).",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0306",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "En un cableado estructurado, una toma de pared queda a 95 m de cable permanente desde el cuarto de telecomunicaciones, además de 5 m de cordones. ¿Cumple el estándar?",
+      "options": [
+        "Sí, porque el total es de 100 m",
+        "Sí, UTP permite hasta 150 m",
+        "No: el cableado horizontal permanente se limita a 90 m (más 10 m de cordones)",
+        "Sí, siempre que sea Cat6a"
+      ],
+      "answer": 2,
+      "explanation": "El estándar TIA/EIA-568 permite 90 m de cable permanente más hasta 10 m de cordones. Con 95 m permanentes se excede, aunque el total sea de 100 m.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "red-adm-0401",
+      "lesson": "redes/administracion/04-monitoreo-diagnostico",
+      "text": "En una red monitoreada con SNMP, un router envía por iniciativa propia una alerta al gestor cuando una interfaz se cae. ¿Cómo se llama este mensaje?",
+      "options": ["Polling", "MIB", "Trap", "Ping"],
+      "answer": 2,
+      "explanation": "Un trap es una notificación espontánea que el agente SNMP envía al gestor. El polling es la consulta periódica del gestor y la MIB es la base de variables.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0402",
+      "lesson": "redes/administracion/04-monitoreo-diagnostico",
+      "text": "Las llamadas VoIP de una oficina se entrecortan cada vez que un usuario descarga un archivo muy grande. ¿Qué medida es la más adecuada?",
+      "options": [
+        "Aumentar el TTL de las respuestas DNS",
+        "Implementar QoS para priorizar el tráfico de voz",
+        "Cambiar de PAT a NAT estático",
+        "Eliminar las VLAN"
+      ],
+      "answer": 1,
+      "explanation": "QoS clasifica y prioriza el tráfico sensible a retardos (voz y video) sobre las descargas masivas. Los otros cambios no afectan la competencia por ancho de banda.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0403",
+      "lesson": "redes/administracion/04-monitoreo-diagnostico",
+      "text": "En una videollamada, el retardo de los paquetes varía de forma irregular entre 20 ms y 300 ms, lo que genera cortes y voces robóticas. ¿Qué métrica de red describe este problema?",
+      "options": ["Jitter", "Ancho de banda", "Disponibilidad", "Throughput máximo"],
+      "answer": 0,
+      "explanation": "El jitter es la variación de la latencia entre paquetes y afecta especialmente a la voz y al video en tiempo real.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0404",
+      "lesson": "redes/administracion/04-monitoreo-diagnostico",
+      "text": "Un administrador quiere saber en qué salto de la ruta hacia un servidor remoto se interrumpe la conectividad. ¿Qué herramienta utiliza?",
+      "options": ["nslookup", "ipconfig", "arp", "traceroute (tracert)"],
+      "answer": 3,
+      "explanation": "traceroute muestra la ruta salto a salto usando el campo TTL, por lo que indica dónde se corta la comunicación. nslookup es para DNS, ipconfig muestra la configuración local y arp la tabla IP–MAC.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0405",
+      "lesson": "redes/administracion/04-monitoreo-diagnostico",
+      "text": "Un técnico prueba desde un equipo: el ping a 127.0.0.1 responde, el ping a su propia IP responde, pero el ping a su gateway falla. ¿Dónde es más probable el problema?",
+      "options": [
+        "En el servidor DNS",
+        "Entre el equipo y su gateway (cable, puerto, VLAN o switch)",
+        "En la pila TCP/IP del propio equipo, que está corrupta",
+        "En el proveedor de Internet"
+      ],
+      "answer": 1,
+      "explanation": "Las pruebas locales funcionan, así que la pila TCP/IP está bien. La falla aparece al salir al gateway: capa física, puerto, VLAN o switch. El DNS y el ISP están más allá del gateway.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0406",
+      "lesson": "redes/administracion/04-monitoreo-diagnostico",
+      "text": "El ping a un servidor falla con 'tiempo de espera agotado', pero la página web de ese servidor carga correctamente. ¿Qué explicación es la más probable?",
+      "options": [
+        "El servidor está apagado",
+        "Hay un problema de DNS",
+        "El NAT está mal configurado",
+        "Un firewall bloquea el tráfico ICMP, aunque el servicio sigue activo"
+      ],
+      "answer": 3,
+      "explanation": "Muchos firewalls bloquean ICMP (ping). Que no responda al ping no implica que esté caído, y la página que sí carga demuestra que el servidor y la red funcionan.",
+      "difficulty": "media"
+    }
+  ]
+}
