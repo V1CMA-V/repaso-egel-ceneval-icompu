@@ -4,7 +4,7 @@
       "id": "hw-ele-0101",
       "lesson": "hardware/electronica/01-circuitos-dc",
       "text": "Un técnico alimenta con una fuente de 12 V un circuito formado por una resistencia de 4 Ω en serie con un arreglo en paralelo de 6 Ω y 3 Ω. Necesita saber cuánta corriente circula específicamente por la resistencia de 3 Ω. ¿Cuál es el valor correcto?",
-      "options": ["0.67 A", "1.33 A", "2.00 A", "4.00 A"],
+      "options": ["0.67 A", "1.33 A", "2.00 A"],
       "answer": 1,
       "explanation": "El paralelo equivale a (6·3)/(6+3) = 2 Ω, así que la resistencia total es 4 + 2 = 6 Ω y la corriente de la fuente es 12/6 = 2 A. Esos 2 A causan 4 V en el paralelo (2 A × 2 Ω), y por la rama de 3 Ω pasan 4/3 ≈ 1.33 A. Los 2.00 A son la corriente total (no la de la rama) y 0.67 A es la corriente de la rama de 6 Ω.",
       "difficulty": "media"
@@ -13,7 +13,7 @@
       "id": "hw-ele-0102",
       "lesson": "hardware/electronica/01-circuitos-dc",
       "text": "Un resistor de 100 Ω con potencia nominal de ½ W se usará en un circuito de DC. ¿Cuál es el voltaje continuo máximo que puede soportar entre sus terminales sin exceder su potencia nominal?",
-      "options": ["50 V", "5 V", "7.07 V", "70.7 V"],
+      "options": ["50 V", "5 V", "7.07 V"],
       "answer": 2,
       "explanation": "Con P = V²/R se despeja V = √(P·R) = √(0.5 × 100) = √50 ≈ 7.07 V. Los 50 V resultan de olvidar la raíz cuadrada (P·R sin raíz), y los 5 V serían la tensión con P = 0.25 W.",
       "difficulty": "media"
@@ -22,17 +22,17 @@
       "id": "hw-ele-0103",
       "lesson": "hardware/electronica/01-circuitos-dc",
       "text": "En un nodo de un circuito, un ingeniero mide dos corrientes que entran: 8 A y 3 A. Del nodo salen dos ramas: una de 5 A y otra con corriente desconocida Ix. Según la ley de corrientes de Kirchhoff, ¿cuál es el valor de Ix?",
-      "options": ["6 A", "10 A", "16 A", "0 A"],
+      "options": ["6 A", "10 A", "16 A"],
       "answer": 0,
-      "explanation": "Todo lo que entra debe salir: 8 + 3 = 5 + Ix, por lo tanto Ix = 6 A. 16 A suma solo las entradas, 10 A no cumple el balance (8 + 3 ≠ 5 + 10) y 0 A supone que todo se cancela, lo cual no ocurre.",
+      "explanation": "Todo lo que entra debe salir: 8 + 3 = 5 + Ix, por lo tanto Ix = 6 A. 16 A suma solo las entradas y 10 A no cumple el balance (8 + 3 ≠ 5 + 10).",
       "difficulty": "facil"
     },
     {
       "id": "hw-ele-0104",
       "lesson": "hardware/electronica/01-circuitos-dc",
       "text": "Un divisor de voltaje con R1 = 10 kΩ (arriba) y R2 = 20 kΩ (abajo) se alimenta con 9 V y, sin carga, entrega 6 V. Al conectar una carga de 20 kΩ en paralelo con R2, ¿qué voltaje aproximado habrá en la salida?",
-      "options": ["6.0 V", "3.0 V", "7.5 V", "4.5 V"],
-      "answer": 3,
+      "options": ["3.0 V", "7.5 V", "4.5 V"],
+      "answer": 2,
       "explanation": "La carga en paralelo con R2 deja una resistencia equivalente de 20k‖20k = 10 kΩ. Ahora el divisor es 10k/10k: Vout = 9 × 10/(10+10) = 4.5 V. Los 6 V ignoran el efecto de carga, y 3.0 V y 7.5 V no resultan de ninguna combinación correcta de estas resistencias.",
       "difficulty": "dificil"
     },
@@ -40,7 +40,7 @@
       "id": "hw-ele-0105",
       "lesson": "hardware/electronica/01-circuitos-dc",
       "text": "Un circuito RC con R = 10 kΩ y C = 100 µF se conecta a una fuente de DC con el capacitor inicialmente descargado. ¿Aproximadamente cuánto tiempo pasa para considerar que el capacitor ya está cargado (≈ 99 %)?",
-      "options": ["1 s", "5 s", "10 s", "0.5 s"],
+      "options": ["1 s", "5 s", "10 s"],
       "answer": 1,
       "explanation": "La constante de tiempo es τ = R·C = 10 000 Ω × 100×10⁻⁶ F = 1 s. Se considera estado estable después de 5τ = 5 s. En 1 s (1τ) solo se alcanza ≈ 63 %.",
       "difficulty": "media"
@@ -49,12 +49,7 @@
       "id": "hw-ele-0106",
       "lesson": "hardware/electronica/01-circuitos-dc",
       "text": "Una lámpara de 24 Ω está conectada a una batería de 12 V (0.5 A). Se conecta una segunda lámpara idéntica EN PARALELO con la primera. ¿Qué ocurre?",
-      "options": [
-        "La resistencia total baja a 12 Ω y la corriente de la batería se duplica a 1 A",
-        "La resistencia total sube a 48 Ω y la corriente baja a 0.25 A",
-        "La resistencia total es 12 Ω y la corriente de la batería se mantiene en 0.5 A",
-        "La resistencia total se mantiene en 24 Ω, pero cada lámpara recibe la mitad del voltaje"
-      ],
+      "options": ["La resistencia total baja a 12 Ω y la corriente de la batería se duplica a 1 A", "La resistencia total sube a 48 Ω y la corriente baja a 0.25 A", "La resistencia total es 12 Ω y la corriente de la batería se mantiene en 0.5 A"],
       "answer": 0,
       "explanation": "En paralelo, dos resistencias iguales dan R/2 = 12 Ω, y cada lámpara sigue viendo los 12 V completos (0.5 A cada una), así que la batería entrega 1 A. La opción de 48 Ω describe una conexión en serie.",
       "difficulty": "media"
@@ -63,35 +58,25 @@
       "id": "hw-ele-0201",
       "lesson": "hardware/electronica/02-semiconductores-amp-op",
       "text": "Se alimenta un LED rojo (VF = 1.8 V, corriente máxima 20 mA) desde una fuente de 5 V. El técnico solo tiene resistores de 100, 150, 220 y 330 Ω. ¿Cuál es el valor MÁS PEQUEÑO que mantiene la corriente por debajo de 20 mA?",
-      "options": ["100 Ω", "150 Ω", "220 Ω", "330 Ω"],
-      "answer": 2,
-      "explanation": "El valor ideal sería R = (5 − 1.8)/0.020 = 160 Ω. Con 150 Ω la corriente es 3.2/150 = 21.3 mA (excede el máximo) y con 100 Ω sería 32 mA. El menor valor disponible que no excede es 220 Ω (14.5 mA). 330 Ω también es seguro, pero no es el más pequeño.",
+      "options": ["150 Ω", "220 Ω", "330 Ω"],
+      "answer": 1,
+      "explanation": "El valor ideal sería R = (5 − 1.8)/0.020 = 160 Ω. Con 150 Ω la corriente es 3.2/150 = 21.3 mA (excede el máximo). El menor valor disponible que no excede es 220 Ω (14.5 mA). 330 Ω también es seguro, pero no es el más pequeño.",
       "difficulty": "dificil"
     },
     {
       "id": "hw-ele-0202",
       "lesson": "hardware/electronica/02-semiconductores-amp-op",
       "text": "En una fuente alimentada con la red de 60 Hz, un técnico sustituye un rectificador de media onda por un puente de onda completa con el mismo capacitor de filtro. ¿Qué cambio ocurre en el rizado y por qué mejora la fuente?",
-      "options": [
-        "La frecuencia del rizado sube de 60 a 120 Hz; el capacitor se recarga el doble de veces por ciclo y el rizado disminuye",
-        "La frecuencia del rizado baja de 120 a 60 Hz y el voltaje promedio se reduce a la mitad",
-        "La frecuencia se mantiene en 60 Hz, pero se elimina la caída de 0.7 V de los diodos",
-        "La frecuencia sube a 120 Hz, lo que aumenta el rizado porque el capacitor tiene menos tiempo para descargarse"
-      ],
+      "options": ["La frecuencia del rizado sube de 60 a 120 Hz; el capacitor se recarga el doble de veces por ciclo y el rizado disminuye", "La frecuencia se mantiene en 60 Hz, pero se elimina la caída de 0.7 V de los diodos", "La frecuencia sube a 120 Hz, lo que aumenta el rizado porque el capacitor tiene menos tiempo para descargarse"],
       "answer": 0,
-      "explanation": "El puente aprovecha ambos semiciclos, por lo que hay 120 picos por segundo. Al recargarse el capacitor con más frecuencia, descarga menos entre picos y el rizado baja. La última opción invierte la causa y el efecto, y el puente en realidad tiene dos diodos en conducción (≈ 1.4 V de caída).",
+      "explanation": "El puente aprovecha ambos semiciclos, por lo que hay 120 picos por segundo. Al recargarse el capacitor con más frecuencia, descarga menos entre picos y el rizado baja. La opción que dice que el rizado aumenta invierte la causa y el efecto, y el puente en realidad tiene dos diodos en conducción (≈ 1.4 V de caída), por lo que no elimina esa caída.",
       "difficulty": "media"
     },
     {
       "id": "hw-ele-0203",
       "lesson": "hardware/electronica/02-semiconductores-amp-op",
       "text": "Un transistor BJT NPN con β = 100 se usa con VCC = 12 V y RC = 10 kΩ. Se le inyecta una corriente de base de 20 µA. ¿En qué región opera y cuál es, aproximadamente, su corriente de colector?",
-      "options": [
-        "Región activa, IC = 2 mA",
-        "Saturación, IC ≈ 1.2 mA y VCE ≈ 0.2 V",
-        "Corte, IC ≈ 0 mA",
-        "Región activa, IC = 1.2 mA"
-      ],
+      "options": ["Región activa, IC = 2 mA", "Saturación, IC ≈ 1.2 mA y VCE ≈ 0.2 V", "Región activa, IC = 1.2 mA"],
       "answer": 1,
       "explanation": "β·IB daría 2 mA, pero la corriente máxima que permite el circuito es (12 − 0.2)/10 kΩ ≈ 1.18 mA. Como β·IB supera ese límite, el transistor se satura: IC se queda en ≈ 1.2 mA y VCE ≈ 0.2 V. Estar en región activa con 1.2 mA no es posible porque en activa IC = β·IB = 2 mA.",
       "difficulty": "dificil"
@@ -100,17 +85,17 @@
       "id": "hw-ele-0204",
       "lesson": "hardware/electronica/02-semiconductores-amp-op",
       "text": "Un amplificador operacional ideal se configura como inversor con Rin = 10 kΩ y Rf = 47 kΩ. Se le aplica Vin = +0.5 V y se alimenta con ±12 V. ¿Cuál es el voltaje de salida?",
-      "options": ["−2.35 V", "+2.35 V", "−0.106 V", "+5.7 V"],
+      "options": ["−2.35 V", "+2.35 V", "+5.7 V"],
       "answer": 0,
-      "explanation": "La ganancia del inversor es −Rf/Rin = −4.7, por lo que Vout = −4.7 × 0.5 = −2.35 V. +2.35 V olvida el signo, −0.106 V invierte la relación (usa Rin/Rf × Vin) y +5.7 V es la ganancia del no inversor (1 + Rf/Rin), ni siquiera multiplicada por Vin.",
+      "explanation": "La ganancia del inversor es −Rf/Rin = −4.7, por lo que Vout = −4.7 × 0.5 = −2.35 V. +2.35 V olvida el signo y +5.7 V es la ganancia del no inversor (1 + Rf/Rin), ni siquiera multiplicada por Vin.",
       "difficulty": "media"
     },
     {
       "id": "hw-ele-0205",
       "lesson": "hardware/electronica/02-semiconductores-amp-op",
       "text": "Un amp-op no inversor tiene Rf = 20 kΩ y Rg = 10 kΩ, y se alimenta con ±12 V. Si se aplica una entrada de +5 V, ¿qué salida se obtiene en la práctica?",
-      "options": ["+15 V", "+10 V", "+5 V", "Un valor limitado cercano a +12 V (saturación)"],
-      "answer": 3,
+      "options": ["+15 V", "+5 V", "Un valor limitado cercano a +12 V (saturación)"],
+      "answer": 2,
       "explanation": "La ganancia es 1 + 20k/10k = 3, que teóricamente daría 15 V. Pero la salida no puede exceder la alimentación, así que el amp-op satura cerca de +12 V (un poco menos en un amp-op real) y recorta la señal.",
       "difficulty": "media"
     },
@@ -118,8 +103,8 @@
       "id": "hw-ele-0206",
       "lesson": "hardware/electronica/02-semiconductores-amp-op",
       "text": "Una fuente de 5 V alimenta una resistencia de 1 kΩ en serie con DOS diodos de silicio en serie, ambos polarizados en directa. ¿Qué corriente circula?",
-      "options": ["5.0 mA", "4.3 mA", "0 mA, los diodos bloquean", "3.6 mA"],
-      "answer": 3,
+      "options": ["5.0 mA", "4.3 mA", "3.6 mA"],
+      "answer": 2,
       "explanation": "Cada diodo conductor de silicio cae ≈ 0.7 V, por lo que los dos caen 1.4 V. La resistencia ve 5 − 1.4 = 3.6 V y la corriente es 3.6 mA. 4.3 mA considera un solo diodo y 5 mA ignora los diodos.",
       "difficulty": "media"
     },
@@ -127,8 +112,8 @@
       "id": "hw-ele-0301",
       "lesson": "hardware/electronica/03-algebra-boole-mapas-k",
       "text": "Una alarma se activa según F = AB + AB' + A'B, donde A y B son sensores. ¿Cuál es la expresión mínima equivalente?",
-      "options": ["A · B", "A + B", "A' + B", "A ⊕ B"],
-      "answer": 1,
+      "options": ["A + B", "A · B", "A ⊕ B"],
+      "answer": 0,
       "explanation": "AB + AB' = A(B + B') = A, y entonces F = A + A'B = A + B (regla A + A'B = A + B). Es una OR, no XOR: la XOR no se activa cuando ambos sensores valen 1, pero F sí.",
       "difficulty": "media"
     },
@@ -136,7 +121,7 @@
       "id": "hw-ele-0302",
       "lesson": "hardware/electronica/03-algebra-boole-mapas-k",
       "text": "Aplicando el teorema de De Morgan, ¿a qué es equivalente la función (A·B' + C)'?",
-      "options": ["(A' + B) · C'", "A' · B + C'", "(A + B') · C'", "A' · B · C'"],
+      "options": ["(A' + B) · C'", "A' · B + C'", "(A + B') · C'"],
       "answer": 0,
       "explanation": "(X + C)' = X' · C', con X = A·B'. Y (A·B')' = A' + B'' = A' + B. Entonces el resultado es (A' + B)·C'. Las otras opciones cambian mal los operadores o no complementan todas las variables.",
       "difficulty": "dificil"
@@ -145,7 +130,7 @@
       "id": "hw-ele-0303",
       "lesson": "hardware/electronica/03-algebra-boole-mapas-k",
       "text": "En un mapa de Karnaugh de 4 variables (A, B, C, D) se tiene F = Σm(0, 2, 8, 10). ¿Cuál es la expresión mínima?",
-      "options": ["A'C'", "BD", "B'D'", "A'B'C'D'"],
+      "options": ["A'C'", "BD", "B'D'"],
       "answer": 2,
       "explanation": "Los minitérminos 0, 2, 8 y 10 son las cuatro esquinas del mapa, que son adyacentes (el mapa es cíclico). En ese grupo A y C cambian (se eliminan), mientras B y D son siempre 0, por lo que F = B'D'.",
       "difficulty": "media"
@@ -154,8 +139,8 @@
       "id": "hw-ele-0304",
       "lesson": "hardware/electronica/03-algebra-boole-mapas-k",
       "text": "Si solo se dispone de compuertas NAND de dos entradas, ¿cuál es el número MÍNIMO necesario para construir una compuerta OR de dos entradas?",
-      "options": ["4", "3", "2", "1"],
-      "answer": 1,
+      "options": ["3", "2", "1"],
+      "answer": 0,
       "explanation": "Por De Morgan, A + B = (A'·B')'. Se necesitan dos NAND con las entradas unidas para generar A' y B' (actúan como NOT) y una tercera NAND que combine A' y B'. En total son 3.",
       "difficulty": "media"
     },
@@ -163,12 +148,7 @@
       "id": "hw-ele-0305",
       "lesson": "hardware/electronica/03-algebra-boole-mapas-k",
       "text": "Un circuito generador de paridad usa una XOR de tres entradas (A ⊕ B ⊕ C). Si las entradas son A = 1, B = 1 y C = 0, ¿qué salida produce y qué indica?",
-      "options": [
-        "1, indica una cantidad impar de unos",
-        "0, indica una cantidad par de unos",
-        "1, indica una cantidad par de unos",
-        "0, indica que las tres entradas son diferentes"
-      ],
+      "options": ["1, indica una cantidad impar de unos", "0, indica una cantidad par de unos", "0, indica que las tres entradas son diferentes"],
       "answer": 1,
       "explanation": "1 ⊕ 1 = 0 y 0 ⊕ 0 = 0. La XOR de varias entradas vale 1 solo si hay un número impar de unos; aquí hay dos unos (par), así que la salida es 0.",
       "difficulty": "media"
@@ -177,7 +157,7 @@
       "id": "hw-ele-0306",
       "lesson": "hardware/electronica/03-algebra-boole-mapas-k",
       "text": "Una función de 3 variables (A MSB, B, C) tiene minitérminos m1, m3 y m7 con valor 1, y la combinación 101 (m5) es una condición 'no importa'. ¿Cuál es la expresión mínima aprovechando la condición?",
-      "options": ["A'C + BC", "B + C", "C", "A' + C"],
+      "options": ["A'C + BC", "B + C", "C"],
       "answer": 2,
       "explanation": "Si se toma el 'no importa' m5 como 1, se forma un grupo de 4 con m1, m3, m5 y m7, todos con C = 1, y la función se reduce a F = C. Sin usar la condición habría que dejar A'C + BC. B + C incluiría minitérminos que deben valer 0.",
       "difficulty": "dificil"
@@ -186,8 +166,8 @@
       "id": "hw-ele-0401",
       "lesson": "hardware/electronica/04-logica-combinacional-secuencial",
       "text": "Un sistema debe seleccionar una de 12 fuentes de datos con un solo multiplexor. ¿Cuántas líneas de selección se requieren como mínimo?",
-      "options": ["3", "12", "6", "4"],
-      "answer": 3,
+      "options": ["12", "6", "4"],
+      "answer": 2,
       "explanation": "Con n líneas de selección se eligen 2ⁿ entradas. 2³ = 8 no alcanza para 12, pero 2⁴ = 16 sí. Se necesitan 4 selectores (un MUX 16:1 con 4 entradas sin usar).",
       "difficulty": "media"
     },
@@ -195,12 +175,7 @@
       "id": "hw-ele-0402",
       "lesson": "hardware/electronica/04-logica-combinacional-secuencial",
       "text": "Un flip-flop JK con J = K = 1, disparado por flanco de bajada, inicia con Q = 0. Se aplican 5 pulsos completos de reloj. ¿Cuál es el estado final de Q y cómo es la frecuencia de la salida respecto a la del reloj?",
-      "options": [
-        "Q = 0 y la salida tiene la misma frecuencia que el reloj",
-        "Q = 1 y la salida tiene la mitad de la frecuencia del reloj",
-        "Q = 1 y la salida tiene la misma frecuencia que el reloj",
-        "Q = 0 y la salida tiene la mitad de la frecuencia"
-      ],
+      "options": ["Q = 0 y la salida tiene la misma frecuencia que el reloj", "Q = 1 y la salida tiene la mitad de la frecuencia del reloj", "Q = 1 y la salida tiene la misma frecuencia que el reloj"],
       "answer": 1,
       "explanation": "Con J = K = 1 el flip-flop invierte su salida en cada flanco activo (toggle). Tras 5 flancos, Q cambió 5 veces: 0→1→0→1→0→1, así que Q = 1. Como Q cambia una vez por pulso pero tarda dos pulsos en completar un ciclo, su frecuencia es la mitad de la del reloj.",
       "difficulty": "media"
@@ -209,8 +184,8 @@
       "id": "hw-ele-0403",
       "lesson": "hardware/electronica/04-logica-combinacional-secuencial",
       "text": "Tres flip-flops tipo T (T = 1) se conectan en cascada asíncrona, y el reloj del primero es de 16 kHz. ¿Cuál es la frecuencia de la salida del tercer flip-flop?",
-      "options": ["4 kHz", "1 kHz", "2 kHz", "8 kHz"],
-      "answer": 2,
+      "options": ["2 kHz", "4 kHz", "8 kHz"],
+      "answer": 0,
       "explanation": "Cada flip-flop T divide la frecuencia entre 2. Tras tres etapas la división es 2³ = 8: 16 kHz / 8 = 2 kHz. 8 kHz es la salida del primero, 4 kHz la del segundo.",
       "difficulty": "facil"
     },
@@ -218,12 +193,7 @@
       "id": "hw-ele-0404",
       "lesson": "hardware/electronica/04-logica-combinacional-secuencial",
       "text": "Se diseña un contador de décadas que cuenta de 0 a 9 y regresa a 0. ¿Cuál afirmación describe correctamente su implementación?",
-      "options": [
-        "Usa 3 flip-flops y reinicia al detectar 1001",
-        "Usa 4 flip-flops y reinicia al detectar el estado 1010 (diez)",
-        "Usa 4 flip-flops y reinicia al detectar 1111",
-        "Usa 10 flip-flops, uno por cada estado"
-      ],
+      "options": ["Usa 3 flip-flops y reinicia al detectar 1001", "Usa 4 flip-flops y reinicia al detectar el estado 1010 (diez)", "Usa 10 flip-flops, uno por cada estado"],
       "answer": 1,
       "explanation": "Para 10 estados hacen falta ⌈log₂10⌉ = 4 flip-flops (3 solo dan 8 estados). El contador natural llegaría a 15, así que se detecta el estado 1010 (decimal 10) y se fuerza el borrado asíncrono para volver a 0000. La opción de 10 flip-flops describe un contador en anillo, que no es lo mínimo.",
       "difficulty": "media"
@@ -232,13 +202,8 @@
       "id": "hw-ele-0405",
       "lesson": "hardware/electronica/04-logica-combinacional-secuencial",
       "text": "Un sumador de 4 bits que trabaja en complemento a 2 recibe A = 0111 y B = 0101. Entrega 1100 con acarreo final C4 = 0. ¿Cuál es la interpretación correcta?",
-      "options": [
-        "El resultado es −4 y es correcto",
-        "El resultado es 12 y es correcto, porque el acarreo final es 0",
-        "Hay desbordamiento: la suma de dos positivos (7 + 5) produjo un resultado con signo negativo",
-        "Hay desbordamiento porque el acarreo final fue 1"
-      ],
-      "answer": 2,
+      "options": ["Hay desbordamiento: la suma de dos positivos (7 + 5) produjo un resultado con signo negativo", "El resultado es −4 y es correcto", "Hay desbordamiento porque el acarreo final fue 1"],
+      "answer": 0,
       "explanation": "En 4 bits con signo el rango es −8 a +7, y 7 + 5 = 12 no cabe. El resultado 1100 se interpretaría como −4, lo cual es incorrecto. El desbordamiento se detecta porque dos operandos positivos dieron signo negativo, no por el acarreo final (que aquí es 0).",
       "difficulty": "dificil"
     },
@@ -246,13 +211,8 @@
       "id": "hw-ele-0406",
       "lesson": "hardware/electronica/04-logica-combinacional-secuencial",
       "text": "Un detector de secuencia debe activar su salida en el mismo ciclo de reloj en que llega el último bit de la secuencia, usando la menor cantidad posible de estados. ¿Qué modelo de máquina de estados conviene?",
-      "options": [
-        "Un latch D transparente",
-        "Moore, porque la salida solo depende del estado",
-        "Un registro de desplazamiento sin lógica adicional",
-        "Mealy, porque la salida depende del estado y de la entrada actual"
-      ],
-      "answer": 3,
+      "options": ["Un latch D transparente", "Moore, porque la salida solo depende del estado", "Mealy, porque la salida depende del estado y de la entrada actual"],
+      "answer": 2,
       "explanation": "En Mealy la salida es función del estado y de la entrada actual, por lo que puede reaccionar en el mismo ciclo en que llega el bit y suele requerir menos estados. En Moore la salida solo cambia al cambiar de estado, es decir, un ciclo después.",
       "difficulty": "media"
     },
@@ -260,21 +220,16 @@
       "id": "hw-ele-0501",
       "lesson": "hardware/electronica/05-corriente-alterna-filtros",
       "text": "Un osciloscopio conectado a la toma de 127 V RMS de la red muestra una señal senoidal. ¿Cuál es, aproximadamente, su voltaje pico?",
-      "options": ["127 V", "179.6 V", "254 V", "89.8 V"],
-      "answer": 1,
-      "explanation": "Vp = Vrms × √2 = 127 × 1.414 ≈ 179.6 V. Los 127 V son el valor eficaz (RMS), 254 V sería el doble y 89.8 V resulta de dividir en lugar de multiplicar por √2.",
+      "options": ["179.6 V", "127 V", "89.8 V"],
+      "answer": 0,
+      "explanation": "Vp = Vrms × √2 = 127 × 1.414 ≈ 179.6 V. Los 127 V son el valor eficaz (RMS) y 89.8 V resulta de dividir en lugar de multiplicar por √2.",
       "difficulty": "facil"
     },
     {
       "id": "hw-ele-0502",
       "lesson": "hardware/electronica/05-corriente-alterna-filtros",
       "text": "Un filtro RC pasa bajas (salida tomada en el capacitor) tiene una frecuencia de corte de 1 kHz (R = 1.59 kΩ, C = 100 nF). Se le aplica una mezcla de una señal de 100 Hz y otra de 10 kHz. ¿Qué ocurre a la salida?",
-      "options": [
-        "La de 100 Hz pasa casi intacta y la de 10 kHz sale muy atenuada",
-        "La de 100 Hz se atenúa y la de 10 kHz pasa casi intacta",
-        "Ambas se atenúan por igual",
-        "Ambas pasan sin cambios porque están lejos de la frecuencia de corte"
-      ],
+      "options": ["La de 100 Hz pasa casi intacta y la de 10 kHz sale muy atenuada", "La de 100 Hz se atenúa y la de 10 kHz pasa casi intacta", "Ambas pasan sin cambios porque están lejos de la frecuencia de corte"],
       "answer": 0,
       "explanation": "Un pasa bajas deja pasar frecuencias menores a fc y atenúa las mayores. La de 100 Hz está una década por debajo de fc (casi sin atenuación) y la de 10 kHz una década por encima (fuertemente atenuada). fc = 1/(2π·1590·10⁻⁷) ≈ 1 kHz.",
       "difficulty": "media"
@@ -283,7 +238,7 @@
       "id": "hw-ele-0503",
       "lesson": "hardware/electronica/05-corriente-alterna-filtros",
       "text": "Un capacitor de 1 µF se conecta a una fuente senoidal de 1 kHz. ¿Qué reactancia capacitiva aproximada presenta?",
-      "options": ["1000 Ω", "159 Ω", "6.28 Ω", "0.159 Ω"],
+      "options": ["1000 Ω", "159 Ω", "6.28 Ω"],
       "answer": 1,
       "explanation": "Xc = 1/(2πfC) = 1/(2π × 1000 × 10⁻⁶) ≈ 159 Ω. Las otras opciones resultan de errores de prefijo (µ) o de usar 2πfC en el numerador.",
       "difficulty": "media"
@@ -292,7 +247,7 @@
       "id": "hw-ele-0504",
       "lesson": "hardware/electronica/05-corriente-alterna-filtros",
       "text": "Un transformador ideal reductor convierte 127 V a 12.7 V y alimenta una carga resistiva de 10 Ω. ¿Qué corriente circula por el primario?",
-      "options": ["1.27 A", "12.7 A", "0.127 A", "0.0127 A"],
+      "options": ["1.27 A", "12.7 A", "0.127 A"],
       "answer": 2,
       "explanation": "En el secundario Is = 12.7/10 = 1.27 A. Como la potencia se conserva (V·I igual en ambos lados) y el voltaje es 10 veces mayor en el primario, la corriente es 10 veces menor: 0.127 A. 1.27 A es la corriente del secundario.",
       "difficulty": "media"
@@ -301,12 +256,7 @@
       "id": "hw-ele-0505",
       "lesson": "hardware/electronica/05-corriente-alterna-filtros",
       "text": "Un capacitor se coloca en serie con la señal de audio que entra a un amplificador. ¿Cuál es su función?",
-      "options": [
-        "Actuar como filtro pasa altas: bloquea el nivel DC y deja pasar la señal de audio (AC)",
-        "Actuar como filtro pasa bajas para eliminar los agudos",
-        "Rectificar la señal de audio",
-        "Regular el voltaje de alimentación del amplificador"
-      ],
+      "options": ["Actuar como filtro pasa altas: bloquea el nivel DC y deja pasar la señal de audio (AC)", "Actuar como filtro pasa bajas para eliminar los agudos", "Rectificar la señal de audio"],
       "answer": 0,
       "explanation": "Un capacitor en serie es un acoplamiento: se comporta como circuito abierto en DC y deja pasar la AC por encima de su frecuencia de corte, es decir, un pasa altas. No rectifica ni regula.",
       "difficulty": "facil"
@@ -315,12 +265,7 @@
       "id": "hw-ele-0506",
       "lesson": "hardware/electronica/05-corriente-alterna-filtros",
       "text": "Para eliminar ruido de alta frecuencia en una línea de alimentación se coloca un inductor en serie y un capacitor en paralelo con la carga. ¿Por qué funciona?",
-      "options": [
-        "La reactancia del inductor baja con la frecuencia y la del capacitor sube",
-        "La reactancia del inductor sube con la frecuencia (bloquea el ruido) y la del capacitor baja con ella (lo deriva a tierra)",
-        "Ambos componentes bloquean únicamente la corriente directa",
-        "Ambos componentes amplifican el ruido para que sea fácil de filtrar después"
-      ],
+      "options": ["La reactancia del inductor baja con la frecuencia y la del capacitor sube", "La reactancia del inductor sube con la frecuencia (bloquea el ruido) y la del capacitor baja con ella (lo deriva a tierra)", "Ambos componentes amplifican el ruido para que sea fácil de filtrar después"],
       "answer": 1,
       "explanation": "XL = 2πfL crece con f, por lo que el inductor en serie se opone al ruido rápido. XC = 1/(2πfC) decrece con f, por lo que el capacitor en paralelo presenta un camino fácil a tierra para esas frecuencias. El DC pasa sin problema.",
       "difficulty": "media"

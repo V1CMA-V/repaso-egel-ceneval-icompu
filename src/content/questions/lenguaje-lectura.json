@@ -5,13 +5,8 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
       "text": "¿Cuál es la idea principal del texto?",
-      "options": [
-        "Los paneles solares ya son la fuente de energía más barata del mundo.",
-        "La energía solar se ha abaratado, pero su expansión depende también de resolver el almacenamiento.",
-        "La energía solar no funciona de noche, por lo que no es útil.",
-        "Los combustibles importados dejarán de usarse en pocos años."
-      ],
-      "answer": 1,
+      "options": ["La energía solar se ha abaratado, pero su expansión depende también de resolver el almacenamiento.", "La energía solar no funciona de noche, por lo que no es útil.", "Los combustibles importados dejarán de usarse en pocos años."],
+      "answer": 0,
       "explanation": "El texto plantea un avance (menor costo) y una limitación (intermitencia y almacenamiento costoso), y concluye que la expansión depende de ambos factores. Las demás opciones generalizan o agregan información que el texto no sostiene.",
       "difficulty": "media"
     },
@@ -20,7 +15,7 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
       "text": "En el texto, la expresión «No obstante» introduce una relación de:",
-      "options": ["Causa", "Ejemplo", "Contraste", "Consecuencia"],
+      "options": ["Causa", "Ejemplo", "Contraste"],
       "answer": 2,
       "explanation": "«No obstante» anuncia una idea que se opone a la anterior: después de mencionar las ventajas del abaratamiento, introduce una limitación. Es un conector de contraste, equivalente a «sin embargo».",
       "difficulty": "facil"
@@ -30,13 +25,8 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
       "text": "¿Qué se puede inferir del texto?",
-      "options": [
-        "Las baterías actuales ya son baratas y abundantes.",
-        "Los países con pocos recursos no pueden usar energía solar.",
-        "Los especialistas rechazan la energía solar por su costo.",
-        "Sin sistemas de almacenamiento, la energía solar no puede cubrir la demanda cuando no hay sol."
-      ],
-      "answer": 3,
+      "options": ["Las baterías actuales ya son baratas y abundantes.", "Los especialistas rechazan la energía solar por su costo.", "Sin sistemas de almacenamiento, la energía solar no puede cubrir la demanda cuando no hay sol."],
+      "answer": 2,
       "explanation": "Si la fuente no produce de noche ni en días nublados y requiere almacenamiento, se infiere que sin él no puede abastecer la demanda en esos momentos. Las otras opciones contradicen el texto o afirman lo que no dice.",
       "difficulty": "media"
     },
@@ -45,13 +35,8 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
       "text": "En el texto, la palabra «intermitencia» significa:",
-      "options": [
-        "Ser constante y estable",
-        "Producirse con interrupciones",
-        "Ser costoso de instalar",
-        "Contaminar el ambiente"
-      ],
-      "answer": 1,
+      "options": ["Producirse con interrupciones", "Ser costoso de instalar", "Contaminar el ambiente"],
+      "answer": 0,
       "explanation": "El propio texto lo aclara con el guion: «no produce energía de noche ni en días nublados». Intermitencia es producirse con interrupciones. Se deduce por contexto.",
       "difficulty": "facil"
     },
@@ -60,13 +45,8 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Un estudio de la universidad reveló que el 62 % de los estudiantes utiliza su teléfono para leer; sin duda, los libros impresos están condenados a desaparecer. Quienes todavía los compran son simples nostálgicos.",
       "text": "La afirmación «los libros impresos están condenados a desaparecer» es:",
-      "options": [
-        "Un dato estadístico",
-        "Un hecho comprobable",
-        "Una opinión que generaliza sin sustento suficiente",
-        "Una definición"
-      ],
-      "answer": 2,
+      "options": ["Un dato estadístico", "Una opinión que generaliza sin sustento suficiente", "Una definición"],
+      "answer": 1,
       "explanation": "El dato (62 %) solo muestra una preferencia de lectura; el autor concluye algo mucho mayor (la desaparición de los libros) sin evidencia: es una opinión. La marca «sin duda» refuerza su carácter valorativo.",
       "difficulty": "media"
     },
@@ -75,12 +55,7 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Un estudio de la universidad reveló que el 62 % de los estudiantes utiliza su teléfono para leer; sin duda, los libros impresos están condenados a desaparecer. Quienes todavía los compran son simples nostálgicos.",
       "text": "La oración «Quienes todavía los compran son simples nostálgicos» incurre en una falacia de tipo:",
-      "options": [
-        "Descalificación de las personas en lugar de refutar el argumento (ad hominem)",
-        "Falsa causa",
-        "Apelación a la autoridad",
-        "Falso dilema"
-      ],
+      "options": ["Descalificación de las personas en lugar de refutar el argumento (ad hominem)", "Falsa causa", "Falso dilema"],
       "answer": 0,
       "explanation": "En lugar de dar razones, el autor etiqueta de «nostálgicos» a quienes piensan distinto, es decir, ataca a las personas y no al argumento: ad hominem.",
       "difficulty": "media"
@@ -90,12 +65,7 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Propongo que la universidad elimine los exámenes finales. Primero, generan un estrés excesivo: el 70 % de los estudiantes encuestados dijo dormir menos de cinco horas en época de exámenes. Segundo, un solo examen no refleja el aprendizaje de todo un semestre. Por último, mis amigos que no estudian siempre reprueban, así que es claro que los exámenes solo castigan a los flojos.",
       "text": "¿Cuál es la tesis del autor?",
-      "options": [
-        "Los exámenes finales producen estrés.",
-        "La universidad debería eliminar los exámenes finales.",
-        "Los estudiantes duermen poco en época de exámenes.",
-        "Los exámenes castigan únicamente a los flojos."
-      ],
+      "options": ["Los exámenes finales producen estrés.", "La universidad debería eliminar los exámenes finales.", "Los exámenes castigan únicamente a los flojos."],
       "answer": 1,
       "explanation": "La tesis es la postura que se defiende: «la universidad elimine los exámenes finales». Las otras opciones son razones o datos que la apoyan.",
       "difficulty": "facil"
@@ -105,13 +75,8 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Propongo que la universidad elimine los exámenes finales. Primero, generan un estrés excesivo: el 70 % de los estudiantes encuestados dijo dormir menos de cinco horas en época de exámenes. Segundo, un solo examen no refleja el aprendizaje de todo un semestre. Por último, mis amigos que no estudian siempre reprueban, así que es claro que los exámenes solo castigan a los flojos.",
       "text": "¿Cuál es el argumento más débil del texto?",
-      "options": [
-        "El 70 % de los encuestados duerme menos de cinco horas.",
-        "Un solo examen no refleja el aprendizaje de todo el semestre.",
-        "Los exámenes finales generan estrés excesivo.",
-        "Sus amigos que no estudian siempre reprueban."
-      ],
-      "answer": 3,
+      "options": ["El 70 % de los encuestados duerme menos de cinco horas.", "Los exámenes finales generan estrés excesivo.", "Sus amigos que no estudian siempre reprueban."],
+      "answer": 2,
       "explanation": "Se apoya en una experiencia anecdótica (unos amigos) y generaliza a todos los exámenes (generalización apresurada); además, no tiene relación directa con la tesis. Los demás argumentos usan datos o razones pertinentes.",
       "difficulty": "media"
     },
@@ -120,13 +85,8 @@
       "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
       "passage": "Propongo que la universidad elimine los exámenes finales. Primero, generan un estrés excesivo: el 70 % de los estudiantes encuestados dijo dormir menos de cinco horas en época de exámenes. Segundo, un solo examen no refleja el aprendizaje de todo un semestre. Por último, mis amigos que no estudian siempre reprueban, así que es claro que los exámenes solo castigan a los flojos.",
       "text": "En el texto, la expresión «Por último» sirve para:",
-      "options": [
-        "Marcar un contraste con lo anterior",
-        "Introducir el último argumento de una serie ordenada",
-        "Expresar causa",
-        "Dar un ejemplo"
-      ],
-      "answer": 1,
+      "options": ["Introducir el último argumento de una serie ordenada", "Expresar causa", "Dar un ejemplo"],
+      "answer": 0,
       "explanation": "«Primero», «Segundo» y «Por último» son conectores de orden: enumeran los argumentos y «Por último» presenta el tercero y final.",
       "difficulty": "facil"
     },
@@ -135,8 +95,8 @@
       "lesson": "lenguaje/lectura/02-tipos-de-texto",
       "passage": "La novela «Ceniza y mar» narra la vuelta de una mujer a su pueblo natal tras veinte años de ausencia y el descubrimiento de un secreto familiar. Aunque el final resulta apresurado, la prosa luminosa y la construcción de los personajes la convierten en una lectura imprescindible para quienes disfrutan de la narrativa íntima.",
       "text": "¿Qué tipo de texto es el fragmento anterior?",
-      "options": ["Nota informativa", "Ensayo", "Reseña", "Convocatoria"],
-      "answer": 2,
+      "options": ["Ensayo", "Reseña", "Convocatoria"],
+      "answer": 1,
       "explanation": "Resume la obra y además emite un juicio de valor («final apresurado», «lectura imprescindible»). Resumir y valorar es lo característico de una reseña.",
       "difficulty": "facil"
     },
@@ -145,13 +105,8 @@
       "lesson": "lenguaje/lectura/02-tipos-de-texto",
       "passage": "Ayer por la mañana, un incendio en una bodega de la colonia Centro, en Puebla, dejó tres personas heridas y daños por 2 millones de pesos, informó Protección Civil. Las llamas se originaron por un cortocircuito, según los primeros peritajes. Los bomberos tardaron tres horas en controlar el fuego. La bodega almacenaba material de papelería.",
       "text": "¿Qué tipo de texto es y cómo se organiza su información?",
-      "options": [
-        "Reportaje; en orden cronológico con testimonios",
-        "Ensayo; con la tesis al final",
-        "Cuento; con nudo y desenlace",
-        "Nota informativa; con lo más importante al inicio (pirámide invertida)"
-      ],
-      "answer": 3,
+      "options": ["Ensayo; con la tesis al final", "Cuento; con nudo y desenlace", "Nota informativa; con lo más importante al inicio (pirámide invertida)"],
+      "answer": 2,
       "explanation": "El primer párrafo responde qué, quién, cuándo, dónde y cuánto, y los detalles posteriores son secundarios: es una nota informativa con estructura de pirámide invertida.",
       "difficulty": "facil"
     },
@@ -160,13 +115,8 @@
       "lesson": "lenguaje/lectura/02-tipos-de-texto",
       "passage": "La Facultad de Ingeniería convoca a estudiantes de los dos últimos semestres a participar en el concurso de prototipos. Requisitos: promedio mínimo de 8.0, equipos de 3 a 5 integrantes y registro en línea del 3 al 14 de noviembre. No se aceptarán registros extemporáneos ni equipos con integrantes de otras facultades. Los resultados se publicarán el 25 de noviembre.",
       "text": "¿Cuál de los siguientes equipos sería excluido del concurso?",
-      "options": [
-        "Un equipo de 3 integrantes registrado el 14 de noviembre",
-        "Un equipo de 5 integrantes con promedio mínimo de 8.0",
-        "Un equipo de 4 estudiantes de último semestre registrado el 3 de noviembre",
-        "Un equipo de 4 integrantes, uno de los cuales es de otra facultad"
-      ],
-      "answer": 3,
+      "options": ["Un equipo de 3 integrantes registrado el 14 de noviembre", "Un equipo de 5 integrantes con promedio mínimo de 8.0", "Un equipo de 4 integrantes, uno de los cuales es de otra facultad"],
+      "answer": 2,
       "explanation": "La convocatoria prohíbe equipos con integrantes de otras facultades. Los demás equipos cumplen el tamaño, el promedio y las fechas de registro (el 14 de noviembre aún está dentro del plazo).",
       "difficulty": "media"
     },
@@ -175,13 +125,8 @@
       "lesson": "lenguaje/lectura/02-tipos-de-texto",
       "passage": "La velocidad con que consumimos noticias nos ha vuelto lectores impacientes. Sostengo que esta urgencia no nos informa mejor, sino que empobrece nuestra capacidad de análisis: quien lee solo titulares renuncia a comprender los contextos. Basta observar cuántas discusiones públicas se resuelven con una frase ingeniosa y no con una razón. Por ello, conviene recuperar la lectura pausada.",
       "text": "¿Cuál es la tesis del autor?",
-      "options": [
-        "Es necesario leer únicamente los titulares.",
-        "Las discusiones públicas se resuelven con frases ingeniosas.",
-        "La urgencia con que consumimos noticias empobrece nuestra capacidad de análisis.",
-        "Hay que ver menos televisión."
-      ],
-      "answer": 2,
+      "options": ["La urgencia con que consumimos noticias empobrece nuestra capacidad de análisis.", "Las discusiones públicas se resuelven con frases ingeniosas.", "Hay que ver menos televisión."],
+      "answer": 0,
       "explanation": "La tesis está introducida por «Sostengo que…»: la urgencia al consumir noticias empobrece el análisis. La observación sobre las discusiones públicas es un argumento que la apoya.",
       "difficulty": "media"
     },
@@ -189,7 +134,7 @@
       "id": "len-lec-0205",
       "lesson": "lenguaje/lectura/02-tipos-de-texto",
       "text": "En un artículo de investigación, ¿en qué sección se presentan los hallazgos obtenidos del estudio?",
-      "options": ["Resultados", "Introducción", "Método", "Referencias"],
+      "options": ["Resultados", "Introducción", "Método"],
       "answer": 0,
       "explanation": "La sección de Resultados expone los datos y hallazgos. La Introducción plantea el problema, el Método describe cómo se hizo el estudio y la Discusión interpreta los resultados.",
       "difficulty": "facil"
@@ -199,13 +144,8 @@
       "lesson": "lenguaje/lectura/02-tipos-de-texto",
       "passage": "Cuando Marta abrió la puerta, supo que algo no estaba bien. La casa olía a café recién hecho, pero su madre había muerto hacía un año. Recorrió el pasillo con las manos temblorosas mientras el reloj, detenido desde aquel invierno, marcaba de pronto las seis.",
       "text": "¿Qué tipo de narrador tiene el texto?",
-      "options": [
-        "Narrador en primera persona, que es la protagonista",
-        "Narrador en segunda persona, que se dirige a Marta",
-        "Narrador testigo, que cuenta lo que vio",
-        "Narrador en tercera persona, que conoce lo que siente el personaje"
-      ],
-      "answer": 3,
+      "options": ["Narrador en primera persona, que es la protagonista", "Narrador en segunda persona, que se dirige a Marta", "Narrador en tercera persona, que conoce lo que siente el personaje"],
+      "answer": 2,
       "explanation": "El narrador usa la tercera persona («Marta abrió», «supo») y conoce los pensamientos del personaje («supo que algo no estaba bien»), por lo que es un narrador externo omnisciente.",
       "difficulty": "media"
     },
@@ -213,15 +153,460 @@
       "id": "len-lec-0207",
       "lesson": "lenguaje/lectura/02-tipos-de-texto",
       "text": "¿En qué se diferencia una reseña de un resumen?",
-      "options": [
-        "La reseña evita cualquier valoración",
-        "La reseña solo contiene los datos de la ficha de la obra",
-        "La reseña, además de sintetizar el contenido, incluye una valoración crítica",
-        "La reseña no describe el contenido de la obra"
-      ],
-      "answer": 2,
+      "options": ["La reseña solo contiene los datos de la ficha de la obra", "La reseña, además de sintetizar el contenido, incluye una valoración crítica", "La reseña no describe el contenido de la obra"],
+      "answer": 1,
       "explanation": "El resumen únicamente condensa; la reseña condensa y además valora la obra (la recomienda o la critica).",
       "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0301",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Reseña de «Aprender a aprender en la universidad» (M. Salazar, 2021). El libro reúne siete capítulos sobre técnicas de estudio respaldadas por la investigación en psicología cognitiva. Su mayor virtud es que cada técnica, como la práctica espaciada o la autoevaluación, se acompaña de un experimento que explica por qué funciona. Sin embargo, la autora dedica poco espacio a las dificultades de los estudiantes que trabajan y estudian a la vez, lo que limita la aplicabilidad de algunas propuestas. Pese a esa carencia, el texto resulta una lectura útil para quienes deseen mejorar sus hábitos de estudio con bases científicas.",
+      "text": "¿Qué acompaña a cada técnica de estudio en el libro reseñado?",
+      "options": ["Un experimento que explica por qué funciona", "Un ejercicio práctico para resolver en casa", "Un testimonio de estudiantes exitosos"],
+      "answer": 0,
+      "explanation": "El texto dice que cada técnica «se acompaña de un experimento que explica por qué funciona». Los ejercicios y los testimonios no se mencionan.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0302",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Reseña de «Aprender a aprender en la universidad» (M. Salazar, 2021). El libro reúne siete capítulos sobre técnicas de estudio respaldadas por la investigación en psicología cognitiva. Su mayor virtud es que cada técnica, como la práctica espaciada o la autoevaluación, se acompaña de un experimento que explica por qué funciona. Sin embargo, la autora dedica poco espacio a las dificultades de los estudiantes que trabajan y estudian a la vez, lo que limita la aplicabilidad de algunas propuestas. Pese a esa carencia, el texto resulta una lectura útil para quienes deseen mejorar sus hábitos de estudio con bases científicas.",
+      "text": "En el texto, «Sin embargo» introduce:",
+      "options": ["Una consecuencia directa de lo dicho antes", "Una limitación que se presenta después de un elogio", "Un ejemplo que refuerza la virtud del libro"],
+      "answer": 1,
+      "explanation": "Antes se destaca la virtud del libro y después, con «Sin embargo», se señala una carencia: es un conector de contraste.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0303",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Reseña de «Aprender a aprender en la universidad» (M. Salazar, 2021). El libro reúne siete capítulos sobre técnicas de estudio respaldadas por la investigación en psicología cognitiva. Su mayor virtud es que cada técnica, como la práctica espaciada o la autoevaluación, se acompaña de un experimento que explica por qué funciona. Sin embargo, la autora dedica poco espacio a las dificultades de los estudiantes que trabajan y estudian a la vez, lo que limita la aplicabilidad de algunas propuestas. Pese a esa carencia, el texto resulta una lectura útil para quienes deseen mejorar sus hábitos de estudio con bases científicas.",
+      "text": "¿Para qué menciona el reseñista la poca atención a los estudiantes que trabajan?",
+      "options": ["Para desaconsejar por completo la lectura del libro", "Para resumir el contenido del último capítulo", "Para valorar críticamente la obra señalando un límite de su aplicabilidad"],
+      "answer": 2,
+      "explanation": "La reseña combina descripción y juicio. Esa observación es una crítica puntual: el propio texto concluye que el libro sigue siendo útil.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0304",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Resumen. Se evaluó el efecto de la práctica espaciada en la retención de contenidos de programación. Participaron 80 estudiantes de segundo semestre, divididos al azar en dos grupos: uno estudió en una sola sesión de cuatro horas y el otro distribuyó las mismas horas en cuatro días. Dos semanas después, el grupo con práctica espaciada obtuvo en promedio 18 % más aciertos en una prueba de opción múltiple. Se concluye que distribuir el estudio mejora la retención a mediano plazo, aunque se requieren estudios con muestras mayores y otras asignaturas.",
+      "text": "¿Cómo se formaron los dos grupos del estudio?",
+      "options": ["Al azar", "Según el promedio previo de cada estudiante", "Por elección de los propios participantes"],
+      "answer": 0,
+      "explanation": "El texto indica que los 80 estudiantes fueron «divididos al azar» en dos grupos.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0305",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Resumen. Se evaluó el efecto de la práctica espaciada en la retención de contenidos de programación. Participaron 80 estudiantes de segundo semestre, divididos al azar en dos grupos: uno estudió en una sola sesión de cuatro horas y el otro distribuyó las mismas horas en cuatro días. Dos semanas después, el grupo con práctica espaciada obtuvo en promedio 18 % más aciertos en una prueba de opción múltiple. Se concluye que distribuir el estudio mejora la retención a mediano plazo, aunque se requieren estudios con muestras mayores y otras asignaturas.",
+      "text": "Cuando el texto dice que «se requieren estudios con muestras mayores», significa que:",
+      "options": ["Los 80 participantes fueron demasiados para sacar conclusiones", "Convendría repetir el estudio con más participantes para confirmar el resultado", "Los resultados obtenidos son falsos"],
+      "answer": 1,
+      "explanation": "Una muestra pequeña limita la generalización; los autores piden confirmar con más personas y más asignaturas.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0306",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Resumen. Se evaluó el efecto de la práctica espaciada en la retención de contenidos de programación. Participaron 80 estudiantes de segundo semestre, divididos al azar en dos grupos: uno estudió en una sola sesión de cuatro horas y el otro distribuyó las mismas horas en cuatro días. Dos semanas después, el grupo con práctica espaciada obtuvo en promedio 18 % más aciertos en una prueba de opción múltiple. Se concluye que distribuir el estudio mejora la retención a mediano plazo, aunque se requieren estudios con muestras mayores y otras asignaturas.",
+      "text": "¿Cuál de las siguientes afirmaciones está respaldada por el texto?",
+      "options": ["La práctica espaciada garantiza mejores calificaciones en cualquier asignatura", "Estudiar cuatro horas seguidas es perjudicial para la memoria", "Con las mismas horas, distribuir el estudio mejoró la retención a dos semanas en este grupo"],
+      "answer": 2,
+      "explanation": "Las otras dos opciones generalizan más allá de lo que mostró el estudio (una asignatura, una prueba, dos semanas).",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0307",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Durante 2023 se registraron las concentraciones de partículas PM2.5 en cinco estaciones de monitoreo de la ciudad. En la estación del centro, el promedio anual fue de 28 µg/m³, más del doble del límite de 12 µg/m³ de la norma local, mientras que en la zona residencial del norte fue de 14 µg/m³. Los picos más altos coincidieron con las horas de mayor tráfico (de 7:00 a 9:00 y de 18:00 a 20:00). Los autores atribuyen la diferencia entre zonas principalmente a la densidad vehicular, aunque no descartan la influencia de la actividad industrial cercana al centro.",
+      "text": "¿En qué horarios se registraron los picos más altos de partículas?",
+      "options": ["De 7:00 a 9:00 y de 18:00 a 20:00", "De 12:00 a 14:00", "Durante toda la madrugada"],
+      "answer": 0,
+      "explanation": "El texto lo indica de forma explícita: los picos coincidieron con las horas de mayor tráfico, de 7:00 a 9:00 y de 18:00 a 20:00.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0308",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Durante 2023 se registraron las concentraciones de partículas PM2.5 en cinco estaciones de monitoreo de la ciudad. En la estación del centro, el promedio anual fue de 28 µg/m³, más del doble del límite de 12 µg/m³ de la norma local, mientras que en la zona residencial del norte fue de 14 µg/m³. Los picos más altos coincidieron con las horas de mayor tráfico (de 7:00 a 9:00 y de 18:00 a 20:00). Los autores atribuyen la diferencia entre zonas principalmente a la densidad vehicular, aunque no descartan la influencia de la actividad industrial cercana al centro.",
+      "text": "Cuando los autores «no descartan la influencia de la actividad industrial», quieren decir que:",
+      "options": ["La industria es la causa principal del problema", "La industria es una posible causa adicional que todavía no se ha comprobado", "La industria no tiene ninguna relación con la contaminación"],
+      "answer": 1,
+      "explanation": "No descartar es dejar abierta una posibilidad. Los autores atribuyen la diferencia «principalmente» al tráfico.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0309",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Durante 2023 se registraron las concentraciones de partículas PM2.5 en cinco estaciones de monitoreo de la ciudad. En la estación del centro, el promedio anual fue de 28 µg/m³, más del doble del límite de 12 µg/m³ de la norma local, mientras que en la zona residencial del norte fue de 14 µg/m³. Los picos más altos coincidieron con las horas de mayor tráfico (de 7:00 a 9:00 y de 18:00 a 20:00). Los autores atribuyen la diferencia entre zonas principalmente a la densidad vehicular, aunque no descartan la influencia de la actividad industrial cercana al centro.",
+      "text": "¿Qué dato del texto respalda mejor la explicación de que el tráfico influye en la contaminación?",
+      "options": ["Hay cinco estaciones de monitoreo en la ciudad", "El límite de la norma local es de 12 µg/m³", "Los picos coinciden con las horas de mayor tráfico"],
+      "answer": 2,
+      "explanation": "Que los picos ocurran justo en las horas de más circulación vincula el fenómeno con el tráfico. Los otros datos no lo relacionan con esa causa.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0310",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "En «Máquinas que piensan», el historiador R. Cantú recorre doscientos años de ideas sobre la computación, desde los telares programables hasta los sistemas actuales de aprendizaje automático. El autor escribe con claridad y evita los tecnicismos innecesarios, de modo que el libro puede leerse sin formación previa. No obstante, los últimos capítulos se limitan a enumerar productos comerciales y carecen del análisis crítico que distingue a los primeros. Se recomienda sobre todo a quienes buscan una introducción histórica.",
+      "text": "¿A quiénes se recomienda sobre todo el libro?",
+      "options": ["A quienes buscan una introducción histórica", "A especialistas en aprendizaje automático", "A quienes desean conocer productos comerciales"],
+      "answer": 0,
+      "explanation": "La última oración del texto lo dice: «se recomienda sobre todo a quienes buscan una introducción histórica».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0311",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "En «Máquinas que piensan», el historiador R. Cantú recorre doscientos años de ideas sobre la computación, desde los telares programables hasta los sistemas actuales de aprendizaje automático. El autor escribe con claridad y evita los tecnicismos innecesarios, de modo que el libro puede leerse sin formación previa. No obstante, los últimos capítulos se limitan a enumerar productos comerciales y carecen del análisis crítico que distingue a los primeros. Se recomienda sobre todo a quienes buscan una introducción histórica.",
+      "text": "¿Qué se entiende por «carecen del análisis crítico que distingue a los primeros»?",
+      "options": ["Que los primeros capítulos no tienen análisis", "Que los últimos capítulos son menos analíticos que los primeros", "Que todo el libro carece de análisis"],
+      "answer": 1,
+      "explanation": "La frase compara las dos partes: el análisis crítico es lo que distingue a los capítulos iniciales y falta en los finales.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0312",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "En «Máquinas que piensan», el historiador R. Cantú recorre doscientos años de ideas sobre la computación, desde los telares programables hasta los sistemas actuales de aprendizaje automático. El autor escribe con claridad y evita los tecnicismos innecesarios, de modo que el libro puede leerse sin formación previa. No obstante, los últimos capítulos se limitan a enumerar productos comerciales y carecen del análisis crítico que distingue a los primeros. Se recomienda sobre todo a quienes buscan una introducción histórica.",
+      "text": "¿Cuál es la postura general del reseñista?",
+      "options": ["Rechaza la obra por su falta de rigor", "Describe la obra sin emitir ningún juicio", "Valora en conjunto la obra, pero señala una debilidad en su parte final"],
+      "answer": 2,
+      "explanation": "Elogia la claridad y el recorrido histórico y critica los capítulos finales; por eso la valoración es positiva pero con reservas.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0313",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Método. Se aplicó un cuestionario anónimo a 312 estudiantes de ingeniería de tres universidades públicas. El instrumento constaba de 20 preguntas sobre horas de sueño, consumo de cafeína y uso del teléfono antes de dormir. Las respuestas se analizaron con estadística descriptiva. Resultados. El 58 % de los participantes dormía menos de siete horas entre semana. Entre quienes consumían tres o más bebidas con cafeína al día, ese porcentaje ascendió a 73 %.",
+      "text": "¿Qué porcentaje de quienes consumen tres o más bebidas con cafeína al día duerme menos de siete horas?",
+      "options": ["73 %", "58 %", "312 %"],
+      "answer": 0,
+      "explanation": "El texto señala que entre los consumidores de tres o más bebidas con cafeína el porcentaje «ascendió a 73 %». El 58 % corresponde a todos los participantes.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0314",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Método. Se aplicó un cuestionario anónimo a 312 estudiantes de ingeniería de tres universidades públicas. El instrumento constaba de 20 preguntas sobre horas de sueño, consumo de cafeína y uso del teléfono antes de dormir. Las respuestas se analizaron con estadística descriptiva. Resultados. El 58 % de los participantes dormía menos de siete horas entre semana. Entre quienes consumían tres o más bebidas con cafeína al día, ese porcentaje ascendió a 73 %.",
+      "text": "¿Qué se puede inferir de los resultados?",
+      "options": ["La cafeína es la única causa del sueño insuficiente", "Un mayor consumo de cafeína se asocia con dormir menos", "El teléfono no influye en el sueño"],
+      "answer": 1,
+      "explanation": "Los datos muestran una asociación (58 % frente a 73 %). Las otras opciones afirman causas exclusivas que el texto no establece.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0315",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Método. Se aplicó un cuestionario anónimo a 312 estudiantes de ingeniería de tres universidades públicas. El instrumento constaba de 20 preguntas sobre horas de sueño, consumo de cafeína y uso del teléfono antes de dormir. Las respuestas se analizaron con estadística descriptiva. Resultados. El 58 % de los participantes dormía menos de siete horas entre semana. Entre quienes consumían tres o más bebidas con cafeína al día, ese porcentaje ascendió a 73 %.",
+      "text": "¿Qué limitación tiene concluir, con estos datos, que la cafeína causa el sueño corto?",
+      "options": ["La muestra es de solo 20 estudiantes", "Las tres universidades son privadas", "El estudio solo describe porcentajes y no controla otras variables"],
+      "answer": 2,
+      "explanation": "La estadística descriptiva solo resume lo observado; no demuestra causas. La muestra es de 312 estudiantes y las universidades son públicas.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0316",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Mi abuelo guardaba en el cajón del buró un reloj que no funcionaba. Cada domingo lo sacaba, le daba cuerda con un cuidado casi religioso y lo dejaba sobre la mesa, mudo, mientras me contaba historias de su pueblo. Yo, a los diez años, no entendía para qué insistía en arreglar lo irremediable. Hoy, con el reloj detenido entre mis manos, comprendo que no daba cuerda al aparato, sino a sus recuerdos.",
+      "text": "¿Qué hacía el abuelo cada domingo?",
+      "options": ["Daba cuerda al reloj descompuesto mientras contaba historias de su pueblo", "Llevaba el reloj a reparar", "Regalaba historias a sus vecinos"],
+      "answer": 0,
+      "explanation": "El texto lo dice: sacaba el reloj, le daba cuerda y lo dejaba sobre la mesa mientras contaba historias de su pueblo.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0317",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Mi abuelo guardaba en el cajón del buró un reloj que no funcionaba. Cada domingo lo sacaba, le daba cuerda con un cuidado casi religioso y lo dejaba sobre la mesa, mudo, mientras me contaba historias de su pueblo. Yo, a los diez años, no entendía para qué insistía en arreglar lo irremediable. Hoy, con el reloj detenido entre mis manos, comprendo que no daba cuerda al aparato, sino a sus recuerdos.",
+      "text": "¿Qué significa «no daba cuerda al aparato, sino a sus recuerdos»?",
+      "options": ["Que el reloj se descomponía por los recuerdos", "Que el ritual mantenía vivos los recuerdos del abuelo", "Que el abuelo olvidaba las historias"],
+      "answer": 1,
+      "explanation": "Es una imagen figurada: la cuerda simboliza avivar la memoria, no el mecanismo del reloj.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0318",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Mi abuelo guardaba en el cajón del buró un reloj que no funcionaba. Cada domingo lo sacaba, le daba cuerda con un cuidado casi religioso y lo dejaba sobre la mesa, mudo, mientras me contaba historias de su pueblo. Yo, a los diez años, no entendía para qué insistía en arreglar lo irremediable. Hoy, con el reloj detenido entre mis manos, comprendo que no daba cuerda al aparato, sino a sus recuerdos.",
+      "text": "¿Qué tipo de narrador tiene el cuento?",
+      "options": ["Narrador omnisciente en tercera persona", "Narrador testigo que no participa en la historia", "Narrador en primera persona: un adulto que recuerda su infancia"],
+      "answer": 2,
+      "explanation": "Se usan verbos y pronombres como «mi abuelo», «yo», «comprendo»: el protagonista cuenta lo vivido.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0319",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Lucía llegó a la estación cuando el último tren ya se alejaba. Dejó la maleta en el suelo y, en lugar de maldecir, se sentó en la banca vacía y respiró hondo. Durante años había corrido tras horarios ajenos; esa noche, por primera vez, nadie la esperaba. El viento le despeinó el cabello y ella sonrió, como quien descubre una puerta que siempre estuvo abierta.",
+      "text": "¿Qué hizo Lucía al ver que el tren se alejaba?",
+      "options": ["Se sentó en la banca y respiró hondo", "Corrió detrás del tren", "Llamó a alguien para que la esperara"],
+      "answer": 0,
+      "explanation": "El texto indica que, en lugar de maldecir, «se sentó en la banca vacía y respiró hondo».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0320",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Lucía llegó a la estación cuando el último tren ya se alejaba. Dejó la maleta en el suelo y, en lugar de maldecir, se sentó en la banca vacía y respiró hondo. Durante años había corrido tras horarios ajenos; esa noche, por primera vez, nadie la esperaba. El viento le despeinó el cabello y ella sonrió, como quien descubre una puerta que siempre estuvo abierta.",
+      "text": "¿Por qué sonríe Lucía al final?",
+      "options": ["Porque logra alcanzar el último tren", "Porque descubre una sensación de libertad al no tener horarios ni a nadie esperándola", "Porque el viento le gusta más que el tren"],
+      "answer": 1,
+      "explanation": "La sonrisa se relaciona con «por primera vez, nadie la esperaba» y con la imagen de la puerta abierta: la libertad.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0321",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Lucía llegó a la estación cuando el último tren ya se alejaba. Dejó la maleta en el suelo y, en lugar de maldecir, se sentó en la banca vacía y respiró hondo. Durante años había corrido tras horarios ajenos; esa noche, por primera vez, nadie la esperaba. El viento le despeinó el cabello y ella sonrió, como quien descubre una puerta que siempre estuvo abierta.",
+      "text": "¿Qué actitud muestra Lucía ante el contratiempo y cómo se sabe?",
+      "options": ["Enojo: deja la maleta en el suelo", "Angustia: corre tras horarios ajenos", "Serenidad: no maldice, respira hondo y sonríe"],
+      "answer": 2,
+      "explanation": "Las acciones del personaje (no maldecir, respirar, sonreír) revelan calma. Dejar la maleta no expresa enojo.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0322",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Se dice que leer es un acto solitario, pero quien lee jamás está solo: conversa con el autor, discute con los personajes y, a veces, se reconoce en una frase escrita hace siglos. Por eso sostengo que la lectura no aísla, sino que amplía el círculo de nuestras compañías. Quien lee en silencio en un autobús repleto lleva consigo una multitud invisible. Basta abrir un libro para comprobar que la soledad, a veces, es solo otra forma de estar bien acompañado.",
+      "text": "¿Cuál es la tesis del texto?",
+      "options": ["La lectura no aísla: amplía el círculo de compañías", "Leer es un acto necesariamente solitario", "Los autobuses son el mejor lugar para leer"],
+      "answer": 0,
+      "explanation": "La tesis se anuncia con «sostengo que la lectura no aísla, sino que amplía el círculo de nuestras compañías».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0323",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Se dice que leer es un acto solitario, pero quien lee jamás está solo: conversa con el autor, discute con los personajes y, a veces, se reconoce en una frase escrita hace siglos. Por eso sostengo que la lectura no aísla, sino que amplía el círculo de nuestras compañías. Quien lee en silencio en un autobús repleto lleva consigo una multitud invisible. Basta abrir un libro para comprobar que la soledad, a veces, es solo otra forma de estar bien acompañado.",
+      "text": "«Lleva consigo una multitud invisible» significa que el lector:",
+      "options": ["Viaja siempre entre mucha gente", "Está acompañado por los autores y personajes de lo que lee", "Imagina que no hay nadie a su alrededor"],
+      "answer": 1,
+      "explanation": "Es una metáfora: las voces del libro lo acompañan aunque no se vean.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0324",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Se dice que leer es un acto solitario, pero quien lee jamás está solo: conversa con el autor, discute con los personajes y, a veces, se reconoce en una frase escrita hace siglos. Por eso sostengo que la lectura no aísla, sino que amplía el círculo de nuestras compañías. Quien lee en silencio en un autobús repleto lleva consigo una multitud invisible. Basta abrir un libro para comprobar que la soledad, a veces, es solo otra forma de estar bien acompañado.",
+      "text": "¿Qué función cumple el ejemplo de quien lee en un autobús repleto?",
+      "options": ["Presentar un dato estadístico", "Contradecir lo dicho al inicio", "Ilustrar la tesis con una imagen concreta"],
+      "answer": 2,
+      "explanation": "El ejemplo muestra cómo alguien aparentemente solo está «acompañado» al leer; sirve para apoyar la tesis.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0325",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Las ciudades se aprenden caminando. Quien las recorre en coche conoce sus avenidas, pero no sus esquinas; sabe cuánto tarda en llegar, pero ignora a qué huele la panadería de la calle lateral. Caminar obliga a mirar los detalles que la prisa borra: un balcón con geranios, el grafiti nuevo, el vendedor que cada mañana acomoda sus frutas. Defiendo, por eso, que la ciudad no se atraviesa: se lee.",
+      "text": "Según el texto, ¿qué ignora quien recorre la ciudad en coche?",
+      "options": ["Los detalles de las calles, como a qué huele la panadería de la calle lateral", "El tiempo que tarda en llegar a su destino", "Los nombres de las avenidas"],
+      "answer": 0,
+      "explanation": "El texto dice que quien va en coche «sabe cuánto tarda en llegar» y conoce las avenidas, pero ignora detalles como el olor de la panadería.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0326",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Las ciudades se aprenden caminando. Quien las recorre en coche conoce sus avenidas, pero no sus esquinas; sabe cuánto tarda en llegar, pero ignora a qué huele la panadería de la calle lateral. Caminar obliga a mirar los detalles que la prisa borra: un balcón con geranios, el grafiti nuevo, el vendedor que cada mañana acomoda sus frutas. Defiendo, por eso, que la ciudad no se atraviesa: se lee.",
+      "text": "¿Qué quiere decir «la ciudad no se atraviesa: se lee»?",
+      "options": ["Que conviene leer libros mientras se camina", "Que hay que observarla con atención, como quien lee un texto", "Que las ciudades están escritas en letreros"],
+      "answer": 1,
+      "explanation": "La lectura es una metáfora de la observación detallada.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0327",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Las ciudades se aprenden caminando. Quien las recorre en coche conoce sus avenidas, pero no sus esquinas; sabe cuánto tarda en llegar, pero ignora a qué huele la panadería de la calle lateral. Caminar obliga a mirar los detalles que la prisa borra: un balcón con geranios, el grafiti nuevo, el vendedor que cada mañana acomoda sus frutas. Defiendo, por eso, que la ciudad no se atraviesa: se lee.",
+      "text": "¿Qué recurso argumentativo organiza el texto?",
+      "options": ["La cita de especialistas en urbanismo", "La comparación de datos de tráfico", "El contraste entre recorrer la ciudad en coche y hacerlo a pie"],
+      "answer": 2,
+      "explanation": "Todo el texto opone al conductor (que solo conoce avenidas y tiempos) con quien camina (que ve los detalles).",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0328",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "—¿Seguro que es por aquí? —preguntó Mateo, sosteniendo el mapa al revés.\n—Claro —respondió Inés, aunque desde hacía media hora no reconocía ni un solo árbol.\nSiguieron caminando mientras el sol caía detrás de los cerros. Ninguno quiso admitir que estaban perdidos; ambos fingían una seguridad que se les deshacía a cada paso. Cuando por fin vieron una luz entre la maleza, rieron al mismo tiempo, aliviados y avergonzados.",
+      "text": "¿Cómo sostenía Mateo el mapa?",
+      "options": ["Al revés", "Con una sola mano", "Doblado en cuatro partes"],
+      "answer": 0,
+      "explanation": "El primer renglón dice que Mateo preguntaba «sosteniendo el mapa al revés».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0329",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "—¿Seguro que es por aquí? —preguntó Mateo, sosteniendo el mapa al revés.\n—Claro —respondió Inés, aunque desde hacía media hora no reconocía ni un solo árbol.\nSiguieron caminando mientras el sol caía detrás de los cerros. Ninguno quiso admitir que estaban perdidos; ambos fingían una seguridad que se les deshacía a cada paso. Cuando por fin vieron una luz entre la maleza, rieron al mismo tiempo, aliviados y avergonzados.",
+      "text": "¿Por qué Inés responde «Claro» aunque no reconocía los árboles?",
+      "options": ["Porque conocía perfectamente el camino", "Para disimular que no sabía dónde estaban", "Porque quería burlarse de Mateo"],
+      "answer": 1,
+      "explanation": "El narrador aclara que ella no reconocía nada: su respuesta es una pose de seguridad.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0330",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "—¿Seguro que es por aquí? —preguntó Mateo, sosteniendo el mapa al revés.\n—Claro —respondió Inés, aunque desde hacía media hora no reconocía ni un solo árbol.\nSiguieron caminando mientras el sol caía detrás de los cerros. Ninguno quiso admitir que estaban perdidos; ambos fingían una seguridad que se les deshacía a cada paso. Cuando por fin vieron una luz entre la maleza, rieron al mismo tiempo, aliviados y avergonzados.",
+      "text": "¿Qué revelan los diálogos y las acciones sobre los personajes?",
+      "options": ["Que Mateo es más experimentado que Inés", "Que los dos conocían bien la zona", "Que ambos aparentan seguridad por orgullo y no admiten que están perdidos"],
+      "answer": 2,
+      "explanation": "El narrador lo dice: «ninguno quiso admitir que estaban perdidos; ambos fingían una seguridad».",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0331",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CONVOCATORIA A LA BECA DE MOVILIDAD ESTUDIANTIL 2027. La Coordinación de Intercambio Académico invita a estudiantes de licenciatura con promedio mínimo de 8.5 y al menos 50 % de los créditos cubiertos a participar en el programa de estancia semestral en universidades extranjeras. Las solicitudes se recibirán del 3 al 21 de febrero en la oficina de la Coordinación, de 9:00 a 15:00 horas, con carta de motivos, historial académico y constancia de idioma. No se aceptarán expedientes incompletos ni entregados fuera del periodo. Los resultados se publicarán el 6 de marzo en el portal institucional.",
+      "text": "¿Hasta qué fecha se reciben las solicitudes?",
+      "options": ["Hasta el 21 de febrero", "Hasta el 3 de febrero", "Hasta el 6 de marzo"],
+      "answer": 0,
+      "explanation": "Las solicitudes se reciben «del 3 al 21 de febrero». El 6 de marzo es la fecha de publicación de resultados.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0332",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CONVOCATORIA A LA BECA DE MOVILIDAD ESTUDIANTIL 2027. La Coordinación de Intercambio Académico invita a estudiantes de licenciatura con promedio mínimo de 8.5 y al menos 50 % de los créditos cubiertos a participar en el programa de estancia semestral en universidades extranjeras. Las solicitudes se recibirán del 3 al 21 de febrero en la oficina de la Coordinación, de 9:00 a 15:00 horas, con carta de motivos, historial académico y constancia de idioma. No se aceptarán expedientes incompletos ni entregados fuera del periodo. Los resultados se publicarán el 6 de marzo en el portal institucional.",
+      "text": "¿Cuál de los siguientes estudiantes sería excluido de la convocatoria?",
+      "options": ["Quien con promedio de 9.0 y 60 % de créditos entrega todo el 10 de febrero", "Quien con promedio de 8.7 entrega su expediente sin constancia de idioma", "Quien con promedio de 8.5 y 50 % de créditos entrega todo el 21 de febrero"],
+      "answer": 1,
+      "explanation": "No se aceptan expedientes incompletos: falta un documento exigido. Los otros dos casos cumplen requisitos y plazo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0333",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CONVOCATORIA A LA BECA DE MOVILIDAD ESTUDIANTIL 2027. La Coordinación de Intercambio Académico invita a estudiantes de licenciatura con promedio mínimo de 8.5 y al menos 50 % de los créditos cubiertos a participar en el programa de estancia semestral en universidades extranjeras. Las solicitudes se recibirán del 3 al 21 de febrero en la oficina de la Coordinación, de 9:00 a 15:00 horas, con carta de motivos, historial académico y constancia de idioma. No se aceptarán expedientes incompletos ni entregados fuera del periodo. Los resultados se publicarán el 6 de marzo en el portal institucional.",
+      "text": "¿Con qué propósito se redactó el texto?",
+      "options": ["Informar los resultados de un proceso de selección", "Narrar la experiencia de un estudiante en el extranjero", "Invitar a participar y establecer requisitos, fechas y condiciones"],
+      "answer": 2,
+      "explanation": "Es una convocatoria: convoca, señala a quién va dirigida, qué documentos entregar, cuándo y dónde.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0334",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "La Secretaría de Movilidad inauguró ayer la primera etapa de la ciclovía del Paseo Norte, que cuenta con 12 kilómetros de carril confinado y 30 puntos de estacionamiento para bicicletas. Según el titular de la dependencia, Raúl Ibarra, la obra costó 85 millones de pesos y beneficiará a unos 40 mil usuarios diarios. La segunda etapa, que conectará el Paseo Norte con el centro, iniciará en el primer trimestre del próximo año. Organizaciones ciclistas pidieron que se instalen más cruces seguros en las intersecciones.",
+      "text": "¿Cuántos kilómetros de carril confinado tiene la primera etapa?",
+      "options": ["12 kilómetros", "30 kilómetros", "85 kilómetros"],
+      "answer": 0,
+      "explanation": "El texto señala 12 kilómetros de carril confinado; 30 son los puntos de estacionamiento y 85 los millones de pesos.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0335",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "La Secretaría de Movilidad inauguró ayer la primera etapa de la ciclovía del Paseo Norte, que cuenta con 12 kilómetros de carril confinado y 30 puntos de estacionamiento para bicicletas. Según el titular de la dependencia, Raúl Ibarra, la obra costó 85 millones de pesos y beneficiará a unos 40 mil usuarios diarios. La segunda etapa, que conectará el Paseo Norte con el centro, iniciará en el primer trimestre del próximo año. Organizaciones ciclistas pidieron que se instalen más cruces seguros en las intersecciones.",
+      "text": "¿Qué se puede inferir de que las organizaciones ciclistas pidan más cruces seguros?",
+      "options": ["Que rechazan la construcción de la ciclovía", "Que consideran insuficiente la seguridad en las intersecciones", "Que ya no habrá una segunda etapa"],
+      "answer": 1,
+      "explanation": "La petición implica que, en su opinión, la seguridad en los cruces actuales es insuficiente.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0336",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "La Secretaría de Movilidad inauguró ayer la primera etapa de la ciclovía del Paseo Norte, que cuenta con 12 kilómetros de carril confinado y 30 puntos de estacionamiento para bicicletas. Según el titular de la dependencia, Raúl Ibarra, la obra costó 85 millones de pesos y beneficiará a unos 40 mil usuarios diarios. La segunda etapa, que conectará el Paseo Norte con el centro, iniciará en el primer trimestre del próximo año. Organizaciones ciclistas pidieron que se instalen más cruces seguros en las intersecciones.",
+      "text": "¿Por qué el texto es una nota informativa?",
+      "options": ["Argumenta una postura personal con una tesis y una conclusión", "Invita a la población a participar en un proceso", "Informa un hecho reciente de forma objetiva, con datos y declaraciones, y pone lo más importante al inicio"],
+      "answer": 2,
+      "explanation": "Presenta qué, quién, cuándo y cuánto, con tono objetivo y estructura de pirámide invertida.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0337",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CONCURSO DE CARTEL «CIUDAD SIN RUIDO». Convoca el Instituto Municipal de Medio Ambiente. Podrán participar personas de 15 a 25 años, residentes del municipio, de manera individual. Cada participante enviará un solo cartel original, en formato vertical de 50 × 70 cm y en archivo PDF, al correo concurso@ejemplo.org a más tardar el 15 de octubre a las 23:59 horas. Se premiará a los tres mejores trabajos con 8 000, 5 000 y 3 000 pesos, respectivamente. El jurado, integrado por especialistas en diseño y acústica, emitirá su fallo el 30 de octubre.",
+      "text": "¿Cuántos carteles puede enviar cada participante?",
+      "options": ["Uno solo", "Hasta tres", "Los que desee, si son originales"],
+      "answer": 0,
+      "explanation": "El texto señala que cada participante enviará «un solo cartel original».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0338",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CONCURSO DE CARTEL «CIUDAD SIN RUIDO». Convoca el Instituto Municipal de Medio Ambiente. Podrán participar personas de 15 a 25 años, residentes del municipio, de manera individual. Cada participante enviará un solo cartel original, en formato vertical de 50 × 70 cm y en archivo PDF, al correo concurso@ejemplo.org a más tardar el 15 de octubre a las 23:59 horas. Se premiará a los tres mejores trabajos con 8 000, 5 000 y 3 000 pesos, respectivamente. El jurado, integrado por especialistas en diseño y acústica, emitirá su fallo el 30 de octubre.",
+      "text": "¿Quién NO podría participar en el concurso?",
+      "options": ["Una persona de 25 años que vive en el municipio", "Una persona de 27 años que vive en el municipio", "Una persona de 15 años que vive en el municipio"],
+      "answer": 1,
+      "explanation": "El rango es de 15 a 25 años. Una persona de 27 años queda fuera aunque resida en el municipio.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0339",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CONCURSO DE CARTEL «CIUDAD SIN RUIDO». Convoca el Instituto Municipal de Medio Ambiente. Podrán participar personas de 15 a 25 años, residentes del municipio, de manera individual. Cada participante enviará un solo cartel original, en formato vertical de 50 × 70 cm y en archivo PDF, al correo concurso@ejemplo.org a más tardar el 15 de octubre a las 23:59 horas. Se premiará a los tres mejores trabajos con 8 000, 5 000 y 3 000 pesos, respectivamente. El jurado, integrado por especialistas en diseño y acústica, emitirá su fallo el 30 de octubre.",
+      "text": "¿Qué función cumple el último enunciado del texto?",
+      "options": ["Establecer el monto de los premios", "Definir quiénes pueden participar", "Informar quién evaluará los trabajos y cuándo se conocerá el fallo"],
+      "answer": 2,
+      "explanation": "Menciona la composición del jurado y la fecha de su fallo; el monto de los premios y los requisitos de edad se dan antes.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0340",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Una falla en el suministro eléctrico dejó sin servicio a cerca de 15 mil hogares de la zona oriente ayer por la tarde. De acuerdo con la empresa suministradora, la causa fue la sobrecarga de un transformador debido a las altas temperaturas. El servicio se restableció gradualmente a partir de las 21:00 horas y a las 23:30 estaba normalizado en toda la zona. Protección Civil recomendó a la población desconectar los aparatos sensibles durante los cortes para evitar daños al regresar la corriente.",
+      "text": "De acuerdo con la empresa, ¿cuál fue la causa de la falla?",
+      "options": ["La sobrecarga de un transformador por las altas temperaturas", "Un accidente de tránsito en la zona oriente", "Una tormenta eléctrica"],
+      "answer": 0,
+      "explanation": "La empresa suministradora atribuyó el corte a la sobrecarga de un transformador debido al calor.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0341",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Una falla en el suministro eléctrico dejó sin servicio a cerca de 15 mil hogares de la zona oriente ayer por la tarde. De acuerdo con la empresa suministradora, la causa fue la sobrecarga de un transformador debido a las altas temperaturas. El servicio se restableció gradualmente a partir de las 21:00 horas y a las 23:30 estaba normalizado en toda la zona. Protección Civil recomendó a la población desconectar los aparatos sensibles durante los cortes para evitar daños al regresar la corriente.",
+      "text": "«El servicio se restableció gradualmente» significa que:",
+      "options": ["Se restableció de golpe en toda la zona", "No volvió a todos los hogares al mismo tiempo, sino poco a poco", "Nunca se restableció por completo"],
+      "answer": 1,
+      "explanation": "El texto agrega que empezó a las 21:00 y a las 23:30 estaba normalizado en toda la zona.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0342",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "Una falla en el suministro eléctrico dejó sin servicio a cerca de 15 mil hogares de la zona oriente ayer por la tarde. De acuerdo con la empresa suministradora, la causa fue la sobrecarga de un transformador debido a las altas temperaturas. El servicio se restableció gradualmente a partir de las 21:00 horas y a las 23:30 estaba normalizado en toda la zona. Protección Civil recomendó a la población desconectar los aparatos sensibles durante los cortes para evitar daños al regresar la corriente.",
+      "text": "¿Con qué propósito incluye la nota la recomendación de Protección Civil?",
+      "options": ["Explicar por qué ocurrió la falla", "Informar cuántos hogares se quedaron sin luz", "Prevenir daños en los aparatos cuando regrese la corriente"],
+      "answer": 2,
+      "explanation": "La propia recomendación da el fin: desconectar aparatos sensibles «para evitar daños al regresar la corriente».",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-lec-0343",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CAMPAÑA DE DONACIÓN DE SANGRE. El Comité de Salud de la Facultad invita a la comunidad a donar sangre el martes 12 y el miércoles 13 de mayo, de 10:00 a 14:00 horas, en el vestíbulo del edificio B. Pueden donar quienes tengan entre 18 y 60 años, pesen más de 50 kilogramos, se encuentren en buen estado de salud y hayan desayunado. No podrán hacerlo quienes se hayan hecho un tatuaje en el último año ni quienes presenten síntomas de gripe. Se entregará un comprobante de donación y un refrigerio.",
+      "text": "¿En qué horario se recibirán las donaciones?",
+      "options": ["De 10:00 a 14:00 horas", "De 9:00 a 15:00 horas", "De 8:00 a 12:00 horas"],
+      "answer": 0,
+      "explanation": "El horario indicado es de 10:00 a 14:00 horas, los días 12 y 13 de mayo.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0344",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CAMPAÑA DE DONACIÓN DE SANGRE. El Comité de Salud de la Facultad invita a la comunidad a donar sangre el martes 12 y el miércoles 13 de mayo, de 10:00 a 14:00 horas, en el vestíbulo del edificio B. Pueden donar quienes tengan entre 18 y 60 años, pesen más de 50 kilogramos, se encuentren en buen estado de salud y hayan desayunado. No podrán hacerlo quienes se hayan hecho un tatuaje en el último año ni quienes presenten síntomas de gripe. Se entregará un comprobante de donación y un refrigerio.",
+      "text": "¿Cuál de las siguientes personas podría donar?",
+      "options": ["Una persona de 45 años que se hizo un tatuaje hace seis meses", "Una persona de 30 años, de 65 kg, sana y que desayunó", "Una persona de 25 años con síntomas de gripe"],
+      "answer": 1,
+      "explanation": "Cumple todos los requisitos. Las otras dos personas entran en las restricciones: tatuaje reciente y síntomas de gripe.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0345",
+      "lesson": "lenguaje/lectura/03-lectura-por-ambito",
+      "passage": "CAMPAÑA DE DONACIÓN DE SANGRE. El Comité de Salud de la Facultad invita a la comunidad a donar sangre el martes 12 y el miércoles 13 de mayo, de 10:00 a 14:00 horas, en el vestíbulo del edificio B. Pueden donar quienes tengan entre 18 y 60 años, pesen más de 50 kilogramos, se encuentren en buen estado de salud y hayan desayunado. No podrán hacerlo quienes se hayan hecho un tatuaje en el último año ni quienes presenten síntomas de gripe. Se entregará un comprobante de donación y un refrigerio.",
+      "text": "¿Por qué el texto enumera requisitos y restricciones?",
+      "options": ["Para convencer a la gente de que dar sangre es peligroso", "Para explicar cómo se almacena la sangre", "Para que los interesados verifiquen si pueden donar antes de acudir"],
+      "answer": 2,
+      "explanation": "Es una convocatoria: precisa quién puede participar y quién no, de modo que cada lector evalúe su caso.",
+      "difficulty": "dificil"
     }
   ]
 }

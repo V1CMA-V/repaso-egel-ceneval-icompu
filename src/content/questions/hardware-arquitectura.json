@@ -4,22 +4,17 @@
       "id": "hw-arq-0101",
       "lesson": "hardware/arquitectura/01-sistemas-numericos",
       "text": "Un sistema de 8 bits utiliza complemento a 2 para enteros con signo. ¿Cuál es la representación binaria correcta de −45?",
-      "options": ["1010 1101", "1101 0010", "1101 0011", "1101 0100"],
+      "options": ["1010 1101", "1101 0010", "1101 0011"],
       "answer": 2,
-      "explanation": "45 = 0010 1101. Invertir da 1101 0010 (complemento a 1) y sumar 1 da 1101 0011 (complemento a 2). La primera opción es la representación en signo-magnitud (bit de signo 1 + 0101101) y la segunda es solo el complemento a 1.",
+      "explanation": "45 = 0010 1101. Invertir da 1101 0010 (complemento a 1) y sumar 1 da 1101 0011 (complemento a 2). 1010 1101 es la representación en signo-magnitud (bit de signo 1 + 0101101) y 1101 0010 es solo el complemento a 1.",
       "difficulty": "media"
     },
     {
       "id": "hw-arq-0102",
       "lesson": "hardware/arquitectura/01-sistemas-numericos",
       "text": "Un procesador suma, en complemento a 2 de 8 bits, los valores 100 y 50 (0110 0100 + 0011 0010). El resultado en binario es 1001 0110 y el acarreo de salida es 0. ¿Cuál afirmación es correcta?",
-      "options": [
-        "El resultado es +150 y no hay error",
-        "El resultado es −106 y es correcto porque no hubo acarreo",
-        "El resultado es +106 con acarreo",
-        "El resultado se lee como −106: hay desbordamiento, pues dos positivos produjeron un resultado con signo negativo"
-      ],
-      "answer": 3,
+      "options": ["El resultado es −106 y es correcto porque no hubo acarreo", "El resultado es +106 con acarreo", "El resultado se lee como −106: hay desbordamiento, pues dos positivos produjeron un resultado con signo negativo"],
+      "answer": 2,
       "explanation": "150 excede el máximo +127 de 8 bits con signo. El patrón 1001 0110 se interpreta como −106 (−128 + 22). El overflow con signo se detecta por la regla de signos (positivo + positivo = negativo), no por el acarreo, que aquí sí vale 0.",
       "difficulty": "media"
     },
@@ -27,7 +22,7 @@
       "id": "hw-arq-0103",
       "lesson": "hardware/arquitectura/01-sistemas-numericos",
       "text": "Un registro de 8 bits contiene el valor hexadecimal 0xB7. ¿Qué valor decimal tiene interpretado (a) sin signo y (b) como entero con signo en complemento a 2?",
-      "options": ["(a) 183 y (b) −73", "(a) 183 y (b) −55", "(a) 73 y (b) −183", "(a) 183 y (b) −183"],
+      "options": ["(a) 183 y (b) −73", "(a) 183 y (b) −55", "(a) 183 y (b) −183"],
       "answer": 0,
       "explanation": "0xB7 = 1011 0111 = 128 + 32 + 16 + 4 + 2 + 1 = 183 sin signo. Con signo, el MSB = 1 indica negativo: 183 − 256 = −73 (o bien, complemento a 2: 0100 1001 = 73). Un entero de 8 bits no puede valer −183.",
       "difficulty": "media"
@@ -36,8 +31,8 @@
       "id": "hw-arq-0104",
       "lesson": "hardware/arquitectura/01-sistemas-numericos",
       "text": "Una variable float de 32 bits (IEEE 754 de precisión simple) contiene 0x41500000. ¿Qué valor representa?",
-      "options": ["10.5", "3.25", "13.0", "26.0"],
-      "answer": 2,
+      "options": ["3.25", "13.0", "26.0"],
+      "answer": 1,
       "explanation": "0x41500000 = 0 | 10000010 | 1010000…0. El signo es positivo, el exponente es 130 − 127 = 3 y la mantisa es 1.101₂ = 1.625. El valor es 1.625 × 2³ = 13.0. 26.0 correspondería a un exponente una unidad mayor.",
       "difficulty": "dificil"
     },
@@ -45,7 +40,7 @@
       "id": "hw-arq-0105",
       "lesson": "hardware/arquitectura/01-sistemas-numericos",
       "text": "Se desea asignar un identificador binario de longitud fija a 300 sensores distintos. ¿Cuál es el número mínimo de bits necesario?",
-      "options": ["8", "9", "10", "300"],
+      "options": ["8", "9", "10"],
       "answer": 1,
       "explanation": "Con 8 bits solo hay 256 combinaciones (insuficiente). Con 9 bits hay 512, que sí cubre 300. Diez bits funcionan, pero no son el mínimo.",
       "difficulty": "facil"
@@ -54,13 +49,8 @@
       "id": "hw-arq-0106",
       "lesson": "hardware/arquitectura/01-sistemas-numericos",
       "text": "Un codificador rotatorio de posición entrega su lectura en código Gray en lugar de binario natural. ¿Cuál es la razón principal?",
-      "options": [
-        "Ocupa menos bits que el binario natural",
-        "Permite sumar posiciones sin acarreo",
-        "Corrige automáticamente errores de un bit",
-        "Entre posiciones consecutivas cambia un solo bit, lo que evita lecturas erróneas durante las transiciones"
-      ],
-      "answer": 3,
+      "options": ["Ocupa menos bits que el binario natural", "Corrige automáticamente errores de un bit", "Entre posiciones consecutivas cambia un solo bit, lo que evita lecturas erróneas durante las transiciones"],
+      "answer": 2,
       "explanation": "En binario natural pasar de 0111 a 1000 cambia cuatro bits y, si no cambian exactamente a la vez, se leen valores falsos. En Gray solo cambia un bit entre valores consecutivos. No usa menos bits ni corrige errores.",
       "difficulty": "media"
     },
@@ -68,13 +58,8 @@
       "id": "hw-arq-0201",
       "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
       "text": "Se ejecuta el mismo programa en dos procesadores. El P1 trabaja a 3 GHz con un CPI promedio de 1.5; el P2 trabaja a 2.4 GHz con un CPI promedio de 1.0. ¿Cuál es más rápido?",
-      "options": [
-        "P1, porque tiene mayor frecuencia de reloj",
-        "Tardan lo mismo",
-        "P2, aproximadamente 1.2 veces más rápido",
-        "P2, aproximadamente 1.6 veces más rápido"
-      ],
-      "answer": 2,
+      "options": ["P1, porque tiene mayor frecuencia de reloj", "P2, aproximadamente 1.2 veces más rápido", "P2, aproximadamente 1.6 veces más rápido"],
+      "answer": 1,
       "explanation": "El tiempo por instrucción es CPI/f. P1: 1.5/3 GHz = 0.5 ns. P2: 1.0/2.4 GHz ≈ 0.417 ns. La relación 0.5/0.417 = 1.2, por lo que P2 es 1.2 veces más rápido pese a su menor frecuencia. La frecuencia por sí sola no determina el rendimiento.",
       "difficulty": "dificil"
     },
@@ -82,12 +67,7 @@
       "id": "hw-arq-0202",
       "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
       "text": "Un procesador con pipeline de 5 etapas (un ciclo por etapa) ejecuta 100 instrucciones sin riesgos. ¿Cuántos ciclos necesita en total y por qué la aceleración frente a una ejecución sin pipeline es menor que 5?",
-      "options": [
-        "100 ciclos; el speedup es exactamente 5",
-        "105 ciclos; porque cada instrucción necesita 5 ciclos de más",
-        "104 ciclos; porque el pipeline tarda 4 ciclos en llenarse (k + n − 1)",
-        "500 ciclos; el pipeline no reduce el tiempo"
-      ],
+      "options": ["100 ciclos; el speedup es exactamente 5", "105 ciclos; porque cada instrucción necesita 5 ciclos de más", "104 ciclos; porque el pipeline tarda 4 ciclos en llenarse (k + n − 1)"],
       "answer": 2,
       "explanation": "Con k etapas y n instrucciones, los ciclos son k + n − 1 = 5 + 100 − 1 = 104. Sin pipeline serían 500, así que el speedup es 500/104 ≈ 4.8: casi 5, pero no exacto por el tiempo de llenado.",
       "difficulty": "media"
@@ -96,13 +76,8 @@
       "id": "hw-arq-0203",
       "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
       "text": "En un pipeline de 5 etapas se ejecutan en secuencia: ADD R1, R2, R3 y luego SUB R4, R1, R5. La segunda instrucción necesita R1 antes de que la primera lo escriba. ¿Qué tipo de riesgo es y cómo se mitiga?",
-      "options": [
-        "Riesgo de control; se mitiga con predicción de saltos",
-        "Riesgo estructural; se mitiga duplicando la ALU",
-        "Riesgo de control; se mitiga vaciando el pipeline siempre",
-        "Riesgo de datos (RAW); se mitiga con adelantamiento (forwarding) o burbujas"
-      ],
-      "answer": 3,
+      "options": ["Riesgo de datos (RAW); se mitiga con adelantamiento (forwarding) o burbujas", "Riesgo estructural; se mitiga duplicando la ALU", "Riesgo de control; se mitiga con predicción de saltos"],
+      "answer": 0,
       "explanation": "La SUB lee un registro que la ADD aún no escribe: dependencia de lectura después de escritura (RAW), un riesgo de datos. El forwarding envía el resultado de la ALU directamente a la siguiente instrucción; si no basta, se insertan burbujas.",
       "difficulty": "media"
     },
@@ -110,7 +85,7 @@
       "id": "hw-arq-0204",
       "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
       "text": "El 80 % del tiempo de ejecución de un programa es paralelizable y el 20 % es estrictamente serial. ¿Qué aceleración se logra con 4 procesadores y cuál es el máximo teórico con infinitos procesadores?",
-      "options": ["2.5 y 5", "4 y infinito", "3.2 y 5", "2.5 y 10"],
+      "options": ["2.5 y 5", "4 y infinito", "3.2 y 5"],
       "answer": 0,
       "explanation": "Amdahl: 1/(0.2 + 0.8/4) = 1/0.4 = 2.5. Con infinitos procesadores la parte paralela tiende a cero: 1/0.2 = 5. La fracción serial limita la mejora.",
       "difficulty": "media"
@@ -119,13 +94,8 @@
       "id": "hw-arq-0205",
       "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
       "text": "Un microcontrolador usa buses y memorias separados para el programa y para los datos. ¿Cuál es la ventaja principal de esta arquitectura Harvard?",
-      "options": [
-        "Permite programas que se modifican a sí mismos con mayor facilidad",
-        "Puede leer una instrucción y acceder a un dato al mismo tiempo",
-        "Unifica el espacio de direcciones para simplificar el diseño",
-        "Aumenta la memoria direccionable al doble con el mismo bus"
-      ],
-      "answer": 1,
+      "options": ["Puede leer una instrucción y acceder a un dato al mismo tiempo", "Unifica el espacio de direcciones para simplificar el diseño", "Aumenta la memoria direccionable al doble con el mismo bus"],
+      "answer": 0,
       "explanation": "Con buses independientes, la búsqueda de instrucción y el acceso a datos ocurren en paralelo, evitando el cuello de botella de Von Neumann. Es la razón por la que MCU y DSP la usan.",
       "difficulty": "facil"
     },
@@ -133,17 +103,17 @@
       "id": "hw-arq-0206",
       "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
       "text": "Una GPU aplica la misma operación de sombreado a miles de píxeles al mismo tiempo, cada uno con datos distintos. ¿A qué categoría de la taxonomía de Flynn corresponde este modelo?",
-      "options": ["MIMD", "SISD", "MISD", "SIMD"],
-      "answer": 3,
-      "explanation": "Una misma instrucción sobre múltiples datos es SIMD. MIMD aplica a multinúcleo con programas distintos; SISD a un procesador secuencial clásico; MISD es muy poco común.",
+      "options": ["MIMD", "SISD", "SIMD"],
+      "answer": 2,
+      "explanation": "Una misma instrucción sobre múltiples datos es SIMD. MIMD aplica a multinúcleo con programas distintos y SISD a un procesador secuencial clásico.",
       "difficulty": "facil"
     },
     {
       "id": "hw-arq-0301",
       "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
       "text": "Se comparan dos cachés para el mismo sistema. La caché A tiene tiempo de acierto de 1 ns y 10 % de fallos; la caché B tiene 2 ns y 4 % de fallos. En ambos casos la penalización por fallo es de 50 ns. ¿Cuál tiene menor tiempo medio de acceso y de cuánto es?",
-      "options": ["La A, con 6 ns", "La A, con 1 ns", "La B, con 2.2 ns", "La B, con 4 ns"],
-      "answer": 3,
+      "options": ["La B, con 4 ns", "La A, con 1 ns", "La A, con 6 ns"],
+      "answer": 0,
       "explanation": "AMAT = T_acierto + tasa_fallos × penalización. A: 1 + 0.10 × 50 = 6 ns. B: 2 + 0.04 × 50 = 4 ns. Aunque B es más lenta al acertar, falla mucho menos y resulta mejor en promedio.",
       "difficulty": "media"
     },
@@ -151,12 +121,7 @@
       "id": "hw-arq-0302",
       "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
       "text": "Un diseñador debe elegir la tecnología de memoria para la caché L1 de un procesador y para la memoria principal de 16 GB. ¿Qué combinación es la más adecuada?",
-      "options": [
-        "SRAM para la L1 por su velocidad y DRAM para la principal por su densidad y costo",
-        "DRAM para ambas, porque es más rápida que la SRAM",
-        "SRAM para ambas, porque no requiere refresco y cuesta menos",
-        "DRAM para la L1, porque no necesita refresco y es más pequeña"
-      ],
+      "options": ["SRAM para la L1 por su velocidad y DRAM para la principal por su densidad y costo", "DRAM para ambas, porque es más rápida que la SRAM", "SRAM para ambas, porque no requiere refresco y cuesta menos"],
       "answer": 0,
       "explanation": "La SRAM (flip-flops) es muy rápida pero ocupa más área y cuesta más, por lo que se reserva para cachés pequeñas. La DRAM (capacitor + transistor) es densa y económica, pero necesita refresco y es más lenta; encaja en grandes capacidades.",
       "difficulty": "facil"
@@ -165,12 +130,7 @@
       "id": "hw-arq-0303",
       "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
       "text": "Un sistema con direcciones virtuales de 32 bits usa páginas de 4 KB. ¿Qué número de página y desplazamiento (offset) corresponden a la dirección virtual 0x00403A2C?",
-      "options": [
-        "Página 0x0040 y offset 0x3A2C",
-        "Página 0x00403 y offset 0xA2C",
-        "Página 0x403A y offset 0x2C",
-        "Página 0x00403A y offset 0x2C"
-      ],
+      "options": ["Página 0x0040 y offset 0x3A2C", "Página 0x00403 y offset 0xA2C", "Página 0x403A y offset 0x2C"],
       "answer": 1,
       "explanation": "4 KB = 2¹², así que el offset ocupa los 12 bits inferiores (3 dígitos hexadecimales: A2C) y el número de página los 20 bits superiores (5 dígitos: 00403). Las otras opciones usan tamaños de offset incorrectos.",
       "difficulty": "dificil"
@@ -179,8 +139,8 @@
       "id": "hw-arq-0304",
       "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
       "text": "Una caché de mapeo directo tiene 256 líneas de 16 bytes y el procesador usa direcciones de 32 bits. ¿Cuántos bits tiene la etiqueta (tag)?",
-      "options": ["24", "22", "20", "16"],
-      "answer": 2,
+      "options": ["22", "20", "16"],
+      "answer": 1,
       "explanation": "Offset = log₂16 = 4 bits. Índice = log₂256 = 8 bits. Etiqueta = 32 − 8 − 4 = 20 bits.",
       "difficulty": "media"
     },
@@ -188,12 +148,7 @@
       "id": "hw-arq-0305",
       "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
       "text": "Un programa actualiza una misma variable miles de veces dentro de un ciclo. ¿Qué política de escritura de caché reduce más el tráfico hacia la memoria principal y cómo lo logra?",
-      "options": [
-        "Write-back: escribe solo en la caché, marca el bloque como sucio y lo manda a memoria cuando se reemplaza",
-        "Write-through: cada escritura se replica de inmediato en memoria",
-        "Ninguna: la caché no influye en escrituras",
-        "Write-through con bit sucio, que evita escribir si el valor no cambió"
-      ],
+      "options": ["Write-back: escribe solo en la caché, marca el bloque como sucio y lo manda a memoria cuando se reemplaza", "Write-through: cada escritura se replica de inmediato en memoria", "Write-through con bit sucio, que evita escribir si el valor no cambió"],
       "answer": 0,
       "explanation": "Con write-back las miles de escrituras se acumulan en la línea de caché y solo se envía a memoria una vez al reemplazar el bloque (si su dirty bit está activo). En write-through cada escritura generaría tráfico.",
       "difficulty": "media"
@@ -202,13 +157,8 @@
       "id": "hw-arq-0306",
       "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
       "text": "Un servidor usa RAID 5 con 4 discos de 2 TB cada uno. ¿Cuál es la capacidad útil y qué tolerancia a fallos ofrece?",
-      "options": [
-        "8 TB y tolera la falla de dos discos",
-        "4 TB y tolera la falla de dos discos",
-        "6 TB y no tolera ninguna falla",
-        "6 TB; tolera la falla de un disco, y con dos fallos simultáneos se pierden los datos"
-      ],
-      "answer": 3,
+      "options": ["8 TB y tolera la falla de dos discos", "4 TB y tolera la falla de dos discos", "6 TB; tolera la falla de un disco, y con dos fallos simultáneos se pierden los datos"],
+      "answer": 2,
       "explanation": "RAID 5 reparte paridad y sacrifica la capacidad de un disco: (4 − 1) × 2 TB = 6 TB. Puede reconstruir los datos si falla un solo disco; si fallan dos a la vez, se pierde el arreglo. Para tolerar dos fallas se necesitaría RAID 6.",
       "difficulty": "media"
     },
@@ -217,13 +167,8 @@
       "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
       "text": "Se analiza el siguiente fragmento en ensamblador. ¿Qué modo de direccionamiento usa cada instrucción, en orden?",
       "code": "MOV A, #5\nMOV B, 5\nMOV C, [R1]",
-      "options": [
-        "Directo, inmediato, registro",
-        "Inmediato, directo, indirecto por registro",
-        "Inmediato, indirecto, registro",
-        "Directo, directo, indexado"
-      ],
-      "answer": 1,
+      "options": ["Inmediato, directo, indirecto por registro", "Directo, inmediato, registro", "Inmediato, indirecto, registro"],
+      "answer": 0,
       "explanation": "#5 es el valor 5 dentro de la instrucción (inmediato). 5 sin # es la dirección de memoria 5 (directo). [R1] usa el contenido de R1 como dirección del operando (indirecto por registro).",
       "difficulty": "media"
     },
@@ -231,12 +176,7 @@
       "id": "hw-arq-0402",
       "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
       "text": "Un sistema de adquisición debe transferir bloques de 64 KB desde un convertidor a la memoria sin saturar al procesador, que debe seguir ejecutando otras tareas. ¿Qué técnica de E/S es la más adecuada?",
-      "options": [
-        "Polling continuo sobre el registro de estado",
-        "Una interrupción por cada byte recibido",
-        "DMA (acceso directo a memoria) con aviso al finalizar el bloque",
-        "Ejecutar una instrucción CALL cada milisegundo"
-      ],
+      "options": ["Polling continuo sobre el registro de estado", "Una interrupción por cada byte recibido", "DMA (acceso directo a memoria) con aviso al finalizar el bloque"],
       "answer": 2,
       "explanation": "El controlador DMA mueve el bloque entre el periférico y la memoria sin intervención de la CPU y solo interrumpe al terminar. El polling consume CPU y una interrupción por byte genera una sobrecarga enorme (65 536 interrupciones).",
       "difficulty": "facil"
@@ -245,7 +185,7 @@
       "id": "hw-arq-0403",
       "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
       "text": "En un procesador cuya pila crece hacia direcciones menores, el SP vale 0x0100. Se ejecutan dos PUSH de 2 bytes cada uno y después un POP de 2 bytes. ¿Cuál es el valor final del SP?",
-      "options": ["0x00FE", "0x00FC", "0x0102", "0x0104"],
+      "options": ["0x00FE", "0x00FC", "0x0104"],
       "answer": 0,
       "explanation": "Cada PUSH resta 2: 0x0100 → 0x00FE → 0x00FC. El POP suma 2: 0x00FC → 0x00FE. Si la pila creciera hacia arriba el razonamiento se invertiría, pero el enunciado indica lo contrario.",
       "difficulty": "media"
@@ -254,13 +194,8 @@
       "id": "hw-arq-0404",
       "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
       "text": "Cuando una interrupción enmascarable es aceptada por la CPU, ¿cuál es la secuencia correcta de eventos?",
-      "options": [
-        "Saltar a la ISR, guardar el contexto y finalizar la instrucción en curso",
-        "Detener la instrucción en curso al instante, descartar el PC y ejecutar la ISR sin guardar nada",
-        "Guardar el contexto, ejecutar la ISR y, solo al final, terminar la instrucción interrumpida",
-        "Terminar la instrucción actual, guardar PC y banderas, saltar a la ISR mediante el vector, ejecutarla y regresar con RETI"
-      ],
-      "answer": 3,
+      "options": ["Saltar a la ISR, guardar el contexto y finalizar la instrucción en curso", "Guardar el contexto, ejecutar la ISR y, solo al final, terminar la instrucción interrumpida", "Terminar la instrucción actual, guardar PC y banderas, saltar a la ISR mediante el vector, ejecutarla y regresar con RETI"],
+      "answer": 2,
       "explanation": "La CPU finaliza la instrucción en curso, guarda el contexto (PC y banderas) en la pila, consulta el vector de interrupciones, ejecuta la ISR y con RETI restaura el contexto para continuar el programa.",
       "difficulty": "media"
     },
@@ -268,13 +203,8 @@
       "id": "hw-arq-0405",
       "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
       "text": "Una instrucción de 16 bits se divide en 5 bits para el código de operación y 11 bits para la dirección. ¿Cuántas operaciones distintas y cuántas posiciones de memoria se pueden especificar?",
-      "options": [
-        "16 operaciones y 4 K posiciones",
-        "11 operaciones y 32 K posiciones",
-        "32 operaciones y 2 K posiciones",
-        "5 operaciones y 11 posiciones"
-      ],
-      "answer": 2,
+      "options": ["32 operaciones y 2 K posiciones", "11 operaciones y 32 K posiciones", "5 operaciones y 11 posiciones"],
+      "answer": 0,
       "explanation": "5 bits de opcode dan 2⁵ = 32 operaciones. 11 bits de dirección dan 2¹¹ = 2048 = 2 K posiciones.",
       "difficulty": "facil"
     },
@@ -282,15 +212,46 @@
       "id": "hw-arq-0406",
       "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
       "text": "En un microcontrolador, una ISR activa la bandera dato_listo = 1 y el programa principal espera con while(!dato_listo) {}. Con la optimización del compilador activada, el programa nunca sale del ciclo aunque la interrupción sí ocurre. ¿Cuál es la causa más probable?",
-      "options": [
-        "Una ISR no puede modificar variables globales",
-        "La variable no está declarada volatile y el compilador la mantiene en un registro sin releerla",
-        "El polling es incompatible con las interrupciones",
-        "La pila se desbordó al entrar a la ISR"
-      ],
+      "options": ["Una ISR no puede modificar variables globales", "La variable no está declarada volatile y el compilador la mantiene en un registro sin releerla", "El polling es incompatible con las interrupciones"],
       "answer": 1,
       "explanation": "Al optimizar, el compilador asume que dato_listo no cambia dentro del ciclo y no vuelve a leerla de memoria. volatile obliga a leer la variable en cada acceso. Las ISR sí pueden modificar globales y combinar polling con interrupciones es válido.",
       "difficulty": "dificil"
+    },
+    {
+      "id": "hw-arq-0501",
+      "lesson": "hardware/arquitectura/01-sistemas-numericos",
+      "text": "¿Cuál es el resultado de la operación 0xA5 AND 0x0F?",
+      "options": ["0xA0", "0xAF", "0x05"],
+      "answer": 2,
+      "explanation": "AND conserva los bits donde ambos operandos valen 1: la máscara 0x0F deja solo el nibble bajo de 0xA5, o sea 0x05.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-arq-0502",
+      "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
+      "text": "En un procesador x86, ¿qué registro contiene la dirección de la siguiente instrucción que se va a ejecutar?",
+      "options": ["El contador de programa (EIP o RIP)", "El puntero de pila (ESP)", "El registro de banderas (EFLAGS)"],
+      "answer": 0,
+      "explanation": "El contador de programa apunta a la siguiente instrucción. ESP apunta a la cima de la pila y EFLAGS guarda banderas.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-arq-0503",
+      "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
+      "text": "¿Qué ventaja tiene una unidad SSD sobre un disco duro mecánico (HDD)?",
+      "options": ["Siempre ofrece mayor capacidad por peso invertido", "No tiene partes móviles y ofrece menor latencia de acceso aleatorio", "Requiere una desfragmentación periódica obligatoria"],
+      "answer": 1,
+      "explanation": "El SSD usa memoria flash, sin cabezales ni platos, por lo que su acceso aleatorio es mucho más rápido.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-arq-0504",
+      "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
+      "text": "Un procesador de 32 bits direcciona la memoria byte por byte. ¿Cuál es la memoria máxima que puede direccionar?",
+      "options": ["32 GiB", "4 MiB", "4 GiB (2³² bytes)"],
+      "answer": 2,
+      "explanation": "Con 32 bits de dirección hay 2³² posiciones de un byte: 4 GiB.",
+      "difficulty": "media"
     }
   ]
 }

@@ -4,12 +4,7 @@
       "id": "sw-ing-0101",
       "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
       "text": "Una startup desarrolla una aplicación cuyos requerimientos cambian cada mes según la retroalimentación de sus usuarios y quiere entregar versiones funcionales con frecuencia. ¿Qué enfoque es el más adecuado?",
-      "options": [
-        "Cascada, con fases secuenciales estrictas",
-        "Scrum, con sprints cortos y revisión constante con el cliente",
-        "Modelo V, con una fase de prueba por cada fase de diseño",
-        "Espiral, con análisis de riesgos solo al final"
-      ],
+      "options": ["Cascada, con fases secuenciales estrictas", "Scrum, con sprints cortos y revisión constante con el cliente", "Modelo V, con una fase de prueba por cada fase de diseño"],
       "answer": 1,
       "explanation": "Los requerimientos cambiantes y las entregas frecuentes son el terreno de las metodologías ágiles como Scrum. Cascada y modelo V son rígidos y no absorben bien el cambio.",
       "difficulty": "facil"
@@ -18,7 +13,7 @@
       "id": "sw-ing-0102",
       "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
       "text": "El cliente de un proyecto no tiene claro qué quiere: dice 'lo sabré cuando lo vea'. ¿Qué modelo de proceso conviene para reducir esa incertidumbre al inicio?",
-      "options": ["Cascada", "Modelo V", "Prototipos", "Mantenimiento correctivo"],
+      "options": ["Cascada", "Modelo V", "Prototipos"],
       "answer": 2,
       "explanation": "Cuando los requerimientos son confusos, se construye un prototipo rápido para que el usuario lo valide y aclare lo que necesita. Cascada y modelo V presuponen requerimientos claros desde el principio.",
       "difficulty": "facil"
@@ -27,7 +22,7 @@
       "id": "sw-ing-0103",
       "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
       "text": "Se desarrollará un sistema grande y costoso donde los riesgos técnicos y de negocio son altos, y se quiere evaluarlos en cada iteración del proyecto. ¿Qué modelo es el más apropiado?",
-      "options": ["Espiral", "Cascada", "RAD", "Kanban"],
+      "options": ["Espiral", "RAD", "Kanban"],
       "answer": 0,
       "explanation": "El modelo espiral incorpora un análisis de riesgos en cada vuelta, por eso se recomienda en proyectos grandes y riesgosos. RAD se orienta a plazos cortos con riesgos bajos.",
       "difficulty": "media"
@@ -36,8 +31,8 @@
       "id": "sw-ing-0104",
       "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
       "text": "En Scrum, ¿quién es el responsable de ordenar por prioridad el Product Backlog y representa los intereses del cliente?",
-      "options": ["El Scrum Master", "El líder técnico del equipo", "El equipo de desarrollo completo", "El Product Owner"],
-      "answer": 3,
+      "options": ["El Scrum Master", "El equipo de desarrollo completo", "El Product Owner"],
+      "answer": 2,
       "explanation": "El Product Owner prioriza el backlog y representa al cliente. El Scrum Master facilita el proceso y elimina impedimentos; el equipo de desarrollo construye el incremento.",
       "difficulty": "facil"
     },
@@ -45,17 +40,17 @@
       "id": "sw-ing-0105",
       "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
       "text": "Al terminar un sprint, el equipo se reúne para analizar qué salió bien, qué salió mal y cómo mejorar su forma de trabajar en el siguiente sprint. ¿Cómo se llama este evento?",
-      "options": ["Sprint Review", "Sprint Retrospective (retrospectiva)", "Daily Scrum", "Sprint Planning"],
+      "options": ["Sprint Review", "Sprint Retrospective (retrospectiva)", "Sprint Planning"],
       "answer": 1,
-      "explanation": "La retrospectiva se enfoca en mejorar el proceso del equipo. La Sprint Review muestra el incremento al cliente, la Daily sincroniza el trabajo diario y la Planning define lo que se hará.",
+      "explanation": "La retrospectiva se enfoca en mejorar el proceso del equipo. La Sprint Review muestra el incremento al cliente y la Planning define lo que se hará.",
       "difficulty": "facil"
     },
     {
       "id": "sw-ing-0106",
       "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
       "text": "Un equipo escribe las pruebas antes que el código, programa en parejas, integra cambios varias veces al día y refactoriza constantemente. ¿Qué metodología aplica?",
-      "options": ["Cascada", "Kanban", "XP (Extreme Programming)", "Espiral"],
-      "answer": 2,
+      "options": ["Kanban", "XP (Extreme Programming)", "Espiral"],
+      "answer": 1,
       "explanation": "TDD, programación en pares, integración continua y refactorización son prácticas de ingeniería de XP. Kanban se centra en el flujo visual y el límite de trabajo en curso.",
       "difficulty": "facil"
     },
@@ -63,7 +58,7 @@
       "id": "sw-ing-0201",
       "lesson": "software/ingenieria/02-requerimientos-uml",
       "text": "El requerimiento 'El sistema debe responder a cualquier consulta en menos de 2 segundos' es de tipo:",
-      "options": ["Funcional", "No funcional (rendimiento)", "De dominio", "Un caso de uso"],
+      "options": ["Funcional", "No funcional (rendimiento)", "De dominio"],
       "answer": 1,
       "explanation": "Describe una cualidad del sistema (rendimiento), no una función específica, por lo que es un requerimiento no funcional. Los funcionales describen lo que el sistema hace.",
       "difficulty": "facil"
@@ -72,12 +67,7 @@
       "id": "sw-ing-0202",
       "lesson": "software/ingenieria/02-requerimientos-uml",
       "text": "¿Cuál de los siguientes enunciados es un requerimiento funcional?",
-      "options": [
-        "El sistema tendrá una disponibilidad del 99.9 %",
-        "Las contraseñas se almacenarán cifradas",
-        "El usuario podrá exportar su historial de compras a PDF",
-        "Las páginas cargarán en menos de 3 segundos"
-      ],
+      "options": ["El sistema tendrá una disponibilidad del 99.9 %", "Las contraseñas se almacenarán cifradas", "El usuario podrá exportar su historial de compras a PDF"],
       "answer": 2,
       "explanation": "Exportar el historial a PDF es una función que el sistema ofrece. Disponibilidad, seguridad y tiempo de carga son cualidades del sistema, es decir, requerimientos no funcionales.",
       "difficulty": "facil"
@@ -86,13 +76,8 @@
       "id": "sw-ing-0203",
       "lesson": "software/ingenieria/02-requerimientos-uml",
       "text": "¿Cuál de los siguientes enunciados está correctamente redactado como historia de usuario?",
-      "options": [
-        "El sistema usará una base de datos MySQL",
-        "Hacer la pantalla de inicio de sesión",
-        "Mejorar el rendimiento del servidor",
-        "Como cliente, quiero guardar mis direcciones de envío, para no escribirlas en cada compra"
-      ],
-      "answer": 3,
+      "options": ["Hacer la pantalla de inicio de sesión", "Mejorar el rendimiento del servidor", "Como cliente, quiero guardar mis direcciones de envío, para no escribirlas en cada compra"],
+      "answer": 2,
       "explanation": "Una historia de usuario sigue el formato 'Como [rol], quiero [funcionalidad], para [beneficio]'. Las demás opciones son decisiones técnicas o tareas, no historias.",
       "difficulty": "facil"
     },
@@ -100,7 +85,7 @@
       "id": "sw-ing-0204",
       "lesson": "software/ingenieria/02-requerimientos-uml",
       "text": "En un diagrama de clases, una Casa se relaciona con sus Habitaciones de modo que, si se destruye la casa, las habitaciones dejan de existir. ¿Qué relación UML representa esto?",
-      "options": ["Agregación (rombo vacío)", "Composición (rombo lleno)", "Herencia (triángulo vacío)", "Dependencia (flecha punteada)"],
+      "options": ["Agregación (rombo vacío)", "Composición (rombo lleno)", "Herencia (triángulo vacío)"],
       "answer": 1,
       "explanation": "La composición es una agregación fuerte: la parte no existe sin el todo y se dibuja con rombo lleno. En la agregación (rombo vacío) las partes pueden existir independientemente.",
       "difficulty": "media"
@@ -109,7 +94,7 @@
       "id": "sw-ing-0205",
       "lesson": "software/ingenieria/02-requerimientos-uml",
       "text": "Se desea mostrar cómo un cliente, el sitio web y la pasarela de pagos intercambian mensajes durante una compra, en orden cronológico. ¿Qué diagrama UML se usa?",
-      "options": ["Diagrama de secuencia", "Diagrama de clases", "Diagrama de despliegue", "Diagrama de paquetes"],
+      "options": ["Diagrama de secuencia", "Diagrama de clases", "Diagrama de despliegue"],
       "answer": 0,
       "explanation": "El diagrama de secuencia muestra los mensajes entre objetos ordenados en el tiempo. El de clases muestra estructura estática y el de despliegue, la distribución física del software.",
       "difficulty": "facil"
@@ -118,12 +103,7 @@
       "id": "sw-ing-0206",
       "lesson": "software/ingenieria/02-requerimientos-uml",
       "text": "En un diagrama de casos de uso, 'Realizar pago' siempre necesita 'Validar tarjeta', mientras que 'Aplicar cupón' es un comportamiento opcional. ¿Qué relaciones corresponden?",
-      "options": [
-        "Ambos con extend",
-        "Ambos con include",
-        "Validar tarjeta con include y Aplicar cupón con extend",
-        "Validar tarjeta con extend y Aplicar cupón con include"
-      ],
+      "options": ["Ambos con extend", "Ambos con include", "Validar tarjeta con include y Aplicar cupón con extend"],
       "answer": 2,
       "explanation": "include indica comportamiento obligatorio que siempre se ejecuta; extend, comportamiento opcional que solo ocurre bajo ciertas condiciones.",
       "difficulty": "media"
@@ -132,7 +112,7 @@
       "id": "sw-ing-0207",
       "lesson": "software/ingenieria/02-requerimientos-uml",
       "text": "Un analista necesita conocer el flujo real de trabajo de los cajeros de una tienda, sin interrumpirlos ni depender de lo que ellos recuerden. ¿Qué técnica de obtención de requerimientos conviene?",
-      "options": ["Encuesta masiva por correo", "Observación directa (etnografía)", "Construcción de un prototipo", "Revisión del contrato legal"],
+      "options": ["Encuesta masiva por correo", "Observación directa (etnografía)", "Revisión del contrato legal"],
       "answer": 1,
       "explanation": "La observación permite ver cómo se trabaja realmente, incluyendo prácticas que los usuarios no mencionan en entrevistas o encuestas.",
       "difficulty": "media"
@@ -141,8 +121,8 @@
       "id": "sw-ing-0301",
       "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
       "text": "Un framework web separa la pantalla que ve el usuario (Vista), los datos y las reglas del negocio (Modelo) y un componente que recibe las peticiones y decide qué datos mostrar (Controlador). ¿Qué patrón arquitectónico es?",
-      "options": ["Microservicios", "Pipeline", "MVC", "Monolito"],
-      "answer": 2,
+      "options": ["Microservicios", "MVC", "Monolito"],
+      "answer": 1,
       "explanation": "Modelo-Vista-Controlador separa la interfaz de la lógica y los datos. Los microservicios dividen el sistema en servicios independientes.",
       "difficulty": "facil"
     },
@@ -150,12 +130,7 @@
       "id": "sw-ing-0302",
       "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
       "text": "Una sola clase de 5 000 líneas calcula impuestos, dibuja la interfaz, envía correos y accede a la base de datos. ¿Qué característica de diseño presenta y qué principio viola?",
-      "options": [
-        "Baja cohesión; viola el principio de responsabilidad única",
-        "Alta cohesión; cumple el principio abierto/cerrado",
-        "Bajo acoplamiento; cumple la inversión de dependencias",
-        "Alta cohesión; viola Liskov"
-      ],
+      "options": ["Baja cohesión; viola el principio de responsabilidad única", "Alta cohesión; cumple el principio abierto/cerrado", "Alta cohesión; viola Liskov"],
       "answer": 0,
       "explanation": "La clase mezcla muchas responsabilidades no relacionadas: baja cohesión, lo que viola el principio de responsabilidad única (una sola razón para cambiar).",
       "difficulty": "media"
@@ -164,8 +139,8 @@
       "id": "sw-ing-0303",
       "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
       "text": "Cuando cambia el precio de una acción, varias pantallas y gráficos que lo muestran deben actualizarse automáticamente. ¿Qué patrón de diseño resuelve esto?",
-      "options": ["Singleton", "Observer", "Adapter", "Factory"],
-      "answer": 1,
+      "options": ["Observer", "Adapter", "Factory"],
+      "answer": 0,
       "explanation": "Observer define una dependencia uno-a-muchos: cuando el sujeto cambia, notifica automáticamente a todos sus observadores suscritos.",
       "difficulty": "facil"
     },
@@ -173,8 +148,8 @@
       "id": "sw-ing-0304",
       "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
       "text": "Se necesita garantizar que exista una única instancia de la clase que administra el registro (log) de la aplicación y que todos los módulos la compartan. ¿Qué patrón se usa?",
-      "options": ["Factory", "Strategy", "Adapter", "Singleton"],
-      "answer": 3,
+      "options": ["Factory", "Adapter", "Singleton"],
+      "answer": 2,
       "explanation": "Singleton asegura una sola instancia de una clase y provee un punto de acceso global a ella.",
       "difficulty": "facil"
     },
@@ -182,13 +157,8 @@
       "id": "sw-ing-0305",
       "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
       "text": "La clase Cuadrado hereda de Rectángulo. Al establecer el ancho de un cuadrado, el código que espera un rectángulo deja de funcionar correctamente porque el alto también cambia. ¿Qué principio SOLID se viola?",
-      "options": [
-        "Responsabilidad única",
-        "Segregación de interfaces",
-        "Sustitución de Liskov",
-        "Abierto/cerrado"
-      ],
-      "answer": 2,
+      "options": ["Responsabilidad única", "Sustitución de Liskov", "Abierto/cerrado"],
+      "answer": 1,
       "explanation": "Liskov exige que una subclase pueda usarse en lugar de su superclase sin alterar el comportamiento esperado. Aquí Cuadrado no puede sustituir a Rectángulo sin romper supuestos.",
       "difficulty": "dificil"
     },
@@ -196,16 +166,16 @@
       "id": "sw-ing-0306",
       "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
       "text": "Un sistema de nómina se modifica para cumplir con una nueva regulación fiscal que entró en vigor. ¿Qué tipo de mantenimiento es?",
-      "options": ["Correctivo", "Adaptativo", "Perfectivo", "Preventivo"],
+      "options": ["Correctivo", "Adaptativo", "Perfectivo"],
       "answer": 1,
-      "explanation": "El mantenimiento adaptativo ajusta el software a cambios del entorno (leyes, plataformas, hardware). El correctivo repara errores, el perfectivo agrega mejoras y el preventivo evita fallas futuras.",
+      "explanation": "El mantenimiento adaptativo ajusta el software a cambios del entorno (leyes, plataformas, hardware). El correctivo repara errores y el perfectivo agrega mejoras.",
       "difficulty": "media"
     },
     {
       "id": "sw-ing-0401",
       "lesson": "software/ingenieria/04-pruebas-calidad",
       "text": "Un probador diseña casos para un módulo sin ver su código fuente, usando únicamente los valores límite y las clases de equivalencia de la especificación. ¿Qué tipo de prueba realiza?",
-      "options": ["Caja blanca", "Caja negra", "Cobertura de ramas", "Prueba unitaria estructural"],
+      "options": ["Caja blanca", "Caja negra", "Cobertura de ramas"],
       "answer": 1,
       "explanation": "Probar solo con entradas y salidas, sin conocer el código, es caja negra, cuyas técnicas típicas son valores límite y partición de equivalencia.",
       "difficulty": "facil"
@@ -214,12 +184,7 @@
       "id": "sw-ing-0402",
       "lesson": "software/ingenieria/04-pruebas-calidad",
       "text": "El grafo de flujo de un módulo tiene 11 aristas y 9 nodos. ¿Cuál es su complejidad ciclomática V(G) y qué indica?",
-      "options": [
-        "2; basta con 2 casos de prueba",
-        "9; hay 9 caminos posibles",
-        "4; se necesitan 4 caminos independientes para cubrirlo",
-        "20; el módulo es imposible de probar"
-      ],
+      "options": ["2; basta con 2 casos de prueba", "9; hay 9 caminos posibles", "4; se necesitan 4 caminos independientes para cubrirlo"],
       "answer": 2,
       "explanation": "V(G) = E − N + 2 = 11 − 9 + 2 = 4. Indica el número de caminos independientes que deben probarse para cubrir el módulo.",
       "difficulty": "media"
@@ -228,7 +193,7 @@
       "id": "sw-ing-0403",
       "lesson": "software/ingenieria/04-pruebas-calidad",
       "text": "Un equipo realiza una inspección formal para comprobar que el documento de diseño cumple lo establecido en la especificación de requerimientos. ¿Qué actividad se está realizando?",
-      "options": ["Validación", "Verificación", "Prueba de aceptación", "Mantenimiento perfectivo"],
+      "options": ["Validación", "Verificación", "Prueba de aceptación"],
       "answer": 1,
       "explanation": "Verificación responde '¿construimos el producto correctamente?', comprobando que un producto cumple su especificación. La validación pregunta si es el producto correcto para el usuario.",
       "difficulty": "media"
@@ -237,8 +202,8 @@
       "id": "sw-ing-0404",
       "lesson": "software/ingenieria/04-pruebas-calidad",
       "text": "Después de corregir un error en el módulo de facturación, el equipo vuelve a ejecutar el conjunto de pruebas existente para comprobar que nada de lo que funcionaba dejó de hacerlo. ¿Qué tipo de prueba es?",
-      "options": ["Prueba de humo", "Prueba de carga", "Prueba de regresión", "Prueba alfa"],
-      "answer": 2,
+      "options": ["Prueba de humo", "Prueba de regresión", "Prueba alfa"],
+      "answer": 1,
       "explanation": "Las pruebas de regresión verifican que los cambios nuevos no rompieron la funcionalidad previa. Las de humo son una revisión rápida de lo esencial.",
       "difficulty": "facil"
     },
@@ -246,13 +211,8 @@
       "id": "sw-ing-0405",
       "lesson": "software/ingenieria/04-pruebas-calidad",
       "text": "Un campo de edad acepta valores de 18 a 65 años. Aplicando análisis de valores límite, ¿qué valores se prueban principalmente?",
-      "options": [
-        "10, 30 y 70",
-        "0 y 100",
-        "Solo 18 y 65",
-        "17, 18, 65 y 66"
-      ],
-      "answer": 3,
+      "options": ["0 y 100", "Solo 18 y 65", "17, 18, 65 y 66"],
+      "answer": 2,
       "explanation": "Los errores suelen aparecer en los bordes: se prueba el último valor inválido antes del rango (17), los límites (18 y 65) y el primer valor inválido después (66).",
       "difficulty": "media"
     },
@@ -260,12 +220,7 @@
       "id": "sw-ing-0406",
       "lesson": "software/ingenieria/04-pruebas-calidad",
       "text": "Una auditoría revisa los procedimientos del equipo de desarrollo para prevenir defectos antes de que aparezcan. ¿A qué corresponde esta actividad?",
-      "options": [
-        "Aseguramiento de la calidad (QA)",
-        "Control de calidad (QC)",
-        "Pruebas de carga",
-        "Validación con el usuario"
-      ],
+      "options": ["Aseguramiento de la calidad (QA)", "Control de calidad (QC)", "Pruebas de carga"],
       "answer": 0,
       "explanation": "El aseguramiento de la calidad actúa sobre el proceso para prevenir defectos. El control de calidad detecta defectos en el producto ya construido.",
       "difficulty": "media"
@@ -274,12 +229,7 @@
       "id": "sw-ing-0407",
       "lesson": "software/ingenieria/04-pruebas-calidad",
       "text": "¿Qué evalúa el modelo CMMI?",
-      "options": [
-        "La calidad del producto de software mediante ocho características",
-        "El costo total de un proyecto",
-        "La madurez de los procesos de una organización, en niveles del 1 al 5",
-        "El rendimiento del hardware donde corre el software"
-      ],
+      "options": ["La calidad del producto de software mediante ocho características", "El costo total de un proyecto", "La madurez de los procesos de una organización, en niveles del 1 al 5"],
       "answer": 2,
       "explanation": "CMMI mide la madurez del proceso (niveles 1 a 5). Las ocho características de calidad del producto corresponden a ISO/IEC 25010.",
       "difficulty": "media"
@@ -288,7 +238,7 @@
       "id": "sw-ing-0501",
       "lesson": "software/ingenieria/05-estimacion-factibilidad",
       "text": "Una tarea tiene estimación optimista de 2 días, más probable de 5 y pesimista de 14. ¿Cuánto es su duración esperada según PERT?",
-      "options": ["5 días", "6 días", "7.5 días", "21 días"],
+      "options": ["5 días", "6 días", "7.5 días"],
       "answer": 1,
       "explanation": "E = (O + 4M + P)/6 = (2 + 20 + 14)/6 = 36/6 = 6 días. Un promedio simple (7.5 si se usan los extremos) no pondera el caso más probable.",
       "difficulty": "media"
@@ -297,7 +247,7 @@
       "id": "sw-ing-0502",
       "lesson": "software/ingenieria/05-estimacion-factibilidad",
       "text": "Un proyecto tiene las tareas A (3 días) → B (4 días) → D (2 días) y también A → C (6 días) → D. ¿Cuál es la duración mínima del proyecto?",
-      "options": ["9 días", "13 días", "11 días", "15 días"],
+      "options": ["9 días", "13 días", "11 días"],
       "answer": 2,
       "explanation": "La ruta A-B-D dura 9 días y la ruta A-C-D dura 3 + 6 + 2 = 11 días. La duración mínima es la de la ruta más larga (ruta crítica): 11 días.",
       "difficulty": "media"
@@ -306,8 +256,8 @@
       "id": "sw-ing-0503",
       "lesson": "software/ingenieria/05-estimacion-factibilidad",
       "text": "En el proyecto anterior (ruta crítica A-C-D de 11 días, ruta A-B-D de 9 días), ¿cuántos días de holgura tiene la tarea B?",
-      "options": ["0", "2", "4", "11"],
-      "answer": 1,
+      "options": ["2", "4", "11"],
+      "answer": 0,
       "explanation": "La holgura es la diferencia entre la ruta crítica y la ruta que contiene la tarea: 11 − 9 = 2 días. B puede retrasarse 2 días sin afectar el proyecto.",
       "difficulty": "media"
     },
@@ -315,13 +265,8 @@
       "id": "sw-ing-0504",
       "lesson": "software/ingenieria/05-estimacion-factibilidad",
       "text": "Un proyecto de software va retrasado y el gerente decide agregar cinco programadores nuevos de inmediato. ¿Qué efecto es el más probable según la ley de Brooks?",
-      "options": [
-        "Terminará antes, de forma proporcional a las personas agregadas",
-        "No tendrá ningún efecto",
-        "Se reducirá el costo del proyecto",
-        "Probablemente se retrasará aún más por la curva de aprendizaje y la mayor comunicación"
-      ],
-      "answer": 3,
+      "options": ["No tendrá ningún efecto", "Se reducirá el costo del proyecto", "Probablemente se retrasará aún más por la curva de aprendizaje y la mayor comunicación"],
+      "answer": 2,
       "explanation": "La ley de Brooks establece que agregar personal a un proyecto de software atrasado lo atrasa más: los recién llegados necesitan capacitación y aumentan los canales de comunicación.",
       "difficulty": "media"
     },
@@ -329,7 +274,7 @@
       "id": "sw-ing-0505",
       "lesson": "software/ingenieria/05-estimacion-factibilidad",
       "text": "Un proyecto de software cuesta 200 000 y se espera que genere un beneficio de 260 000. ¿Cuál es el ROI?",
-      "options": ["30 %", "130 %", "23 %", "60 %"],
+      "options": ["30 %", "130 %", "60 %"],
       "answer": 0,
       "explanation": "ROI = (beneficio − costo)/costo = (260 000 − 200 000)/200 000 = 0.30, es decir, 30 %. El 130 % sería la relación beneficio/costo expresada en porcentaje.",
       "difficulty": "media"
@@ -338,7 +283,7 @@
       "id": "sw-ing-0506",
       "lesson": "software/ingenieria/05-estimacion-factibilidad",
       "text": "En un estudio de factibilidad se pregunta si los empleados aceptarán el nuevo sistema y sabrán operarlo en su trabajo diario. ¿Qué tipo de factibilidad se evalúa?",
-      "options": ["Técnica", "Económica", "Operativa", "Legal"],
+      "options": ["Técnica", "Económica", "Operativa"],
       "answer": 2,
       "explanation": "La factibilidad operativa evalúa si la organización y los usuarios adoptarán y operarán el sistema. La técnica revisa si es posible construirlo; la económica, si conviene.",
       "difficulty": "facil"
@@ -347,9 +292,81 @@
       "id": "sw-ing-0507",
       "lesson": "software/ingenieria/05-estimacion-factibilidad",
       "text": "Una empresa quiere integrar finanzas, inventarios, compras y recursos humanos en un solo sistema con una base de datos común. ¿Qué tipo de sistema necesita?",
-      "options": ["ERP", "CRM", "Un diagrama de Gantt", "Un sistema operativo de tiempo real"],
+      "options": ["ERP", "CRM", "Un diagrama de Gantt"],
       "answer": 0,
       "explanation": "Un ERP integra los procesos centrales del negocio en un único sistema. El CRM se enfoca en la relación con los clientes.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-ing-0601",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "La 7.ª edición de la Guía del PMBOK del PMI se organiza en:",
+      "options": ["12 principios y 8 dominios de desempeño", "5 grupos de procesos y 10 áreas de conocimiento", "Tres fases: inicio, ejecución y cierre"],
+      "answer": 0,
+      "explanation": "El PMBOK 7 pasó a un enfoque basado en principios y dominios de desempeño. Los 5 grupos de procesos y 10 áreas corresponden a la 6.ª edición.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0602",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "Un proyecto tiene EV = 80 y AC = 100. ¿Cuál es su CPI y qué indica?",
+      "options": ["CPI = 1.25: el proyecto está por debajo del presupuesto", "CPI = 0.8: el proyecto gasta más de lo que ha avanzado, hay sobrecosto", "CPI = 1.0: el proyecto va exactamente según lo planeado"],
+      "answer": 1,
+      "explanation": "CPI = EV ÷ AC = 80 ÷ 100 = 0.8. Un índice menor que 1 indica que el costo real supera el valor del trabajo realizado.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0603",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "Un proyecto tiene PV = 100 y EV = 80. ¿Cuál es su SPI y qué indica?",
+      "options": ["SPI = 1.25: el proyecto va adelantado", "SPI = 0.2: el proyecto está terminado", "SPI = 0.8: el proyecto va retrasado respecto al cronograma"],
+      "answer": 2,
+      "explanation": "SPI = EV ÷ PV = 0.8. Se ha realizado menos trabajo del planificado, por lo que hay retraso.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0604",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "En la dirección de proyectos, adaptar o «tailoring» el enfoque significa:",
+      "options": ["Ajustar procesos, métodos y artefactos según el contexto del proyecto", "Aplicar siempre todos los procesos de la guía sin excepción", "Reducir el alcance hasta que no haya cambios"],
+      "answer": 0,
+      "explanation": "Adaptar es personalizar el enfoque a las características del proyecto (tamaño, riesgo, cultura) en lugar de seguir una receta única.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-ing-0605",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "Una aplicación muestra una barra de progreso mientras guarda un archivo grande. ¿Qué heurística de usabilidad de Nielsen aplica?",
+      "options": ["Prevención de errores", "Visibilidad del estado del sistema", "Consistencia y estándares"],
+      "answer": 1,
+      "explanation": "Informar al usuario qué está ocurriendo y cuánto falta corresponde a la visibilidad del estado del sistema.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-ing-0606",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "Un formulario mantiene deshabilitado el botón «Enviar» hasta que se completan los campos obligatorios. ¿Qué heurística aplica?",
+      "options": ["Ayuda y documentación", "Diseño estético y minimalista", "Prevención de errores"],
+      "answer": 2,
+      "explanation": "Impedir el envío incompleto evita que el usuario cometa el error, en lugar de solo avisarle después.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0607",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "Según ISO 9241-11, la usabilidad se evalúa en términos de:",
+      "options": ["Eficacia, eficiencia y satisfacción del usuario en un contexto de uso", "Velocidad del procesador, memoria y almacenamiento", "Número de líneas de código y de módulos"],
+      "answer": 0,
+      "explanation": "La norma define la usabilidad como el grado en que usuarios específicos logran objetivos con eficacia, eficiencia y satisfacción.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0608",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "Agregar texto alternativo a las imágenes y subtítulos a los videos de un sitio busca principalmente:",
+      "options": ["Reducir el tiempo de carga de la página", "Accesibilidad: que personas con discapacidad visual o auditiva puedan percibir el contenido", "Mejorar la seguridad de la red"],
+      "answer": 1,
+      "explanation": "Son medidas de accesibilidad (contenido perceptible) recomendadas por las pautas WCAG.",
       "difficulty": "facil"
     }
   ]

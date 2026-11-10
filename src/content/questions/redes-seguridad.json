@@ -4,12 +4,7 @@
       "id": "red-seg-001",
       "lesson": "redes/seguridad/01-triada-cia-ataques",
       "text": "Un sitio de comercio electrónico queda inaccesible por miles de peticiones simultáneas provenientes de equipos infectados distribuidos por Internet. ¿Qué ataque y qué propiedad de la tríada CIA se vulneran?",
-      "options": [
-        "Sniffing; confidencialidad",
-        "DDoS; disponibilidad",
-        "Inyección SQL; integridad",
-        "Phishing; autenticación"
-      ],
+      "options": ["Sniffing; confidencialidad", "DDoS; disponibilidad", "Inyección SQL; integridad"],
       "answer": 1,
       "explanation": "Muchas fuentes saturando un servicio es un DDoS, y lo que se pierde es la disponibilidad. El sniffing afecta la confidencialidad y la inyección SQL, la integridad y la confidencialidad de los datos.",
       "difficulty": "facil"
@@ -18,13 +13,8 @@
       "id": "red-seg-002",
       "lesson": "redes/seguridad/01-triada-cia-ataques",
       "text": "Un atacante se interpone entre un cliente y un servidor, lee los mensajes y modifica algunos antes de reenviarlos. ¿Qué propiedades de la información se vulneran?",
-      "options": [
-        "Solo la disponibilidad",
-        "Solo el no repudio",
-        "Confidencialidad e integridad",
-        "Solo la autenticación"
-      ],
-      "answer": 2,
+      "options": ["Solo el no repudio", "Confidencialidad e integridad", "Solo la autenticación"],
+      "answer": 1,
       "explanation": "En un ataque man-in-the-middle, leer rompe la confidencialidad y modificar rompe la integridad. Se mitiga con TLS y validación de certificados.",
       "difficulty": "media"
     },
@@ -32,12 +22,7 @@
       "id": "red-seg-003",
       "lesson": "redes/seguridad/01-triada-cia-ataques",
       "text": "Un empleado inicia sesión en el sistema con su usuario y contraseña (paso 1) y, después, el sistema le permite ver únicamente las carpetas de su departamento (paso 2). ¿Cómo se llaman estos dos pasos?",
-      "options": [
-        "Paso 1: autenticación; paso 2: autorización",
-        "Paso 1: autorización; paso 2: autenticación",
-        "Ambos son autenticación",
-        "Ambos son no repudio"
-      ],
+      "options": ["Paso 1: autenticación; paso 2: autorización", "Paso 1: autorización; paso 2: autenticación", "Ambos son autenticación"],
       "answer": 0,
       "explanation": "La autenticación verifica quién eres; la autorización define qué puedes hacer. Primero se autentica y luego se autoriza (principio de mínimo privilegio).",
       "difficulty": "facil"
@@ -46,13 +31,8 @@
       "id": "red-seg-004",
       "lesson": "redes/seguridad/01-triada-cia-ataques",
       "text": "En el formulario de inicio de sesión de una aplicación, un atacante escribe  ' OR '1'='1  en el campo de contraseña y logra entrar sin conocerla. ¿Qué ataque es y cuál es la defensa principal?",
-      "options": [
-        "XSS; escapar la salida HTML",
-        "Inyección SQL; consultas parametrizadas y validación de entradas",
-        "Fuerza bruta; bloqueo de la cuenta tras varios intentos",
-        "Man-in-the-middle; usar TLS"
-      ],
-      "answer": 1,
+      "options": ["Inyección SQL; consultas parametrizadas y validación de entradas", "Fuerza bruta; bloqueo de la cuenta tras varios intentos", "Man-in-the-middle; usar TLS"],
+      "answer": 0,
       "explanation": "El texto altera la consulta SQL para que la condición siempre sea verdadera: es una inyección SQL. Se previene con consultas parametrizadas y validando las entradas. XSS inyecta scripts para otros usuarios y la fuerza bruta prueba contraseñas.",
       "difficulty": "media"
     },
@@ -60,12 +40,7 @@
       "id": "red-seg-005",
       "lesson": "redes/seguridad/01-triada-cia-ataques",
       "text": "Los archivos de un servidor aparecen cifrados y un mensaje exige un pago para recuperarlos. ¿Cuál es la mejor medida preventiva para minimizar el impacto de un ataque así?",
-      "options": [
-        "Cambiar la dirección IP del servidor",
-        "Colocar un hub en lugar del switch",
-        "Respaldos 3-2-1 con una copia fuera de línea, además de parches y un EDR",
-        "Aumentar el ancho de banda del enlace"
-      ],
+      "options": ["Cambiar la dirección IP del servidor", "Colocar un hub en lugar del switch", "Respaldos 3-2-1 con una copia fuera de línea, además de parches y un EDR"],
       "answer": 2,
       "explanation": "Es ransomware. Lo más efectivo es poder restaurar sin pagar: respaldos probados con una copia desconectada, junto con parches y antimalware/EDR. Las otras opciones no afectan el cifrado de datos.",
       "difficulty": "media"
@@ -74,21 +49,16 @@
       "id": "red-seg-006",
       "lesson": "redes/seguridad/02-firewalls-ids-vpn",
       "text": "Una empresa requiere un dispositivo colocado en línea con el tráfico que detecte actividad maliciosa y la bloquee automáticamente. ¿Cuál es el adecuado?",
-      "options": ["IDS", "IPS", "Honeypot", "Switch administrable"],
+      "options": ["IDS", "IPS", "Honeypot"],
       "answer": 1,
-      "explanation": "El IPS va en línea y puede bloquear. El IDS es pasivo: detecta y alerta. El honeypot es un señuelo y el switch no inspecciona amenazas.",
+      "explanation": "El IPS va en línea y puede bloquear. El IDS es pasivo: detecta y alerta. El honeypot es un señuelo.",
       "difficulty": "facil"
     },
     {
       "id": "red-seg-007",
       "lesson": "redes/seguridad/02-firewalls-ids-vpn",
       "text": "Una empresa publica un servidor web y quiere que, si lo comprometen, el atacante no llegue directamente a la red interna. ¿Qué arquitectura debe implementar?",
-      "options": [
-        "Colocar el servidor en una DMZ detrás de un firewall",
-        "Conectar el servidor a un hub junto con la red interna",
-        "Usar cifrado WEP en la red del servidor",
-        "Asignarle una dirección APIPA"
-      ],
+      "options": ["Colocar el servidor en una DMZ detrás de un firewall", "Conectar el servidor a un hub junto con la red interna", "Asignarle una dirección APIPA"],
       "answer": 0,
       "explanation": "La DMZ aloja servidores públicos en una zona intermedia separada de la red interna mediante firewall, de modo que un compromiso no da acceso directo a la LAN.",
       "difficulty": "media"
@@ -97,12 +67,7 @@
       "id": "red-seg-008",
       "lesson": "redes/seguridad/02-firewalls-ids-vpn",
       "text": "Un empleado trabaja desde una cafetería con Wi-Fi pública. ¿Qué beneficio principal le ofrece conectarse mediante una VPN?",
-      "options": [
-        "Un túnel cifrado sobre Internet hacia la red de la empresa",
-        "Mayor velocidad de descarga",
-        "Que ya no necesite antivirus",
-        "Una IP privada que se puede enrutar en Internet"
-      ],
+      "options": ["Un túnel cifrado sobre Internet hacia la red de la empresa", "Mayor velocidad de descarga", "Que ya no necesite antivirus"],
       "answer": 0,
       "explanation": "La VPN protege el tráfico en tránsito creando un túnel cifrado. No aumenta la velocidad ni sustituye al antivirus, y las IP privadas no son enrutables en Internet.",
       "difficulty": "facil"
@@ -111,13 +76,8 @@
       "id": "red-seg-009",
       "lesson": "redes/seguridad/02-firewalls-ids-vpn",
       "text": "Se necesita una regla que permita que los equipos internos reciban las respuestas a las conexiones que ellos inician, sin abrir puertos de entrada para conexiones nuevas desde afuera. ¿Qué tipo de firewall lo hace de forma natural?",
-      "options": [
-        "Un IDS pasivo",
-        "Un honeypot",
-        "Un filtro estático sin estado",
-        "Un firewall con estado (stateful)"
-      ],
-      "answer": 3,
+      "options": ["Un honeypot", "Un filtro estático sin estado", "Un firewall con estado (stateful)"],
+      "answer": 2,
       "explanation": "El firewall con estado recuerda las conexiones iniciadas desde dentro y permite automáticamente su tráfico de respuesta. Un filtro sin estado evalúa cada paquete de forma aislada.",
       "difficulty": "media"
     },
@@ -125,7 +85,7 @@
       "id": "red-seg-010",
       "lesson": "redes/seguridad/02-firewalls-ids-vpn",
       "text": "El equipo de seguridad deja expuesto a propósito un servidor falso, sin datos reales, para registrar las técnicas que usan los atacantes. ¿Cómo se llama este control?",
-      "options": ["Honeypot", "DMZ", "VPN sitio a sitio", "IPS"],
+      "options": ["Honeypot", "DMZ", "IPS"],
       "answer": 0,
       "explanation": "Un honeypot es un señuelo diseñado para atraer y estudiar al atacante. La DMZ aloja servidores reales y el IPS bloquea tráfico malicioso.",
       "difficulty": "facil"
@@ -134,12 +94,7 @@
       "id": "red-seg-011",
       "lesson": "redes/seguridad/02-firewalls-ids-vpn",
       "text": "En una VPN IPsec entre dos oficinas se desea que el tráfico viaje cifrado y autenticado. ¿Qué componente de IPsec se debe usar?",
-      "options": [
-        "AH, porque cifra los datos",
-        "ESP, porque cifra y autentica",
-        "ARP, porque protege las direcciones MAC",
-        "DNSSEC, porque cifra las consultas"
-      ],
+      "options": ["AH, porque cifra los datos", "ESP, porque cifra y autentica", "DNSSEC, porque cifra las consultas"],
       "answer": 1,
       "explanation": "En IPsec, ESP cifra y autentica; AH solo autentica y da integridad, sin cifrar. ARP y DNSSEC no forman parte de IPsec.",
       "difficulty": "dificil"
@@ -148,12 +103,7 @@
       "id": "red-seg-012",
       "lesson": "redes/seguridad/03-criptografia",
       "text": "Beto quiere enviar a Ana un mensaje que solo ella pueda leer, usando criptografía asimétrica. ¿Con qué clave lo cifra?",
-      "options": [
-        "La clave privada de Beto",
-        "La clave pública de Ana",
-        "La clave privada de Ana",
-        "La clave pública de Beto"
-      ],
+      "options": ["La clave privada de Beto", "La clave pública de Ana", "La clave privada de Ana"],
       "answer": 1,
       "explanation": "Se cifra con la clave pública del destinatario; solo su clave privada puede descifrarlo. Cifrar con la privada de Beto no da confidencialidad, ya que su pública es conocida por todos.",
       "difficulty": "media"
@@ -162,13 +112,8 @@
       "id": "red-seg-013",
       "lesson": "redes/seguridad/03-criptografia",
       "text": "Se requiere un mecanismo que proporcione al mismo tiempo integridad, autenticación del emisor y no repudio sobre un documento. ¿Cuál es el adecuado?",
-      "options": [
-        "Cifrado simétrico con AES",
-        "Un hash sin clave",
-        "Firma digital",
-        "Cifrado asimétrico con la clave pública del receptor"
-      ],
-      "answer": 2,
+      "options": ["Un hash sin clave", "Firma digital", "Cifrado asimétrico con la clave pública del receptor"],
+      "answer": 1,
       "explanation": "La firma digital (hash firmado con la clave privada) ofrece las tres propiedades. Un hash solo no autentica a nadie y el cifrado con la pública del receptor da confidencialidad, no autenticidad.",
       "difficulty": "media"
     },
@@ -176,21 +121,16 @@
       "id": "red-seg-014",
       "lesson": "redes/seguridad/03-criptografia",
       "text": "Una empresa debe cifrar un respaldo de 500 GB de forma rápida. ¿Qué algoritmo es el adecuado?",
-      "options": ["RSA", "MD5", "SHA-256", "AES"],
-      "answer": 3,
-      "explanation": "AES es un cifrado simétrico, rápido y adecuado para grandes volúmenes. RSA es asimétrico y lento para esa tarea; MD5 y SHA-256 son funciones hash, no cifran datos para recuperarlos.",
+      "options": ["RSA", "SHA-256", "AES"],
+      "answer": 2,
+      "explanation": "AES es un cifrado simétrico, rápido y adecuado para grandes volúmenes. RSA es asimétrico y lento para esa tarea; SHA-256 es una función hash, no cifra datos para recuperarlos.",
       "difficulty": "facil"
     },
     {
       "id": "red-seg-015",
       "lesson": "redes/seguridad/03-criptografia",
       "text": "¿Por qué HTTPS combina criptografía asimétrica y simétrica?",
-      "options": [
-        "La asimétrica autentica y acuerda la clave de sesión, y la simétrica cifra los datos con mayor velocidad",
-        "Porque la simétrica no puede cifrar datos",
-        "Porque la asimétrica es más rápida para archivos grandes",
-        "Porque ambas se usan para generar el hash de la página"
-      ],
+      "options": ["La asimétrica autentica y acuerda la clave de sesión, y la simétrica cifra los datos con mayor velocidad", "Porque la simétrica no puede cifrar datos", "Porque la asimétrica es más rápida para archivos grandes"],
       "answer": 0,
       "explanation": "TLS usa asimétrica (certificado e intercambio de claves) para establecer una clave de sesión y luego cifra el volumen de datos con simétrica (AES), que es mucho más rápida.",
       "difficulty": "dificil"
@@ -199,8 +139,8 @@
       "id": "red-seg-016",
       "lesson": "redes/seguridad/03-criptografia",
       "text": "Diez personas deben poder comunicarse en privado entre cada par, sin que las demás lean sus mensajes. Con cifrado simétrico, ¿cuántas claves se necesitan en total?",
-      "options": ["10", "20", "45", "90"],
-      "answer": 2,
+      "options": ["10", "45", "90"],
+      "answer": 1,
       "explanation": "Cada par necesita su propia clave: n(n−1)/2 = 10 × 9 / 2 = 45. Con criptografía asimétrica solo se necesitan 10 pares de claves.",
       "difficulty": "dificil"
     },
@@ -208,12 +148,7 @@
       "id": "red-seg-017",
       "lesson": "redes/seguridad/04-hash-firma-certificados",
       "text": "Un usuario descarga un instalador y quiere comprobar que no fue alterado. El sitio publica un valor de comprobación. ¿Qué debe usar?",
-      "options": [
-        "AES con una clave compartida",
-        "RSA con la clave pública del sitio",
-        "Calcular el SHA-256 del archivo y compararlo con el publicado",
-        "ChaCha20 para descifrar el instalador"
-      ],
+      "options": ["AES con una clave compartida", "RSA con la clave pública del sitio", "Calcular el SHA-256 del archivo y compararlo con el publicado"],
       "answer": 2,
       "explanation": "Un hash sirve para verificar integridad: si el SHA-256 calculado coincide con el publicado, el archivo no cambió. Los cifrados no verifican integridad por sí solos.",
       "difficulty": "facil"
@@ -222,13 +157,8 @@
       "id": "red-seg-018",
       "lesson": "redes/seguridad/04-hash-firma-certificados",
       "text": "Un equipo debate cómo almacenar contraseñas en una base de datos: una persona propone cifrarlas con AES-256 y otra propone guardar un hash con sal. ¿Cuál es la mejor opción y por qué?",
-      "options": [
-        "AES-256, porque permite recuperar la contraseña si el usuario la olvida",
-        "Hash con sal (por ejemplo bcrypt o Argon2), porque no es reversible y la sal evita tablas precalculadas",
-        "MD5 sin sal, porque es el más rápido",
-        "Texto plano dentro de una conexión TLS"
-      ],
-      "answer": 1,
+      "options": ["Hash con sal (por ejemplo bcrypt o Argon2), porque no es reversible y la sal evita tablas precalculadas", "MD5 sin sal, porque es el más rápido", "Texto plano dentro de una conexión TLS"],
+      "answer": 0,
       "explanation": "Las contraseñas nunca deben poder recuperarse. Un hash lento con sal es irreversible y hace que contraseñas iguales produzcan hashes diferentes. MD5 está obsoleto, y TLS solo protege el tránsito, no el almacenamiento.",
       "difficulty": "media"
     },
@@ -236,13 +166,8 @@
       "id": "red-seg-019",
       "lesson": "redes/seguridad/04-hash-firma-certificados",
       "text": "Para firmar digitalmente un contrato, ¿con qué clave se cifra el hash del documento?",
-      "options": [
-        "La clave pública del emisor",
-        "La clave privada del destinatario",
-        "La clave pública del destinatario",
-        "La clave privada del emisor"
-      ],
-      "answer": 3,
+      "options": ["La clave pública del emisor", "La clave pública del destinatario", "La clave privada del emisor"],
+      "answer": 2,
       "explanation": "El emisor cifra el hash con su clave privada. El receptor verifica la firma con la clave pública del emisor y compara el hash.",
       "difficulty": "facil"
     },
@@ -250,12 +175,7 @@
       "id": "red-seg-020",
       "lesson": "redes/seguridad/04-hash-firma-certificados",
       "text": "Beto firma digitalmente un contrato y lo envía a Ana por Internet sin cifrarlo. ¿Qué garantiza la firma y qué no?",
-      "options": [
-        "Garantiza confidencialidad, pero no integridad",
-        "Garantiza integridad, autenticidad y no repudio, pero no confidencialidad: el contenido puede leerse en tránsito",
-        "Garantiza únicamente disponibilidad",
-        "Garantiza todas las propiedades, incluida la confidencialidad"
-      ],
+      "options": ["Garantiza confidencialidad, pero no integridad", "Garantiza integridad, autenticidad y no repudio, pero no confidencialidad: el contenido puede leerse en tránsito", "Garantiza todas las propiedades, incluida la confidencialidad"],
       "answer": 1,
       "explanation": "La firma digital no cifra el mensaje; protege su integridad, identifica al firmante y evita que lo niegue. Para confidencialidad habría que cifrar además el documento.",
       "difficulty": "media"
@@ -264,13 +184,8 @@
       "id": "red-seg-021",
       "lesson": "redes/seguridad/04-hash-firma-certificados",
       "text": "¿Qué función cumple un certificado digital X.509 emitido por una autoridad certificadora (CA)?",
-      "options": [
-        "Asignar direcciones IP a los equipos",
-        "Bloquear ataques de denegación de servicio",
-        "Vincular una clave pública con una identidad, avalado por la firma de la CA",
-        "Cifrar los datos de usuario con una clave simétrica"
-      ],
-      "answer": 2,
+      "options": ["Asignar direcciones IP a los equipos", "Vincular una clave pública con una identidad, avalado por la firma de la CA", "Cifrar los datos de usuario con una clave simétrica"],
+      "answer": 1,
       "explanation": "El certificado asocia una clave pública con un titular (persona o sitio) y está firmado por una CA de confianza, lo que permite verificar que la clave realmente le pertenece.",
       "difficulty": "media"
     },
@@ -278,12 +193,7 @@
       "id": "red-seg-022",
       "lesson": "redes/seguridad/04-hash-firma-certificados",
       "text": "Una auditoría detecta que la empresa usa MD5 para verificar la integridad de sus instaladores. ¿Cuál es la recomendación correcta?",
-      "options": [
-        "Migrar a SHA-256 o SHA-3, porque MD5 tiene colisiones conocidas",
-        "Mantener MD5 por su velocidad",
-        "Cambiar a DES",
-        "Usar codificación Base64"
-      ],
+      "options": ["Migrar a SHA-256 o SHA-3, porque MD5 tiene colisiones conocidas", "Mantener MD5 por su velocidad", "Usar codificación Base64"],
       "answer": 0,
       "explanation": "MD5 (y SHA-1) están obsoletos por colisiones demostradas. SHA-256 y SHA-3 son vigentes. DES es un cifrado obsoleto y Base64 es solo una codificación, no un mecanismo de integridad.",
       "difficulty": "media"
@@ -292,12 +202,7 @@
       "id": "red-seg-023",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
       "text": "Una empresa quiere que cada empleado se autentique en la red Wi-Fi con su propio usuario (y no con una contraseña compartida). ¿Qué configuración corresponde?",
-      "options": [
-        "WEP, por compatibilidad",
-        "WPA2-Personal con una contraseña única",
-        "WPA2 o WPA3 Enterprise con 802.1X y servidor RADIUS",
-        "Red abierta con una página de aceptación de términos"
-      ],
+      "options": ["WEP, por compatibilidad", "WPA2-Personal con una contraseña única", "WPA2 o WPA3 Enterprise con 802.1X y servidor RADIUS"],
       "answer": 2,
       "explanation": "El modo Enterprise usa 802.1X con RADIUS para autenticar individualmente a cada usuario o dispositivo. WEP es inseguro y el modo Personal comparte una sola contraseña.",
       "difficulty": "media"
@@ -306,22 +211,17 @@
       "id": "red-seg-024",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
       "text": "Un servidor recibe archivos mediante FTP y las credenciales viajan en texto claro. ¿Qué protocolo se debe usar para reemplazarlo de forma segura?",
-      "options": ["TFTP", "SFTP (sobre SSH)", "Telnet", "HTTP"],
+      "options": ["TFTP", "SFTP (sobre SSH)", "Telnet"],
       "answer": 1,
-      "explanation": "SFTP transfiere archivos sobre SSH con cifrado y autenticación. TFTP, Telnet y HTTP no cifran.",
+      "explanation": "SFTP transfiere archivos sobre SSH con cifrado y autenticación. TFTP y Telnet no cifran.",
       "difficulty": "facil"
     },
     {
       "id": "red-seg-025",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
       "text": "Una organización contrata a un equipo para que, con autorización previa, intente aprovechar activamente las debilidades de sus sistemas y demuestre el impacto real. ¿Cómo se llama esta actividad?",
-      "options": [
-        "SIEM",
-        "Respaldo 3-2-1",
-        "Análisis de vulnerabilidades",
-        "Prueba de penetración (pentest)"
-      ],
-      "answer": 3,
+      "options": ["SIEM", "Análisis de vulnerabilidades", "Prueba de penetración (pentest)"],
+      "answer": 2,
       "explanation": "El pentest explota las vulnerabilidades como lo haría un atacante, con autorización. El análisis de vulnerabilidades solo las detecta y las lista, sin explotarlas.",
       "difficulty": "media"
     },
@@ -329,7 +229,7 @@
       "id": "red-seg-026",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
       "text": "Un equipo de seguridad necesita centralizar y correlacionar los registros de firewalls, servidores y aplicaciones para detectar incidentes. ¿Qué herramienta usa?",
-      "options": ["SIEM", "VPN", "DMZ", "Honeypot"],
+      "options": ["SIEM", "VPN", "DMZ"],
       "answer": 0,
       "explanation": "Un SIEM recopila, normaliza y correlaciona logs de múltiples fuentes para detectar y analizar incidentes.",
       "difficulty": "facil"
@@ -338,13 +238,8 @@
       "id": "red-seg-027",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
       "text": "¿Qué describe correctamente la regla de respaldo 3-2-1?",
-      "options": [
-        "3 discos, 2 servidores y 1 nube",
-        "3 días, 2 semanas y 1 mes de retención",
-        "3 copias de los datos en 2 tipos de medios distintos, con 1 copia fuera del sitio",
-        "3 usuarios autorizados, 2 contraseñas y 1 token"
-      ],
-      "answer": 2,
+      "options": ["3 días, 2 semanas y 1 mes de retención", "3 copias de los datos en 2 tipos de medios distintos, con 1 copia fuera del sitio", "3 usuarios autorizados, 2 contraseñas y 1 token"],
+      "answer": 1,
       "explanation": "3-2-1 significa mantener 3 copias, en 2 medios diferentes y al menos 1 fuera del sitio (o fuera de línea). Debe probarse periódicamente la restauración.",
       "difficulty": "facil"
     },
@@ -352,8 +247,8 @@
       "id": "red-seg-028",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
       "text": "Una empresa contrata un seguro contra ciberataques para cubrir las pérdidas económicas de un posible incidente. ¿Qué estrategia de tratamiento del riesgo aplica?",
-      "options": ["Mitigar", "Aceptar", "Transferir", "Evitar"],
-      "answer": 2,
+      "options": ["Mitigar", "Transferir", "Evitar"],
+      "answer": 1,
       "explanation": "Contratar un seguro traslada el costo del impacto a un tercero: es transferir el riesgo. No elimina la amenaza ni reduce la probabilidad (mitigar).",
       "difficulty": "media"
     },
@@ -361,15 +256,136 @@
       "id": "red-seg-029",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
       "text": "Se detecta que un equipo está infectado con ransomware y cifrando archivos compartidos. ¿Cuál es la primera acción de contención adecuada?",
-      "options": [
-        "Formatear el equipo de inmediato",
-        "Aislar el equipo de la red (desconectarlo) para evitar que el daño se propague",
-        "Pagar el rescate para recuperar los archivos",
-        "Reiniciar el equipo y seguir trabajando"
-      ],
+      "options": ["Formatear el equipo de inmediato", "Aislar el equipo de la red (desconectarlo) para evitar que el daño se propague", "Reiniciar el equipo y seguir trabajando"],
       "answer": 1,
       "explanation": "En la fase de contención se aísla el equipo afectado para impedir que se propague. Después se erradica la causa y se recupera desde respaldos. Formatear de inmediato destruye evidencia y pagar no garantiza nada.",
       "difficulty": "media"
+    },
+    {
+      "id": "red-seg-030",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "Un fabricante de sensores IoT con CPU y energía muy limitadas necesita cifrado autenticado. ¿Qué familia de algoritmos estandarizó el NIST para dispositivos restringidos?",
+      "options": ["Ascon (NIST SP 800-232)", "WEP con RC4", "RSA de 4096 bits"],
+      "answer": 0,
+      "explanation": "El NIST estandarizó Ascon para criptografía ligera. RC4 está roto y RSA de 4096 bits es costoso e inadecuado para dispositivos con recursos mínimos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-031",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Qué ofrece un cifrado autenticado con datos asociados (AEAD), como AES-GCM o Ascon-AEAD128?",
+      "options": ["Solo confidencialidad, sin detectar alteraciones", "Confidencialidad e integridad y autenticidad del mensaje en una sola operación", "Solo integridad, sin cifrar el contenido"],
+      "answer": 1,
+      "explanation": "AEAD cifra y además permite verificar que el mensaje no fue alterado. Un cifrado sin autenticación no detecta cambios y un hash no cifra.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-032",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Cuál es el tamaño de bloque y las longitudes de clave de AES (FIPS 197)?",
+      "options": ["Bloques de 64 bits y clave de 56 bits", "Bloques de 256 bits y claves de 1024 bits", "Bloques de 128 bits y claves de 128, 192 o 256 bits"],
+      "answer": 2,
+      "explanation": "AES opera con bloques de 128 bits y tres longitudes de clave. Bloques de 64 bits con clave de 56 bits corresponden a DES.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-seg-033",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Qué mejora principal incorpora WPA3-Personal frente a WPA2-Personal?",
+      "options": ["La autenticación SAE, que dificulta los ataques de diccionario fuera de línea contra la contraseña", "El uso de RC4 en lugar de AES", "La eliminación de la contraseña de la red"],
+      "answer": 0,
+      "explanation": "SAE protege el intercambio de claves y hace mucho más difícil probar contraseñas fuera de línea. WPA3 sigue usando contraseña y cifrado robusto, no RC4.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-034",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Por qué no debe usarse WEP?",
+      "options": ["Es demasiado reciente y casi ningún dispositivo lo soporta", "Usa RC4 con vectores de inicialización cortos y puede romperse en pocos minutos", "No cifra el tráfico en absoluto"],
+      "answer": 1,
+      "explanation": "WEP sí cifra, pero con una debilidad estructural en RC4 y sus vectores de inicialización, por lo que está roto.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-seg-035",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "Un atacante instala en una cafetería un punto de acceso con el mismo SSID que el de la red legítima para que los clientes se conecten a él. ¿Cómo se llama este ataque?",
+      "options": ["Inundación SYN", "Envenenamiento de caché DNS", "Evil twin (punto de acceso falso)"],
+      "answer": 2,
+      "explanation": "El evil twin suplanta una red inalámbrica legítima para interceptar tráfico y credenciales.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-036",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "Una empresa quiere autenticar individualmente a cada empleado en su red Wi-Fi corporativa. ¿Qué configuración es la más adecuada?",
+      "options": ["WPA2/WPA3-Enterprise con 802.1X y servidor RADIUS", "WPA2-Personal con una contraseña compartida impresa en recepción", "Ocultar el SSID y filtrar direcciones MAC"],
+      "answer": 0,
+      "explanation": "Enterprise autentica a cada usuario con credenciales propias. La contraseña compartida no distingue personas y ocultar el SSID o filtrar MAC no es seguridad real.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-037",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Cuál de las siguientes medidas NO ofrece una seguridad real en una red inalámbrica?",
+      "options": ["Cifrar el tráfico con WPA3", "Ocultar el nombre de la red (SSID)", "Segmentar a los invitados en una VLAN distinta"],
+      "answer": 1,
+      "explanation": "El SSID oculto se descubre fácilmente con herramientas de captura. Las otras dos medidas sí reducen el riesgo.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-seg-038",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Cuál es la diferencia principal entre un escaneo de vulnerabilidades y una prueba de penetración?",
+      "options": ["El escaneo explota las fallas y la prueba solo las enlista", "Son lo mismo y solo cambia el nombre", "El escaneo identifica y reporta posibles fallas de forma automatizada; la prueba intenta explotarlas, con autorización, para demostrar su impacto"],
+      "answer": 2,
+      "explanation": "El escaneo detecta; el pentest simula un ataque real para explotar y evidenciar el impacto, siempre con autorización.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-039",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Cuál es el orden típico de las fases de una prueba de penetración?",
+      "options": ["Reconocimiento, escaneo y enumeración, explotación, post-explotación y reporte", "Explotación, reconocimiento, reporte y escaneo", "Reporte, escaneo, explotación y reconocimiento"],
+      "answer": 0,
+      "explanation": "Primero se recopila información, luego se escanea y enumera, después se explota, se evalúa el alcance obtenido y finalmente se reporta.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-040",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "Una vulnerabilidad recibe una puntuación CVSS de 9.8. ¿Cómo debe tratarse?",
+      "options": ["Como de severidad baja: puede esperar al siguiente ciclo anual", "Como de severidad crítica: se debe priorizar su corrección o mitigación inmediata", "Como informativa, sin riesgo para la red"],
+      "answer": 1,
+      "explanation": "CVSS de 9.0 a 10 corresponde a severidad crítica, por lo que se atiende primero.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-seg-041",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "En un análisis de riesgos, ¿cómo se estima el riesgo de una amenaza?",
+      "options": ["Como el costo del firewall multiplicado por el número de usuarios", "Como el número de vulnerabilidades dividido entre los activos", "Como la probabilidad de ocurrencia multiplicada por el impacto"],
+      "answer": 2,
+      "explanation": "El riesgo combina qué tan probable es que ocurra el evento y qué tan grave sería su impacto.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-seg-042",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "Antes de realizar una prueba de penetración (hacking ético) sobre la red de un cliente, ¿qué es indispensable?",
+      "options": ["Contar con autorización escrita y un alcance definido", "Obtener las credenciales de administrador sin que el cliente lo sepa", "Apagar todos los servicios de la red"],
+      "answer": 0,
+      "explanation": "La autorización escrita y el alcance son lo que diferencia el hacking ético de un delito.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-seg-043",
+      "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
+      "text": "¿Qué identifica un código como CVE-2024-12345?",
+      "options": ["La versión de un sistema operativo", "Una vulnerabilidad pública catalogada con un identificador único", "Un certificado digital vigente"],
+      "answer": 1,
+      "explanation": "CVE es el catálogo de identificadores de vulnerabilidades y exposiciones conocidas.",
+      "difficulty": "facil"
     }
   ]
 }
