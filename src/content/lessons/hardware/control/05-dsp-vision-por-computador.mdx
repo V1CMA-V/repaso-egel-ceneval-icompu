@@ -1,0 +1,73 @@
+---
+title: 'Procesamiento digital de señales y visión por computador'
+summary: 'Muestreo y Nyquist, aliasing, FFT, filtros FIR e IIR, y fundamentos de imágenes digitales (píxeles, bordes, umbralización).'
+order: 5
+readMinutes: 9
+examWeight: 'Hardware 1.4 · Automatización y control de procesos (14 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **procesamiento digital de señales (DSP)** trabaja con señales **muestreadas** y **cuantizadas**: se filtran, se analizan en frecuencia y se usan en control. La **visión por computador** trata una **imagen** como una **matriz de píxeles** y la procesa con **operaciones similares** (filtros por convolución).
+</Callout>
+
+## Muestreo
+
+- **Teorema de Nyquist**: para reconstruir una señal hay que muestrear a **más del doble de su frecuencia máxima**: **fs > 2·fmax**. Una señal con componentes hasta **5 kHz** necesita **> 10 kHz**.
+- **Aliasing**: si **fs es menor que 2·fmax**, las frecuencias altas se **"pliegan"** y aparecen como **frecuencias falsas**. Ej.: **7 kHz muestreada a 8 kHz** se ve como **1 kHz** (8 − 7). Se evita con un **filtro antialiasing** pasa bajas **antes** del ADC.
+- **Cuantización**: un ADC de **n bits** da **2ⁿ niveles**.
+
+## Frecuencia: FFT
+
+- La **FFT** convierte las **N muestras** al **dominio de la frecuencia**. **Resolución: Δf = fs ÷ N**. Con **fs = 1000 Hz** y **N = 500**: **2 Hz**.
+- Más muestras (o más tiempo de captura) → **mejor resolución**.
+
+## Filtros digitales
+
+| Filtro | Característica | Ventajas |
+| --- | --- | --- |
+| **FIR** | Respuesta al impulso **finita**, **sin realimentación** | **Siempre estable**, puede tener **fase lineal** |
+| **IIR** | **Con realimentación** (la salida influye) | **Menos coeficientes**, más eficiente; **puede ser inestable** |
+
+- **Convolución**: $y[n] = \sum h[k]\,x[n-k]$ aplica un filtro **FIR**.
+- **Promedio móvil**: promedia las últimas **N** muestras y actúa como **pasa bajas** (**suaviza ruido**).
+
+## Visión por computador
+
+- Una imagen **en escala de grises** es una **matriz** con valores **0–255** (8 bits). **Tamaño sin comprimir = ancho × alto × bits por píxel ÷ 8**: **640 × 480 × 8 bits = 307 200 bytes**. En **RGB** son **3 canales** (**921 600 bytes**).
+- **Suavizado** (media o gaussiano): **convolución** que reduce el ruido.
+- **Detección de bordes** (**Sobel**, **Canny**): **convolución** con un *kernel* que resalta **cambios bruscos** de intensidad.
+- **Umbralización**: convierte la imagen a **binaria** según un **nivel de corte**; sirve para **segmentar** objetos.
+- Aplicaciones: **lectura de placas (OCR)**, **detección de objetos**, **control visual de robots**; las **redes neuronales convolucionales (CNN)** son hoy la técnica dominante.
+
+<Callout type="tip">
+**"Más del doble"** → Nyquist. **"Frecuencia falsa"** → aliasing. **"Resolución de la FFT"** → **fs ÷ N**. **"Resaltar bordes"** → **convolución (Sobel)**. **"Blanco y negro según un nivel"** → **umbralización**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **fs > 2·fmax** (Nyquist); si no, **aliasing**.
+- **Δf = fs ÷ N** en la FFT.
+- **FIR** = estable y sin realimentación; **IIR** = con realimentación y puede ser inestable.
+- **Promedio móvil** = pasa bajas.
+- **Imagen gris 8 bits** = **ancho × alto bytes**; **bordes = convolución**; **binarizar = umbralización**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Muestrear **exactamente al doble** y creer que es siempre suficiente en la práctica (se usa **un margen**).
+- Confundir **resolución de la FFT** con **frecuencia máxima** (**fs/2**).
+- Creer que un **filtro FIR** usa **realimentación**.
+- Olvidar dividir **bits entre 8** al calcular bytes.
+</Callout>
+
+## Ejemplo resuelto
+
+> ¿Cuántos bytes ocupa una imagen en grises de 640 × 480 píxeles con 8 bits por píxel, sin compresión?
+
+$640 \times 480 = 307\,200$ píxeles; cada uno ocupa **1 byte** (8 bits) → **307 200 bytes**.

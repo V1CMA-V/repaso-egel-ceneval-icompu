@@ -1,0 +1,79 @@
+---
+title: 'Gestión de proyectos (PMBOK 7) y usabilidad: interacción humano-computadora'
+summary: 'Principios y dominios de desempeño del PMBOK 7, valor ganado (CPI y SPI), heurísticas de Nielsen, usabilidad según ISO 9241-11 y accesibilidad.'
+order: 6
+readMinutes: 9
+examWeight: 'Software 3.1 · Ingeniería de software (16 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+- La **Guía del PMBOK** del **PMI** (7.ª edición) organiza la dirección de proyectos en **12 principios** y **8 dominios de desempeño** (la 6.ª se basaba en **5 grupos de procesos** y **10 áreas de conocimiento**). Propone **adaptar** (*tailoring*) el enfoque al proyecto.
+- La **interacción humano-computadora (HCI)** estudia cómo las personas usan los sistemas. Su meta: **usabilidad** y **accesibilidad**.
+</Callout>
+
+## PMBOK 7 en breve
+
+- **8 dominios de desempeño**: **Interesados**, **Equipo**, **Enfoque de desarrollo y ciclo de vida**, **Planificación**, **Trabajo del proyecto**, **Entrega**, **Medición** e **Incertidumbre**.
+- **12 principios**, entre ellos: **ser un buen administrador**, **colaborar con el equipo**, **involucrar a los interesados**, **centrarse en el valor**, **pensamiento sistémico**, **liderazgo**, **adaptar (tailoring)**, **calidad**, **abordar la complejidad**, **optimizar riesgos**, **adaptabilidad y resiliencia** y **permitir el cambio**.
+- **Adaptar** = **ajustar procesos, métodos y artefactos** al **contexto** del proyecto (tamaño, riesgo, cultura). **No** significa aplicar todo sin excepción.
+
+## Valor ganado (EVM)
+
+| Sigla | Significa | Fórmula |
+| --- | --- | --- |
+| **PV** | Valor planificado | — |
+| **EV** | Valor ganado (trabajo realizado, valuado) | — |
+| **AC** | Costo real | — |
+| **CPI** | Índice de desempeño del costo | **EV ÷ AC** |
+| **SPI** | Índice de desempeño del cronograma | **EV ÷ PV** |
+
+- **Índice menor que 1** → **mal**: **CPI 0.8** = **sobrecosto**; **SPI 0.8** = **retraso**. **Mayor que 1** → **bien** (bajo presupuesto / adelantado).
+
+## Usabilidad (HCI)
+
+- **ISO 9241-11**: la usabilidad se mide por **eficacia**, **eficiencia** y **satisfacción** en un **contexto de uso**.
+- **Diseño centrado en el usuario**: conocer al usuario, **prototipar** y **probar con usuarios reales** de forma **iterativa**.
+- **Heurísticas de Nielsen** (las más preguntadas):
+
+| Heurística | Ejemplo |
+| --- | --- |
+| **Visibilidad del estado del sistema** | Barra de **progreso** al guardar |
+| **Prevención de errores** | **Deshabilitar "Enviar"** hasta completar campos |
+| **Consistencia y estándares** | Mismos íconos y términos en toda la app |
+| **Reconocer en lugar de recordar** | **Menús** y **autocompletar** |
+| **Control y libertad del usuario** | **Deshacer** / cancelar |
+| **Ayudar a reconocer y corregir errores** | **Mensajes de error claros** con solución |
+| **Estética y diseño minimalista** | Sin información irrelevante |
+
+- **Accesibilidad (WCAG)**: contenido **perceptible, operable, comprensible y robusto**. Ej.: **texto alternativo** en imágenes y **subtítulos** en video.
+
+<Callout type="tip">
+Relaciona el **ejemplo** con la **heurística**: **progreso** → visibilidad del estado; **bloquear un botón** → prevención de errores; **deshacer** → control del usuario; **subtítulos / texto alternativo** → accesibilidad.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **PMBOK 7** = **12 principios + 8 dominios**; **PMBOK 6** = 5 grupos de procesos + 10 áreas.
+- **CPI = EV ÷ AC**; **SPI = EV ÷ PV**; **menor que 1** es **sobrecosto / retraso**.
+- **Usabilidad ISO 9241-11** = **eficacia, eficiencia, satisfacción**.
+- **Diseño centrado en el usuario** = **prototipos + pruebas con usuarios**, de forma **iterativa**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **PMBOK 7** (principios y dominios) con **PMBOK 6** (procesos y áreas).
+- Invertir **CPI y SPI** (costo usa **AC**; cronograma usa **PV**).
+- Creer que **usabilidad** y **accesibilidad** son lo mismo: la segunda busca que **todas las personas** puedan usar el sistema.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un proyecto tiene PV = 100, EV = 80 y AC = 100. ¿Cuál es su CPI y qué significa?
+
+**CPI = EV ÷ AC = 80 ÷ 100 = 0.8**: por cada peso gastado solo se obtienen **0.8** de valor; hay **sobrecosto**.

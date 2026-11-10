@@ -1,0 +1,64 @@
+---
+title: 'Mecatrónica, domótica y robótica básica'
+summary: 'Sistemas embebidos complejos: motores a pasos y servos, encoders, grados de libertad, cinemática directa e inversa, domótica y MQTT.'
+order: 5
+readMinutes: 9
+examWeight: 'Hardware 1.3 · Sistemas embebidos (13 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **mecatrónica** integra **mecánica, electrónica, control y software** en un mismo producto (impresoras 3D, robots, drones, automóviles). La **domótica** automatiza una **vivienda** (luces, clima, accesos). La **robótica** estudia los **robots**: estructuras articuladas con **actuadores**, **sensores** y un **controlador**.
+</Callout>
+
+## Actuadores y medición del giro
+
+- **Motor a pasos**: gira un **ángulo fijo por pulso**. **Pasos por vuelta = 360° ÷ ángulo por paso**. Con **1.8°** son **200 pasos**; **90°** equivalen a **50 pasos**.
+- **Servomotor**: la **posición del eje** depende del **ancho del pulso PWM** (típicamente **1 a 2 ms** dentro de un periodo de **20 ms**).
+- **Encoder incremental**: genera **pulsos por vuelta (PPR)**. **Ángulo = (pulsos ÷ PPR) × 360°**. Con **1000 PPR**, **250 pulsos = 90°**.
+- **Motor de CD**: se controla con **PWM** y un **puente H** (invierte el giro).
+
+## Robótica básica
+
+- **Grado de libertad (GDL)**: movimiento independiente de una articulación. Para **posicionar y orientar libremente** un objeto en el espacio se necesitan **6 GDL** (3 de posición + 3 de orientación).
+- **Articulaciones**: **rotacionales** (giran) y **prismáticas** (se deslizan).
+- **Cinemática directa**: **ángulos de las articulaciones → posición del efector final**. Brazo plano de 2 eslabones: $x = L_1\cos\theta_1 + L_2\cos(\theta_1+\theta_2)$. Con $\theta_1=\theta_2=0$, $x = L_1 + L_2$.
+- **Cinemática inversa**: **posición deseada → ángulos necesarios**. Puede tener **varias soluciones** o ninguna.
+- El control en **lazo cerrado** usa **encoders** (posición) y un controlador **PID**.
+
+## Domótica
+
+- **Sensores** (presencia, temperatura, apertura de puertas) → **controlador/hub** → **actuadores** (relés, cerraduras, persianas).
+- **Protocolos**: **Zigbee**, **Z-Wave**, **Matter**, **Wi-Fi**, **BLE**. **Zigbee** forma una **red en malla** de bajo consumo.
+- **MQTT**: protocolo **ligero de publicación/suscripción** mediante un **broker**: los sensores **publican** en un **tema** (*casa/sala/temperatura*) y los demás **se suscriben**.
+
+<Callout type="tip">
+Si la pregunta menciona **publicar/suscribirse mediante un broker** → **MQTT**. Si pide **"posición del eje según el ancho del pulso"** → **servomotor**. Si pide **"pasos por vuelta"** → divide **360° entre el ángulo del paso**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Mecatrónica** = mecánica + electrónica + control + software.
+- **Paso a paso**: 360° ÷ ángulo = pasos por vuelta. **Encoder**: (pulsos ÷ PPR) × 360°.
+- **6 GDL** para posicionar y orientar libremente en 3D.
+- **Cinemática directa**: ángulos → posición. **Inversa**: posición → ángulos.
+- **MQTT** = publicación/suscripción con **broker**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir **cinemática directa** con **inversa**.
+- Calcular mal los **pasos por vuelta** (usar 180 o 360 en vez de **360° ÷ ángulo**).
+- Creer que el **voltaje de la fuente** fija la posición de un **servo**: lo fija el **ancho del pulso**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un brazo plano tiene $L_1 = 0.5$ m y $L_2 = 0.3$ m con ambos ángulos en 0°. ¿Cuál es la posición $x$ del efector?
+
+Cinemática directa: $x = 0.5\cos 0 + 0.3\cos 0 = 0.5 + 0.3 = 0.8$ m (el brazo está **extendido**).

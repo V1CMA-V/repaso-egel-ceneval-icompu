@@ -1,0 +1,68 @@
+---
+title: 'Ensamblador x86 y desarrollo de aplicaciones web y móviles'
+summary: 'Registros, instrucciones básicas, banderas y pila en x86; arquitectura cliente-servidor, métodos y códigos HTTP, y enfoques de desarrollo móvil.'
+order: 5
+readMinutes: 9
+examWeight: 'Software 3.2 · Programación y software base (13 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **lenguaje ensamblador** usa **mnemónicos** (MOV, ADD) en lugar de código binario; un **ensamblador** los traduce a **código máquina**. En **x86** con sintaxis **Intel** el formato es **instrucción destino, origen**. Las **aplicaciones web** y **móviles** se construyen sobre la arquitectura **cliente-servidor**.
+</Callout>
+
+## Ensamblador x86 básico
+
+- **Registros de propósito general** (32 bits): **EAX, EBX, ECX, EDX, ESI, EDI**; **ESP** (puntero de pila), **EBP** (base) y **EIP** (siguiente instrucción). En 64 bits: **RAX, RBX…, RIP**.
+- **Instrucciones**: **MOV** (copia), **ADD/SUB**, **INC/DEC**, **CMP** (resta **sin guardar** el resultado y **actualiza banderas**), **JMP** (salto), **JE/JZ** (salta si **igual/cero**), **JNE**, **CALL/RET**, **PUSH/POP**, **LOOP** (decrementa **ECX**).
+- **Banderas** (**EFLAGS**): **ZF** (cero), **CF** (acarreo), **SF** (signo), **OF** (desbordamiento).
+- **Pila**: **crece hacia direcciones menores**. **PUSH EAX** hace **ESP ← ESP − 4** y guarda **EAX**; **POP** hace lo contrario.
+- **Little-endian**: el byte **menos significativo** va en la **dirección más baja**. **0x12345678** en la dirección 0x1000 queda **78 56 34 12**; en 0x1000 está **0x78**.
+
+Ejemplo: `MOV EAX, 5` y `ADD EAX, 3` dejan **EAX = 8**.
+
+## Aplicaciones web
+
+- **Cliente-servidor**: el **navegador** (HTML, CSS, JavaScript) envía **solicitudes HTTP**; el **servidor** responde.
+- **Métodos HTTP**: **GET** (leer), **POST** (**crear**), **PUT** (reemplazar), **PATCH** (modificar parcial), **DELETE** (borrar).
+- **Códigos de estado**: **200 OK**, **201 Created** (creación exitosa), **301** redirección, **400** solicitud inválida, **401 No autenticado**, **403 Prohibido**, **404 No encontrado**, **500 Error del servidor**.
+- **API REST**: recursos con **URL**, **métodos HTTP** y datos en **JSON**; **sin estado**.
+
+## Aplicaciones móviles
+
+| Enfoque | Característica |
+| --- | --- |
+| **Nativa** (Kotlin/Java en Android, Swift en iOS) | Mejor rendimiento y acceso total al dispositivo; **dos bases de código** |
+| **Multiplataforma** (React Native, Flutter) | **Una base de código** para Android e iOS, con acceso a **sensores** |
+| **Web progresiva (PWA)** | Sitio web instalable, **acceso limitado** al hardware |
+
+<Callout type="tip">
+**"Una sola base de código para Android e iOS con sensores"** → **multiplataforma**. **"Crear un recurso"** → **POST + 201**. **"Sin credenciales válidas"** → **401**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **CMP** no guarda el resultado: **solo actualiza banderas**.
+- **PUSH** **resta** al **ESP**; la pila crece **hacia abajo**.
+- **x86 es little-endian**.
+- **POST = crear (201)**; **401 = no autenticado**; **403 = sin permiso**; **404 = no existe**; **500 = falla del servidor**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que **CMP** modifica el registro destino.
+- Invertir el **orden de los bytes** (big-endian vs little-endian).
+- Confundir **401** (no autenticado) con **403** (autenticado pero sin permiso).
+- Elegir **nativa** cuando el enunciado pide **una sola base de código**.
+</Callout>
+
+## Ejemplo resuelto
+
+> En x86 (little-endian) se guarda 0x12345678 desde la dirección 0x1000. ¿Qué byte queda en 0x1000?
+
+**0x78**: el byte **menos significativo** se almacena en la **dirección más baja**.

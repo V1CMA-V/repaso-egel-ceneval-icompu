@@ -1,0 +1,67 @@
+---
+title: 'Sensores inerciales, GPS y comunicación inalámbrica'
+summary: 'Qué mide cada sensor (acelerómetro, giroscopio, magnetómetro, GPS), cómo se combinan y qué tecnología inalámbrica elegir (BLE, Wi-Fi, Zigbee, LoRa, NFC).'
+order: 4
+readMinutes: 9
+examWeight: 'Hardware 1.3 · Sistemas embebidos (13 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Los **sistemas embebidos** y las **aplicaciones móviles** usan **sensores** para conocer su **movimiento, orientación y posición**, y **radios** para comunicarse. Un conjunto de **acelerómetro + giroscopio** es una **IMU de 6 ejes**; si se suma el **magnetómetro**, es de **9 ejes**.
+</Callout>
+
+## Sensores de movimiento y posición
+
+| Sensor | Mide | Unidad | Uso | Limitación |
+| --- | --- | --- | --- | --- |
+| **Acelerómetro** | **Aceleración** lineal (incluida la **gravedad**) | **g** o m/s² | **Inclinación**, golpes, pasos | En reposo mide **≈ 1 g** en el eje vertical; es **ruidoso** al moverse |
+| **Giroscopio** | **Velocidad angular** | **°/s** | **Giros** de drones, estabilización | Al **integrarlo** para obtener el ángulo **acumula deriva** |
+| **Magnetómetro** | **Campo magnético** | µT o gauss | **Rumbo** (brújula) | Lo **distorsionan** motores, imanes y **acero** |
+| **Barómetro** | **Presión** | hPa | **Altitud** relativa | Cambia con el clima |
+| **GPS / GNSS** | **Posición** y hora por **satélites** | coordenadas | Navegación | Poca precisión **en interiores**; necesita **≥ 4 satélites** (3D + reloj) |
+
+- **Giro acumulado = velocidad angular × tiempo** (si es constante): **30 °/s durante 4 s = 120°**.
+- **Fusión de sensores** (filtro **complementario** o de **Kalman**): el **giroscopio** es **preciso a corto plazo** pero **deriva**; el **acelerómetro** es **estable a largo plazo** pero **ruidoso**. Se combinan para estimar la **orientación**.
+- El **GPS** entrega tramas **NMEA** por **UART**. Calcula la posición por **trilateración**: **3 satélites** dan la posición y un **cuarto** corrige el **error del reloj** del receptor.
+
+<Callout type="tip">
+Pregunta clásica: **"¿qué sensor mide la rapidez de giro?"** → **giroscopio**. **"¿Cuál da el rumbo?"** → **magnetómetro**. **"¿Cuál detecta inclinación?"** → **acelerómetro**.
+</Callout>
+
+## Comunicación inalámbrica
+
+| Tecnología | Alcance típico | Consumo | Velocidad | Cuándo usarla |
+| --- | --- | --- | --- | --- |
+| **BLE** (Bluetooth Low Energy) | decenas de metros | **muy bajo** | baja–media | **Wearables**, sensores cercanos al teléfono |
+| **Wi-Fi** | decenas de metros | alto | **alta** | Video, mucha información, hay corriente |
+| **Zigbee / Thread** | decenas de metros por salto | bajo | baja | **Domótica**; **red en malla** (los nodos se retransmiten) |
+| **LoRa / LoRaWAN** | **kilómetros** | **muy bajo** | **muy baja** | **Agricultura**, medición remota |
+| **NFC** | **≈ 4 cm** | muy bajo | baja | Pagos, identificación |
+
+## Importante recordar
+
+<Callout type="importante">
+- **Giroscopio → °/s**; **acelerómetro → g** (en reposo **1 g**); **magnetómetro → rumbo**.
+- **Ángulo = ∫ velocidad angular** (deriva); la **fusión** corrige la deriva con el acelerómetro.
+- **GPS**: **4 satélites** para posición 3D y corrección de reloj; **no sirve bien en interiores**.
+- **BLE** para wearables; **Zigbee** para malla doméstica; **LoRa** para largo alcance; **NFC** para unos centímetros.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Esperar **0 g** en un acelerómetro **quieto** (mide la gravedad, **≈ 1 g**).
+- Usar el **giroscopio** solo, sin corregir, para **tiempos largos** (acumula **deriva**).
+- Olvidar que **motores y acero** alteran el **magnetómetro**.
+- Elegir **Wi-Fi** para un sensor **alimentado con batería** que transmite pocos datos.
+</Callout>
+
+## Ejemplo resuelto
+
+> Una brújula digital marca rumbos erróneos junto a un motor y estructuras de acero. ¿Por qué?
+
+El **magnetómetro** mide el **campo magnético terrestre**; el **motor** y el **acero** lo **distorsionan**. Se **calibra** y se aleja de esas fuentes (o se **fusiona** con el giroscopio).

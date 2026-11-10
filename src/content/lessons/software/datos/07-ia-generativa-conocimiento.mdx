@@ -1,0 +1,65 @@
+---
+title: 'IA generativa y representación del conocimiento'
+summary: 'LLM y Transformers, alucinaciones, RAG y prompting; sistemas basados en reglas, encadenamiento, redes semánticas, ontologías y búsqueda A*.'
+order: 7
+readMinutes: 9
+examWeight: 'Software 3.3 · Manejo de datos y algoritmos (21 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **IA generativa** crea **contenido nuevo** (texto, imágenes, código). Los **modelos de lenguaje grandes (LLM)** se basan en la arquitectura **Transformer**, que usa el mecanismo de **atención**. La **representación del conocimiento** es cómo una IA clásica guarda y usa lo que "sabe": **reglas, redes semánticas, marcos y ontologías**.
+</Callout>
+
+## IA generativa
+
+- **Entrenamiento**: se predice el **siguiente token** sobre enormes corpus; después se hace **ajuste fino** (*fine-tuning*) y alineación con **retroalimentación humana (RLHF)**. El ajuste fino **modifica los pesos**.
+- **Prompting**: **zero-shot** (sin ejemplos), **few-shot** (con **ejemplos** en el prompt, **sin cambiar los pesos**) y **cadena de pensamiento** (razonar paso a paso).
+- **Temperatura**: **más alta** → respuestas **más variadas y menos deterministas**; **cercana a 0** → más **consistentes**.
+- **Alucinación**: respuesta **plausible pero falsa**. Se mitiga con **RAG** (*Retrieval-Augmented Generation*): **recuperar documentos confiables** y dárselos al modelo como **contexto** antes de responder.
+- **Riesgos**: **alucinaciones**, **sesgos**, **privacidad** (no compartir datos confidenciales con servicios públicos), **derechos de autor** y **uso responsable**.
+
+## Representación del conocimiento
+
+- **Sistema experto basado en reglas**: **base de conocimiento** (reglas **SI–ENTONCES** y hechos) + **motor de inferencia**.
+- **Encadenamiento hacia adelante**: **de los hechos a las conclusiones**. **Hacia atrás**: **parte de la meta** y busca los hechos que la prueban.
+- **Red semántica**: **nodos** (conceptos) y **arcos** etiquetados (*es-un*, *tiene*). *Canario* —**es-un**→ *Ave* y hereda sus propiedades.
+- **Marcos (frames)**: estructuras con **atributos y valores** por defecto. **Ontología**: **vocabulario formal** de conceptos y relaciones de un dominio. **Grafo de conocimiento**: ontología llena de datos.
+- **Lógica**: **proposicional** (verdadero/falso) y **de predicados** (objetos, relaciones y cuantificadores).
+
+## Búsqueda heurística (repaso)
+
+- **A\***: **f(n) = g(n) + h(n)**; **g** = **costo real** desde el inicio; **h** = **estimación del costo restante** hasta la meta. Es **óptimo** si **h** **no sobreestima** (**admisible**).
+- **BFS** explora por niveles (camino con menos aristas); **DFS** va en profundidad.
+
+<Callout type="tip">
+**"Ejemplos dentro del prompt"** → **few-shot**. **"Respuesta falsa pero convincente"** → **alucinación**. **"Recuperar documentos y dárselos al modelo"** → **RAG**. **"De hechos a conclusiones"** → **encadenamiento hacia adelante**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **LLM = Transformer + atención.** **Alucinación → RAG** ayuda.
+- **Few-shot** no cambia los pesos; **fine-tuning** sí.
+- **Sistema experto = base de conocimiento + motor de inferencia.**
+- **Red semántica** = nodos + arcos (*es-un*). **Ontología** = vocabulario formal.
+- **A\*: f = g + h**, con **h admisible**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que **few-shot** **reentrena** el modelo.
+- Confiar en una respuesta de un LLM **sin verificarla**.
+- Confundir **encadenamiento hacia adelante** (de datos a meta) con **hacia atrás** (de meta a datos).
+- Pensar que **h(n)** es el **costo ya recorrido** (eso es **g**).
+</Callout>
+
+## Ejemplo resuelto
+
+> Un usuario incluye en el prompt tres ejemplos de entrada y salida y luego su solicitud. ¿Qué técnica usa y modifica los pesos del modelo?
+
+**Few-shot prompting**: guía al modelo **con ejemplos en el contexto**; **no** modifica los pesos (eso lo hace el **fine-tuning**).
