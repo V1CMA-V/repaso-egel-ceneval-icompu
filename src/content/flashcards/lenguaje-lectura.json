@@ -1,0 +1,15 @@
+{
+  "cards": [
+    { "id": "fc-len-lec-01", "front": "Tres niveles de la comprensión lectora", "back": "Identificar (lo que dice el texto), interpretar (lo que sugiere), evaluar (juzgarlo)." },
+    { "id": "fc-len-lec-02", "front": "Idea principal vs tema vs ideas secundarias", "back": "Tema: de qué trata. Idea principal: lo más importante que dice el autor (resume todo). Secundarias: la apoyan (datos, ejemplos)." },
+    { "id": "fc-len-lec-03", "front": "Conectores de contraste", "back": "Sin embargo, no obstante, pero, en cambio, aunque, a pesar de." },
+    { "id": "fc-len-lec-04", "front": "Conectores de causa, consecuencia y adición", "back": "Causa: porque, ya que. Consecuencia: por lo tanto, por consiguiente. Adición: además, asimismo, también." },
+    { "id": "fc-len-lec-05", "front": "Hecho vs opinión", "back": "Hecho: se puede comprobar. Opinión: valoración personal (mejor, sin duda, debería)." },
+    { "id": "fc-len-lec-06", "front": "Falacias frecuentes", "back": "Generalización apresurada, ad hominem, falsa causa, apelación a la autoridad, falso dilema, apelación a la mayoría." },
+    { "id": "fc-len-lec-07", "front": "Trampas en las opciones", "back": "Verdadera pero no responde, absolutos (siempre, nunca), información que no está en el texto." },
+    { "id": "fc-len-lec-08", "front": "Estructura de un ensayo y de un artículo de investigación", "back": "Ensayo: tesis, argumentos, conclusión. Artículo: introducción, método, resultados, discusión." },
+    { "id": "fc-len-lec-09", "front": "Reseña vs resumen", "back": "Reseña: resume y valora. Resumen: solo condensa." },
+    { "id": "fc-len-lec-10", "front": "Nota informativa", "back": "Pirámide invertida: lo más importante al inicio. Responde qué, quién, cuándo, dónde, cómo y por qué." },
+    { "id": "fc-len-lec-11", "front": "Convocatoria y cuento", "back": "Convocatoria: quién convoca, requisitos, fechas, bases. Cuento: narrador, personajes, conflicto, desenlace." }
+  ]
+}

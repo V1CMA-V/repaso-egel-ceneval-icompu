@@ -1,0 +1,23 @@
+{
+  "cards": [
+    { "id": "fc-len-red-01", "front": "Reglas de acentuación", "back": "Agudas: tilde si terminan en n, s o vocal (camión). Graves: tilde si NO terminan en n, s o vocal (árbol). Esdrújulas: siempre (código)." },
+    { "id": "fc-len-red-02", "front": "Monosílabos y tilde", "back": "No llevan tilde (fue, fui, dio, vio) salvo la diacrítica." },
+    { "id": "fc-len-red-03", "front": "Hiato con vocal cerrada tónica", "back": "Siempre lleva tilde: día, país, baúl, raíz, mío." },
+    { "id": "fc-len-red-04", "front": "Tilde diacrítica", "back": "tú/tu · él/el · mí/mi · sí/si · té/te · más/mas · sé/se · dé/de · aún/aun." },
+    { "id": "fc-len-red-05", "front": "Interrogativos y exclamativos", "back": "Qué, cómo, dónde, cuándo, quién, cuál, cuánto llevan tilde (directos e indirectos: 'no sé qué hacer')." },
+    { "id": "fc-len-red-06", "front": "Solo y demostrativos (RAE)", "back": "Ya no llevan tilde: 'solo', 'este', 'ese', 'aquel'." },
+    { "id": "fc-len-red-07", "front": "Haber y hacer impersonales", "back": "Hubo, había, habrá (nunca 'hubieron'). Hace dos años (no 'hacen')." },
+    { "id": "fc-len-red-08", "front": "Dequeísmo y queísmo", "back": "Pienso QUE (sin 'de'). Me acuerdo DE QUE (con 'de')." },
+    { "id": "fc-len-red-09", "front": "Concordancia: el agua fría", "back": "Sustantivo femenino con 'a' tónica: artículo masculino ('el agua'), adjetivo femenino ('fría')." },
+    { "id": "fc-len-red-10", "front": "Sujeto y verbo: núcleo del sujeto", "back": "El verbo concuerda con el núcleo, no con el sustantivo más cercano: 'El conjunto de normas fue actualizado'." },
+    { "id": "fc-len-red-11", "front": "Errores de locución frecuentes", "back": "Con base en (no 'en base a') · a pesar de que · detrás de mí (no 'detrás mío') · entre tú y yo." },
+    { "id": "fc-len-red-12", "front": "Gerundio y pleonasmos", "back": "El gerundio expresa acción simultánea o anterior (no posterior). Pleonasmos: subir arriba, salir afuera, lapso de tiempo." },
+    { "id": "fc-len-red-13", "front": "Dónde NO va coma", "back": "Entre sujeto y verbo, ni entre verbo y complemento." },
+    { "id": "fc-len-red-14", "front": "Dónde SÍ va coma", "back": "Enumeraciones, vocativos, incisos (entre dos comas), antes de pero/mas/aunque/sino, conectores (sin embargo, además)." },
+    { "id": "fc-len-red-15", "front": "Oración de relativo con y sin comas", "back": "Sin comas restringe ('los alumnos que estudiaron'). Con comas explica a todo el grupo." },
+    { "id": "fc-len-red-16", "front": "Dos puntos y punto y coma", "back": "Dos puntos: anuncian enumeración o cita (no después de un verbo). Punto y coma: separa oraciones relacionadas o elementos con comas internas." },
+    { "id": "fc-len-red-17", "front": "Registro formal", "back": "Vocabulario preciso, tercera persona o usted, sin modismos, muletillas, diminutivos ni apócopes." },
+    { "id": "fc-len-red-18", "front": "Cohesión y coherencia", "back": "Cohesión: conectores, pronombres, sinónimos. Coherencia: unidad temática y orden lógico." },
+    { "id": "fc-len-red-19", "front": "Ordenar enunciados", "back": "Primero la oración introductoria; los pronombres y conectores (Esto, Por ello, Sin embargo) dependen de la anterior; al final, la conclusión." }
+  ]
+}

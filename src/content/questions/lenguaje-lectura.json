@@ -1,0 +1,227 @@
+{
+  "questions": [
+    {
+      "id": "len-lec-0101",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
+      "text": "¿Cuál es la idea principal del texto?",
+      "options": [
+        "Los paneles solares ya son la fuente de energía más barata del mundo.",
+        "La energía solar se ha abaratado, pero su expansión depende también de resolver el almacenamiento.",
+        "La energía solar no funciona de noche, por lo que no es útil.",
+        "Los combustibles importados dejarán de usarse en pocos años."
+      ],
+      "answer": 1,
+      "explanation": "El texto plantea un avance (menor costo) y una limitación (intermitencia y almacenamiento costoso), y concluye que la expansión depende de ambos factores. Las demás opciones generalizan o agregan información que el texto no sostiene.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0102",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
+      "text": "En el texto, la expresión «No obstante» introduce una relación de:",
+      "options": ["Causa", "Ejemplo", "Contraste", "Consecuencia"],
+      "answer": 2,
+      "explanation": "«No obstante» anuncia una idea que se opone a la anterior: después de mencionar las ventajas del abaratamiento, introduce una limitación. Es un conector de contraste, equivalente a «sin embargo».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0103",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
+      "text": "¿Qué se puede inferir del texto?",
+      "options": [
+        "Las baterías actuales ya son baratas y abundantes.",
+        "Los países con pocos recursos no pueden usar energía solar.",
+        "Los especialistas rechazan la energía solar por su costo.",
+        "Sin sistemas de almacenamiento, la energía solar no puede cubrir la demanda cuando no hay sol."
+      ],
+      "answer": 3,
+      "explanation": "Si la fuente no produce de noche ni en días nublados y requiere almacenamiento, se infiere que sin él no puede abastecer la demanda en esos momentos. Las otras opciones contradicen el texto o afirman lo que no dice.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0104",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Durante la última década, el costo de generar electricidad con paneles solares ha disminuido más de un 80 %. Esta reducción ha permitido que países con pocos recursos instalen plantas fotovoltaicas sin depender de combustibles importados. No obstante, la intermitencia de esta fuente —no produce energía de noche ni en días nublados— exige sistemas de almacenamiento que todavía son costosos. Por ello, muchos especialistas consideran que la expansión de la energía solar dependerá tanto del desarrollo de baterías más baratas como de la construcción de nuevas plantas.",
+      "text": "En el texto, la palabra «intermitencia» significa:",
+      "options": [
+        "Ser constante y estable",
+        "Producirse con interrupciones",
+        "Ser costoso de instalar",
+        "Contaminar el ambiente"
+      ],
+      "answer": 1,
+      "explanation": "El propio texto lo aclara con el guion: «no produce energía de noche ni en días nublados». Intermitencia es producirse con interrupciones. Se deduce por contexto.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0105",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Un estudio de la universidad reveló que el 62 % de los estudiantes utiliza su teléfono para leer; sin duda, los libros impresos están condenados a desaparecer. Quienes todavía los compran son simples nostálgicos.",
+      "text": "La afirmación «los libros impresos están condenados a desaparecer» es:",
+      "options": [
+        "Un dato estadístico",
+        "Un hecho comprobable",
+        "Una opinión que generaliza sin sustento suficiente",
+        "Una definición"
+      ],
+      "answer": 2,
+      "explanation": "El dato (62 %) solo muestra una preferencia de lectura; el autor concluye algo mucho mayor (la desaparición de los libros) sin evidencia: es una opinión. La marca «sin duda» refuerza su carácter valorativo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0106",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Un estudio de la universidad reveló que el 62 % de los estudiantes utiliza su teléfono para leer; sin duda, los libros impresos están condenados a desaparecer. Quienes todavía los compran son simples nostálgicos.",
+      "text": "La oración «Quienes todavía los compran son simples nostálgicos» incurre en una falacia de tipo:",
+      "options": [
+        "Descalificación de las personas en lugar de refutar el argumento (ad hominem)",
+        "Falsa causa",
+        "Apelación a la autoridad",
+        "Falso dilema"
+      ],
+      "answer": 0,
+      "explanation": "En lugar de dar razones, el autor etiqueta de «nostálgicos» a quienes piensan distinto, es decir, ataca a las personas y no al argumento: ad hominem.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0107",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Propongo que la universidad elimine los exámenes finales. Primero, generan un estrés excesivo: el 70 % de los estudiantes encuestados dijo dormir menos de cinco horas en época de exámenes. Segundo, un solo examen no refleja el aprendizaje de todo un semestre. Por último, mis amigos que no estudian siempre reprueban, así que es claro que los exámenes solo castigan a los flojos.",
+      "text": "¿Cuál es la tesis del autor?",
+      "options": [
+        "Los exámenes finales producen estrés.",
+        "La universidad debería eliminar los exámenes finales.",
+        "Los estudiantes duermen poco en época de exámenes.",
+        "Los exámenes castigan únicamente a los flojos."
+      ],
+      "answer": 1,
+      "explanation": "La tesis es la postura que se defiende: «la universidad elimine los exámenes finales». Las otras opciones son razones o datos que la apoyan.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0108",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Propongo que la universidad elimine los exámenes finales. Primero, generan un estrés excesivo: el 70 % de los estudiantes encuestados dijo dormir menos de cinco horas en época de exámenes. Segundo, un solo examen no refleja el aprendizaje de todo un semestre. Por último, mis amigos que no estudian siempre reprueban, así que es claro que los exámenes solo castigan a los flojos.",
+      "text": "¿Cuál es el argumento más débil del texto?",
+      "options": [
+        "El 70 % de los encuestados duerme menos de cinco horas.",
+        "Un solo examen no refleja el aprendizaje de todo el semestre.",
+        "Los exámenes finales generan estrés excesivo.",
+        "Sus amigos que no estudian siempre reprueban."
+      ],
+      "answer": 3,
+      "explanation": "Se apoya en una experiencia anecdótica (unos amigos) y generaliza a todos los exámenes (generalización apresurada); además, no tiene relación directa con la tesis. Los demás argumentos usan datos o razones pertinentes.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0109",
+      "lesson": "lenguaje/lectura/01-identificar-interpretar-evaluar",
+      "passage": "Propongo que la universidad elimine los exámenes finales. Primero, generan un estrés excesivo: el 70 % de los estudiantes encuestados dijo dormir menos de cinco horas en época de exámenes. Segundo, un solo examen no refleja el aprendizaje de todo un semestre. Por último, mis amigos que no estudian siempre reprueban, así que es claro que los exámenes solo castigan a los flojos.",
+      "text": "En el texto, la expresión «Por último» sirve para:",
+      "options": [
+        "Marcar un contraste con lo anterior",
+        "Introducir el último argumento de una serie ordenada",
+        "Expresar causa",
+        "Dar un ejemplo"
+      ],
+      "answer": 1,
+      "explanation": "«Primero», «Segundo» y «Por último» son conectores de orden: enumeran los argumentos y «Por último» presenta el tercero y final.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0201",
+      "lesson": "lenguaje/lectura/02-tipos-de-texto",
+      "passage": "La novela «Ceniza y mar» narra la vuelta de una mujer a su pueblo natal tras veinte años de ausencia y el descubrimiento de un secreto familiar. Aunque el final resulta apresurado, la prosa luminosa y la construcción de los personajes la convierten en una lectura imprescindible para quienes disfrutan de la narrativa íntima.",
+      "text": "¿Qué tipo de texto es el fragmento anterior?",
+      "options": ["Nota informativa", "Ensayo", "Reseña", "Convocatoria"],
+      "answer": 2,
+      "explanation": "Resume la obra y además emite un juicio de valor («final apresurado», «lectura imprescindible»). Resumir y valorar es lo característico de una reseña.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0202",
+      "lesson": "lenguaje/lectura/02-tipos-de-texto",
+      "passage": "Ayer por la mañana, un incendio en una bodega de la colonia Centro, en Puebla, dejó tres personas heridas y daños por 2 millones de pesos, informó Protección Civil. Las llamas se originaron por un cortocircuito, según los primeros peritajes. Los bomberos tardaron tres horas en controlar el fuego. La bodega almacenaba material de papelería.",
+      "text": "¿Qué tipo de texto es y cómo se organiza su información?",
+      "options": [
+        "Reportaje; en orden cronológico con testimonios",
+        "Ensayo; con la tesis al final",
+        "Cuento; con nudo y desenlace",
+        "Nota informativa; con lo más importante al inicio (pirámide invertida)"
+      ],
+      "answer": 3,
+      "explanation": "El primer párrafo responde qué, quién, cuándo, dónde y cuánto, y los detalles posteriores son secundarios: es una nota informativa con estructura de pirámide invertida.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0203",
+      "lesson": "lenguaje/lectura/02-tipos-de-texto",
+      "passage": "La Facultad de Ingeniería convoca a estudiantes de los dos últimos semestres a participar en el concurso de prototipos. Requisitos: promedio mínimo de 8.0, equipos de 3 a 5 integrantes y registro en línea del 3 al 14 de noviembre. No se aceptarán registros extemporáneos ni equipos con integrantes de otras facultades. Los resultados se publicarán el 25 de noviembre.",
+      "text": "¿Cuál de los siguientes equipos sería excluido del concurso?",
+      "options": [
+        "Un equipo de 3 integrantes registrado el 14 de noviembre",
+        "Un equipo de 5 integrantes con promedio mínimo de 8.0",
+        "Un equipo de 4 estudiantes de último semestre registrado el 3 de noviembre",
+        "Un equipo de 4 integrantes, uno de los cuales es de otra facultad"
+      ],
+      "answer": 3,
+      "explanation": "La convocatoria prohíbe equipos con integrantes de otras facultades. Los demás equipos cumplen el tamaño, el promedio y las fechas de registro (el 14 de noviembre aún está dentro del plazo).",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0204",
+      "lesson": "lenguaje/lectura/02-tipos-de-texto",
+      "passage": "La velocidad con que consumimos noticias nos ha vuelto lectores impacientes. Sostengo que esta urgencia no nos informa mejor, sino que empobrece nuestra capacidad de análisis: quien lee solo titulares renuncia a comprender los contextos. Basta observar cuántas discusiones públicas se resuelven con una frase ingeniosa y no con una razón. Por ello, conviene recuperar la lectura pausada.",
+      "text": "¿Cuál es la tesis del autor?",
+      "options": [
+        "Es necesario leer únicamente los titulares.",
+        "Las discusiones públicas se resuelven con frases ingeniosas.",
+        "La urgencia con que consumimos noticias empobrece nuestra capacidad de análisis.",
+        "Hay que ver menos televisión."
+      ],
+      "answer": 2,
+      "explanation": "La tesis está introducida por «Sostengo que…»: la urgencia al consumir noticias empobrece el análisis. La observación sobre las discusiones públicas es un argumento que la apoya.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0205",
+      "lesson": "lenguaje/lectura/02-tipos-de-texto",
+      "text": "En un artículo de investigación, ¿en qué sección se presentan los hallazgos obtenidos del estudio?",
+      "options": ["Resultados", "Introducción", "Método", "Referencias"],
+      "answer": 0,
+      "explanation": "La sección de Resultados expone los datos y hallazgos. La Introducción plantea el problema, el Método describe cómo se hizo el estudio y la Discusión interpreta los resultados.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-lec-0206",
+      "lesson": "lenguaje/lectura/02-tipos-de-texto",
+      "passage": "Cuando Marta abrió la puerta, supo que algo no estaba bien. La casa olía a café recién hecho, pero su madre había muerto hacía un año. Recorrió el pasillo con las manos temblorosas mientras el reloj, detenido desde aquel invierno, marcaba de pronto las seis.",
+      "text": "¿Qué tipo de narrador tiene el texto?",
+      "options": [
+        "Narrador en primera persona, que es la protagonista",
+        "Narrador en segunda persona, que se dirige a Marta",
+        "Narrador testigo, que cuenta lo que vio",
+        "Narrador en tercera persona, que conoce lo que siente el personaje"
+      ],
+      "answer": 3,
+      "explanation": "El narrador usa la tercera persona («Marta abrió», «supo») y conoce los pensamientos del personaje («supo que algo no estaba bien»), por lo que es un narrador externo omnisciente.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-lec-0207",
+      "lesson": "lenguaje/lectura/02-tipos-de-texto",
+      "text": "¿En qué se diferencia una reseña de un resumen?",
+      "options": [
+        "La reseña evita cualquier valoración",
+        "La reseña solo contiene los datos de la ficha de la obra",
+        "La reseña, además de sintetizar el contenido, incluye una valoración crítica",
+        "La reseña no describe el contenido de la obra"
+      ],
+      "answer": 2,
+      "explanation": "El resumen únicamente condensa; la reseña condensa y además valora la obra (la recomienda o la critica).",
+      "difficulty": "facil"
+    }
+  ]
+}

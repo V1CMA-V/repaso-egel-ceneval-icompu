@@ -1,0 +1,469 @@
+{
+  "questions": [
+    {
+      "id": "len-red-0101",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "¿Cuál de las siguientes oraciones está correctamente acentuada?",
+      "options": [
+        "El examen fué difícil.",
+        "El examen fue difícil.",
+        "El exámen fue dificil.",
+        "El examen fue dificil."
+      ],
+      "answer": 1,
+      "explanation": "«Fue» es un monosílabo y no lleva tilde; «examen» es grave terminada en n (sin tilde); «difícil» es grave terminada en l (con tilde).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0102",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "La palabra «lápiz» se clasifica y se acentúa de la siguiente manera:",
+      "options": [
+        "Grave; lleva tilde porque no termina en n, s ni vocal",
+        "Aguda; lleva tilde porque termina en z",
+        "Esdrújula; lleva tilde siempre",
+        "Grave; no lleva tilde porque termina en consonante"
+      ],
+      "answer": 0,
+      "explanation": "La sílaba tónica es la penúltima (LÁ-piz): es grave. Las graves llevan tilde cuando no terminan en n, s o vocal; «lápiz» termina en z, por eso se acentúa.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0103",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "¿Cuál de las siguientes palabras lleva tilde por formar un hiato entre una vocal cerrada tónica y una abierta?",
+      "options": ["Cuidado", "Ciudad", "País", "Reino"],
+      "answer": 2,
+      "explanation": "En «pa-ís» la i (cerrada) es tónica y se separa de la a (abierta), formando un hiato que siempre lleva tilde. «Cuidado», «ciudad» y «reino» tienen diptongo, sin tilde.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0104",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "¿En cuál oración las tildes diacríticas están bien empleadas?",
+      "options": [
+        "Tu sabes que él es mi amigo.",
+        "Tú sabes que el es mí amigo.",
+        "Tu sabes que el es mi amigo.",
+        "Tú sabes que él es mi amigo."
+      ],
+      "answer": 3,
+      "explanation": "«Tú» (pronombre) lleva tilde, «él» (pronombre) lleva tilde y «mi» (posesivo) no. En las otras opciones se confunden pronombres con posesivos o artículos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0105",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "¿Cuál de las siguientes oraciones está correctamente escrita?",
+      "options": [
+        "No sé que hacer.",
+        "No se qué hacer.",
+        "No sé qué hacer.",
+        "No se que hacer."
+      ],
+      "answer": 2,
+      "explanation": "«Sé» (verbo saber) lleva tilde diacrítica, y «qué» también porque es un interrogativo indirecto («no sé qué hacer»).",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0106",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "Según las normas actuales de la RAE, ¿cuál oración está correctamente escrita?",
+      "options": [
+        "Esté libro es sólo para mí.",
+        "Este libro es solo para mí.",
+        "Éste libro es solo para mí.",
+        "Este libro es sólo para mí."
+      ],
+      "answer": 1,
+      "explanation": "Desde 2010, «solo» (adverbio) y los demostrativos («este», «ese», «aquel») no llevan tilde, ni siquiera en casos de posible ambigüedad.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0107",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "¿En cuál de las siguientes oraciones se usa correctamente «sino»?",
+      "options": [
+        "Si no estudias, reprobarás.",
+        "No vine a jugar, sino a trabajar.",
+        "Sino llueve, saldremos al parque.",
+        "No es tarde, si no temprano."
+      ],
+      "answer": 1,
+      "explanation": "«Sino» es una conjunción adversativa que contrapone dos elementos tras una negación («no vine a jugar, sino a trabajar»). «Si no» (separado) es la condicional «si» más el adverbio «no».",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0108",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "¿Cuál de las siguientes oraciones está correctamente escrita respecto al uso de la tilde en mayúsculas?",
+      "options": [
+        "ALVARO viajó a Africa.",
+        "Álvaro viajó a África.",
+        "Alvaro viajó a África.",
+        "Álvaro viajó a Africa."
+      ],
+      "answer": 1,
+      "explanation": "Las mayúsculas llevan tilde igual que las minúsculas: «Álvaro» (esdrújula) y «África» (esdrújula).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0109",
+      "lesson": "lenguaje/redaccion/01-acentuacion-tilde",
+      "text": "¿Cuál de las siguientes palabras debe llevar tilde?",
+      "options": ["Examen", "Joven", "Reloj", "Codigo"],
+      "answer": 3,
+      "explanation": "«Código» es esdrújula (CÓ-di-go) y las esdrújulas siempre llevan tilde. «Examen» y «joven» son graves terminadas en n, y «reloj» es aguda terminada en j: ninguna lleva tilde.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0201",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones es correcta?",
+      "options": [
+        "Hubo muchos aspirantes.",
+        "Hubieron muchos aspirantes.",
+        "Habían muchos aspirantes.",
+        "Habrán muchos aspirantes."
+      ],
+      "answer": 0,
+      "explanation": "El verbo «haber» con sentido de «existir» es impersonal y se usa siempre en tercera persona del singular (hubo, había, habrá), aunque el complemento sea plural.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0202",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones es correcta?",
+      "options": [
+        "Pienso de que es una buena idea.",
+        "Pienso que es una buena idea.",
+        "Pienso de qué es una buena idea.",
+        "Pienso del que es una buena idea."
+      ],
+      "answer": 1,
+      "explanation": "«Pensar» no rige la preposición «de» en este uso; agregarla es dequeísmo. Se comprueba con «Pienso eso», no «Pienso de eso».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0203",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones evita el queísmo?",
+      "options": [
+        "Me acuerdo que vino ayer.",
+        "Me acuerdo en que vino ayer.",
+        "Me acuerdo con que vino ayer.",
+        "Me acuerdo de que vino ayer."
+      ],
+      "answer": 3,
+      "explanation": "«Acordarse» exige la preposición «de»: «me acuerdo de eso». Omitirla («me acuerdo que») es queísmo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0204",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "Elige la opción que completa correctamente la oración: «El conjunto de normas que regulan el uso de los laboratorios ______ el semestre pasado.»",
+      "options": [
+        "fueron actualizadas",
+        "fue actualizados",
+        "fue actualizado",
+        "fueron actualizado"
+      ],
+      "answer": 2,
+      "explanation": "El núcleo del sujeto es «el conjunto» (singular, masculino), no «normas». Por eso el verbo y el participio van en singular masculino: «fue actualizado».",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-red-0205",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones presenta una concordancia correcta?",
+      "options": [
+        "El agua está muy frío.",
+        "El agua está muy fría.",
+        "La agua está muy fría.",
+        "El agua están muy fría."
+      ],
+      "answer": 1,
+      "explanation": "Los sustantivos femeninos que empiezan con «a» tónica llevan artículo masculino singular, pero el adjetivo concuerda en femenino: «el agua fría».",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0206",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones es correcta?",
+      "options": [
+        "Hacen tres años que vivo aquí.",
+        "Hace tres años que vivo aquí.",
+        "Hacían tres años que vivo aquí.",
+        "Hicieron tres años que vivo aquí."
+      ],
+      "answer": 1,
+      "explanation": "«Hacer» en expresiones de tiempo transcurrido es impersonal y va en tercera persona del singular: «hace tres años».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0207",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones usa incorrectamente el gerundio?",
+      "options": [
+        "Salió corriendo de la oficina.",
+        "Se aprobó el reglamento, entrando en vigor al día siguiente.",
+        "Estudiando todos los días se aprende.",
+        "Lo vi paseando por el parque."
+      ],
+      "answer": 1,
+      "explanation": "El gerundio expresa una acción simultánea o anterior a la del verbo principal. «Entrando en vigor» ocurre después de la aprobación (gerundio de posterioridad), lo cual es incorrecto; debe decirse «y entró en vigor».",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-red-0208",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones contiene un pleonasmo (redundancia innecesaria)?",
+      "options": [
+        "Subió al segundo piso.",
+        "Salió de la casa.",
+        "Subió arriba al segundo piso.",
+        "Bajó del autobús."
+      ],
+      "answer": 2,
+      "explanation": "«Subir» ya implica ir hacia arriba, por lo que «subir arriba» es redundante. Se corrige con «subió al segundo piso».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0209",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál de las siguientes oraciones usa correctamente los pronombres?",
+      "options": [
+        "Entre tú y mí no hay secretos.",
+        "Entre yo y tú no hay secretos.",
+        "Entre mí y ti no hay secretos.",
+        "Entre tú y yo no hay secretos."
+      ],
+      "answer": 3,
+      "explanation": "Después de «entre» se usan los pronombres de sujeto: «entre tú y yo». Las formas «mí» y «ti» no se emplean con esta preposición.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0210",
+      "lesson": "lenguaje/redaccion/02-concordancia-errores-frecuentes",
+      "text": "¿Cuál es la forma correcta de la locución en la siguiente oración?",
+      "options": [
+        "En base a los resultados, se decidió ampliar el plazo.",
+        "Con base en los resultados, se decidió ampliar el plazo.",
+        "A base de los resultados, se decidió ampliar el plazo.",
+        "En base de los resultados, se decidió ampliar el plazo."
+      ],
+      "answer": 1,
+      "explanation": "La locución correcta es «con base en» (o «sobre la base de»). «En base a» es un error muy frecuente.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0301",
+      "lesson": "lenguaje/redaccion/03-puntuacion",
+      "text": "En la oración «Los alumnos de la generación 2022, presentarán el examen en diciembre», ¿qué ocurre con la coma?",
+      "options": [
+        "Está bien colocada porque separa la fecha",
+        "Sobra: no se separa el sujeto del verbo con coma",
+        "Sobra, pero además falta otra coma antes de «diciembre»",
+        "Es necesaria porque hay un número en el sujeto"
+      ],
+      "answer": 1,
+      "explanation": "El sujeto («Los alumnos de la generación 2022») y el verbo («presentarán») forman una unidad que no se separa con una coma.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0302",
+      "lesson": "lenguaje/redaccion/03-puntuacion",
+      "text": "¿Cuál oración tiene bien puntuada la aposición (el inciso)?",
+      "options": [
+        "El director Luis Pérez, anunció el cambio.",
+        "El director, Luis Pérez anunció el cambio.",
+        "El director, Luis Pérez, anunció el cambio.",
+        "El director Luis, Pérez anunció el cambio."
+      ],
+      "answer": 2,
+      "explanation": "Un inciso o aposición se escribe entre dos comas; una sola coma separaría erróneamente partes de la oración.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0303",
+      "lesson": "lenguaje/redaccion/03-puntuacion",
+      "text": "Se desea pedirle a Ana que cierre la puerta. ¿Cuál oración está correctamente puntuada?",
+      "options": [
+        "Ana cierra, la puerta.",
+        "Ana cierra la puerta.",
+        "Ana, cierra la puerta.",
+        "Ana cierra la, puerta."
+      ],
+      "answer": 2,
+      "explanation": "Cuando se llama a alguien (vocativo), el nombre se separa con coma: «Ana, cierra la puerta». Sin coma («Ana cierra la puerta») la oración afirma algo sobre Ana.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0304",
+      "lesson": "lenguaje/redaccion/03-puntuacion",
+      "text": "¿Cuál oración está correctamente puntuada?",
+      "options": [
+        "Quería ir pero, llovía.",
+        "Quería ir, pero llovía.",
+        "Quería, ir pero llovía.",
+        "Quería ir pero llovía,."
+      ],
+      "answer": 1,
+      "explanation": "Antes de las conjunciones adversativas (pero, mas, aunque, sino) se coloca coma.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0305",
+      "lesson": "lenguaje/redaccion/03-puntuacion",
+      "text": "¿Cuál de las siguientes oraciones indica que TODOS los estudiantes estudiaron (y todos aprobaron)?",
+      "options": [
+        "Los estudiantes que estudiaron aprobaron.",
+        "Los estudiantes, que estudiaron, aprobaron.",
+        "Los estudiantes que, estudiaron aprobaron.",
+        "Los estudiantes que estudiaron, aprobaron."
+      ],
+      "answer": 1,
+      "explanation": "Con comas, la oración de relativo es explicativa y describe a todo el grupo. Sin comas es especificativa y restringe: solo aprobaron los que estudiaron.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "len-red-0306",
+      "lesson": "lenguaje/redaccion/03-puntuacion",
+      "text": "¿Cuál de los siguientes usos de los dos puntos es incorrecto?",
+      "options": [
+        "Necesito tres cosas: pluma, papel y tiempo.",
+        "Estimado doctor:",
+        "Los ingredientes son: harina y azúcar.",
+        "Dijo: «Nos vemos mañana»."
+      ],
+      "answer": 2,
+      "explanation": "No se colocan dos puntos después de un verbo («son») que precede inmediatamente a una enumeración. Debe escribirse «Los ingredientes son harina y azúcar.»",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0307",
+      "lesson": "lenguaje/redaccion/03-puntuacion",
+      "text": "¿Cuál oración respeta las normas de uso de mayúsculas?",
+      "options": [
+        "La reunión será el Lunes 3 de noviembre.",
+        "La reunión será el lunes 3 de Noviembre.",
+        "La reunión será el Lunes 3 de Noviembre.",
+        "La reunión será el lunes 3 de noviembre."
+      ],
+      "answer": 3,
+      "explanation": "Los días de la semana y los meses se escriben con minúscula inicial, salvo al comienzo de una oración.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0401",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "text": "Elige el conector que completa correctamente: «El proyecto fue costoso; ______, resultó rentable.»",
+      "options": ["por lo tanto", "sin embargo", "además", "porque"],
+      "answer": 1,
+      "explanation": "La segunda idea (rentable) contrasta con la primera (costoso), por lo que se requiere un conector de contraste: «sin embargo».",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0402",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "text": "Elige el conector adecuado: «El precio de la materia prima aumentó; ______, la empresa elevó el costo de sus productos.»",
+      "options": ["no obstante", "en cambio", "por consiguiente", "por el contrario"],
+      "answer": 2,
+      "explanation": "La segunda oración es una consecuencia de la primera. Los conectores consecutivos son «por consiguiente», «por lo tanto», «en consecuencia». Los demás expresan oposición.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0403",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "text": "¿Cuál enunciado es el más adecuado para incluirse en un informe formal?",
+      "options": [
+        "Los alumnos se hicieron bolas con el examen.",
+        "A los alumnos se les complicó, o sea, el examen.",
+        "Los chavos no la libraron en el examen.",
+        "Los alumnos tuvieron dificultades con el examen."
+      ],
+      "answer": 3,
+      "explanation": "El registro formal usa vocabulario preciso y evita modismos y muletillas («se hicieron bolas», «o sea», «no la libraron»).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0404",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "passage": "(1) La fotosíntesis es el proceso mediante el cual las plantas producen su alimento. (2) Para realizarla, necesitan luz solar, agua y dióxido de carbono. (3) Mi tía cultiva rosas en su jardín desde hace años. (4) Como resultado, liberan oxígeno a la atmósfera.",
+      "text": "¿Qué enunciado debe eliminarse porque no mantiene la unidad temática del párrafo?",
+      "options": ["El enunciado 1", "El enunciado 2", "El enunciado 3", "El enunciado 4"],
+      "answer": 2,
+      "explanation": "El párrafo trata de la fotosíntesis. El enunciado 3 habla de las rosas de una tía, un tema ajeno que rompe la coherencia.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0405",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "passage": "1) Por ello, muchas empresas han adoptado el trabajo remoto.\n2) Durante los últimos años, la tecnología de comunicación ha avanzado de forma notable.\n3) Sin embargo, este modelo exige mayor autodisciplina de los empleados.\n4) Estas herramientas permiten colaborar sin compartir un mismo espacio físico.",
+      "text": "¿Cuál es el orden adecuado de los enunciados para formar un párrafo coherente?",
+      "options": ["4 – 2 – 1 – 3", "2 – 1 – 4 – 3", "1 – 2 – 4 – 3", "2 – 4 – 1 – 3"],
+      "answer": 3,
+      "explanation": "El 2 presenta el tema. El 4 («Estas herramientas») retoma esa tecnología. El 1 («Por ello») expresa la consecuencia y el 3 («Sin embargo») introduce un matiz contrastante al final.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0406",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "passage": "Luis compró un libro. Luis leyó el libro durante el viaje.",
+      "text": "¿Cuál es la mejor reescritura para evitar la repetición innecesaria?",
+      "options": [
+        "Luis compró un libro. Luis leyó el libro durante el viaje.",
+        "Luis compró un libro y lo leyó durante el viaje.",
+        "Luis compró un libro, Luis lo leyó durante el viaje.",
+        "Luis compró un libro, y el libro lo leyó Luis durante el viaje."
+      ],
+      "answer": 1,
+      "explanation": "Se usa el pronombre «lo» y se omite el sujeto repetido (elipsis), lo que logra cohesión sin repeticiones.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0407",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "passage": "Vi al hombre con el telescopio.",
+      "text": "La oración es ambigua (no se sabe quién tenía el telescopio). ¿Cuál reescritura deja claro que el telescopio lo tenía el hombre?",
+      "options": [
+        "Con el telescopio, vi al hombre.",
+        "Vi al hombre que tenía un telescopio.",
+        "Vi con el hombre el telescopio.",
+        "Con el hombre vi el telescopio."
+      ],
+      "answer": 1,
+      "explanation": "«Vi al hombre que tenía un telescopio» elimina la ambigüedad (anfibología) al indicar que el telescopio pertenece al hombre. En la opción A, quien usa el telescopio es el que ve.",
+      "difficulty": "media"
+    },
+    {
+      "id": "len-red-0408",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "text": "¿Cuál es la forma adecuada en un texto formal?",
+      "options": [
+        "Accesar a la plataforma",
+        "Accesear la plataforma",
+        "Acceder a la plataforma",
+        "Entrar de acceso en la plataforma"
+      ],
+      "answer": 2,
+      "explanation": "«Accesar» es un barbarismo (calco del inglés); el verbo español es «acceder». En redacción formal se prefiere el término correcto.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "len-red-0409",
+      "lesson": "lenguaje/redaccion/04-registro-cohesion-coherencia",
+      "passage": "______ Primero, disminuye la dependencia de los combustibles fósiles. Segundo, protege los ecosistemas al reducir la extracción de recursos. Por último, mejora la calidad del aire que respiramos.",
+      "text": "¿Cuál sería la oración introductoria más adecuada para el párrafo?",
+      "options": [
+        "Adoptar prácticas sostenibles ofrece beneficios ambientales importantes.",
+        "El reciclaje es una actividad muy divertida.",
+        "Mi ciudad está muy contaminada.",
+        "Los combustibles son cada vez más caros."
+      ],
+      "answer": 0,
+      "explanation": "La oración temática debe anticipar la idea que se desarrolla: los beneficios ambientales enumerados («primero, segundo, por último»). Las otras opciones no abarcan el contenido del párrafo.",
+      "difficulty": "media"
+    }
+  ]
+}
