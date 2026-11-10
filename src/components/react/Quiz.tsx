@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { progress, recordExam } from '@/lib/progress';
 import RichText from './RichText';
+import { useShortcuts } from './useShortcuts';
 import { attemptsLeft, neededToPass, score, shuffle, type Question, type ScoreResult, MAX_ATTEMPTS_PER_HOUR } from '@/lib/scoring';
 
 interface Props {
@@ -35,6 +36,43 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
   const left = attemptsLeft(record?.attempts ?? []);
   const answered = Object.keys(answers).length;
 
+  // Atajos: 1–4 responden la pregunta activa (la primera sin contestar). Solo mientras el quiz está a la vista,
+  // para no contestar por accidente al leer la lección.
+  const current = result ? undefined : ordered.find((q) => answers[q.id] === undefined);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const scrollToNext = useRef(false);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setVisible(true);
+      return;
+    }
+    const io = new IntersectionObserver(([entry]) => setVisible(!!entry?.isIntersecting), { threshold: 0.05 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useShortcuts(
+    (e) => {
+      if (!current || e.repeat) return;
+      const n = Number(e.key);
+      if (!Number.isInteger(n) || n < 1 || n > current.options.length) return;
+      setAnswers((a) => ({ ...a, [current.id]: n - 1 }));
+      scrollToNext.current = true;
+      return true;
+    },
+    !!current && visible,
+  );
+
+  // tras contestar con el teclado, lleva la siguiente pregunta al centro de la pantalla
+  useEffect(() => {
+    if (!scrollToNext.current || !current) return;
+    scrollToNext.current = false;
+    document.querySelector(`[data-qid="${current.id}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [current?.id]);
+
   function submit() {
     const r = score(ordered, answers);
     setResult(r);
@@ -53,12 +91,18 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
   }
 
   return (
-    <div>
+    <div ref={wrapRef}>
       <p className="text-xs uppercase tracking-widest text-[color:var(--muted)]">
         {ordered.length} preguntas · Aprueba con {neededToPass(ordered.length)}/{ordered.length}
         {graded && ` · ${left}/${MAX_ATTEMPTS_PER_HOUR} intentos esta hora`}
         {graded && record?.passed && ' · ✅ ya aprobado'}
       </p>
+      {!result && (
+        <p className="mt-1 text-xs text-[color:var(--muted)]">
+          ⌨ Con la pregunta resaltada, pulsa <kbd className="rounded border border-[color:var(--line)] px-1.5 py-0.5 font-mono text-[0.7rem]">1</kbd>–
+          <kbd className="rounded border border-[color:var(--line)] px-1.5 py-0.5 font-mono text-[0.7rem]">4</kbd> para responder (A–D).
+        </p>
+      )}
 
       {result && (
         <div
@@ -77,7 +121,13 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
           const chosen = answers[q.id];
           const wrong = result?.wrongIds.includes(q.id);
           return (
-            <li key={q.id} className={`panel p-5 ${result ? (wrong ? 'border-red-500/60' : 'border-emerald-500/50') : ''}`}>
+            <li
+              key={q.id}
+              data-qid={q.id}
+              className={`panel p-5 ${result ? (wrong ? 'border-red-500/60' : 'border-emerald-500/50') : ''} ${
+                current?.id === q.id && visible ? 'ring-2 ring-accent/60' : ''
+              }`}
+            >
               <div className="flex gap-3">
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white">
                   {i + 1}

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { loadBank, type BankQuestion } from '@/lib/bank';
 import RichText from './RichText';
+import { useShortcuts } from './useShortcuts';
 import { AREAS } from '@/lib/curriculum';
 import { progress, recordSim, simActive } from '@/lib/progress';
 import {
@@ -69,6 +70,35 @@ export default function Simulacro() {
     recordSim({ id: String(sim.startedAt), at: Date.now(), mode: sim.mode, areas: res.byArea }, res.wrongIds, res.rightIds);
     simActive.set({ ...sim, saved: true });
   }, [sim, bank, byId]);
+
+  // Atajos (solo mientras corre el examen): 1–4 contestan · ← → cambian de pregunta · F marca/desmarca
+  const shownQ = running && sim ? byId.get(sim.phases[sim.phaseIdx]?.ids[sim.idx] ?? '') : undefined;
+  useShortcuts((e) => {
+    const s = simActive.get();
+    if (!s || s.finished || s.between) return;
+    const ids = s.phases[s.phaseIdx]?.ids ?? [];
+
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      const idx = Math.min(ids.length - 1, Math.max(0, s.idx + (e.key === 'ArrowRight' ? 1 : -1)));
+      if (idx !== s.idx) simActive.set({ ...s, idx });
+      return true; // evita que la flecha cambie la opción del radio enfocado
+    }
+
+    if (e.repeat) return;
+    const id = ids[s.idx];
+    if (!id) return;
+
+    if (e.key.toLowerCase() === 'f') {
+      simActive.set({ ...s, flags: s.flags.includes(id) ? s.flags.filter((f) => f !== id) : [...s.flags, id] });
+      return true;
+    }
+
+    const n = Number(e.key);
+    if (shownQ && Number.isInteger(n) && n >= 1 && n <= shownQ.options.length) {
+      simActive.set({ ...s, answers: { ...s.answers, [id]: n - 1 } });
+      return true;
+    }
+  }, running);
 
   if (error) return <p className="panel p-4 text-sm text-red-500">{error}</p>;
   if (!bank) return <p className="text-sm text-[color:var(--muted)]">Cargando preguntas…</p>;
@@ -268,7 +298,7 @@ export default function Simulacro() {
               }`}
               aria-pressed={flagged.has(q.id)}
             >
-              🚩 {flagged.has(q.id) ? 'Marcada' : 'Marcar'}
+              🚩 {flagged.has(q.id) ? 'Marcada' : 'Marcar'} <span className="opacity-60">(F)</span>
             </button>
           </div>
           {q.passage && (
@@ -329,7 +359,11 @@ export default function Simulacro() {
             </button>
           ))}
         </div>
-        <p className="mt-2 text-xs text-[color:var(--muted)]">Naranja = contestada · aro ámbar = marcada · contorno = actual</p>
+        <p className="mt-2 text-xs text-[color:var(--muted)]">
+          Naranja = contestada · aro ámbar = marcada · contorno = actual
+          <br />
+          ⌨ <b>1–4</b> responden (A–D) · <b>←</b> <b>→</b> cambian de pregunta · <b>F</b> marca o desmarca
+        </p>
       </nav>
 
       <div className="panel p-4">

@@ -3,6 +3,11 @@ import { useStore } from '@nanostores/react';
 import { gradeCard, progress } from '@/lib/progress';
 import { isDue, type Grade } from '@/lib/sm2';
 import RichText from './RichText';
+import { useShortcuts } from './useShortcuts';
+
+function Kbd({ children }: { children: string }) {
+  return <kbd className="rounded border border-[color:var(--line)] bg-[color:var(--panel)] px-1.5 py-0.5 font-mono text-[0.7rem]">{children}</kbd>;
+}
 
 interface Card {
   id: string;
@@ -37,6 +42,24 @@ export default function Flashcards({ cards }: { cards: Card[] }) {
     setFlipped(false);
   }
 
+  // Espacio = voltear la tarjeta · 1–4 = calificar (solo con la respuesta visible)
+  useShortcuts(
+    (e) => {
+      if (!current || e.repeat) return;
+      if (e.key === ' ') {
+        setFlipped((f) => !f);
+        return true;
+      }
+      const n = Number(e.key);
+      if (flipped && Number.isInteger(n) && n >= 1 && n <= GRADES.length) {
+        grade(GRADES[n - 1]!.g);
+        return true;
+      }
+    },
+    !!current,
+    [' '],
+  );
+
   return (
     <div>
       <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -45,6 +68,7 @@ export default function Flashcards({ cards }: { cards: Card[] }) {
           onChange={(e) => {
             setSection(e.target.value);
             setFlipped(false);
+            e.target.blur(); // para que los atajos vuelvan a funcionar sin hacer clic fuera
           }}
           className="panel px-3 py-2"
         >
@@ -74,15 +98,23 @@ export default function Flashcards({ cards }: { cards: Card[] }) {
             </span>
           </button>
           {!flipped ? (
-            <p className="mt-3 text-center text-xs text-[color:var(--muted)]">Intenta responder y toca la tarjeta</p>
+            <p className="mt-3 text-center text-xs text-[color:var(--muted)]">
+              Intenta responder y toca la tarjeta o pulsa <Kbd>Espacio</Kbd>
+            </p>
           ) : (
-            <div className="mt-4 grid grid-cols-4 gap-2">
-              {GRADES.map(({ g, label, cls }) => (
-                <button key={g} onClick={() => grade(g)} className={`${cls} rounded-lg py-2 text-sm font-bold text-white`}>
-                  {label}
-                </button>
-              ))}
-            </div>
+            <>
+              <div className="mt-4 grid grid-cols-4 gap-2">
+                {GRADES.map(({ g, label, cls }, i) => (
+                  <button key={g} onClick={() => grade(g)} className={`${cls} rounded-lg py-2 text-sm font-bold text-white`}>
+                    <span className="mr-1 opacity-70">{i + 1}</span>
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-3 text-center text-xs text-[color:var(--muted)]">
+                <Kbd>1</Kbd>–<Kbd>4</Kbd> califican · <Kbd>Espacio</Kbd> vuelve a ocultar
+              </p>
+            </>
           )}
         </div>
       )}
