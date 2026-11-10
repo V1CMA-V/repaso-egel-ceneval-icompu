@@ -1,0 +1,105 @@
+---
+title: 'Álgebra de Boole, compuertas y mapas de Karnaugh'
+summary: 'Compuertas lógicas, leyes del álgebra booleana, De Morgan y simplificación de funciones con mapas K.'
+order: 3
+readMinutes: 12
+examWeight: 'Hardware 1.1 · Electrónica digital'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **álgebra de Boole** trabaja con variables que solo valen **0 o 1** y tres operaciones básicas: **AND** (producto, ·), **OR** (suma, +) y **NOT** (complemento, ′ o barra). Todo circuito digital se describe con una **función booleana** que se implementa con **compuertas lógicas**.
+</Callout>
+
+## Compuertas lógicas
+
+| Compuerta | Expresión | Sale **1** cuando… |
+| --- | --- | --- |
+| **AND** | $A \cdot B$ | **todas** las entradas son 1 |
+| **OR** | $A + B$ | **al menos una** entrada es 1 |
+| **NOT** | $A'$ | la entrada es 0 |
+| **NAND** | $(A \cdot B)'$ | **no** todas son 1 |
+| **NOR** | $(A + B)'$ | **todas** son 0 |
+| **XOR** | $A \oplus B$ | las entradas son **diferentes** (número **impar** de 1s) |
+| **XNOR** | $(A \oplus B)'$ | las entradas son **iguales** |
+
+**NAND** y **NOR** son **compuertas universales**: con solo una de ellas se puede construir cualquier función. Por ejemplo, un NOT con NAND se hace **uniendo las dos entradas**; un OR de dos entradas con NAND requiere **3 compuertas** (dos como NOT y una NAND que combina).
+
+<Callout type="tip">
+Para XOR con varias entradas piensa en **paridad**: la salida es 1 si hay una **cantidad impar de unos**. Así, $1 \oplus 1 \oplus 1 = 1$ y $1 \oplus 1 \oplus 0 = 0$.
+</Callout>
+
+## Leyes del álgebra booleana
+
+| Ley | Forma |
+| --- | --- |
+| Identidad | $A + 0 = A$ · $A \cdot 1 = A$ |
+| Dominación | $A + 1 = 1$ · $A \cdot 0 = 0$ |
+| Idempotencia | $A + A = A$ · $A \cdot A = A$ |
+| Complemento | $A + A' = 1$ · $A \cdot A' = 0$ |
+| Doble negación | $(A')' = A$ |
+| Absorción | $A + A\,B = A$ · $A\,(A + B) = A$ |
+| Distributiva | $A\,(B + C) = AB + AC$ · $A + BC = (A + B)(A + C)$ |
+| **De Morgan** | $(A \cdot B)' = A' + B'$ · $(A + B)' = A' \cdot B'$ |
+
+**De Morgan** dice: complementar una operación equivale a **complementar cada variable y cambiar AND por OR** (y viceversa). Sirve para convertir entre NAND/NOR y compuertas básicas.
+
+<Callout type="tip">
+Un truco útil para simplificar: $A + A'B = A + B$. Si ves una variable sumada con "su complemento por algo más", el complemento **desaparece**.
+</Callout>
+
+## Formas canónicas
+
+- **Suma de productos (SOP)**: OR de términos AND. Cada término con salida 1 es un **minitérmino**: $F = \Sigma m(\dots)$.
+- **Producto de sumas (POS)**: AND de términos OR. Cada fila con salida 0 es un **maxitérmino**: $F = \Pi M(\dots)$.
+
+Para pasar de tabla de verdad a SOP, toma cada fila donde $F = 1$ y escribe el producto (variable en 1 → directa, en 0 → complementada).
+
+## Mapas de Karnaugh
+
+Un **mapa K** es una tabla de verdad ordenada en **código Gray** (solo cambia un bit entre celdas vecinas) para **simplificar visualmente**.
+
+**Reglas de agrupación:**
+
+1. Agrupa celdas con **1** en bloques de **1, 2, 4, 8, 16** (potencias de 2).
+2. Los grupos deben ser **rectangulares** y lo **más grandes** posible.
+3. El mapa es **cíclico**: los bordes izquierdo/derecho y superior/inferior son **adyacentes** (las cuatro esquinas forman un grupo).
+4. Se permite **traslapar** grupos.
+5. Las **condiciones "no importa"** (X) se usan como 1 **solo si ayudan** a hacer un grupo mayor.
+6. En cada grupo, quedan las variables que **no cambian**; las que sí cambian se eliminan.
+
+**Ejemplo en 4 variables.** $F(A,B,C,D) = \Sigma m(0, 2, 8, 10)$. Las cuatro celdas son las **esquinas** del mapa. En ese grupo $B$ y $D$ valen siempre 0, mientras $A$ y $C$ cambian: $F = B'D'$.
+
+<Callout type="tip">
+Un grupo de tamaño $2^k$ **elimina $k$ variables**. Un grupo de 4 en un mapa de 4 variables deja solo 2 variables; uno de 8 deja solo 1.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **NAND/NOR son universales**.
+- De Morgan: **cambia el operador y complementa cada término**.
+- Mapa K: grupos de **potencias de 2**, lo más grandes posible, y **el mapa es cíclico**.
+- Un grupo de $2^k$ celdas elimina $k$ variables.
+- Si $F = \Sigma m(1,3,5,7)$ en 3 variables ($A$ es el MSB), todas las celdas con $C = 1$ valen 1 → $F = C$.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Formar grupos de 3, 5 o 6 celdas.
+- Olvidar la adyacencia de bordes y esquinas.
+- Aplicar De Morgan complementando solo el operador y no las variables.
+- Confundir NAND con "AND negada **de cada entrada**" (eso sería otra función: $A' \cdot B'$ = NOR).
+</Callout>
+
+## Ejemplo resuelto
+
+> Simplifica $F = AB + AB' + A'B$.
+
+1. $AB + AB' = A(B + B') = A \cdot 1 = A$.
+2. $F = A + A'B$.
+3. Por la regla $A + A'B = A + B$: **$F = A + B$** (una compuerta OR).

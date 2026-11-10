@@ -1,0 +1,233 @@
+{
+  "questions": [
+    {
+      "id": "hw-emb-0101",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Un microcontrolador tiene un ADC de 10 bits con voltaje de referencia de 5 V. Un sensor entrega 3.0 V a la entrada del convertidor. ¿Qué valor entero aproximado devuelve la conversión?",
+      "options": ["307", "600", "614", "1023"],
+      "answer": 2,
+      "explanation": "Un ADC de 10 bits tiene 1024 niveles: lectura = (3.0/5) × 1024 = 614.4 → 614. El valor 307 corresponde a 1.5 V (la mitad), 600 es un redondeo inventado y 1023 sería el fondo de escala (5 V).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0102",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Un sistema debe detectar cambios de 1 mV en una señal que varía entre 0 y 5 V. ¿Cuál es el número mínimo de bits del ADC que lo permite?",
+      "options": ["12 bits", "13 bits", "14 bits", "16 bits"],
+      "answer": 1,
+      "explanation": "Hacen falta al menos 5 V / 1 mV = 5000 niveles. 12 bits dan 4096 (resolución ≈ 1.22 mV, insuficiente) y 13 bits dan 8192 (≈ 0.61 mV), que ya basta. Los de 14 y 16 bits funcionan, pero no son el mínimo.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "hw-emb-0103",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Un pin del microcontrolador genera una señal PWM de 5 V con periodo de 20 ms y tiempo en alto de 6 ms. ¿Cuál es el ciclo de trabajo y el voltaje promedio?",
+      "options": ["30 % y 1.5 V", "30 % y 3.0 V", "70 % y 3.5 V", "6 % y 0.3 V"],
+      "answer": 0,
+      "explanation": "D = t_on / T = 6/20 = 30 %. El voltaje promedio es D × Vcc = 0.30 × 5 = 1.5 V. Los 3.0 V no resultan de un cálculo correcto (equivaldrían a 60 %), y 70 % sería el tiempo en bajo.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0104",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Una línea de ensamble tiene ruido eléctrico fuerte, sensores a 24 V y debe operar 24/7. Los técnicos de planta (no programadores) deben modificar la lógica con rapidez. ¿Qué plataforma es la más adecuada?",
+      "options": [
+        "Un ASIC diseñado a la medida",
+        "Una FPGA programada en VHDL",
+        "Un SoC con Linux embebido",
+        "Un PLC programado en ladder"
+      ],
+      "answer": 3,
+      "explanation": "El PLC está diseñado para ambientes industriales (robustez, E/S a 24 V) y su lenguaje ladder es familiar para personal de mantenimiento. ASIC no es reprogramable, FPGA exige dominar HDL y un SoC con Linux no está pensado para ese entorno.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0105",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Se requiere procesar ocho canales de video simultáneamente con una latencia determinista de nanosegundos. ¿Por qué una FPGA es mejor opción que un microcontrolador de alta frecuencia?",
+      "options": [
+        "Porque su frecuencia de reloj siempre es mayor",
+        "Porque implementa circuitos que operan en paralelo con tiempos deterministas",
+        "Porque siempre consume menos energía",
+        "Porque no necesita ser configurada"
+      ],
+      "answer": 1,
+      "explanation": "La FPGA configura hardware dedicado: cada canal tiene su propia lógica que trabaja al mismo tiempo, con temporización fija. El MCU ejecuta instrucciones de forma secuencial. Las FPGA suelen trabajar a menor frecuencia y sí requieren configuración.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0106",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Una señal senoidal de 3 kHz se muestrea a 4 kHz sin filtro antialiasing. ¿Qué ocurre?",
+      "options": [
+        "Ocurre aliasing: la señal aparece como una componente falsa de 1 kHz",
+        "Se reconstruye correctamente porque 4 kHz es mayor que 3 kHz",
+        "Aparece una componente falsa de 7 kHz",
+        "Solo se pierde amplitud, pero la frecuencia es correcta"
+      ],
+      "answer": 0,
+      "explanation": "Nyquist exige fs ≥ 2·fmax = 6 kHz. Con 4 kHz hay aliasing y la frecuencia aparente es |fs − f| = |4 − 3| = 1 kHz. Que 4 kHz > 3 kHz no basta; se necesita el doble.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "hw-emb-0107",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Un medidor remoto, instalado en un sitio de difícil acceso, se queda colgado ocasionalmente por una condición rara del firmware y nadie puede ir a reiniciarlo. ¿Qué mecanismo del microcontrolador resuelve el problema de forma automática?",
+      "options": [
+        "Aumentar la frecuencia del reloj",
+        "Usar un canal PWM adicional",
+        "Habilitar un watchdog timer (WDT) que reinicie el MCU si el programa no lo atiende a tiempo",
+        "Agregar un DAC a la salida"
+      ],
+      "answer": 2,
+      "explanation": "El watchdog cuenta hacia atrás y reinicia el sistema si el software no lo 'alimenta' periódicamente, lo cual ocurre cuando el programa se cuelga. Las demás opciones no recuperan un bloqueo.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0108",
+      "lesson": "hardware/embebidos/01-plataformas-adc-pwm",
+      "text": "Un contador de pulsaciones con interrupción externa suma entre 3 y 8 cuentas cada vez que se presiona un botón mecánico una sola vez. ¿Cuál es la causa más probable y su solución?",
+      "options": [
+        "El baud rate está mal configurado; igualarlo en ambos lados",
+        "La resolución del ADC es insuficiente; usar más bits",
+        "Se violó el teorema de Nyquist; subir la frecuencia de muestreo",
+        "Rebote mecánico del botón; aplicar antirrebote por hardware (RC/Schmitt) o por software"
+      ],
+      "answer": 3,
+      "explanation": "Al cerrarse, los contactos mecánicos rebotan durante 5–20 ms y generan varios flancos. Se filtra con un circuito antirrebote o esperando y confirmando el estado en software. Baud rate, ADC y Nyquist no intervienen en una entrada digital simple.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0201",
+      "lesson": "hardware/embebidos/02-comunicacion-sensores",
+      "text": "Se enviarán 480 bytes por un puerto UART configurado a 9600 baud con formato 8N1. ¿Cuánto tarda aproximadamente la transmisión?",
+      "options": ["0.4 s", "0.05 s", "0.5 s", "5 s"],
+      "answer": 2,
+      "explanation": "En 8N1 cada byte ocupa 10 bits (inicio + 8 datos + paro), así que se envían 4800 bits: 4800/9600 = 0.5 s. El valor 0.4 s olvida los bits de inicio y paro.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0202",
+      "lesson": "hardware/embebidos/02-comunicacion-sensores",
+      "text": "En un bus I2C se conectan dos sensores idénticos cuya dirección fija es 0x48 y los datos leídos se corrompen. ¿Cuál es la mejor solución?",
+      "options": [
+        "Aumentar la velocidad del bus a 1 MHz",
+        "Usar un multiplexor I2C o un sensor con dirección configurable para dar direcciones distintas",
+        "Retirar los resistores pull-up de SDA y SCL",
+        "Conectar los dos sensores a la misma línea SDA sin SCL"
+      ],
+      "answer": 1,
+      "explanation": "En I2C cada esclavo debe tener una dirección única. Con dos dispositivos idénticos de dirección fija se usa un multiplexor I2C (o un pin de dirección). Cambiar la velocidad no resuelve el conflicto y quitar los pull-up hace que el bus deje de funcionar.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "hw-emb-0203",
+      "lesson": "hardware/embebidos/02-comunicacion-sensores",
+      "text": "Un maestro SPI controla tres esclavos de forma independiente (cada uno con su propia línea de selección). ¿Cuántas líneas de señal necesita en total?",
+      "options": ["4", "5", "6", "8"],
+      "answer": 2,
+      "explanation": "SCLK, MOSI y MISO se comparten (3 líneas) y cada esclavo necesita su propio CS (3 líneas): 3 + 3 = 6.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0204",
+      "lesson": "hardware/embebidos/02-comunicacion-sensores",
+      "text": "Un sensor LM35 (10 mV por °C) se conecta al ADC de 10 bits de un microcontrolador con Vref = 5 V. La lectura es 77. ¿Qué temperatura indica aproximadamente?",
+      "options": ["7.7 °C", "25 °C", "77 °C", "37.6 °C"],
+      "answer": 3,
+      "explanation": "Voltaje = 77/1024 × 5 V ≈ 0.376 V. Como el LM35 entrega 10 mV/°C, la temperatura es 0.376/0.010 ≈ 37.6 °C. Usar la lectura directa (77) como temperatura sería ignorar la conversión.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0205",
+      "lesson": "hardware/embebidos/02-comunicacion-sensores",
+      "text": "Un sensor ultrasónico entrega un pulso ECHO de 11.6 ms de duración (el tiempo ida y vuelta del sonido). Considerando 343 m/s, ¿a qué distancia aproximada está el obstáculo?",
+      "options": ["4 m", "2 m", "1 m", "0.5 m"],
+      "answer": 1,
+      "explanation": "d = v·t/2 = 343 × 0.0116 / 2 ≈ 1.99 m. Se divide entre 2 porque el sonido recorre el trayecto de ida y de vuelta. Sin dividir saldrían ≈ 4 m.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0206",
+      "lesson": "hardware/embebidos/02-comunicacion-sensores",
+      "text": "Se instalarán 200 sensores de humedad en un campo agrícola de 5 km de extensión. Cada uno enviará pocos bytes cada hora y debe funcionar tres años con batería. ¿Qué tecnología inalámbrica conviene?",
+      "options": ["Wi-Fi", "NFC", "Bluetooth clásico", "LoRa / LoRaWAN"],
+      "answer": 3,
+      "explanation": "LoRa ofrece alcance de kilómetros con consumo muy bajo y poca velocidad, justo lo que se necesita. Wi-Fi consume demasiado, Bluetooth clásico tiene alcance corto y NFC funciona a unos 4 cm.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0207",
+      "lesson": "hardware/embebidos/02-comunicacion-sensores",
+      "text": "Varios sensores a 800 m de distancia, en una fábrica con motores que generan mucho ruido, deben comunicarse con un controlador por un bus multipunto. ¿Qué interfaz es la más apropiada?",
+      "options": ["RS-232", "I2C", "RS-485", "SPI"],
+      "answer": 2,
+      "explanation": "RS-485 usa señal diferencial, soporta hasta ≈ 1200 m, es multipunto y muy inmune al ruido. RS-232 es punto a punto y de corta distancia; I2C y SPI están pensados para distancias de centímetros dentro de una placa.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0301",
+      "lesson": "hardware/embebidos/03-sensores-actuadores",
+      "text": "Un dron debe medir con qué rapidez gira sobre su eje vertical para corregir su orientación. ¿Qué sensor mide directamente esa magnitud?",
+      "options": ["Acelerómetro", "Giroscopio", "GPS", "Barómetro"],
+      "answer": 1,
+      "explanation": "El giroscopio mide velocidad angular (°/s). El acelerómetro mide aceleración lineal e inclinación, el GPS posición y el barómetro presión/altitud.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0302",
+      "lesson": "hardware/embebidos/03-sensores-actuadores",
+      "text": "Un robot de interiores debe conocer su rumbo respecto al norte magnético. El GPS no recibe señal dentro del edificio. ¿Qué sensor es el más adecuado para esta tarea?",
+      "options": ["GPS con antena externa pequeña", "Giroscopio, porque mide el rumbo absoluto", "Magnetómetro", "Termistor NTC"],
+      "answer": 2,
+      "explanation": "El magnetómetro mide el campo magnético terrestre y da un rumbo absoluto. El giroscopio mide velocidad de giro y, al integrarla, acumula deriva, por lo que no da un rumbo absoluto confiable.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0303",
+      "lesson": "hardware/embebidos/03-sensores-actuadores",
+      "text": "Un motor DC de 12 V debe girar en ambos sentidos con velocidad variable, controlado por un microcontrolador de 3.3 V. ¿Qué solución es la correcta?",
+      "options": [
+        "Conectar el motor directamente a un pin del MCU y variar su salida con PWM",
+        "Usar un relé con un solo contacto normalmente abierto",
+        "Conectar un potenciómetro en serie con el motor",
+        "Usar un puente H alimentado a 12 V, controlado con PWM y con protección contra picos inductivos"
+      ],
+      "answer": 3,
+      "explanation": "El puente H permite invertir el sentido y, con PWM, regular la velocidad; maneja la corriente que el pin del MCU no puede dar. Los picos inductivos se absorben con diodos de rueda libre. Un solo contacto de relé no invierte el giro y el relé no regula velocidad.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-emb-0304",
+      "lesson": "hardware/embebidos/03-sensores-actuadores",
+      "text": "Se requiere posicionar con precisión el cabezal de una impresora 3D sin agregar sensores de retroalimentación de posición. ¿Qué actuador se usa normalmente?",
+      "options": ["Motor a pasos con su driver", "Motor DC simple", "Servo de aeromodelismo de 180°", "Relé electromecánico"],
+      "answer": 0,
+      "explanation": "El motor a pasos avanza en pasos discretos conocidos y da posicionamiento preciso en lazo abierto. El motor DC necesitaría un encoder para posicionarse y el servo de 180° limita el recorrido.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0305",
+      "lesson": "hardware/embebidos/03-sensores-actuadores",
+      "text": "Un servomotor estándar de 180° recibe pulsos PWM de 1.5 ms de ancho cada 20 ms. ¿A qué posición se mueve?",
+      "options": ["0°", "180°", "90° (centro)", "Se apaga porque el pulso es muy corto"],
+      "answer": 2,
+      "explanation": "En un servo típico, 1 ms corresponde a un extremo, 2 ms al otro y 1.5 ms al centro (≈ 90°). El ancho del pulso, no la frecuencia, determina el ángulo.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-emb-0306",
+      "lesson": "hardware/embebidos/03-sensores-actuadores",
+      "text": "Un microcontrolador conmuta un relé de 5 V directamente desde un transistor y, cada vez que el relé se apaga, el MCU se reinicia de forma aleatoria. ¿Cuál es la causa más probable y su remedio?",
+      "options": [
+        "La bobina genera un pico de voltaje al desenergizarse; falta un diodo de rueda libre (flyback) en paralelo con la bobina",
+        "El relé tiene demasiados contactos; se resuelve usando un relé de menos polos",
+        "La frecuencia del PWM es muy lenta; se resuelve subiendo la frecuencia de muestreo",
+        "El ADC se satura; se resuelve añadiendo más bits de resolución"
+      ],
+      "answer": 0,
+      "explanation": "Una bobina se opone al cambio de corriente y, al abrirse el circuito, genera un pico inductivo que contamina la alimentación y reinicia el MCU. El diodo flyback ofrece un camino seguro para esa corriente.",
+      "difficulty": "media"
+    }
+  ]
+}

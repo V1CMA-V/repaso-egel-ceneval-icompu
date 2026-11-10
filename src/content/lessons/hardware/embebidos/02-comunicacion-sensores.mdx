@@ -1,0 +1,104 @@
+---
+title: 'Comunicación serial (UART, I2C, SPI), inalámbricos y sensores'
+summary: 'Cómo se comunican los chips y dispositivos de un sistema embebido, qué protocolo elegir y cómo interpretar sensores comunes.'
+order: 2
+readMinutes: 13
+examWeight: 'Hardware 1.3 · Sistemas embebidos'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Los sistemas embebidos se comunican con sensores, memorias, pantallas y otros equipos mediante **protocolos seriales**: envían los bits **uno tras otro** por pocos hilos. Se clasifican por **sincronía**:
+
+- **Asíncrono**: sin línea de reloj; ambos lados acuerdan la velocidad (**baud rate**). Ej.: **UART**.
+- **Síncrono**: una línea de **reloj** marca el ritmo. Ej.: **I2C, SPI**.
+</Callout>
+
+## UART (y RS-232 / RS-485)
+
+- **2 hilos de datos**: **TX** y **RX** (se conectan **cruzados**: TX con RX) más tierra común.
+- **Punto a punto**, **asíncrono**, **full-duplex**.
+- Trama típica **8N1**: 1 bit de inicio + 8 datos + sin paridad + 1 bit de paro = **10 bits por byte**. Por eso a **9600 baud** se transmiten ≈ **960 bytes/s**.
+- **Ambos lados deben usar el mismo baud rate**, o se reciben **caracteres basura**.
+- **RS-232**: niveles de voltaje ±3 a ±15 V, **corta distancia**, un solo dispositivo. **RS-485**: señal **diferencial**, **multipunto**, hasta ≈ **1200 m** y **muy inmune al ruido** (industria, Modbus).
+
+<Callout type="tip">
+Datos "basura" al inicio de la comunicación → casi siempre es un **baud rate distinto** (o TX/RX sin cruzar). Largas distancias con ruido eléctrico → **RS-485** (diferencial).
+</Callout>
+
+## I2C
+
+- **2 hilos**: **SDA** (datos) y **SCL** (reloj), con **resistores pull-up** obligatorios.
+- **Bus multimaestro/multiesclavo**: cada esclavo tiene una **dirección** de 7 bits (hasta 128 direcciones, ≈ 112 útiles).
+- **Half-duplex**, síncrono. Cada byte recibe un **ACK**.
+- Velocidades típicas: **100 kHz** (estándar), **400 kHz** (rápido), 1 MHz+.
+- **Ventaja**: **pocos hilos** para **muchos dispositivos**. **Desventaja**: más lento que SPI y dos dispositivos con la **misma dirección fija** chocan.
+
+## SPI
+
+- **4 hilos**: **SCLK** (reloj), **MOSI** (maestro → esclavo), **MISO** (esclavo → maestro) y **CS/SS** (selección de esclavo).
+- **Full-duplex**, **muy rápido** (varios MHz hasta decenas de MHz), un solo maestro.
+- **Cada esclavo adicional necesita su propia línea CS**: con 3 esclavos en modo independiente son $3 + 3 = 6$ líneas (SCLK, MOSI y MISO compartidas).
+- Ideal para **pantallas, tarjetas SD, memorias Flash, ADC rápidos**.
+
+| | **UART** | **I2C** | **SPI** |
+| --- | --- | --- | --- |
+| Hilos | 2 (TX, RX) | 2 (SDA, SCL) | 4 + 1 por esclavo extra |
+| Reloj | **No** (asíncrono) | Sí | Sí |
+| Dispositivos | **2** (punto a punto) | **Muchos** (direcciones) | **Muchos** (con CS) |
+| Velocidad | Baja–media | Media | **La más alta** |
+| Duplex | Full | Half | Full |
+
+<Callout type="tip">
+Elegir protocolo: **pocos pines y muchos sensores lentos** → I2C. **Velocidad (SD, pantalla)** → SPI. **Enlace simple con PC/GPS/módulo** → UART. **Automotriz** → **CAN** (diferencial, robusto, multimaestro).
+</Callout>
+
+## Comunicación inalámbrica
+
+| Tecnología | Alcance | Consumo | Uso típico |
+| --- | --- | --- | --- |
+| **Bluetooth / BLE** | ≈ 10–100 m | Bajo (BLE **muy** bajo) | Wearables, audio, configuración |
+| **Wi-Fi** | ≈ 50–100 m | Alto | Alta velocidad, Internet |
+| **Zigbee / Thread** | ≈ 10–100 m (malla) | Muy bajo | Domótica, redes de sensores **en malla** |
+| **LoRa / LoRaWAN** | **Kilómetros** | **Muy bajo**, baja velocidad | **IoT de largo alcance**: agricultura, medidores |
+| **NFC** | **≈ 4 cm** | Mínimo | Pagos, acceso, identificación |
+| **RFID** | cm a metros | Etiquetas pasivas sin batería | Inventario, control de acceso |
+
+## Sensores
+
+- **Analógicos** (salida en voltaje, requieren ADC): **LM35** (**10 mV/°C**; 0.25 V = 25 °C), **termistor NTC** (la resistencia **baja** al subir la temperatura; se mide con un divisor de voltaje), **fotorresistencia (LDR)** (la resistencia baja con más luz), **potenciómetro**.
+- **Digitales**: **DHT22** (temperatura y humedad), **DS18B20** (1-Wire), **BME280** (I2C/SPI), **MPU6050** (acelerómetro y giroscopio, I2C).
+- **Ultrasónico (HC-SR04)**: mide el **tiempo de ida y vuelta** del eco: $d = \dfrac{v \cdot t}{2}$ con $v \approx 343$ m/s (¡se divide entre 2 porque el sonido **va y vuelve**!).
+- **Acondicionamiento de señal**: **amplificar** señales pequeñas, **filtrar** ruido y **adaptar niveles** (3.3 V ↔ 5 V) antes de entrar al ADC o al MCU.
+
+Ejemplo: un eco de **5.8 ms** → $d = 343 \times 0.0058 / 2 \approx 0.995$ m ≈ **1 m**.
+
+## Importante recordar
+
+<Callout type="importante">
+- **UART**: asíncrono, **mismo baud** en ambos lados, 8N1 = **10 bits por byte**.
+- **I2C**: 2 hilos + pull-ups, **direcciones**. **SPI**: 4 hilos, **el más rápido**, un CS por esclavo.
+- **RS-485** → diferencial, largas distancias, multipunto.
+- **LoRa** = kilómetros y bajo consumo; **NFC** = centímetros.
+- Ultrasónico: **distancia = velocidad × tiempo / 2**.
+- LM35: **10 mV por °C**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Olvidar los **pull-up en I2C** (el bus no funciona).
+- Conectar **TX con TX** y **RX con RX**.
+- Dividir el tiempo del eco **sin entre 2**.
+- Conectar un sensor de **3.3 V** a un pin de **5 V** sin adaptar niveles (daño del dispositivo).
+- Confundir **bits por segundo (bps)** con **bytes por segundo**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un puerto UART a 115 200 baud con formato 8N1 transmite un archivo de 11 520 bytes. ¿Cuánto tarda?
+
+Cada byte usa 10 bits → 115 200/10 = **11 520 bytes/s**. El archivo tarda **1 segundo**.

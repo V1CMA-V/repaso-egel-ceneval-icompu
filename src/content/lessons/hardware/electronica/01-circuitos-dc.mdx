@@ -1,0 +1,123 @@
+---
+title: 'Circuitos DC: Ohm, potencia, Kirchhoff y RC'
+summary: 'La base de todo el hardware: voltaje, corriente, resistencia, potencia, circuitos serie/paralelo, divisores y la respuesta de un circuito RC.'
+order: 1
+readMinutes: 12
+examWeight: 'Hardware 1.1 · 49 reactivos en total para Hardware (35% del Disciplinar)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Un **circuito eléctrico** es una trayectoria cerrada por la que circula **corriente** gracias a una fuente de **voltaje**. Tres magnitudes lo describen:
+
+- **Voltaje (V)**, en volts: la "presión" eléctrica que empuja a las cargas. Se mide **entre dos puntos**, en paralelo.
+- **Corriente (I)**, en amperes: el flujo de carga por segundo. Se mide **en serie**, abriendo el circuito.
+- **Resistencia (R)**, en ohms (Ω): la oposición al paso de la corriente.
+
+La **potencia (P)**, en watts, es la rapidez con la que se transforma energía: lo que consume o disipa un elemento.
+</Callout>
+
+## Ley de Ohm y potencia
+
+La **ley de Ohm** relaciona las tres magnitudes: **$V = I \cdot R$**. Si conoces dos, obtienes la tercera: $I = V/R$ y $R = V/I$.
+
+La **potencia** se puede calcular de tres formas equivalentes, según el dato que tengas:
+
+$$P = V \cdot I = I^2 R = \frac{V^2}{R}$$
+
+Un resistor **disipa** su potencia en forma de calor. Todo resistor tiene una **potencia nominal** (¼ W, ½ W, 1 W…): si la potencia real **supera** la nominal, se sobrecalienta y se daña.
+
+<Callout type="tip">
+Elige la fórmula de potencia según el dato **que no cambia**: con voltaje fijo usa $V^2/R$ (a menor R, **más** potencia); con corriente fija usa $I^2R$ (a mayor R, más potencia). Es la clave para preguntas de "¿qué pasa si cambio la resistencia?".
+</Callout>
+
+## Resistencias en serie y en paralelo
+
+| | **Serie** | **Paralelo** |
+| --- | --- | --- |
+| Corriente | **Misma** en todos | Se **reparte** (más por la R menor) |
+| Voltaje | Se **reparte** (más en la R mayor) | **Mismo** en todos |
+| Resistencia total | $R_T = R_1 + R_2 + \dots$ | $\dfrac{1}{R_T} = \dfrac{1}{R_1} + \dfrac{1}{R_2} + \dots$ |
+| Efecto de agregar otra R | $R_T$ **aumenta** | $R_T$ **disminuye** |
+
+Para **dos** resistencias en paralelo: $R_T = \dfrac{R_1 R_2}{R_1 + R_2}$. Si son **iguales**, $R_T = R/n$. Y la resistencia equivalente en paralelo **siempre es menor** que la menor de las ramas.
+
+<Callout type="tip">
+Para circuitos mixtos, **reduce de adentro hacia afuera**: primero el paralelo, luego súmalo en serie con lo demás, calcula la corriente total y regresa repartiendo voltajes y corrientes.
+</Callout>
+
+## Divisores de voltaje y de corriente
+
+Un **divisor de voltaje** (dos resistores en serie) entrega una fracción del voltaje de entrada:
+
+$$V_{out} = V_{in} \cdot \frac{R_2}{R_1 + R_2}$$
+
+donde $R_2$ es la resistencia **entre la que mides** y tierra. Un **divisor de corriente** (dos resistores en paralelo) reparte la corriente total *en proporción inversa* a la resistencia:
+
+$$I_1 = I_T \cdot \frac{R_2}{R_1 + R_2}$$
+
+La rama con **menos** resistencia se lleva **más** corriente.
+
+<Callout type="importante">
+La fórmula del divisor de voltaje **solo vale si no hay carga**. Si conectas una carga en paralelo con $R_2$, la resistencia efectiva de esa parte **baja** y el voltaje de salida **baja** también. Esta "trampa" aparece con frecuencia en los reactivos.
+</Callout>
+
+## Leyes de Kirchhoff
+
+- **Ley de corrientes (LCK)**: en cualquier **nodo**, la suma de corrientes que **entran** es igual a la suma de las que **salen** (conservación de la carga).
+- **Ley de voltajes (LVK)**: en cualquier **malla** cerrada, la suma algebraica de las caídas y subidas de voltaje es **cero** (conservación de la energía).
+
+Se usan cuando el circuito **no se reduce** a serie/paralelo: planteas ecuaciones de nodos o mallas y las resuelves.
+
+<Callout type="tip">
+Antes de plantear, **asigna un sentido** a cada corriente (puede ser arbitrario). Si al resolver sale **negativa**, simplemente iba en sentido contrario; no es un error.
+</Callout>
+
+## Capacitores, inductores y el circuito RC
+
+- **Capacitor (C)**: almacena energía en un **campo eléctrico**. En DC, cuando está cargado se comporta como **circuito abierto**. Se opone a los cambios **bruscos de voltaje**.
+- **Inductor (L)**: almacena energía en un **campo magnético**. En DC, cuando se estabiliza se comporta como **corto circuito** (un cable). Se opone a los cambios **bruscos de corriente**.
+
+En un circuito **RC**, el capacitor se carga de forma exponencial con una **constante de tiempo** $\tau = R \cdot C$:
+
+| Tiempo | Carga alcanzada |
+| --- | --- |
+| $1\tau$ | ≈ 63 % |
+| $2\tau$ | ≈ 86 % |
+| $3\tau$ | ≈ 95 % |
+| $5\tau$ | ≈ 99 % (se considera **estado estable**) |
+
+<Callout type="tip">
+Memoriza la regla **"5 tau"**: tras cinco constantes de tiempo, el capacitor está prácticamente cargado (o descargado). Para el RL, $\tau = L/R$.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Serie**: misma corriente. **Paralelo**: mismo voltaje.
+- Agregar una resistencia **en paralelo** baja la $R_T$ y **sube** la corriente total de la fuente.
+- $P = V \cdot I$ siempre; las otras dos formas dependen de la ley de Ohm.
+- **Capacitor = abierto en DC; inductor = corto en DC** (en estado estable).
+- 1 kΩ = 1000 Ω; 1 µF = $10^{-6}$ F; 1 mA = $10^{-3}$ A. **Cuida los prefijos** al calcular.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Sumar resistencias en paralelo como si fueran serie.
+- Olvidar que la resistencia de **carga** modifica un divisor de voltaje.
+- Confundir **potencia** (W) con **energía** (Wh, J).
+- Medir corriente con el multímetro **en paralelo**: produce un corto en la fuente.
+</Callout>
+
+## Ejemplo resuelto
+
+> Una fuente de 12 V alimenta una resistencia de 4 Ω en serie con un paralelo de 6 Ω y 3 Ω. ¿Qué voltaje cae en el paralelo?
+
+1. Paralelo: $\dfrac{6 \cdot 3}{6 + 3} = 2\ \Omega$.
+2. Total en serie: $4 + 2 = 6\ \Omega$ → $I_T = 12/6 = 2$ A.
+3. Voltaje en el paralelo: $V = I_T \cdot 2 = 4$ V.
+4. Corriente por la de 3 Ω: $4/3 \approx 1.33$ A; por la de 6 Ω: $0.67$ A (suman 2 A ✓).

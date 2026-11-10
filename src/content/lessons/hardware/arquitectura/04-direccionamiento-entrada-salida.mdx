@@ -1,0 +1,106 @@
+---
+title: 'Modos de direccionamiento, ensamblador, pila e interrupciones'
+summary: 'Cómo se especifican los operandos, cómo funciona la pila y qué diferencia hay entre polling, interrupciones y DMA.'
+order: 4
+readMinutes: 12
+examWeight: 'Hardware 1.2 · Arquitectura de computadoras'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **arquitectura del conjunto de instrucciones (ISA)** es el "contrato" entre el software y el procesador: define las **instrucciones**, los **registros**, los **modos de direccionamiento** y los **formatos**. El **lenguaje ensamblador** es la representación simbólica (**mnemónicos**) del **lenguaje máquina**; un **ensamblador** lo traduce a binario.
+</Callout>
+
+## Formato de instrucción
+
+Una instrucción contiene un **código de operación (opcode)** y uno o más **operandos**. Con un opcode de $k$ bits se definen hasta $2^k$ operaciones; con un campo de dirección de $m$ bits se direccionan $2^m$ posiciones.
+
+Ejemplo: instrucción de 16 bits con **4 bits de opcode** y **12 bits de dirección** → **16 instrucciones** posibles y **4 096 (4 K)** posiciones direccionables.
+
+Las instrucciones se clasifican en: **transferencia de datos** (MOV, LOAD, STORE, PUSH, POP), **aritméticas y lógicas** (ADD, SUB, AND, SHL), **control de flujo** (JMP, JZ, CALL, RET) y de **E/S**.
+
+## Modos de direccionamiento
+
+| Modo | Dónde está el operando | Ejemplo |
+| --- | --- | --- |
+| **Inmediato** | **Dentro** de la instrucción | `MOV A, #5` |
+| **Directo** | En la **dirección** indicada | `MOV A, [5]` |
+| **Indirecto** | La dirección indicada contiene **otra dirección** (apuntador) | `MOV A, [[5]]` |
+| **Registro** | En un **registro** | `MOV A, R1` |
+| **Indirecto por registro** | El registro contiene la **dirección** del dato | `MOV A, [R1]` |
+| **Indexado** | **Base + índice** (ideal para **arreglos**) | `MOV A, [BASE + R2]` |
+| **Relativo** | PC + desplazamiento (usado en **saltos**) | `JMP +10` |
+
+<Callout type="tip">
+Distingue **inmediato** de **directo** por el símbolo `#`: `#5` es el **valor** 5; `5` (sin `#`) es la **dirección** 5. Y recuerda: **indexado = arreglos**, **relativo = saltos y código reubicable**.
+</Callout>
+
+## La pila
+
+Es una región de memoria **LIFO** (último en entrar, primero en salir) controlada por el **apuntador de pila (SP)**.
+
+- **PUSH** guarda un dato y **ajusta el SP**; **POP** lo recupera.
+- En la mayoría de arquitecturas (x86, ARM) la pila **crece hacia direcciones menores**: PUSH **decrementa** el SP.
+- **CALL** empuja la **dirección de retorno** (el PC siguiente) y salta; **RET** la recupera.
+- Se usa para **variables locales, parámetros y direcciones de retorno**.
+
+Ejemplo: SP = `0x0100`, PUSH de 2 bytes → SP = **`0x00FE`**.
+
+<Callout type="tip">
+Dibuja una torre de platos: el último que pones es el primero que sacas. Si la pila crece "hacia abajo", un PUSH **resta** del SP y un POP **suma**.
+</Callout>
+
+## Entrada/salida e interrupciones
+
+Tres formas de atender a un periférico:
+
+| Método | Cómo funciona | Ventaja / desventaja |
+| --- | --- | --- |
+| **Polling (sondeo)** | La CPU **pregunta** en un ciclo si el dispositivo está listo | Simple, pero **desperdicia tiempo de CPU** |
+| **Interrupciones** | El dispositivo **avisa** a la CPU cuando necesita atención | Eficiente; hay **latencia** y manejo de prioridades |
+| **DMA** | Un controlador transfiere **bloques** entre memoria y periférico **sin la CPU** | Ideal para **grandes volúmenes**; la CPU solo inicia y recibe aviso al final |
+
+**Secuencia de una interrupción:**
+
+1. La CPU **termina la instrucción actual**.
+2. **Guarda el contexto** (PC y banderas) en la pila.
+3. Consulta el **vector de interrupciones** y salta a la **rutina de servicio (ISR)**.
+4. La ISR atiende el evento y termina con **RETI/IRET**, que **restaura** el contexto.
+
+Las interrupciones **enmascarables** pueden desactivarse; las **no enmascarables (NMI)** no. Las de mayor **prioridad** pueden interrumpir a las de menor.
+
+**Buses de E/S modernos**: **PCIe, USB, SATA** son **seriales** (punto a punto, de alta velocidad); los buses paralelos antiguos (PCI, IDE) fueron sustituidos por problemas de sincronización.
+
+<Callout type="importante">
+- **Una ISR debe ser corta** y no bloquear: lo largo se difiere al programa principal.
+- Los datos compartidos entre ISR y programa principal requieren **protección** (variables `volatile`, secciones críticas).
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Inmediato** = valor en la instrucción; **directo** = dirección; **indirecto** = dirección de la dirección.
+- **Indexado** → arreglos; **relativo** → saltos.
+- PUSH **decrementa** el SP en pilas que crecen hacia abajo.
+- **DMA** libera a la CPU en transferencias de bloques.
+- La CPU **termina la instrucción en curso** antes de atender una interrupción.
+- **Polling** gasta CPU; **interrupción** responde por evento.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir el **valor inmediato** con una **dirección**.
+- Creer que la interrupción detiene a la CPU **en el acto** (espera a terminar la instrucción).
+- Olvidar guardar y restaurar el **contexto** en la ISR.
+- Pensar que DMA ejecuta código: solo **mueve datos**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Para recorrer el arreglo `A[i]` dentro de un ciclo, ¿qué modo de direccionamiento conviene?
+
+El **indexado**: la dirección base de `A` está fija y el registro índice `i` se **incrementa** en cada vuelta; la dirección efectiva es `base + i`.

@@ -1,0 +1,112 @@
+---
+title: 'CPU, pipeline y rendimiento'
+summary: 'Componentes del procesador, ciclo de instrucción, Von Neumann vs Harvard, RISC vs CISC, pipeline y cómo medir rendimiento (CPI, Amdahl).'
+order: 2
+readMinutes: 13
+examWeight: 'Hardware 1.2 · Arquitectura de computadoras'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **CPU** (unidad central de procesamiento) ejecuta instrucciones. Se compone de:
+
+- **Unidad de control (UC)**: decodifica instrucciones y **coordina** al resto con señales de control.
+- **ALU**: realiza operaciones **aritméticas y lógicas**.
+- **Registros**: memoria interna ultrarrápida. Los principales: **PC** (contador de programa: dirección de la **siguiente** instrucción), **IR** (registro de instrucción: la actual), **MAR/MDR** (dirección y dato de memoria), **SP** (apuntador de pila), **acumulador/propósito general** y **banderas de estado** (cero, acarreo, signo, overflow).
+- **Buses**: de **datos**, de **direcciones** y de **control**.
+</Callout>
+
+## Arquitecturas Von Neumann y Harvard
+
+- **Von Neumann**: **una sola memoria** (y un solo bus) para instrucciones **y** datos. Es simple y flexible, pero sufre el **cuello de botella de Von Neumann**: no puede leer instrucción y dato al mismo tiempo.
+- **Harvard**: memorias y buses **separados** para instrucciones y datos. Permite acceso **simultáneo** y es más rápida; típica de **microcontroladores y DSP**. Muchos CPU modernos son **Harvard modificada** (separan las cachés L1 de instrucciones y datos).
+
+<Callout type="tip">
+Si el enunciado habla de "acceder **al mismo tiempo** a instrucciones y datos" o de "memorias separadas", la respuesta es **Harvard**.
+</Callout>
+
+## Ciclo de instrucción
+
+Cada instrucción pasa por:
+
+1. **Búsqueda (fetch)**: se lee la instrucción de la dirección en el **PC** y se incrementa el PC.
+2. **Decodificación (decode)**: la UC interpreta el código de operación y los operandos.
+3. **Ejecución (execute)**: la ALU opera o se calcula una dirección.
+4. **Acceso a memoria** (si aplica) y **escritura de resultado (write-back)**.
+
+Las **instrucciones de salto** modifican el PC. Un **salto condicional** consulta las **banderas** que dejó la operación anterior.
+
+## RISC vs CISC
+
+| | **RISC** (ARM, RISC-V, MIPS) | **CISC** (x86) |
+| --- | --- | --- |
+| Instrucciones | Pocas, **simples**, longitud fija | Muchas, **complejas**, longitud variable |
+| Ciclos por instrucción | Casi **1** | Variable, mayores |
+| Acceso a memoria | Solo **load/store** | Cualquier instrucción puede operar con memoria |
+| Registros | Muchos | Pocos |
+| Pipeline | **Muy eficiente** | Más difícil (en x86 se traduce a micro-operaciones) |
+
+## Pipeline (segmentación)
+
+El **pipeline** divide la ejecución en **etapas** (por ejemplo 5: IF, ID, EX, MEM, WB) para que **varias instrucciones se ejecuten solapadas**, como una línea de ensamblaje. **No reduce la latencia de una instrucción**; aumenta el **rendimiento (throughput)**.
+
+Con $k$ etapas y $n$ instrucciones, sin riesgos: **ciclos = $k + n - 1$**. Ejemplo: 5 etapas, 100 instrucciones → $5 + 99 = 104$ ciclos (frente a $5 \times 100 = 500$ sin pipeline).
+
+**Riesgos (hazards)** que detienen el pipeline:
+
+- **De datos**: una instrucción necesita un resultado que otra aún no escribe (**RAW**: lectura después de escritura). Se mitiga con **adelantamiento (forwarding)** o **burbujas (stalls)**.
+- **De control**: los **saltos** cambian el flujo. Se mitiga con **predicción de saltos**.
+- **Estructurales**: dos instrucciones piden el **mismo recurso** a la vez (por ejemplo, la memoria).
+
+<Callout type="tip">
+Ante "ADD R1,R2,R3" seguido de "SUB R4,**R1**,R5": la segunda usa R1 que la primera **aún no escribe** → riesgo de datos **RAW**, y la solución típica es **forwarding**.
+</Callout>
+
+## Rendimiento
+
+La ecuación fundamental del tiempo de CPU:
+
+$$T_{CPU} = \frac{IC \times CPI}{f} = IC \times CPI \times T_{ciclo}$$
+
+donde $IC$ es el número de instrucciones, $CPI$ los ciclos por instrucción y $f$ la frecuencia. **Subir la frecuencia no siempre ayuda**: si aumenta el CPI, el tiempo puede no mejorar.
+
+**Ley de Amdahl**: mejorar una fracción $P$ del programa con un factor $S$ produce una aceleración global:
+
+$$\text{Speedup} = \frac{1}{(1-P) + P/S}$$
+
+Siempre queda limitada por la parte **no mejorada**: con $P = 0.8$ y $S = 4$, $\text{Speedup} = 1/(0.2 + 0.2) = 2.5$ (y **nunca pasará de 5**, aunque $S \to \infty$).
+
+**Taxonomía de Flynn**: **SISD** (un núcleo clásico), **SIMD** (una instrucción sobre muchos datos: vectoriales, **GPU**), **MISD** (raro), **MIMD** (multinúcleo, clústeres).
+
+<Callout type="tip">
+En Amdahl, **la fracción serial manda**. Si el 20 % no se puede paralelizar, el techo de aceleración es $1/0.2 = 5\times$, sin importar cuántos procesadores agregues.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **PC** apunta a la **siguiente** instrucción; **IR** guarda la **actual**.
+- **Harvard**: memorias separadas; **Von Neumann**: una sola.
+- Pipeline: ciclos = $k + n - 1$; mejora el **throughput**, no la latencia individual.
+- $T = IC \times CPI / f$.
+- Riesgos: **datos** (RAW → forwarding), **control** (saltos), **estructurales** (recursos).
+- GPU → **SIMD**; multinúcleo → **MIMD**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que más etapas de pipeline siempre acelera sin costo: más etapas = más riesgos y penalización por salto.
+- Confundir **frecuencia** con **rendimiento**.
+- Aplicar Amdahl sin restar la parte no mejorable.
+- Pensar que el PC contiene la instrucción en ejecución.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un programa de $2 \times 10^9$ instrucciones corre con CPI promedio de 1.5 en una CPU de 3 GHz. ¿Cuánto tarda?
+
+$$T = \frac{2 \times 10^9 \times 1.5}{3 \times 10^9} = 1\ \text{s}$$

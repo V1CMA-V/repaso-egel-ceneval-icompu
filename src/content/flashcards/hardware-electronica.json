@@ -1,0 +1,22 @@
+{
+  "cards": [
+    { "id": "fc-hw-ele-01", "front": "Ley de Ohm y las 3 fórmulas de potencia", "back": "V = I·R · P = V·I = I²·R = V²/R" },
+    { "id": "fc-hw-ele-02", "front": "Resistencias en paralelo: ¿qué se mantiene y qué se reparte?", "back": "Se mantiene el VOLTAJE; la CORRIENTE se reparte (más por la R menor). R_T es siempre menor que la menor rama." },
+    { "id": "fc-hw-ele-03", "front": "Divisor de voltaje", "back": "Vout = Vin · R2/(R1+R2). Una carga en paralelo con R2 reduce Vout." },
+    { "id": "fc-hw-ele-04", "front": "Constante de tiempo RC y regla de 5 tau", "back": "τ = R·C. 1τ ≈ 63 %, 5τ ≈ 99 % (estado estable)." },
+    { "id": "fc-hw-ele-05", "front": "Resistor para un LED", "back": "R = (V_fuente − V_LED) / I_LED" },
+    { "id": "fc-hw-ele-06", "front": "Regiones del BJT", "back": "Corte (interruptor abierto) · Activa (amplificador, Ic = β·Ib) · Saturación (interruptor cerrado, Vce ≈ 0.2 V)." },
+    { "id": "fc-hw-ele-07", "front": "Ganancia del amp-op inversor vs no inversor", "back": "Inversor: −Rf/Rin. No inversor: 1 + Rf/Rg. La salida satura cerca de ±Vcc." },
+    { "id": "fc-hw-ele-08", "front": "Leyes de De Morgan", "back": "(A·B)' = A' + B' · (A+B)' = A'·B'" },
+    { "id": "fc-hw-ele-09", "front": "Reglas de agrupación en mapas K", "back": "Grupos de 1, 2, 4, 8… (potencias de 2), lo más grandes posible, mapa cíclico; un grupo de 2^k elimina k variables." },
+    { "id": "fc-hw-ele-10", "front": "Compuertas universales", "back": "NAND y NOR: con una sola se construye cualquier función (OR con NAND = 3 compuertas)." },
+    { "id": "fc-hw-ele-11", "front": "Flip-flop JK: J=K=1, y SR: S=R=1", "back": "JK con J=K=1: invierte (toggle). SR con S=R=1: estado prohibido." },
+    { "id": "fc-hw-ele-12", "front": "Latch vs flip-flop", "back": "Latch: sensible al NIVEL. Flip-flop: sensible al FLANCO del reloj." },
+    { "id": "fc-hw-ele-13", "front": "Moore vs Mealy", "back": "Moore: salida = f(estado). Mealy: salida = f(estado, entrada)." },
+    { "id": "fc-hw-ele-14", "front": "Flip-flops para un contador módulo M", "back": "⌈log₂ M⌉ (módulo 10 → 4). Cada etapa divide la frecuencia entre 2." },
+    { "id": "fc-hw-ele-15", "front": "Valor RMS y pico", "back": "Vrms = Vp/√2 ≈ 0.707·Vp. 127 V RMS ≈ 180 V pico. Vpp = 2·Vp." },
+    { "id": "fc-hw-ele-16", "front": "Reactancias", "back": "Xc = 1/(2πfC) (baja al subir f) · XL = 2πfL (sube con f). Capacitor bloquea DC; inductor bloquea AC alta." },
+    { "id": "fc-hw-ele-17", "front": "Filtro RC: pasa bajas y pasa altas", "back": "fc = 1/(2πRC). Pasa bajas: salida en C. Pasa altas: salida en R (acoplamiento)." },
+    { "id": "fc-hw-ele-18", "front": "Transformador ideal", "back": "Vs/Vp = Ns/Np. Solo AC. Si baja el voltaje, sube la corriente (potencia conservada)." }
+  ]
+}

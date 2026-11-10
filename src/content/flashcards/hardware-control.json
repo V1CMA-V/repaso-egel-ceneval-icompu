@@ -1,0 +1,22 @@
+{
+  "cards": [
+    { "id": "fc-hw-ctl-01", "front": "Lazo abierto vs lazo cerrado", "back": "Abierto: no mide la salida ni corrige perturbaciones. Cerrado: realimenta la salida y compensa (e = r − y)." },
+    { "id": "fc-hw-ctl-02", "front": "Polos y estabilidad", "back": "Todos con parte real negativa = estable. Alguno positivo = inestable. Sobre el eje imaginario = marginal." },
+    { "id": "fc-hw-ctl-03", "front": "Primer orden: tiempos clave", "back": "1τ ≈ 63 %. Tiempo de establecimiento (2 %) ≈ 4τ." },
+    { "id": "fc-hw-ctl-04", "front": "Factor de amortiguamiento ζ", "back": "0: oscila siempre · 0<ζ<1: sobreimpulso (menor ζ = más) · 1: crítico, el más rápido sin oscilar · >1: lento." },
+    { "id": "fc-hw-ctl-05", "front": "Valor final con G(s) y escalón de magnitud A", "back": "G(0) × A (ganancia en DC por la magnitud)." },
+    { "id": "fc-hw-ctl-06", "front": "Término P, I y D", "back": "P: error actual (rapidez) · I: error acumulado (elimina error final) · D: tendencia (amortigua, amplifica ruido)." },
+    { "id": "fc-hw-ctl-07", "front": "Error en estado estable con control P puro", "back": "Queda un error permanente; se corrige con la acción integral." },
+    { "id": "fc-hw-ctl-08", "front": "Windup integral", "back": "La integral se acumula mientras el actuador está saturado → gran sobreimpulso. Remedio: anti-windup." },
+    { "id": "fc-hw-ctl-09", "front": "Ziegler–Nichols (PID)", "back": "Kp = 0.6·Ku · Ti = Pu/2 · Td = Pu/8." },
+    { "id": "fc-hw-ctl-10", "front": "Márgenes de ganancia y de fase", "back": "Positivos → estable en lazo cerrado. Más margen = más robusto (fase típica 30°–60°)." },
+    { "id": "fc-hw-ctl-11", "front": "Ladder: serie, paralelo y enclavamiento", "back": "Serie = AND · Paralelo = OR · Seal-in: contacto de la bobina en paralelo con START. STOP va normalmente cerrado." },
+    { "id": "fc-hw-ctl-12", "front": "Ciclo de escaneo del PLC", "back": "Leer entradas → ejecutar programa → actualizar salidas, en bucle." },
+    { "id": "fc-hw-ctl-13", "front": "TON, TOF y TP", "back": "TON: retarda el encendido. TOF: mantiene la salida PT tras apagarse la entrada. TP: pulso de duración fija." },
+    { "id": "fc-hw-ctl-14", "front": "CTU: cuándo se activa Q", "back": "Cuenta flancos de subida; Q = 1 cuando CV ≥ PV. Se reinicia con RESET." },
+    { "id": "fc-hw-ctl-15", "front": "Lenguajes IEC 61131-3", "back": "LD (ladder), FBD, ST (texto estructurado), IL (obsoleto), SFC (Grafcet, procesos por etapas)." },
+    { "id": "fc-hw-ctl-16", "front": "Lazo cerrado y bloques", "back": "T = G/(1+GH). Serie: se multiplica. Paralelo: se suma." },
+    { "id": "fc-hw-ctl-17", "front": "Sobreimpulso y tiempo de establecimiento (2.º orden)", "back": "Mp = e^(−ζπ/√(1−ζ²)) (ζ=0.5 → 16 %). ts ≈ 4/(ζ·ωn)." },
+    { "id": "fc-hw-ctl-18", "front": "Sistema lineal, Fourier y Laplace", "back": "Lineal = superposición (sin offsets ni potencias). Fourier: tiempo → frecuencia. Laplace: ecuaciones diferenciales → algebraicas (G(s))." }
+  ]
+}

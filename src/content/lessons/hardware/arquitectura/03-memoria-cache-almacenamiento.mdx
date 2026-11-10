@@ -1,0 +1,116 @@
+---
+title: 'Jerarquía de memoria, caché, memoria virtual y RAID'
+summary: 'Tipos de memoria, localidad, mapeo y políticas de caché, tiempo medio de acceso, paginación y almacenamiento con RAID.'
+order: 3
+readMinutes: 14
+examWeight: 'Hardware 1.2 · Arquitectura de computadoras'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **jerarquía de memoria** ordena los almacenamientos de **más rápidos, pequeños y caros** a **más lentos, grandes y baratos**:
+
+**Registros → Caché L1 → L2 → L3 → RAM (memoria principal) → SSD → HDD → almacenamiento remoto**
+
+Funciona gracias al **principio de localidad**: los programas tienden a reutilizar lo que usaron hace poco (**localidad temporal**) y a acceder a datos **cercanos** a los recién usados (**localidad espacial**, por ejemplo al recorrer un arreglo).
+</Callout>
+
+## Tipos de memoria
+
+- **SRAM**: usa flip-flops, **no necesita refresco**, es **rápida y cara**. Se usa en **caché y registros**.
+- **DRAM**: un **capacitor + transistor** por bit, requiere **refresco periódico**, es **más densa y barata**. Se usa en la **RAM** (DDR, SDRAM).
+- **Memorias no volátiles**: **ROM** (grabada de fábrica), **PROM** (programable una vez), **EPROM** (borrable con UV), **EEPROM** (borrable eléctricamente por byte) y **Flash** (borrable por bloques; base de SSD y USB; **NAND** para almacenamiento, **NOR** para ejecutar código).
+- **Volátil** significa que **pierde el contenido sin energía**.
+
+**Capacidad direccionable**: con un bus de direcciones de $n$ bits se acceden $2^n$ posiciones. Un bus de 16 bits direcciona $2^{16} = 64\ \text{K}$ posiciones; con datos de 8 bits, **64 KB**.
+
+<Callout type="tip">
+Pregunta clásica: **"¿por qué la caché es SRAM y la RAM es DRAM?"** → velocidad y costo. SRAM es veloz pero ocupa más área y es cara; DRAM es compacta y barata, pero más lenta y requiere refresco.
+</Callout>
+
+## Caché
+
+La **caché** guarda copias de bloques recientes de memoria principal. Si el dato está: **acierto (hit)**; si no: **fallo (miss)** y se trae el bloque completo (**línea**).
+
+**Tiempo medio de acceso:**
+
+$$AMAT = T_{acierto} + \text{tasa de fallos} \times \text{penalización por fallo}$$
+
+Ejemplo: $2 + 0.05 \times 100 = 7$ ns.
+
+**Mapeo** (dónde puede ir un bloque):
+
+| Tipo | Idea | Característica |
+| --- | --- | --- |
+| **Directo** | Cada bloque tiene **un solo lugar** | Simple, rápido, pero hay **conflictos** |
+| **Totalmente asociativo** | Puede ir en **cualquier** línea | Flexible, pero **caro** (compara todas las etiquetas) |
+| **Asociativo por conjuntos (n vías)** | Va en **un conjunto**, en cualquiera de sus $n$ líneas | **Compromiso** más usado |
+
+**Descomposición de una dirección** (mapeo directo): **etiqueta (tag) | índice | desplazamiento (offset)**. Con dirección de 32 bits, bloques de 16 B (**offset = 4 bits**) y 256 líneas (**índice = 8 bits**), la **etiqueta = 32 − 8 − 4 = 20 bits**.
+
+**Reemplazo**: **LRU** (la menos recientemente usada), FIFO, aleatorio.
+**Escritura**: **write-through** (escribe en caché **y** en memoria; simple, más tráfico) y **write-back** (escribe solo en caché y marca el bloque **sucio (dirty bit)**; menos tráfico).
+
+**Tipos de fallo (las 3 C)**: **forzoso** (primera referencia), **capacidad** (la caché es pequeña) y **conflicto** (mapeo limita).
+
+<Callout type="tip">
+Para calcular los bits de la dirección, resta: **offset = log₂(tamaño del bloque)**, **índice = log₂(número de líneas o conjuntos)**, **tag = lo que sobra**.
+</Callout>
+
+## Memoria virtual
+
+Da a cada proceso un **espacio de direcciones propio y mayor** que la RAM, usando el disco como respaldo.
+
+- **Paginación**: memoria dividida en **páginas** (lógicas) y **marcos** (físicos) de tamaño fijo (típico **4 KB**). La **tabla de páginas** traduce **página virtual → marco físico**.
+- **TLB**: **caché de traducciones** de la tabla de páginas; acelera la conversión.
+- **Fallo de página (page fault)**: la página no está en RAM → el SO la trae del disco (muy lento).
+- **Hiperpaginación (thrashing)**: demasiados fallos de página; el sistema casi no avanza.
+
+Con direcciones de 32 bits y páginas de 4 KB ($2^{12}$): **offset = 12 bits** y **número de página = 20 bits** → $2^{20}$ páginas.
+
+## Almacenamiento y RAID
+
+- **HDD**: platos magnéticos, **mecánico**, económico por GB, **lento en acceso aleatorio**. **SSD**: Flash, **sin partes móviles**, mucho más rápido, con desgaste por escritura.
+- **RAID** combina discos para **rendimiento y/o tolerancia a fallos**:
+
+| Nivel | Idea | Capacidad útil (N discos) | Tolera |
+| --- | --- | --- | --- |
+| **RAID 0** | *Striping* (reparte datos) | **N** | **0** fallas (¡peor que un disco!) |
+| **RAID 1** | *Mirroring* (espejo) | **N/2** | 1 disco por espejo |
+| **RAID 5** | Striping con **paridad distribuida** | **N − 1** | **1** disco |
+| **RAID 6** | Doble paridad | **N − 2** | **2** discos |
+| **RAID 10** | Espejos + striping | **N/2** | 1 por espejo |
+
+<Callout type="importante">
+- **RAID no es respaldo**: no protege contra borrado accidental, ransomware o fallos del controlador.
+- RAID 5 con 4 discos de 2 TB → capacidad útil $(4-1) \times 2 = 6$ TB.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- Jerarquía: **más rápido = más pequeño y caro**.
+- **SRAM = caché; DRAM = RAM (con refresco)**.
+- $AMAT = T_{hit} + \text{miss rate} \times \text{miss penalty}$.
+- **Write-back** reduce el tráfico (usa **dirty bit**); **write-through** mantiene la memoria siempre actualizada.
+- Página de $2^k$ bytes → **offset de $k$ bits**.
+- **RAID 0 no es redundante**; RAID 5 pierde **un** disco de capacidad.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que una caché más grande **siempre** mejora (puede aumentar el tiempo de acierto).
+- Confundir **latencia** con **ancho de banda**.
+- Sumar el espacio de los discos en RAID 1 o RAID 5 sin descontar el espejo/paridad.
+- Pensar que la memoria virtual **aumenta la RAM física** (la simula con disco, a costa de velocidad).
+</Callout>
+
+## Ejemplo resuelto
+
+> Una dirección de 32 bits usa páginas de 4 KB. ¿Cuántos bits tiene el número de página?
+
+4 KB = $2^{12}$ → offset de **12 bits**. Número de página = $32 - 12 =$ **20 bits** (1 048 576 páginas).

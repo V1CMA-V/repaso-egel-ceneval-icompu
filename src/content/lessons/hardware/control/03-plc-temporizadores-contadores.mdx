@@ -1,0 +1,82 @@
+---
+title: 'PLC: ciclo de escaneo, temporizadores, contadores e IEC 61131-3'
+summary: 'Cómo ejecuta un PLC su programa, qué hacen TON, TOF, TP, CTU y CTD, y cuándo usar cada lenguaje de programación industrial.'
+order: 3
+readMinutes: 11
+examWeight: 'Hardware 1.4 · Automatización y control (la subárea de mayor peso: 14 reactivos)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Un **PLC (controlador lógico programable)** es una computadora industrial para **automatizar procesos**. Consta de **fuente, CPU, módulos de entrada** (sensores, botones: 24 V DC) y **módulos de salida** (contactores, válvulas, lámparas, mediante relé o transistor). Su **ciclo de escaneo** es repetitivo:
+
+1. **Lee** todas las entradas y las guarda en una imagen de memoria.
+2. **Ejecuta** el programa de usuario (escalón por escalón).
+3. **Actualiza** las salidas físicas **al final** del ciclo.
+</Callout>
+
+Esto significa que las salidas no cambian "al instante" en que la lógica las evalúa, sino **al terminar el ciclo** (milisegundos). Direcciones típicas (IEC): **%I** entradas, **%Q** salidas, **%M** memoria interna.
+
+## Lenguajes de programación (IEC 61131-3)
+
+| Lenguaje | Tipo | Cuándo usarlo |
+| --- | --- | --- |
+| **LD – Ladder (escalera)** | Gráfico | El más común: lógica de contactos y relevadores |
+| **FBD – Diagrama de bloques** | Gráfico | Control continuo, flujos de señal, PID |
+| **ST – Texto estructurado** | Texto (tipo Pascal) | **Cálculos, algoritmos**, lógica compleja |
+| **IL – Lista de instrucciones** | Texto (ensamblador) | Obsoleto |
+| **SFC – Grafcet** | Gráfico | **Procesos secuenciales** por etapas y transiciones |
+
+<Callout type="tip">
+"Proceso **por etapas** (llenar → mezclar → calentar → vaciar)" → **SFC / Grafcet**. "Lógica de **relevadores**, técnicos de mantenimiento" → **Ladder**. "**Cálculos matemáticos**" → **texto estructurado**.
+</Callout>
+
+## Temporizadores
+
+Se configuran con un **tiempo preestablecido (PT)** y tienen la salida **Q** y el tiempo transcurrido **ET**.
+
+- **TON (retardo a la conexión)**: Q se activa **PT segundos después** de que la entrada se activa y **permanece activa mientras la entrada siga activa**. Si la entrada **cae antes** de PT, el temporizador **se reinicia** y Q no se activa. Ej.: la banda arranca **5 s después** de sonar la alarma.
+- **TOF (retardo a la desconexión)**: Q se activa **al instante** con la entrada y **sigue activa PT segundos después de que la entrada se apaga**. Ej.: el **ventilador continúa 30 s** tras detener la máquina.
+- **TP (pulso)**: al recibir un flanco, Q se activa **exactamente PT segundos**, sin importar cuánto dure la entrada.
+
+## Contadores
+
+- **CTU (ascendente)**: **suma 1 en cada flanco de subida** de su entrada. **Q = 1 cuando el valor actual (CV) ≥ preestablecido (PV)**. Se reinicia con **RESET**.
+- **CTD (descendente)**: resta 1 en cada flanco; Q cuando CV ≤ 0.
+- **CTUD**: ambos.
+
+Cuenta **flancos, no niveles**: mientras una entrada permanece activa solo cuenta **una vez**. Un sensor mecánico con **rebote** cuenta de más (se filtra con antirrebote o un TON corto).
+
+## Latch y enclavamiento
+
+- **Enclavamiento (seal-in)**: contacto de la propia salida en paralelo con el botón de arranque; **paro NC** en serie.
+- **SET/RESET (S/R)**: una instrucción **activa** la bobina y la mantiene hasta que otra la **desactiva**.
+- **Flanco (R_TRIG / F_TRIG)**: genera un pulso de **un ciclo** en el flanco de subida/bajada.
+
+**Seguridad**: los **paros de emergencia** se cablean **normalmente cerrados**, y se emplean **relevadores de seguridad** independientes; la lógica del PLC **no** debe ser la única protección.
+
+<Callout type="importante">
+- **TON** retarda el **encendido**; **TOF** retarda el **apagado**; **TP** da un **pulso fijo**.
+- **CTU** activa Q cuando **CV ≥ PV**.
+- Salidas físicas: **al final del ciclo de escaneo**.
+- **Serie = AND, paralelo = OR**; contacto **NC conduce con entrada en 0**.
+- Estándar: **IEC 61131-3** (LD, FBD, ST, IL, SFC).
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir TON con TOF (el primero retrasa el **encendido**).
+- Creer que un contador cuenta **mientras** la entrada está activa (cuenta **flancos**).
+- Olvidar el **RESET** del contador al terminar un lote.
+- Usar el PLC como **única** protección de paro de emergencia.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un escalón tiene el contacto X1 (NA) en serie con una rama paralela formada por X2 (NA) y X3 (NC); luego, la bobina Y. Con X1 = 1, X2 = 0 y X3 = 0, ¿se activa Y?
+
+X1 conduce (=1). En la rama paralela, X2 no conduce, pero **X3 (NC) conduce porque su entrada vale 0**. Hay camino completo → **Y = 1**.

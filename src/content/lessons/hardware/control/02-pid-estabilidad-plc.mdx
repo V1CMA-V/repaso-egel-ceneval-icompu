@@ -1,0 +1,109 @@
+---
+title: 'Control PID, estabilidad en frecuencia y lógica de PLC'
+summary: 'Qué hace cada término del PID, cómo sintonizarlo, windup, márgenes de estabilidad, control digital y lógica ladder con enclavamiento.'
+order: 2
+readMinutes: 13
+examWeight: 'Hardware 1.4 · Teoría de control'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+El **controlador PID** calcula la acción de control a partir del **error** $e(t) = r(t) - y(t)$ combinando tres términos:
+
+$$u(t) = K_p\, e(t) + K_i \int e(t)\,dt + K_d \frac{de(t)}{dt}$$
+
+- **P (proporcional)**: reacciona al error **actual**.
+- **I (integral)**: acumula el error **pasado**.
+- **D (derivativo)**: anticipa el error **futuro** (reacciona a su rapidez de cambio).
+</Callout>
+
+## Qué hace cada término
+
+| Término | Efecto principal | Si lo **aumentas** | Inconveniente |
+| --- | --- | --- | --- |
+| **$K_p$** | Respuesta más **rápida** | Menor tiempo de subida y **menor error** | **Más sobreimpulso** y posible inestabilidad; **no elimina** el error en estado estable |
+| **$K_i$** | **Elimina el error en estado estable** | Corrige el desvío persistente | **Más sobreimpulso y oscilación**; riesgo de *windup* |
+| **$K_d$** | **Amortigua**, reduce el sobreimpulso | Mejora estabilidad | **Amplifica el ruido** de la medición |
+
+Variantes: **P** (rápido y simple, deja error residual), **PI** (la más usada en la industria: sin error final), **PD** (amortigua, sin eliminar el error) y **PID** (completo).
+
+<Callout type="tip">
+Reglas de diagnóstico: **"el sistema se queda siempre un poco por debajo de la consigna"** → falta el término **I**. **"Se pasa mucho y oscila"** → bajar $K_p$/$K_i$ o subir **D**. **"Mucho ruido en la salida de control"** → reducir **D** o filtrar la medición.
+</Callout>
+
+## Sintonización y problemas prácticos
+
+**Ziegler–Nichols** (método de lazo cerrado): con control **solo P**, se sube $K_p$ hasta que la salida **oscila de forma sostenida**. Esa es la **ganancia crítica $K_u$** y el periodo de oscilación es $P_u$. Para un PID: 
+
+$$K_p = 0.6\,K_u \qquad T_i = \frac{P_u}{2} \qquad T_d = \frac{P_u}{8}$$
+
+Si $K_u = 10$, entonces $K_p = 6$.
+
+**Saturación del actuador y windup integral**: si el actuador llega a su límite (válvula 100 % abierta) mientras el error persiste, el término integral **sigue acumulando** ("se carga"); al cambiar el error, la salida tarda mucho en "descargarse" y causa **sobreimpulso grande**. Se evita con **anti-windup** (limitar o detener la integral).
+
+**Control ON/OFF con histéresis** (termostato): enciende al bajar de un umbral inferior y apaga al subir de uno superior. La **banda de histéresis** evita **encender y apagar a cada instante (chattering)** pero hace que la variable oscile dentro de esa banda.
+
+## Estabilidad en frecuencia
+
+- **Diagrama de Bode** (magnitud y fase vs. frecuencia) y **diagrama de Nyquist** (trazo en el plano complejo) permiten analizar la **estabilidad en lazo cerrado** a partir de la respuesta en lazo abierto.
+- **Margen de ganancia** y **margen de fase**: cuánto puede **aumentar la ganancia** o **retrasarse la fase** antes de volverse inestable. **Márgenes positivos → sistema estable**; mayores márgenes = **más robusto**. Valores típicos buscados: margen de fase **30°–60°**.
+- **Criterio de Nyquist**: relaciona el número de **rodeos del punto −1** con los polos inestables.
+- **Ancho de banda** alto → respuesta rápida, pero **más sensibilidad al ruido**.
+
+## Control digital
+
+Un controlador digital **muestrea** la salida con periodo $T_s$, calcula y **mantiene** la acción (retenedor de orden cero) hasta la siguiente muestra. El periodo de muestreo debe ser **suficientemente pequeño** respecto a la dinámica del sistema (regla práctica: **≥ 10 muestras** durante el tiempo de subida); un muestreo demasiado lento **degrada la estabilidad**. Se aplica también **Nyquist** ($f_s \ge 2 f_{max}$). El PID se implementa con **sumas** (integral) y **diferencias** (derivada).
+
+## PLC y lógica ladder
+
+Un **PLC** ejecuta un **ciclo de escaneo**: **leer entradas → ejecutar el programa → actualizar salidas**, de forma repetitiva. Se programa en **diagrama de escalera (ladder)**, que imita un circuito de relevadores:
+
+- Contacto **normalmente abierto (NA)** `—| |—`: conduce cuando su variable es **1**.
+- Contacto **normalmente cerrado (NC)** `—|/|—`: conduce cuando su variable es **0**.
+- **Serie** de contactos = **AND**; **paralelo** = **OR**.
+- **Bobina** `—( )—`: activa la salida si hay continuidad.
+
+**Enclavamiento (seal-in / autorretención)** para arranque y paro de un motor:
+
+```
+ START (NA)     STOP (NC)         MOTOR
+--| |-----+------|/|------------( )--
+         |
+ MOTOR (NA, en paralelo con START)
+--| |-----+
+```
+
+Al pulsar START, el motor se energiza y su **propio contacto NA** mantiene el circuito aunque se suelte START. **STOP** (NC) rompe el circuito y apaga el motor. Por **seguridad**, el botón de paro se cablea **normalmente cerrado**: si se corta el cable, el motor **también se detiene** (falla segura).
+
+<Callout type="tip">
+Para leer un escalón de ladder: ¿hay un **camino continuo** de contactos cerrados desde la izquierda hasta la bobina? Si sí, la bobina se activa. Contactos en serie = todos deben cumplirse (AND); ramas en paralelo = basta una (OR).
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **P** = presente, **I** = pasado (elimina error final), **D** = futuro (amortigua).
+- Solo P **deja error en estado estable**; se corrige con **I**.
+- **Windup** = integral acumulada con actuador saturado → **anti-windup**.
+- Ziegler–Nichols PID: $K_p = 0.6 K_u$, $T_i = P_u/2$, $T_d = P_u/8$.
+- **Márgenes de ganancia y fase positivos = estable**.
+- Ladder: **serie = AND, paralelo = OR**; el paro va **NC**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Subir $K_p$ indefinidamente para "arreglar" el error final (termina inestable).
+- Creer que el término **D** reduce el ruido (lo **amplifica**).
+- Cablear el botón de paro **normalmente abierto** (si se corta el cable, no se podrá detener).
+- Confundir el **ciclo de escaneo** del PLC con ejecución **paralela** de todos los escalones.
+</Callout>
+
+## Ejemplo resuelto
+
+> Con control solo P, un sistema oscila de forma sostenida cuando $K_p = 10$, con periodo de 2 s. ¿Qué parámetros de PID sugiere Ziegler–Nichols?
+
+$K_u = 10$, $P_u = 2$ s → $K_p = 6$, $T_i = 1$ s, $T_d = 0.25$ s.

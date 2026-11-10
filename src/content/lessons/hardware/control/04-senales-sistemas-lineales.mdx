@@ -1,0 +1,90 @@
+---
+title: 'Señales, sistemas lineales, Fourier, Laplace y lazo cerrado'
+summary: 'Tipos de señales, linealidad y superposición, qué aportan Fourier y Laplace, diagramas de bloques y fórmulas de respuesta de segundo orden.'
+order: 4
+readMinutes: 11
+examWeight: 'Hardware 1.4 · Automatización y control'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Una **señal** es una magnitud que varía con el tiempo (voltaje, temperatura, sonido). Un **sistema** transforma una señal de entrada en una de salida.
+
+- **Analógica**: continua en tiempo y amplitud. **Digital**: discreta (muestreada y cuantizada).
+- **Periódica**: se repite cada periodo $T$ (frecuencia $f = 1/T$). **Aperiódica**: no se repite.
+- **Ancho de banda**: rango de frecuencias que contiene o que deja pasar un sistema.
+</Callout>
+
+## Sistemas lineales e invariantes en el tiempo (LTI)
+
+Un sistema es **lineal** si cumple el **principio de superposición**:
+
+- **Aditividad**: la respuesta a $x_1 + x_2$ es $y_1 + y_2$.
+- **Homogeneidad**: la respuesta a $a\cdot x$ es $a\cdot y$.
+
+Por eso $y = 5x$ es lineal, pero **$y = x^2$**, **$y = |x|$** y **$y = 3x + 2$** (tiene un término constante/offset) **no lo son**. Un sistema es **invariante en el tiempo** si su comportamiento no cambia con el instante en que se aplica la entrada. Los sistemas **LTI** se analizan con **Fourier y Laplace** y tienen **función de transferencia**.
+
+<Callout type="tip">
+Prueba rápida de linealidad: **con entrada 0, la salida debe ser 0** y **al duplicar la entrada se duplica la salida**. Si hay un "+ constante" o una potencia/valor absoluto, **no es lineal**.
+</Callout>
+
+## Fourier y Laplace
+
+- **Fourier**: descompone una señal en **senoidales de distintas frecuencias** (pasa del **dominio del tiempo al de la frecuencia**). Una onda cuadrada se compone de la **fundamental más armónicos impares**. Es la base del **análisis espectral** y de los filtros.
+- **Laplace**: transforma **ecuaciones diferenciales en ecuaciones algebraicas** usando la variable $s$. Permite obtener la **función de transferencia** $G(s) = Y(s)/U(s)$, hallar **polos y ceros** y estudiar **estabilidad** y respuesta transitoria.
+- **Muestreo y cuantización**: al digitalizar se aplica **Nyquist** ($f_s \ge 2 f_{max}$) y se asigna cada muestra a uno de $2^n$ niveles.
+
+## Diagramas de bloques y lazo cerrado
+
+- **Bloques en serie (cascada)**: se **multiplican**: $G = G_1 \cdot G_2$.
+- **Bloques en paralelo** (salidas sumadas): se **suman**: $G = G_1 + G_2$.
+- **Lazo cerrado con realimentación negativa**:
+
+$$T(s) = \frac{G(s)}{1 + G(s)\,H(s)}$$
+
+Con realimentación **unitaria** ($H = 1$): $T = \dfrac{G}{1 + G}$. Ejemplo: $G = 9$ → $T = 9/10 = 0.9$. La realimentación negativa **reduce la ganancia, pero mejora la estabilidad, el rechazo a perturbaciones y la precisión**.
+
+Ejemplo de bloques: $G_1 = 2$ y $G_2 = 5$ en cascada, en paralelo con $G_3 = 1$ → $G_{total} = 2\cdot 5 + 1 = 11$.
+
+## Respuesta de segundo orden
+
+Para un sistema de segundo orden subamortiguado ($0 < \zeta < 1$), con **frecuencia natural $\omega_n$**:
+
+$$M_p = e^{-\zeta\pi/\sqrt{1-\zeta^2}} \qquad t_s \approx \frac{4}{\zeta\,\omega_n}$$
+
+Ejemplos: $\zeta = 0.5$ → $M_p \approx 16\%$; $\zeta = 0.5$ y $\omega_n = 4$ rad/s → $t_s \approx 4/(0.5 \cdot 4) = 2$ s.
+
+- **$\zeta$ mayor** → **menos** sobreimpulso, pero más lento.
+- **$\omega_n$ mayor** → respuesta **más rápida**.
+
+<Callout type="tip">
+Para estimar el sobreimpulso sin calculadora: **ζ = 0.7 → ≈ 5 %**; **ζ = 0.5 → ≈ 16 %**; **ζ ≈ 0.3 → ≈ 37 %**; **ζ = 1 → 0 %**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- **Lineal = superposición** (aditividad + homogeneidad).
+- **Fourier**: tiempo → frecuencia. **Laplace**: ecuaciones diferenciales → algebraicas, funciones de transferencia.
+- **Serie = producto; paralelo = suma.**
+- **$T = G/(1 + GH)$** en lazo cerrado con realimentación negativa.
+- $M_p$ depende **solo de $\zeta$**; $t_s \approx 4/(\zeta\omega_n)$.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Considerar lineal un sistema con **offset** ($y = 3x + 2$).
+- Sumar bloques **en cascada** en lugar de multiplicarlos.
+- Olvidar el **1 +** del denominador al cerrar el lazo.
+- Pensar que mayor $\zeta$ da respuesta más rápida (da **menos oscilación**, no más velocidad).
+</Callout>
+
+## Ejemplo resuelto
+
+> Un sistema en lazo directo tiene ganancia $G = 4$ y realimentación unitaria negativa. ¿Cuál es la ganancia en lazo cerrado?
+
+$T = \dfrac{4}{1 + 4} = 0.8$.

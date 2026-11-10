@@ -1,0 +1,104 @@
+---
+title: 'Corriente alterna, reactancia, filtros RC y transformadores'
+summary: 'Valores pico y RMS, cómo reaccionan capacitores e inductores según la frecuencia, filtros pasa bajas y pasa altas, y el transformador.'
+order: 5
+readMinutes: 11
+examWeight: 'Hardware 1.1 · Circuitos y electrónica'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+La **corriente alterna (AC)** cambia de sentido de forma periódica, normalmente con forma **senoidal**. La red eléctrica en México es de **127 V RMS a 60 Hz**. Sus parámetros:
+
+- **Periodo (T)** y **frecuencia (f)**: $f = 1/T$ (60 Hz → T ≈ 16.7 ms). La **frecuencia angular** es $\omega = 2\pi f$.
+- **Valor pico ($V_p$)** y **pico a pico ($V_{pp} = 2V_p$)**.
+- **Valor RMS (eficaz)**: el equivalente en DC que disiparía la misma potencia: $V_{rms} = V_p/\sqrt{2} \approx 0.707\,V_p$.
+</Callout>
+
+## Pico, pico a pico y RMS
+
+Los multímetros y las etiquetas de los aparatos usan **RMS**. El osciloscopio muestra el **pico**. Para pasar de uno a otro:
+
+$$V_p = V_{rms}\cdot\sqrt{2} \qquad V_{pp} = 2V_p$$
+
+Con 127 V RMS: $V_p \approx 179.6$ V y $V_{pp} \approx 359$ V. En una carga resistiva, $P = V_{rms}\cdot I_{rms}$.
+
+<Callout type="tip">
+Si el enunciado da el **valor de la red (127 V)**, es RMS. Para dimensionar **aislamiento o componentes** (diodos, capacitores) usa el **pico**: 127 V RMS ≈ 180 V pico.
+</Callout>
+
+## Reactancia: capacitores e inductores frente a la frecuencia
+
+La **reactancia** es la oposición de un capacitor o inductor a la AC (también se mide en ohms):
+
+$$X_C = \frac{1}{2\pi f C} \qquad X_L = 2\pi f L$$
+
+| Componente | Frecuencia ↑ | En DC ($f = 0$) | A frecuencias muy altas |
+| --- | --- | --- | --- |
+| **Capacitor** | $X_C$ **baja** | **Bloquea** (circuito abierto) | Se comporta casi como un **cable** |
+| **Inductor** | $X_L$ **sube** | Es un **cable** (corto) | **Bloquea** (casi abierto) |
+
+Ejemplo: capacitor de 1 µF a 1 kHz → $X_C = 1/(2\pi \cdot 1000 \cdot 10^{-6}) \approx 159\ \Omega$.
+
+<Callout type="tip">
+Memoriza: **el capacitor "deja pasar" lo rápido y bloquea lo lento (DC); el inductor hace lo contrario.** Sirve para razonar filtros sin calcular.
+</Callout>
+
+## Filtros RC
+
+Un **filtro RC** combina una resistencia y un capacitor y tiene una **frecuencia de corte**:
+
+$$f_c = \frac{1}{2\pi R C}$$
+
+En $f_c$ la señal baja a **70.7 %** de su amplitud (−3 dB).
+
+- **Pasa bajas**: la salida se toma **en el capacitor**. Deja pasar frecuencias **menores** a $f_c$ y atenúa las altas (elimina ruido).
+- **Pasa altas**: la salida se toma **en la resistencia**. Deja pasar frecuencias **mayores** a $f_c$ y bloquea las bajas y el DC (**acoplamiento de audio**).
+- **Pasa banda / rechaza banda**: combinan ambos o usan inductores (circuito resonante RLC).
+
+Ejemplo: R = 1.59 kΩ y C = 100 nF → $f_c = 1/(2\pi \cdot 1590 \cdot 10^{-7}) \approx 1$ kHz. A un filtro **pasa bajas** de 1 kHz le entra una mezcla de 100 Hz y 10 kHz: pasa la de 100 Hz casi intacta y la de 10 kHz sale muy atenuada.
+
+<Callout type="importante">
+- **Antes de un ADC** se pone un pasa bajas (**filtro antialiasing**).
+- Para eliminar **ruido de alta frecuencia** en una fuente: inductor **en serie** (bloquea lo rápido) y capacitor **en paralelo** (lo deriva a tierra).
+</Callout>
+
+## Transformador
+
+Dos bobinas acopladas magnéticamente. **Solo funciona con AC** (necesita flujo variable). Para un transformador **ideal**:
+
+$$\frac{V_s}{V_p} = \frac{N_s}{N_p} \qquad \frac{I_s}{I_p} = \frac{N_p}{N_s} \qquad P_{entrada} = P_{salida}$$
+
+- $N_s < N_p$ → **reductor** (baja voltaje, sube corriente). $N_s > N_p$ → **elevador**.
+- No aumenta la potencia: **si el voltaje sube, la corriente baja** (y viceversa).
+- Aísla eléctricamente primario y secundario. Aplicación típica: fuente 127 V → 12 V seguida de **rectificador, filtro y regulador**.
+
+Ejemplo: relación 10:1 con 127 V en el primario → 12.7 V en el secundario; si alimenta 10 Ω, $I_s = 1.27$ A e $I_p = 0.127$ A.
+
+## Importante recordar
+
+<Callout type="importante">
+- $V_{rms} = V_p/\sqrt{2}$; $V_{pp} = 2V_p$; $f = 1/T$.
+- **$X_C$ baja con la frecuencia; $X_L$ sube.**
+- Pasa bajas = salida en **C**; pasa altas = salida en **R**. $f_c = 1/(2\pi RC)$.
+- El transformador **no funciona en DC** y conserva la potencia.
+- Capacitor **abierto en DC**, inductor **corto en DC**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Confundir el **valor RMS** con el pico (127 V RMS no son 127 V de pico).
+- Decir que el capacitor "bloquea AC" (bloquea **DC**).
+- Pensar que un transformador reductor **también reduce la potencia** (la conserva, salvo pérdidas).
+- Intentar alimentar un transformador con **DC pura**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un capacitor de acoplamiento de 10 µF se coloca en serie con una entrada de audio de 8 kΩ. ¿Cuál es la frecuencia de corte inferior aproximada?
+
+$f_c = \dfrac{1}{2\pi \cdot 8000 \cdot 10\times10^{-6}} \approx 2$ Hz: bloquea el DC y deja pasar todo el audio audible (≥ 20 Hz).

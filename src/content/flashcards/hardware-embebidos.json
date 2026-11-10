@@ -1,0 +1,22 @@
+{
+  "cards": [
+    { "id": "fc-hw-emb-01", "front": "MCU vs FPGA", "back": "MCU: ejecución secuencial, todo en un chip. FPGA: hardware reconfigurable, paralelismo real y tiempos deterministas." },
+    { "id": "fc-hw-emb-02", "front": "¿Cuándo usar un PLC?", "back": "Ambiente industrial (ruido, 24 V), confiabilidad 24/7, programación en ladder." },
+    { "id": "fc-hw-emb-03", "front": "Resolución de un ADC de n bits", "back": "1 LSB = Vref / 2^n. Valores de 0 a 2^n − 1." },
+    { "id": "fc-hw-emb-04", "front": "Teorema de Nyquist", "back": "fs ≥ 2·fmax. Si no se cumple → aliasing (se previene con filtro pasa-bajas)." },
+    { "id": "fc-hw-emb-05", "front": "PWM: ciclo de trabajo y voltaje promedio", "back": "D = t_on / T. V_prom = D × Vcc. La frecuencia no cambia." },
+    { "id": "fc-hw-emb-06", "front": "Función del watchdog timer", "back": "Reinicia el MCU si el software se cuelga y no lo 'alimenta' a tiempo." },
+    { "id": "fc-hw-emb-07", "front": "Rebote de un pulsador", "back": "Contactos mecánicos rebotan 5–20 ms. Solución: antirrebote por hardware o software." },
+    { "id": "fc-hw-emb-08", "front": "UART 8N1: bits por byte y bytes/s a 9600 baud", "back": "10 bits por byte (inicio + 8 + paro) → 960 bytes/s. Ambos lados con el mismo baud." },
+    { "id": "fc-hw-emb-09", "front": "I2C en una frase", "back": "2 hilos (SDA, SCL) con pull-ups, muchos dispositivos por dirección de 7 bits, half-duplex." },
+    { "id": "fc-hw-emb-10", "front": "SPI en una frase", "back": "SCLK, MOSI, MISO + un CS por esclavo. Full-duplex, el más rápido." },
+    { "id": "fc-hw-emb-11", "front": "RS-485 vs RS-232", "back": "RS-485: diferencial, multipunto, ≈1200 m, inmune al ruido. RS-232: punto a punto, corta distancia." },
+    { "id": "fc-hw-emb-12", "front": "LoRa, NFC, BLE", "back": "LoRa: kilómetros y muy bajo consumo. NFC: ≈4 cm. BLE: corto alcance y bajo consumo." },
+    { "id": "fc-hw-emb-13", "front": "Distancia con sensor ultrasónico", "back": "d = v·t / 2 (el sonido va y vuelve). v ≈ 343 m/s." },
+    { "id": "fc-hw-emb-14", "front": "LM35", "back": "Sensor de temperatura analógico: 10 mV por °C (0.25 V = 25 °C)." },
+    { "id": "fc-hw-emb-15", "front": "Acelerómetro, giroscopio, magnetómetro, IMU, GPS", "back": "Aceleración lineal/inclinación · velocidad angular · rumbo · combinación de los anteriores · posición (solo cielo abierto)." },
+    { "id": "fc-hw-emb-16", "front": "Motor DC, servo y paso a paso", "back": "DC: PWM + puente H + diodo flyback. Servo: ángulo por ancho de pulso (1.5 ms = centro). Paso a paso: posición precisa en lazo abierto." },
+    { "id": "fc-hw-emb-17", "front": "Relé conmutado por un MCU", "back": "Aísla la carga; la bobina necesita transistor y diodo de rueda libre (flyback)." },
+    { "id": "fc-hw-emb-18", "front": "CAN", "back": "Bus diferencial, multimaestro, muy robusto al ruido. Estándar automotriz e industrial." }
+  ]
+}

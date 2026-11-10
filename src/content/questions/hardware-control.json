@@ -1,0 +1,289 @@
+{
+  "questions": [
+    {
+      "id": "hw-ctl-0101",
+      "lesson": "hardware/control/01-lazo-abierto-cerrado-respuesta",
+      "text": "Una secadora de ropa tiene un temporizador fijo de 40 minutos; otra modelo detiene el ciclo cuando un sensor detecta que la ropa ya está seca. ¿Cómo se clasifican?",
+      "options": [
+        "Ambas son de lazo cerrado",
+        "La primera es de lazo abierto y la segunda de lazo cerrado",
+        "La primera es de lazo cerrado y la segunda de lazo abierto",
+        "Ambas son de lazo abierto"
+      ],
+      "answer": 1,
+      "explanation": "El temporizador actúa sin medir el resultado (lazo abierto). La segunda mide la humedad, la compara con el valor deseado y decide detenerse (lazo cerrado con realimentación).",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-ctl-0102",
+      "lesson": "hardware/control/01-lazo-abierto-cerrado-respuesta",
+      "text": "Se analizan tres sistemas por sus polos: S1 {−1, −4}, S2 {−2 ± 3j}, S3 {+0.5, −3}. ¿Cuáles son estables?",
+      "options": ["Solo S1", "S1 y S2", "S1, S2 y S3", "S2 y S3"],
+      "answer": 1,
+      "explanation": "Un sistema es estable si todos sus polos tienen parte real negativa. S1 sí (−1, −4) y S2 también (parte real −2, con oscilación). S3 tiene un polo en +0.5, por lo que es inestable aunque el otro sea negativo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0103",
+      "lesson": "hardware/control/01-lazo-abierto-cerrado-respuesta",
+      "text": "Un sistema de primer orden tiene una constante de tiempo τ = 0.5 s y se somete a una entrada escalón. ¿Cuál es el tiempo de establecimiento aproximado con el criterio del 2 %?",
+      "options": ["2 s", "0.5 s", "5 s", "1 s"],
+      "answer": 0,
+      "explanation": "El tiempo de establecimiento al 2 % es ≈ 4τ = 4 × 0.5 = 2 s. En 0.5 s (1τ) solo se llega al 63 % del valor final.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-ctl-0104",
+      "lesson": "hardware/control/01-lazo-abierto-cerrado-respuesta",
+      "text": "Un sistema tiene función de transferencia G(s) = 10/(s + 5) y recibe un escalón de magnitud 3. ¿Cuál es el valor final de la salida?",
+      "options": ["2", "3", "15", "6"],
+      "answer": 3,
+      "explanation": "La ganancia en DC es G(0) = 10/5 = 2. El valor final es 2 × 3 = 6. El polo en −5 indica que el sistema es estable, por lo que la salida sí converge.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0105",
+      "lesson": "hardware/control/01-lazo-abierto-cerrado-respuesta",
+      "text": "Para un sistema de segundo orden se busca la respuesta más rápida posible a un escalón sin sobreimpulso. ¿Qué factor de amortiguamiento (ζ) es el adecuado?",
+      "options": ["ζ = 3", "ζ = 1", "ζ = 0.2", "ζ = 0"],
+      "answer": 1,
+      "explanation": "ζ = 1 (críticamente amortiguado) es el límite: la respuesta más rápida que no oscila. ζ = 3 también evita el sobreimpulso, pero es más lento (sobreamortiguado). ζ = 0.2 oscila mucho y ζ = 0 oscila indefinidamente.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0106",
+      "lesson": "hardware/control/01-lazo-abierto-cerrado-respuesta",
+      "text": "Al reajustar un controlador, el tiempo de subida de la respuesta a escalón se redujo, pero el sobreimpulso pasó de 5 % a 40 %. ¿Qué ocurrió con el amortiguamiento del sistema en lazo cerrado?",
+      "options": [
+        "El factor de amortiguamiento aumentó",
+        "El sobreimpulso no depende del amortiguamiento",
+        "Los polos se movieron al semiplano derecho",
+        "El factor de amortiguamiento disminuyó"
+      ],
+      "answer": 3,
+      "explanation": "Menos amortiguamiento (ζ menor) produce respuesta más rápida pero con más sobreimpulso y oscilación. No necesariamente hay inestabilidad: 40 % de sobreimpulso aún puede ser estable con polos en el semiplano izquierdo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0201",
+      "lesson": "hardware/control/02-pid-estabilidad-plc",
+      "text": "Un tanque se controla con un controlador proporcional puro. El nivel se estabiliza siempre 8 % por debajo de la consigna. ¿Qué ajuste corrige el problema de fondo?",
+      "options": [
+        "Aumentar el término derivativo",
+        "Añadir el término integral (control PI)",
+        "Reducir Kp a cero",
+        "Cambiar a control ON/OFF"
+      ],
+      "answer": 1,
+      "explanation": "Un controlador P deja un error permanente en estado estable. La acción integral acumula ese error y lo lleva a cero. El término derivativo amortigua pero no elimina el error final.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0202",
+      "lesson": "hardware/control/02-pid-estabilidad-plc",
+      "text": "Un controlador PI muestra sobreimpulso de 35 % y oscilaciones, aunque el error final es cero y se desea conservarlo en cero. ¿Qué ajuste es más razonable?",
+      "options": [
+        "Aumentar Ki",
+        "Aumentar Kp",
+        "Eliminar el término integral por completo",
+        "Reducir Ki y/o añadir una acción derivativa moderada"
+      ],
+      "answer": 3,
+      "explanation": "El exceso de Ki produce sobreimpulso y oscilación. Reducirlo, o añadir D para amortiguar, mejora la respuesta sin perder el error nulo. Eliminar I volvería a dejar un error permanente; aumentar Ki o Kp empeora la oscilación.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "hw-ctl-0203",
+      "lesson": "hardware/control/02-pid-estabilidad-plc",
+      "text": "Un horno controlado con PI mantiene la resistencia al 100 % durante 10 minutos de calentamiento. Al llegar a la consigna, la temperatura se pasa mucho y tarda en regresar. ¿Cuál es la causa y su remedio?",
+      "options": [
+        "Windup integral por saturación del actuador; usar anti-windup",
+        "Ruido amplificado por el término derivativo; subir Kd",
+        "Aliasing en el sensor; aumentar la frecuencia de muestreo",
+        "Ganancia crítica insuficiente; reducir Ku"
+      ],
+      "answer": 0,
+      "explanation": "Con el actuador saturado el error persiste y la integral sigue acumulándose (windup). Al cruzar la consigna esa carga acumulada tarda en descargarse y provoca el sobreimpulso. Se limita con anti-windup.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0204",
+      "lesson": "hardware/control/02-pid-estabilidad-plc",
+      "text": "Con control solo proporcional, un sistema oscila de forma sostenida cuando Kp = 10, con periodo de oscilación de 2 s. Aplicando Ziegler–Nichols para un PID (Kp = 0.6·Ku, Ti = Pu/2, Td = Pu/8), ¿qué parámetros resultan?",
+      "options": [
+        "Kp = 10, Ti = 2 s, Td = 0.5 s",
+        "Kp = 6, Ti = 2 s, Td = 0.25 s",
+        "Kp = 6, Ti = 1 s, Td = 0.25 s",
+        "Kp = 0.6, Ti = 1 s, Td = 0.25 s"
+      ],
+      "answer": 2,
+      "explanation": "Ku = 10 y Pu = 2 s. Kp = 0.6 × 10 = 6, Ti = 2/2 = 1 s y Td = 2/8 = 0.25 s. Las otras opciones mezclan valores de Ku o Pu sin aplicar la regla.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0205",
+      "lesson": "hardware/control/02-pid-estabilidad-plc",
+      "text": "Un escalón de ladder tiene: contacto START (NA) en paralelo con un contacto NA de la propia bobina MOTOR, ambos en serie con un contacto STOP (NC) y la bobina MOTOR. Se pulsa y se suelta START. ¿Qué ocurre y qué pasa si después se corta el cable del botón STOP?",
+      "options": [
+        "El motor se apaga al soltar START; al cortar el cable, el motor arranca",
+        "El motor se apaga al soltar START; con el cable cortado, sigue apagado",
+        "El motor sigue energizado por el enclavamiento y, con el cable de STOP cortado, también seguiría funcionando",
+        "El motor sigue energizado por el enclavamiento, pero si se corta el cable de STOP el circuito se abre y el motor se detiene (falla segura)"
+      ],
+      "answer": 3,
+      "explanation": "Una vez energizada la bobina, su contacto NA en paralelo con START mantiene la continuidad (autorretención). El STOP se cablea normalmente cerrado: si el cable se corta, el contacto abre el circuito y el motor se detiene, lo que es una falla segura.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "hw-ctl-0206",
+      "lesson": "hardware/control/02-pid-estabilidad-plc",
+      "text": "El análisis de un sistema en lazo abierto arroja un margen de fase de +45° y un margen de ganancia de +12 dB. ¿Qué se concluye sobre el sistema al cerrar el lazo?",
+      "options": [
+        "Es inestable, porque el margen de fase debería ser cero",
+        "Es marginalmente estable",
+        "Es estable y presenta un margen de robustez aceptable",
+        "No se puede concluir nada sin conocer los polos"
+      ],
+      "answer": 2,
+      "explanation": "Márgenes de fase y de ganancia positivos indican estabilidad en lazo cerrado; +45° y +12 dB son valores típicamente aceptables (se busca 30°–60° de margen de fase). Un margen cero significaría estabilidad marginal.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0207",
+      "lesson": "hardware/control/02-pid-estabilidad-plc",
+      "text": "Un controlador digital muestrea cada 500 ms un sistema cuyo tiempo de subida es de 2 s y su desempeño es deficiente. Al reducir el periodo a 100 ms mejora notablemente. ¿Por qué?",
+      "options": [
+        "Con 500 ms solo hay unas 4 muestras en el tiempo de subida; un muestreo lento degrada la estabilidad y el desempeño, y con 100 ms hay unas 20",
+        "Muestrear más rápido siempre elimina el error en estado estable",
+        "Porque a mayor frecuencia de muestreo aparece aliasing",
+        "Porque el PLC solo funciona correctamente a 100 ms"
+      ],
+      "answer": 0,
+      "explanation": "Una regla práctica pide al menos ≈ 10 muestras durante el tiempo de subida. Con 500 ms hay 2 s/0.5 s = 4 muestras (insuficientes); con 100 ms hay 20. Muestrear rápido no elimina por sí solo el error en estado estable y, al contrario, ayuda a evitar aliasing.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "hw-ctl-0301",
+      "lesson": "hardware/control/03-plc-temporizadores-contadores",
+      "text": "Una banda transportadora debe arrancar 5 segundos después de que suena una alarma y no debe arrancar si el botón se suelta antes de ese tiempo. ¿Qué bloque temporizador de PLC se usa?",
+      "options": ["TOF", "TON con PT = 5 s", "TP con PT = 5 s", "CTU con PV = 5"],
+      "answer": 1,
+      "explanation": "El TON retarda la activación: Q se enciende PT segundos después de activarse la entrada y, si la entrada cae antes, el temporizador se reinicia. El TOF retarda el apagado y el TP produce un pulso fijo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0302",
+      "lesson": "hardware/control/03-plc-temporizadores-contadores",
+      "text": "Un ventilador de enfriamiento debe seguir funcionando 30 segundos después de que la máquina se apaga. ¿Qué bloque temporizador resuelve esto?",
+      "options": ["TON", "CTU", "TOF con PT = 30 s", "TP"],
+      "answer": 2,
+      "explanation": "El TOF mantiene la salida activa PT segundos después de que la entrada se desactiva. El TON retrasa el encendido, no el apagado.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-ctl-0303",
+      "lesson": "hardware/control/03-plc-temporizadores-contadores",
+      "text": "Una máquina empaca lotes de 12 piezas. Un sensor genera un pulso por pieza y el PLC usa un contador ascendente CTU con PV = 12. ¿Cuándo se activa la salida Q del contador?",
+      "options": [
+        "Cuando el valor actual alcanza o supera 12 (CV ≥ PV)",
+        "Doce segundos después de la primera pieza",
+        "Con cada pieza contada",
+        "Solo cuando se aplica la entrada de reset"
+      ],
+      "answer": 0,
+      "explanation": "El CTU cuenta flancos de subida y activa Q cuando CV ≥ PV. El reset lo regresa a cero. No depende de tiempo ni se activa con cada pieza.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-ctl-0304",
+      "lesson": "hardware/control/03-plc-temporizadores-contadores",
+      "text": "Un escalón de ladder tiene el contacto X1 (NA) en serie con una rama paralela formada por X2 (NA) y X3 (NC), seguida de la bobina Y. Con X1 = 1, X2 = 0 y X3 = 0, ¿qué ocurre con Y?",
+      "options": [
+        "Y = 0, porque X2 vale 0 y no hay continuidad",
+        "Y = 0, porque X3 debería valer 1 para conducir",
+        "El estado es indeterminado sin conocer el temporizador",
+        "Y = 1, porque X1 conduce y X3 (NC) también conduce al estar su entrada en 0"
+      ],
+      "answer": 3,
+      "explanation": "Una rama en paralelo equivale a OR: basta con que una conduzca. X2 (NA) no conduce con 0, pero X3 (NC) sí conduce cuando su entrada vale 0. Como X1 también conduce, hay camino completo hacia la bobina.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0305",
+      "lesson": "hardware/control/03-plc-temporizadores-contadores",
+      "text": "Dentro del ciclo de escaneo de un PLC, ¿en qué momento se actualizan las salidas físicas?",
+      "options": [
+        "Al inicio del ciclo, antes de leer las entradas",
+        "En el instante exacto en que se evalúa la bobina dentro del programa",
+        "Al final del ciclo, después de ejecutar todo el programa",
+        "Solo cuando cambia alguna entrada"
+      ],
+      "answer": 2,
+      "explanation": "El PLC lee las entradas, ejecuta el programa completo y por último escribe las salidas físicas. Por eso un cambio en una bobina no llega a la salida real hasta que termina el ciclo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0306",
+      "lesson": "hardware/control/03-plc-temporizadores-contadores",
+      "text": "Un proceso de mezclado consta de etapas bien definidas (llenar, mezclar, calentar, vaciar) con transiciones entre ellas. ¿Qué lenguaje de la norma IEC 61131-3 es el más natural para describirlo?",
+      "options": ["SFC (Grafcet)", "IL (lista de instrucciones)", "ST (texto estructurado) únicamente", "FBD solo con bloques matemáticos"],
+      "answer": 0,
+      "explanation": "SFC/Grafcet describe procesos secuenciales mediante etapas y transiciones. ST sirve para algoritmos y cálculos, FBD para flujos de señal y IL es un lenguaje de bajo nivel casi en desuso.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-ctl-0401",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "¿Cuál de los siguientes sistemas, descritos por su relación entrada–salida, es lineal?",
+      "options": ["y = x²", "y = 3x + 2", "y = 5x", "y = |x|"],
+      "answer": 2,
+      "explanation": "Un sistema lineal cumple superposición (aditividad y homogeneidad). y = 5x la cumple. x² y |x| no son lineales, y 3x + 2 tiene un término constante: con entrada 0 la salida es 2, por lo que tampoco lo es.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0402",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "Un ingeniero necesita convertir la ecuación diferencial de un sistema en una ecuación algebraica para obtener su función de transferencia y analizar sus polos. ¿Qué herramienta matemática utiliza?",
+      "options": ["Transformada de Fourier", "Transformada de Laplace", "Ley de Ohm", "Álgebra de Boole"],
+      "answer": 1,
+      "explanation": "Laplace convierte ecuaciones diferenciales en algebraicas en la variable s, lo que permite definir G(s), polos y ceros. Fourier pasa una señal del tiempo a la frecuencia.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0403",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "Un sistema tiene ganancia en lazo directo G = 9 y realimentación negativa unitaria (H = 1). ¿Cuál es su ganancia en lazo cerrado?",
+      "options": ["9", "10", "0.1", "0.9"],
+      "answer": 3,
+      "explanation": "T = G/(1 + GH) = 9/(1 + 9) = 0.9. La realimentación negativa reduce la ganancia (a cambio de estabilidad y precisión). 10 sería el denominador y 9 ignora la realimentación.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-ctl-0404",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "Un sistema de segundo orden subamortiguado tiene ζ = 0.5. ¿Qué sobreimpulso máximo se espera aproximadamente en su respuesta a un escalón?",
+      "options": ["≈ 16 %", "≈ 50 %", "≈ 5 %", "0 %"],
+      "answer": 0,
+      "explanation": "Mp = e^(−ζπ/√(1−ζ²)) = e^(−0.5π/0.866) ≈ 0.163, es decir, ≈ 16 %. 5 % corresponde a ζ ≈ 0.7 y 0 % a ζ ≥ 1.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0405",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "Un sistema de segundo orden tiene ζ = 0.5 y frecuencia natural ωn = 4 rad/s. ¿Cuál es su tiempo de establecimiento aproximado (criterio del 2 %)?",
+      "options": ["0.5 s", "1 s", "2 s", "8 s"],
+      "answer": 2,
+      "explanation": "ts ≈ 4/(ζ·ωn) = 4/(0.5 × 4) = 2 s. Un ωn mayor acelera la respuesta y un ζ mayor la hace más amortiguada.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0406",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "En un diagrama de bloques, G1 = 2 y G2 = 5 están en cascada, y esa cadena está en paralelo (salidas sumadas) con un tercer bloque G3 = 1. ¿Cuál es la ganancia total?",
+      "options": ["7", "8", "10", "11"],
+      "answer": 3,
+      "explanation": "Los bloques en cascada se multiplican (2 × 5 = 10) y los que están en paralelo se suman (10 + 1 = 11).",
+      "difficulty": "media"
+    }
+  ]
+}

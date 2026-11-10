@@ -1,0 +1,103 @@
+---
+title: 'Diodos, transistores y amplificador operacional'
+summary: 'Cómo funcionan el diodo, el LED, el BJT y el amp-op, y cómo calcular los circuitos típicos que se preguntan en el examen.'
+order: 2
+readMinutes: 13
+examWeight: 'Hardware 1.1 · Electrónica analógica'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Los **semiconductores** (silicio, germanio) conducen mejor que un aislante pero peor que un metal, y su conductividad se controla con **impurezas** (dopaje). De ahí salen los componentes activos:
+
+- **Diodo**: deja pasar corriente en **un solo sentido**.
+- **Transistor** (BJT, MOSFET): **interruptor** o **amplificador** controlado por una señal pequeña.
+- **Amplificador operacional (amp-op)**: bloque de alta ganancia que, con realimentación, hace amplificadores, sumadores, comparadores, filtros…
+</Callout>
+
+## El diodo y sus aplicaciones
+
+Un diodo tiene **ánodo (+)** y **cátodo (−)**.
+
+- **Polarización directa** (ánodo más positivo que el cátodo): conduce. Cae un voltaje de umbral de **≈ 0.7 V** en silicio (≈ 0.3 V en germanio, **1.8–3.3 V** en un LED según el color).
+- **Polarización inversa**: bloquea (circuito abierto), salvo que llegue al voltaje de ruptura.
+
+Aplicaciones que debes reconocer:
+
+- **Rectificador de media onda**: un diodo; pasa solo un semiciclo.
+- **Rectificador de onda completa** (puente de 4 diodos): aprovecha ambos semiciclos. La frecuencia de rizado es **el doble** de la de la línea (**120 Hz** con red de 60 Hz).
+- **Filtro con capacitor**: tras rectificar, el capacitor "alisa" la señal para obtener DC.
+- **Zener**: se polariza **en inversa** y mantiene un voltaje casi constante → **regulador**.
+- **LED**: siempre con **resistor limitador**: $R = \dfrac{V_{fuente} - V_{LED}}{I_{LED}}$.
+
+<Callout type="tip">
+Para un diodo en un circuito: **supón que conduce**, resta 0.7 V y revisa si la corriente resulta positiva. Si no, estaba bloqueado.
+</Callout>
+
+## El transistor BJT
+
+El **BJT** tiene tres terminales: **base (B)**, **colector (C)** y **emisor (E)**, y existe en versión **NPN** y **PNP**. Una pequeña corriente de base controla una corriente de colector mucho mayor:
+
+$$I_C = \beta \cdot I_B \qquad I_E = I_C + I_B$$
+
+Tiene tres regiones de operación:
+
+| Región | Condición | Uso |
+| --- | --- | --- |
+| **Corte** | $I_B \approx 0$ → $I_C \approx 0$ | Interruptor **apagado** |
+| **Activa** | $V_{BE} \approx 0.7$ V, $I_C = \beta I_B$ | **Amplificador** |
+| **Saturación** | $V_{CE} \approx 0.2$ V, $I_C$ **ya no crece** con $I_B$ | Interruptor **encendido** |
+
+Como interruptor, la corriente de colector la limita **la carga** y la fuente, no $\beta$: $I_{C(sat)} \approx \dfrac{V_{CC} - 0.2}{R_C}$. Si $\beta \cdot I_B$ **supera** ese valor, el transistor está **saturado**.
+
+El **MOSFET** se controla por **voltaje** (compuerta, casi sin corriente), es el transistor de la electrónica digital moderna (CMOS) y de la conmutación de potencia.
+
+<Callout type="tip">
+Prueba rápida: calcula $I_C = \beta I_B$ y compáralo con $I_{C(sat)}$. Si **es mayor**, ¡saturación! La corriente real será $I_{C(sat)}$, no $\beta I_B$.
+</Callout>
+
+## El amplificador operacional
+
+Un amp-op **ideal** tiene: ganancia infinita, **impedancia de entrada infinita** (no entra corriente por las entradas) e impedancia de salida cero. Con **realimentación negativa** se cumple la regla del **corto virtual**: $V_+ = V_-$.
+
+| Configuración | Ganancia | Observación |
+| --- | --- | --- |
+| **Inversor** | $A_v = -\dfrac{R_f}{R_{in}}$ | Invierte la fase (signo negativo) |
+| **No inversor** | $A_v = 1 + \dfrac{R_f}{R_g}$ | Ganancia **siempre ≥ 1** |
+| **Seguidor (buffer)** | $A_v = 1$ | Aísla etapas (alta Z de entrada) |
+| **Sumador** | $V_o = -R_f\left(\dfrac{V_1}{R_1} + \dfrac{V_2}{R_2}\right)$ | Suma señales (invertida) |
+| **Comparador** | sin realimentación | Salida en **saturación** $\pm V_{sat}$ según cuál entrada sea mayor |
+
+<Callout type="importante">
+La salida **nunca puede superar la alimentación**. Si la ganancia pedida llevaría la salida a más de $\pm V_{CC}$, el amp-op **satura** y recorta la señal en (aproximadamente) el voltaje de alimentación.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- Diodo Si: **0.7 V**. Transistor BJT activo: $V_{BE} \approx 0.7$ V.
+- **Zener** = regulador, en polarización **inversa**.
+- BJT: **corte = abierto, saturación = cerrado**, activa = amplificador.
+- Amp-op inversor: signo **negativo**; no inversor: $1 + R_f/R_g$.
+- El **seguidor de voltaje** no amplifica voltaje: amplifica **corriente** (aísla impedancias).
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Olvidar la caída de 0.7 V del diodo en un cálculo de corriente.
+- Decir que un amp-op inversor tiene ganancia $1 + R_f/R_{in}$ (esa es la del no inversor).
+- Calcular $I_C = \beta I_B$ sin verificar la saturación.
+- Conectar un LED **sin resistor**: se destruye por exceso de corriente.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un LED rojo ($V_F = 2$ V, $I = 10$ mA) se alimenta de un pin de 5 V. ¿Qué resistor necesita?
+
+$$R = \frac{5 - 2}{0.010} = 300\ \Omega$$
+
+El valor comercial más cercano es **330 Ω** (corriente ≈ 9 mA, segura y suficientemente brillante).

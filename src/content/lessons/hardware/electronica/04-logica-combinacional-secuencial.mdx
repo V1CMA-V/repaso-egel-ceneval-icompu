@@ -1,0 +1,100 @@
+---
+title: 'Lógica combinacional y secuencial: MUX, flip-flops y contadores'
+summary: 'Bloques combinacionales (MUX, decodificador, sumador) y secuenciales (latches, flip-flops, registros, contadores, máquinas de estado).'
+order: 4
+readMinutes: 14
+examWeight: 'Hardware 1.1 · Electrónica digital'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+- **Circuito combinacional**: la salida depende **solo de las entradas actuales** (no tiene memoria). Ej.: sumador, MUX, decodificador.
+- **Circuito secuencial**: la salida depende de las entradas **y del estado previo** (tiene **memoria**). Ej.: flip-flop, registro, contador. Normalmente está sincronizado por una señal de **reloj**.
+</Callout>
+
+## Bloques combinacionales
+
+- **Multiplexor (MUX)**: elige **una de $2^n$ entradas** con **$n$ líneas de selección** y la envía a la salida. Un MUX 16:1 necesita 4 selectores. Se usa también para implementar funciones lógicas.
+- **Demultiplexor (DEMUX)**: hace lo inverso: una entrada se dirige a una de $2^n$ salidas.
+- **Decodificador**: $n$ entradas → activa **una** de $2^n$ salidas (ej. 3 a 8). Sirve para **decodificar direcciones de memoria**.
+- **Codificador**: lo inverso (varias líneas → código binario). El de prioridad atiende la entrada más alta.
+- **Sumador medio**: suma 2 bits → $S = A \oplus B$, $C = A \cdot B$.
+- **Sumador completo**: suma 2 bits **más acarreo de entrada** → $S = A \oplus B \oplus C_{in}$. Se **encadenan** para sumar palabras de varios bits (acarreo en rizo).
+- **Comparador**: indica si $A > B$, $A = B$ o $A < B$.
+
+<Callout type="tip">
+Sumador completo con $A = 1, B = 1, C_{in} = 1$: $1 + 1 + 1 = 3 = 11_2$ → **Suma = 1, Acarreo = 1**.
+</Callout>
+
+## Latches y flip-flops
+
+Un **latch** es **sensible al nivel** de su señal de habilitación; un **flip-flop** es **sensible al flanco** del reloj (de subida ↑ o bajada ↓) y solo cambia en ese instante. Los tipos:
+
+| Tipo | Comportamiento |
+| --- | --- |
+| **SR** | S=1 pone Q=1; R=1 pone Q=0; **S=R=1 es estado prohibido** |
+| **D** | Q toma el valor de D en el flanco (**"retarda" un dato**); es la celda de un registro |
+| **JK** | Como SR pero **J=K=1 invierte (toggle)**; J=K=0 mantiene |
+| **T** | T=1 **invierte** Q en cada flanco; T=0 mantiene |
+
+Además tienen entradas **asíncronas** (Preset/Clear) que ponen Q en 1 o 0 **sin esperar** al reloj.
+
+<Callout type="tip">
+Un flip-flop **T** (o JK con J=K=1) **divide la frecuencia entre 2**: la salida cambia una vez por cada dos flancos del reloj.
+</Callout>
+
+## Registros y contadores
+
+- **Registro**: grupo de flip-flops D que almacena una palabra de $n$ bits.
+- **Registro de desplazamiento**: mueve los bits una posición por pulso. Desplazar a la derecha **divide entre 2** (para enteros sin signo); a la izquierda **multiplica por 2**. Sirve para conversión **serie↔paralelo**.
+- **Contador asíncrono (de rizo)**: cada flip-flop se dispara con la salida del anterior; es **sencillo pero más lento** (retardos acumulados).
+- **Contador síncrono**: todos comparten el **mismo reloj**; es más rápido y evita estados transitorios.
+
+Un contador de $n$ flip-flops cuenta hasta **módulo $2^n$**. Para un contador **módulo $M$** se necesitan $\lceil \log_2 M \rceil$ flip-flops y una lógica que **reinicie** al llegar a $M$ (ej. módulo 10 → 4 flip-flops).
+
+Cada etapa divide la frecuencia entre 2: la salida del flip-flop número $n$ tiene frecuencia $f_{in} / 2^n$.
+
+<Callout type="tip">
+Para saber cuántos flip-flops necesitas para $M$ estados, busca la menor potencia de 2 que sea **mayor o igual** a $M$: $2^3 = 8 < 10 \le 2^4 = 16$ → **4**.
+</Callout>
+
+## Máquinas de estados finitos
+
+Una **FSM** modela un sistema secuencial con **estados**, **transiciones** y **salidas**.
+
+- **Moore**: la salida depende **solo del estado**.
+- **Mealy**: la salida depende del **estado y de las entradas** (suele necesitar menos estados y reacciona más rápido).
+
+El diseño típico: **diagrama de estados → tabla de estados → asignación de códigos → ecuaciones de entrada de los flip-flops → circuito**.
+
+## Importante recordar
+
+<Callout type="importante">
+- Combinacional = sin memoria; secuencial = con memoria y reloj.
+- Latch → **nivel**; flip-flop → **flanco**.
+- **JK con J=K=1 → toggle**. **SR con S=R=1 → prohibido.**
+- MUX $2^n$:1 usa **$n$ selectores**; decodificador $n \to 2^n$.
+- Moore: salida = f(estado). Mealy: salida = f(estado, entrada).
+- Contador de $n$ bits: módulo $2^n$, divide la frecuencia de reloj entre $2^n$.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que un flip-flop responde mientras el reloj está en alto (eso es un **latch**).
+- Confundir el número de flip-flops con el módulo del contador.
+- Olvidar el **acarreo de entrada** al analizar un sumador de varios bits.
+- Pensar que en Moore la salida cambia con la entrada de inmediato (solo cambia con el **estado**).
+</Callout>
+
+## Ejemplo resuelto
+
+> Un registro de desplazamiento de 8 bits contiene `1011 0001`. Se desplaza **dos veces a la derecha** introduciendo ceros por la izquierda. ¿Qué queda?
+
+- 1.er desplazamiento: `0101 1000`.
+- 2.º desplazamiento: **`0010 1100`**.
+
+Equivale a dividir $177 \div 4$ y quedarse con la parte entera ($44 = 0010\,1100_2$).

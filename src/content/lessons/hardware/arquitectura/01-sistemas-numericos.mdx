@@ -1,0 +1,114 @@
+---
+title: 'Sistemas numéricos, complemento a 2 e IEEE 754'
+summary: 'Conversión entre bases, representación de enteros con signo, desbordamiento, BCD, código Gray y punto flotante.'
+order: 1
+readMinutes: 13
+examWeight: 'Hardware 1.2 · Arquitectura de computadoras'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Una computadora representa **todo** con bits. Un **sistema numérico** define cómo se interpreta una cadena de dígitos según una **base**: **binario** (2), **octal** (8), **decimal** (10) y **hexadecimal** (16). El hexadecimal es un "atajo" del binario: **cada dígito hexadecimal = 4 bits** (y cada dígito octal = 3 bits).
+</Callout>
+
+## Conversiones entre bases
+
+- **Binario → decimal**: suma de potencias de 2. $1011_2 = 8 + 2 + 1 = 11$.
+- **Decimal → binario**: divisiones sucesivas entre 2 y se leen los residuos **de abajo hacia arriba**.
+- **Binario ↔ hexadecimal**: agrupa de **4 en 4** desde la derecha. `1011 0111` → `B7`.
+- **Hexadecimal → decimal**: $B7_{16} = 11 \cdot 16 + 7 = 183$.
+
+| Dec | Bin | Hex | | Dec | Bin | Hex |
+| --- | --- | --- | --- | --- | --- | --- |
+| 10 | 1010 | A | | 13 | 1101 | D |
+| 11 | 1011 | B | | 14 | 1110 | E |
+| 12 | 1100 | C | | 15 | 1111 | F |
+
+Con $n$ bits se pueden representar $2^n$ valores distintos; para distinguir $N$ valores hacen falta $\lceil \log_2 N \rceil$ bits (300 valores → **9 bits**, porque $2^8 = 256 < 300 \le 512$).
+
+<Callout type="tip">
+Memoriza las potencias de 2 hasta $2^{10} = 1024$ (1 KiB). Con ellas haces casi cualquier conversión de cabeza: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024.
+</Callout>
+
+## Enteros con signo
+
+| Representación | Cómo funciona | Rango con $n$ bits | Problema |
+| --- | --- | --- | --- |
+| **Signo-magnitud** | El MSB es el signo, el resto la magnitud | $-(2^{n-1}-1)$ a $2^{n-1}-1$ | Dos ceros (+0 y −0) |
+| **Complemento a 1** | Se invierten todos los bits | igual que arriba | Dos ceros |
+| **Complemento a 2** | Se invierten los bits y **se suma 1** | $-2^{n-1}$ a $2^{n-1}-1$ | Ninguno: **un solo cero** |
+
+El **complemento a 2** es el estándar porque la **suma y la resta usan el mismo circuito**. En 8 bits el rango es **−128 a +127** (asimétrico: hay un negativo más). Para obtener **−45**:
+
+1. $45 = 0010\,1101$.
+2. Invierte: $1101\,0010$.
+3. Suma 1: **$1101\,0011$** (`D3` en hex).
+
+Para leer un número negativo, vuelve a aplicar el complemento a 2 y pon el signo. Para **extender el signo** a más bits, **replica el MSB** (`1101 0011` → `1111 1111 1101 0011`).
+
+<Callout type="tip">
+Atajo para negar: recorre el número de **derecha a izquierda**, copia los bits hasta el **primer 1** (inclusive) y **invierte todos los demás**.
+</Callout>
+
+## Desbordamiento (overflow)
+
+Ocurre cuando el resultado **no cabe** en el rango representable. En complemento a 2 se detecta cuando:
+
+- **Sumas dos positivos y el resultado sale negativo**, o
+- **Sumas dos negativos y el resultado sale positivo.**
+
+Sumar números de signos **distintos nunca** produce overflow. **No confundas overflow con acarreo**: el acarreo (carry) es relevante para números **sin signo**; el overflow, para números **con signo**.
+
+Ejemplo en 8 bits: $100 + 50 = 150$ → `0110 0100 + 0011 0010 = 1001 0110`, que se lee como **−106**. ¡Overflow!
+
+## Otros códigos
+
+- **BCD**: cada dígito decimal en 4 bits (`25` → `0010 0101`). Desperdicia combinaciones (1010–1111) y su suma requiere **corrección**, pero convierte fácil a displays.
+- **Código Gray**: dos valores consecutivos difieren en **un solo bit**. $G = N \oplus (N \gg 1)$. Evita lecturas erróneas en codificadores y en los mapas K.
+- **ASCII**: 7 bits (128 caracteres); **Unicode/UTF-8** amplía a todos los idiomas.
+- **Bit de paridad**: detecta (no corrige) errores de **1 bit**. Los **códigos de Hamming** detectan 2 y **corrigen 1**.
+
+## Punto flotante IEEE 754
+
+Representa reales con la forma $(-1)^S \times 1.M \times 2^{E - sesgo}$.
+
+| Formato | Signo | Exponente | Mantisa | Sesgo |
+| --- | --- | --- | --- | --- |
+| **Simple (32 bits)** | 1 | 8 | 23 | **127** |
+| **Doble (64 bits)** | 1 | 11 | 52 | **1023** |
+
+Ejemplo: `0x41500000` = `0 | 10000010 | 1010 0000…`. Exponente $130 - 127 = 3$; mantisa $1.101_2 = 1.625$; valor $= 1.625 \times 2^3 = 13.0$.
+
+<Callout type="importante">
+- Al decodificar: **signo → exponente − sesgo → 1.mantisa** (el "1." está implícito y no se guarda).
+- Los números como 0.1 **no tienen representación exacta** en binario: por eso 0.1 + 0.2 ≠ 0.3 en punto flotante.
+- Casos especiales: exponente todo en 0 → **cero/subnormales**; todo en 1 → **infinito/NaN**.
+</Callout>
+
+## Importante recordar
+
+<Callout type="importante">
+- 1 dígito hex = **4 bits**; 1 byte = **2 dígitos hex**.
+- Complemento a 2: rango $-2^{n-1}$ a $2^{n-1}-1$; **8 bits: −128…127**.
+- `0xFF` en 8 bits con signo vale **−1**; sin signo vale 255.
+- Overflow con signo: **signos iguales en los operandos y distinto en el resultado**.
+- IEEE 754 simple: **1-8-23, sesgo 127**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Leer `1111 1111` como 255 sin saber si el número lleva signo.
+- Calcular el complemento a 2 **sin sumar 1** (eso es complemento a 1).
+- Pensar que el acarreo final indica overflow en aritmética con signo.
+- Olvidar el **sesgo** del exponente o el **1 implícito** al decodificar IEEE 754.
+</Callout>
+
+## Ejemplo resuelto
+
+> ¿Cómo se representa −45 en complemento a 2 de 8 bits?
+
+$45 = 0010\,1101$ → invertir: $1101\,0010$ → sumar 1: **$1101\,0011$**. Comprobación: $-128 + 64 + 16 + 2 + 1 = -45$ ✓.

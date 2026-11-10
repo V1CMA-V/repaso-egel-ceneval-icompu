@@ -1,0 +1,106 @@
+---
+title: 'Sistemas de control: lazo abierto, lazo cerrado y respuesta'
+summary: 'Elementos de un sistema de control, diferencia entre lazo abierto y cerrado, función de transferencia, polos, estabilidad y respuesta transitoria.'
+order: 1
+readMinutes: 12
+examWeight: 'Hardware 1.4 · Teoría de control'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Un **sistema de control** hace que una variable física (temperatura, velocidad, posición, nivel) **se comporte como se desea**. Sus elementos son:
+
+- **Planta (proceso)**: lo que se controla (horno, motor, tanque).
+- **Referencia / consigna (r)**: el valor **deseado**.
+- **Salida (y)**: el valor **real** de la variable controlada.
+- **Sensor**: mide la salida.
+- **Controlador**: decide la acción a partir del **error**.
+- **Actuador**: ejecuta la acción (válvula, resistencia, motor).
+- **Perturbación (d)**: efecto externo no deseado (abrir la puerta del horno).
+</Callout>
+
+## Lazo abierto vs lazo cerrado
+
+| | **Lazo abierto** | **Lazo cerrado (realimentado)** |
+| --- | --- | --- |
+| Usa la medición de la salida | **No** | **Sí** (sensor + realimentación) |
+| Corrige perturbaciones | **No** | **Sí** |
+| Complejidad y costo | Baja | Mayor |
+| Riesgo de inestabilidad | **No** | **Sí** (hay que diseñarlo bien) |
+| Ejemplos | Tostador con **temporizador**, lavadora con ciclos fijos, semáforo por tiempo | **Termostato**, control de crucero, piloto automático |
+
+En **lazo cerrado con realimentación negativa**, el controlador actúa sobre el **error**:
+
+$$e(t) = r(t) - y(t)$$
+
+Si la salida supera a la referencia, el error es negativo y el controlador **reduce** la acción; así se **autocorrige**.
+
+<Callout type="tip">
+Pregunta clave para clasificar: **"¿el sistema mide el resultado y se ajusta?"** Si el tostador solo cuenta 2 minutos sin importar cuán dorado quede el pan, es **lazo abierto**. Si un termostato enciende y apaga según la temperatura medida, es **lazo cerrado**.
+</Callout>
+
+## Función de transferencia, polos y estabilidad
+
+La **función de transferencia** $G(s) = \dfrac{Y(s)}{R(s)}$ describe la relación entrada-salida de un sistema lineal en el dominio de Laplace. Es el cociente de dos polinomios:
+
+- Las raíces del **numerador** son los **ceros**.
+- Las raíces del **denominador** son los **polos**.
+
+**Los polos determinan la estabilidad:**
+
+- **Todos** los polos con **parte real negativa** (semiplano izquierdo) → sistema **estable**.
+- **Algún** polo con parte real **positiva** → **inestable** (la respuesta crece sin límite).
+- Polos sobre el **eje imaginario** → **marginalmente estable** (oscila sin amortiguarse).
+- Polos **complejos** → respuesta **oscilatoria**; polos **reales** → respuesta sin oscilación.
+
+Ejemplo: polos en $s = -2 \pm 3j$ → parte real $-2 < 0$ → **estable** y oscilatorio (subamortiguado).
+
+**Valor final** de una respuesta a escalón de magnitud $A$: se obtiene con la **ganancia en DC** $G(0)$. Para $G(s) = \dfrac{10}{s + 5}$, $G(0) = 2$; con un escalón de 3 la salida final es $2 \times 3 = 6$.
+
+<Callout type="tip">
+Mira **solo el signo de la parte real** de los polos: negativa → estable; positiva → inestable; cero → marginal. La parte imaginaria solo indica **cuánto oscila**.
+</Callout>
+
+## Respuesta transitoria
+
+**Sistema de primer orden** (constante de tiempo $\tau$): no oscila; alcanza **63 %** del valor final en $1\tau$ y **≈ 98 %** en $4\tau$ (tiempo de establecimiento al 2 %). Ej.: carga de un capacitor, calentamiento simple.
+
+**Sistema de segundo orden**: depende del **factor de amortiguamiento $\zeta$**:
+
+| $\zeta$ | Comportamiento |
+| --- | --- |
+| $\zeta = 0$ | **Oscilación sostenida** (sin amortiguamiento) |
+| $0 < \zeta < 1$ | **Subamortiguado**: oscila y tiene **sobreimpulso** (más sobreimpulso con $\zeta$ **menor**) |
+| $\zeta = 1$ | **Críticamente amortiguado**: la respuesta más rápida **sin** sobreimpulso |
+| $\zeta > 1$ | **Sobreamortiguado**: lento, sin oscilar |
+
+**Parámetros de desempeño** a un escalón: **tiempo de subida** (de 10 % a 90 %), **sobreimpulso máximo ($M_p$)**, **tiempo de establecimiento** ($t_s$, entra y se queda dentro de ±2 %) y **error en estado estable** (diferencia final entre $r$ y $y$).
+
+## Importante recordar
+
+<Callout type="importante">
+- Lazo cerrado **sí** compensa perturbaciones; lazo abierto **no**.
+- Error: $e = r - y$.
+- **Polos en el semiplano izquierdo = estable.**
+- Primer orden: $t_s \approx 4\tau$ (2 %); 63 % en $1\tau$.
+- Segundo orden: **$\zeta$ menor → más sobreimpulso**; $\zeta = 1$ es el límite sin oscilar.
+- El **tiempo de establecimiento** y el **sobreimpulso** suelen estar en conflicto con el **tiempo de subida**.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Creer que la realimentación **siempre** estabiliza: demasiada ganancia puede **volver inestable** un sistema.
+- Confundir **ceros** (numerador) con **polos** (denominador).
+- Decir que más **sobreimpulso** significa más amortiguamiento (es al revés).
+- Confundir **tiempo de subida** con **tiempo de establecimiento**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un sistema de primer orden tiene $\tau = 0.5$ s. ¿Cuánto tarda aproximadamente en establecerse (criterio de 2 %)?
+
+$t_s \approx 4\tau = 4 \times 0.5 =$ **2 s**.

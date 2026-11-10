@@ -1,0 +1,20 @@
+{
+  "cards": [
+    { "id": "fc-hw-arq-01", "front": "Complemento a 2: cómo se obtiene y rango con n bits", "back": "Invertir bits y sumar 1. Rango: −2^(n−1) a 2^(n−1)−1 (8 bits: −128 a 127)." },
+    { "id": "fc-hw-arq-02", "front": "¿Cuándo hay overflow en complemento a 2?", "back": "Cuando dos operandos del mismo signo dan un resultado de signo contrario. No se confunde con el acarreo." },
+    { "id": "fc-hw-arq-03", "front": "IEEE 754 de 32 bits", "back": "1 signo | 8 exponente (sesgo 127) | 23 mantisa. Valor = (−1)^S × 1.M × 2^(E−127)." },
+    { "id": "fc-hw-arq-04", "front": "Von Neumann vs Harvard", "back": "Von Neumann: una memoria para código y datos. Harvard: memorias/buses separados, acceso simultáneo." },
+    { "id": "fc-hw-arq-05", "front": "Ciclo de instrucción", "back": "Fetch (PC → IR, PC++) → Decode → Execute → Memoria → Write-back." },
+    { "id": "fc-hw-arq-06", "front": "Ecuación de tiempo de CPU", "back": "T = IC × CPI / f" },
+    { "id": "fc-hw-arq-07", "front": "Ciclos de un pipeline", "back": "k + n − 1 (k etapas, n instrucciones). Mejora el throughput, no la latencia." },
+    { "id": "fc-hw-arq-08", "front": "Tres riesgos del pipeline y su solución", "back": "Datos (RAW → forwarding/burbujas) · Control (saltos → predicción) · Estructurales (recurso compartido)." },
+    { "id": "fc-hw-arq-09", "front": "Ley de Amdahl", "back": "Speedup = 1 / ((1−P) + P/S). Limitada por la fracción no mejorada." },
+    { "id": "fc-hw-arq-10", "front": "AMAT de una caché", "back": "Tiempo de acierto + tasa de fallos × penalización por fallo." },
+    { "id": "fc-hw-arq-11", "front": "Write-through vs write-back", "back": "WT: escribe en caché y memoria. WB: solo en caché y marca bloque sucio (dirty bit); menos tráfico." },
+    { "id": "fc-hw-arq-12", "front": "SRAM vs DRAM", "back": "SRAM: rápida, cara, sin refresco → caché. DRAM: densa, barata, con refresco → RAM." },
+    { "id": "fc-hw-arq-13", "front": "Página de 4 KB en direcciones de 32 bits", "back": "Offset 12 bits; número de página 20 bits." },
+    { "id": "fc-hw-arq-14", "front": "RAID 0, 1, 5, 6: capacidad y tolerancia", "back": "0: N, ninguna · 1: N/2, un disco · 5: N−1, un disco · 6: N−2, dos discos." },
+    { "id": "fc-hw-arq-15", "front": "Inmediato, directo, indirecto, indexado", "back": "#5 = valor en la instrucción · 5 = dirección · [R1] = dirección en registro · base+índice = arreglos." },
+    { "id": "fc-hw-arq-16", "front": "Polling vs interrupción vs DMA", "back": "Polling: CPU pregunta (gasta CPU). Interrupción: el periférico avisa. DMA: mueve bloques sin CPU." }
+  ]
+}

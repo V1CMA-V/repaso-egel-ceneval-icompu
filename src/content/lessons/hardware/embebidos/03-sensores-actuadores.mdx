@@ -1,0 +1,83 @@
+---
+title: 'Sensores y actuadores: IMU, GPS, motores, servos y relés'
+summary: 'Qué mide cada sensor de movimiento y posición, cómo se controlan los distintos motores y cómo proteger el microcontrolador al manejar cargas.'
+order: 3
+readMinutes: 12
+examWeight: 'Hardware 1.3 · Sistemas embebidos (prioridad alta)'
+---
+
+import Callout from '@/components/Callout.astro';
+
+## ¿Qué es?
+
+<Callout type="que">
+Un sistema embebido interactúa con el mundo físico mediante:
+
+- **Sensores**: convierten una magnitud física (aceleración, temperatura, luz, posición) en una señal eléctrica.
+- **Actuadores**: convierten una señal eléctrica en una acción física (movimiento, calor, luz, flujo).
+- Entre el MCU y la carga se colocan **drivers** (transistor, MOSFET, puente H, relé) porque un pin del MCU entrega solo **unos 20 mA**.
+</Callout>
+
+## Sensores de movimiento y posición
+
+| Sensor | Mide | Notas clave |
+| --- | --- | --- |
+| **Acelerómetro** | **Aceleración lineal** (incluida la gravedad) | **Inclinación**, vibración, caídas, golpes |
+| **Giroscopio** | **Velocidad angular** (°/s) | **Rotación**; al integrar da ángulo, pero **acumula deriva** |
+| **Magnetómetro** | **Campo magnético** terrestre | **Rumbo** (brújula); sensible a imanes y metales |
+| **IMU** | Combina acelerómetro + giroscopio (+ magnetómetro): 6 o 9 ejes | Drones, robots, estabilizadores (ej. MPU6050 por I2C) |
+| **GPS / GNSS** | **Posición, velocidad y hora** por satélites | Necesita **cielo abierto** y ≥ 4 satélites; **no funciona bien en interiores**; entrega tramas NMEA por UART |
+| **Barómetro** | Presión → **altitud** | Complementa al GPS en vuelo |
+| **Encoder** | **Posición/velocidad** de un eje | Realimentación de motores |
+| **Sensor Hall** | Campo magnético | Velocidad de rueda, fin de carrera sin contacto |
+| **PIR** | Movimiento por **infrarrojo pasivo** | Alarmas, iluminación automática |
+| **Ultrasónico / infrarrojo** | **Distancia** | Evitar obstáculos |
+
+<Callout type="tip">
+Distingue por la palabra clave: **"inclinación / aceleración / golpe" → acelerómetro**; **"velocidad de giro / rotación" → giroscopio**; **"rumbo / norte" → magnetómetro**; **"posición global" → GPS**. Un **IMU** reúne varios para estimar **orientación**.
+</Callout>
+
+## Actuadores
+
+- **Motor DC**: velocidad con **PWM**, **sentido** de giro con un **puente H**. Requiere **diodos de rueda libre (flyback)** para absorber los picos inductivos. Nunca se conecta directo al pin del MCU.
+- **Servomotor**: giro a un **ángulo** concreto (típico 0–180°) con realimentación interna. Se controla con pulsos de **1 a 2 ms cada 20 ms**: **1.5 ms ≈ centro (90°)**.
+- **Motor a pasos (stepper)**: gira en **pasos discretos** (ej. 1.8° → 200 pasos por vuelta). Da **posicionamiento preciso en lazo abierto** (sin sensor), usado en impresoras 3D y CNC; se maneja con un **driver**.
+- **Relé**: interruptor **electromecánico** que aísla la carga del MCU y conmuta **cargas AC o DC altas**. Su bobina se excita con un **transistor** más un **diodo flyback**. Alternativa sin partes móviles: **relé de estado sólido (SSR)** o **TRIAC** (AC).
+- **MOSFET**: interruptor electrónico para cargas **DC** (motores, tiras LED) con PWM.
+- **Solenoide / electroválvula**: movimiento lineal o control de flujo.
+
+<Callout type="tip">
+Si el MCU **se reinicia o se comporta de forma errática** al conmutar un relé o motor, sospecha de **picos inductivos**: faltan el **diodo flyback** y/o la **alimentación separada** del driver.
+</Callout>
+
+## Buses de campo y vehículos
+
+- **CAN**: bus **diferencial** (CAN-H, CAN-L), **multimaestro**, con prioridad por identificador; muy **robusto al ruido**. Estándar **automotriz** e industrial.
+- **USB**: conexión **punto a punto** con host y dispositivos, alimentación incluida.
+- **Modbus RTU**: protocolo industrial común sobre **RS-485**.
+
+## Importante recordar
+
+<Callout type="importante">
+- **Acelerómetro = lineal / inclinación; giroscopio = rotación; magnetómetro = rumbo.**
+- El giroscopio **deriva** con el tiempo; por eso se fusiona con acelerómetro y magnetómetro.
+- **GPS no sirve en interiores.**
+- **Motor DC: PWM + puente H + diodos flyback. Servo: ángulo por ancho de pulso. Paso a paso: posición precisa sin sensor.**
+- El **relé aísla**; su bobina necesita transistor + diodo.
+- **CAN** → automotriz.
+</Callout>
+
+## Errores comunes
+
+<Callout type="error">
+- Usar un acelerómetro para medir **velocidad de giro**.
+- Conectar un motor o relé **directo** a un pin del MCU.
+- Olvidar que un **servo** no gira libremente (posiciona), y un **motor a pasos** pierde pasos si se sobrecarga.
+- Esperar posición GPS **dentro de un edificio**.
+</Callout>
+
+## Ejemplo resuelto
+
+> Un robot de interiores debe saber hacia dónde está orientado respecto al norte. El GPS no tiene señal. ¿Qué sensor usa?
+
+Un **magnetómetro** (brújula electrónica). Puede apoyarse en un giroscopio para rapidez de giro, pero el rumbo absoluto lo da el magnetómetro.
