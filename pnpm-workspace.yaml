@@ -1,0 +1,4 @@
+overrides:
+  # @astrojs/check pulls 2.0.0-beta.2, which crashes on load and makes
+  # `astro check` report the package as "not installed".
+  "@emnapi/runtime": 1.11.3
