@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import Sidebar from '@/components/react/Sidebar';
 import { getSidebarAreas } from '@/lib/content';
 
@@ -26,16 +27,29 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       rel="stylesheet"
     />
     <script is:inline>
-      try {
-        // persistentAtom stores the raw string ("light"/"dark"), not JSON.
-        const t = (localStorage.getItem('ceneval:theme') ?? 'dark').replace(/"/g, '');
-        document.documentElement.classList.toggle('dark', t !== 'light');
-      } catch {}
-      try {
-        const collapsed = JSON.parse(localStorage.getItem('ceneval:sidebar-collapsed') ?? 'false');
-        document.documentElement.classList.toggle('sidebar-collapsed', collapsed === true);
-      } catch {}
+      (() => {
+        // The ClientRouter replaces <html> attributes on every navigation, so the
+        // persisted classes are re-applied after each swap (before paint).
+        const apply = () => {
+          const root = document.documentElement;
+          try {
+            // persistentAtom stores the raw string ("light"/"dark"), not JSON.
+            const t = (localStorage.getItem('ceneval:theme') ?? 'dark').replace(/"/g, '');
+            root.classList.toggle('dark', t !== 'light');
+          } catch {}
+          try {
+            const collapsed = JSON.parse(localStorage.getItem('ceneval:sidebar-collapsed') ?? 'false');
+            root.classList.toggle('sidebar-collapsed', collapsed === true);
+          } catch {}
+        };
+        apply();
+        if (!window.__cenevalRootState) {
+          window.__cenevalRootState = true;
+          document.addEventListener('astro:after-swap', apply);
+        }
+      })();
     </script>
+    <ClientRouter />
   </head>
   <body class="min-h-screen">
     <input id="nav-toggle" type="checkbox" class="peer hidden" />
@@ -44,8 +58,48 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       id="app-sidebar"
       class="app-sidebar fixed inset-y-0 left-0 z-20 hidden w-80 border-r border-[color:var(--line)] bg-[color:var(--bg)] pt-12 peer-checked:block lg:block lg:pt-0"
     >
-      <Sidebar client:load areas={areas} currentPath={currentPath} />
+      {/* Persisted on the island itself so it keeps its state but still receives the new currentPath. */}
+      <Sidebar client:load transition:persist="sidebar" areas={areas} currentPath={currentPath} />
     </aside>
+    <script is:inline>
+      // Restore the sidebar scroll position after a full page load and reveal the current item.
+      // Client-side navigations keep the persisted sidebar, so this only runs once.
+      (() => {
+        if (window.__cenevalSidebarScroll) return;
+        window.__cenevalSidebarScroll = true;
+        const KEY = 'ceneval:sidebar-scroll';
+        const nav = document.querySelector('#app-sidebar nav');
+        if (!nav) return;
+        try {
+          const saved = Number(sessionStorage.getItem(KEY));
+          if (saved > 0) nav.scrollTop = saved;
+        } catch {}
+        const active = nav.querySelector('[aria-current="page"]');
+        if (active && nav.clientHeight > 0) {
+          const n = nav.getBoundingClientRect();
+          const a = active.getBoundingClientRect();
+          const margin = 48;
+          if (a.top < n.top + margin || a.bottom > n.bottom - margin) {
+            nav.scrollTop += a.top - n.top - (nav.clientHeight - a.height) / 2;
+          }
+        }
+        addEventListener('pagehide', () => {
+          try {
+            sessionStorage.setItem(KEY, String(nav.scrollTop));
+          } catch {}
+        });
+        // Browsers without Element.moveBefore() detach the persisted island during the swap,
+        // which resets its scroll; carry the position over manually.
+        let top = 0;
+        document.addEventListener('astro:before-swap', () => {
+          top = document.querySelector('#app-sidebar nav')?.scrollTop ?? 0;
+        });
+        document.addEventListener('astro:after-swap', () => {
+          const current = document.querySelector('#app-sidebar nav');
+          if (current && current.scrollTop !== top) current.scrollTop = top;
+        });
+      })();
+    </script>
     <button
       type="button"
       class="sidebar-toggle"
@@ -57,17 +111,23 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       <span class="sidebar-toggle-icon inline-block text-xs transition-transform" aria-hidden="true">‹</span>
     </button>
     <script>
+      // Bundled scripts run once per visit; the button is replaced on every navigation,
+      // so use event delegation and re-sync its state on each page load.
       const KEY = 'ceneval:sidebar-collapsed';
       const root = document.documentElement;
-      const button = document.querySelector<HTMLButtonElement>('[data-sidebar-toggle]');
-      const sync = () => button?.setAttribute('aria-expanded', String(!root.classList.contains('sidebar-collapsed')));
+      const sync = () =>
+        document
+          .querySelector('[data-sidebar-toggle]')
+          ?.setAttribute('aria-expanded', String(!root.classList.contains('sidebar-collapsed')));
       const toggle = () => {
         const collapsed = root.classList.toggle('sidebar-collapsed');
         localStorage.setItem(KEY, JSON.stringify(collapsed));
         sync();
       };
-      sync();
-      button?.addEventListener('click', toggle);
+      document.addEventListener('astro:page-load', sync);
+      document.addEventListener('click', (e) => {
+        if (e.target instanceof Element && e.target.closest('[data-sidebar-toggle]')) toggle();
+      });
       window.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
           e.preventDefault();

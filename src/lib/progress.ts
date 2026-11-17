@@ -58,6 +58,19 @@ export const simActive = persistentAtom<SimState | null>('ceneval:sim', null, {
 
 export const theme = persistentAtom<'dark' | 'light'>('ceneval:theme', 'dark');
 
+/** Sidebar areas the user expanded (slugs). The current area is open by default regardless. */
+export const openAreas = persistentAtom<string[]>('ceneval:open-areas', [], {
+  encode: JSON.stringify,
+  decode: (raw) => {
+    try {
+      const v = JSON.parse(raw);
+      return Array.isArray(v) ? v.filter((s): s is string => typeof s === 'string') : [];
+    } catch {
+      return [];
+    }
+  },
+});
+
 export function toggleLesson(id: string) {
   const p = progress.get();
   const done = p.lessons.includes(id);

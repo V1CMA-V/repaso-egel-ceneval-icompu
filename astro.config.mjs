@@ -8,6 +8,8 @@ import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
   integrations: [mdx(), react()],
+  // With <ClientRouter /> every link is prefetched; hover is the default strategy, made explicit here.
+  prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
