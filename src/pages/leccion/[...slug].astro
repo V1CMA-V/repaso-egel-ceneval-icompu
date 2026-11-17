@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import Base from '@/layouts/Base.astro';
 import CompleteButton from '@/components/react/CompleteButton';
 import LessonPractice from '@/components/LessonPractice.astro';
+import ReadingProgress from '@/components/ReadingProgress.astro';
 import { getLessons } from '@/lib/content';
 import { findArea, findSection } from '@/lib/curriculum';
 
@@ -28,6 +29,7 @@ const toc = headings.filter((h) => h.depth === 2);
 ---
 
 <Base title={lesson.data.title} description={lesson.data.summary}>
+  <ReadingProgress />
   <p class="text-xs uppercase tracking-widest text-accent">{area?.title} · {section?.code} {section?.title}</p>
   <h1 class="font-display mt-2 text-4xl font-extrabold leading-tight sm:text-5xl">{lesson.data.title}</h1>
   <p class="mt-3 text-[color:var(--muted)]">{lesson.data.summary}</p>

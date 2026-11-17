@@ -1,0 +1,42 @@
+<div
+  class="app-progress pointer-events-none fixed inset-x-0 top-0 z-10 h-1 bg-[color:var(--line)] lg:left-80"
+  role="progressbar"
+  aria-label="Progreso de lectura"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow="0"
+  data-reading-progress
+>
+  <div
+    class="h-full origin-left scale-x-0 bg-accent shadow-[0_0_8px_var(--color-accent)]"
+    data-reading-progress-bar
+  ></div>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-reading-progress]');
+  const bar = document.querySelector<HTMLElement>('[data-reading-progress-bar]');
+
+  if (root && bar) {
+    let ticking = false;
+
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      bar.style.transform = `scaleX(${progress})`;
+      root.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  }
+</script>
