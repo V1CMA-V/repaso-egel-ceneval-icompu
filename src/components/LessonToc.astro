@@ -1,0 +1,85 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+const { headings } = Astro.props;
+---
+
+{headings.length > 0 && (
+  <aside class="lesson-toc">
+    <nav class="lesson-toc-nav panel scroll-thin mt-6 p-4 text-sm" aria-label="En esta lección" data-lesson-toc>
+      <p class="mb-2 text-xs font-bold uppercase tracking-widest text-[color:var(--muted)]">En esta lección</p>
+      <ol class="lesson-toc-list grid gap-1 sm:grid-cols-2">
+        {headings.map((h, i) => (
+          <li>
+            <a class="lesson-toc-link hover:text-accent" href={`#${h.slug}`} data-toc-link={h.slug}>
+              <span class="mr-2 text-[color:var(--muted)]">{String(i + 1).padStart(2, '0')}</span>{h.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </aside>
+)}
+
+<script>
+  // With the ClientRouter this bundled script runs only once, so (re)bind on every page load
+  // and drop the previous page's listeners.
+  let controller: AbortController | undefined;
+
+  document.addEventListener('astro:page-load', () => {
+    controller?.abort();
+    controller = undefined;
+
+    const nav = document.querySelector<HTMLElement>('[data-lesson-toc]');
+    if (!nav) return;
+    const items = [...nav.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')]
+      .map((link) => ({ link, heading: document.getElementById(link.dataset.tocLink ?? '') }))
+      .filter((i): i is { link: HTMLAnchorElement; heading: HTMLElement } => i.heading !== null);
+    if (items.length === 0) return;
+
+    controller = new AbortController();
+    const { signal } = controller;
+    let current: HTMLAnchorElement | undefined;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      // The active section is the last heading that has crossed the upper quarter of the viewport;
+      // at the very bottom of the page the last section wins even if its heading never got there.
+      const line = window.innerHeight * 0.25;
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      let active = atBottom ? items[items.length - 1] : undefined;
+      if (!active) {
+        for (const item of items) {
+          if (item.heading.getBoundingClientRect().top <= line) active = item;
+          else break;
+        }
+      }
+      if (active?.link === current) return;
+      current?.removeAttribute('aria-current');
+      current = active?.link;
+      if (!current) return;
+      current.setAttribute('aria-current', 'location');
+      // Keep the highlighted entry visible when the side index scrolls on its own (without moving the page).
+      if (nav.scrollHeight > nav.clientHeight) {
+        const n = nav.getBoundingClientRect();
+        const c = current.getBoundingClientRect();
+        if (c.top < n.top || c.bottom > n.bottom) nav.scrollTop += c.top - n.top - (nav.clientHeight - c.height) / 2;
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true, signal });
+    window.addEventListener('resize', onScroll, { signal });
+    update();
+  });
+</script>

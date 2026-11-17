@@ -4,6 +4,7 @@ import { AREAS } from '@/lib/curriculum';
 import { getAllCards, getAllQuestions, getLessons, getSidebarAreas } from '@/lib/content';
 import Countdown from '@/components/react/Countdown';
 import StudyPlan from '@/components/react/StudyPlan';
+import ResumeReading from '@/components/react/ResumeReading';
 
 const lessons = await getLessons();
 const questions = await getAllQuestions();
@@ -91,6 +92,8 @@ const faqs = [
       <a href="/simulacro" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">📝 Simulacros</a>
     </div>
   </section>
+
+  <ResumeReading client:only="react" />
 
   <div class="mt-6 max-w-md"><Countdown client:load /></div>
 

@@ -79,3 +79,33 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--color
 @media (prefers-reduced-motion: reduce) {
   .app-sidebar, .app-main, .app-progress, .sidebar-toggle { transition: none; }
 }
+
+/* Lesson index: inline block at the top; on wide screens it docks beside the text and follows the reading.
+   Docked when the content (48rem) + gap + index (16.5rem) fits in <main>: ≥91rem with the sidebar, ≥71rem without. */
+@custom-variant toc-wide {
+  @media (min-width: 91rem) { @slot; }
+  @media (min-width: 71rem) { :root.sidebar-collapsed & { @slot; } }
+}
+.lesson-toc-link[aria-current] { color: var(--color-accent); font-weight: 600; }
+.lesson-toc-link[aria-current] > span { color: inherit; }
+.lesson-layout {
+  @variant toc-wide { position: relative; left: -8.25rem; }
+}
+.lesson-toc {
+  @variant toc-wide { position: absolute; top: 0; bottom: 0; left: calc(100% + 2.5rem); width: 14rem; }
+}
+.lesson-toc-nav {
+  @variant toc-wide { position: sticky; top: 2.5rem; margin-top: 0; max-height: calc(100vh - 5rem); overflow-y: auto; }
+}
+.lesson-toc-list {
+  @variant toc-wide { grid-template-columns: minmax(0, 1fr); }
+}
+.lesson-toc-link {
+  @variant toc-wide {
+    display: block; border-left: 2px solid transparent; margin-left: -0.75rem; padding: 0.15rem 0 0.15rem 0.6rem;
+    transition: color 0.15s, border-color 0.15s;
+  }
+}
+.lesson-toc-link[aria-current] {
+  @variant toc-wide { border-left-color: var(--color-accent); }
+}

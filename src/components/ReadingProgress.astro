@@ -1,3 +1,13 @@
+---
+interface Props {
+  /** When given, the reading position is saved for "Continuar donde te quedaste". */
+  lessonId?: string;
+  title?: string;
+  section?: string;
+}
+const { lessonId, title, section } = Astro.props;
+---
+
 <div
   class="app-progress pointer-events-none fixed inset-x-0 top-0 z-10 h-1 bg-[color:var(--line)] lg:left-80"
   role="progressbar"
@@ -6,6 +16,9 @@
   aria-valuemax="100"
   aria-valuenow="0"
   data-reading-progress
+  data-lesson-id={lessonId}
+  data-lesson-title={title}
+  data-lesson-section={section}
 >
   <div
     style="width: 0%"
@@ -14,18 +27,120 @@
   ></div>
 </div>
 
-<script>
-  const root = document.querySelector<HTMLElement>('[data-reading-progress]');
-  const bar = document.querySelector<HTMLElement>('[data-reading-progress-bar]');
+<button
+  type="button"
+  class="panel pointer-events-none fixed bottom-6 right-6 z-10 grid h-12 w-12 translate-y-3 place-items-center !rounded-full opacity-0 transition duration-200 hover:border-accent hover:text-accent data-[visible]:pointer-events-auto data-[visible]:translate-y-0 data-[visible]:opacity-100 motion-reduce:transition-none"
+  aria-label="Volver arriba"
+  title="Volver arriba"
+  tabindex="-1"
+  data-back-to-top
+>
+  <svg class="absolute inset-0 -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
+    <circle
+      cx="24"
+      cy="24"
+      r="22"
+      fill="none"
+      stroke="var(--color-accent)"
+      stroke-width="2"
+      stroke-linecap="round"
+      pathLength="100"
+      stroke-dasharray="100"
+      stroke-dashoffset="100"
+      data-back-to-top-ring></circle>
+  </svg>
+  <span class="relative text-lg leading-none" aria-hidden="true">↑</span>
+</button>
 
-  if (root && bar) {
+<script>
+  import { lastLesson, RESUME_FLAG } from '@/lib/resume';
+
+  // With the ClientRouter this bundled script runs only once, so (re)bind on every page load
+  // and drop the previous page's listeners.
+  const SHOW_AFTER = 0.15;
+  const SAVE_DELAY = 400;
+  let controller: AbortController | undefined;
+  let flush: (() => void) | undefined;
+
+  document.addEventListener('astro:page-load', () => {
+    flush?.();
+    flush = undefined;
+    controller?.abort();
+    controller = undefined;
+
+    const root = document.querySelector<HTMLElement>('[data-reading-progress]');
+    const bar = document.querySelector<HTMLElement>('[data-reading-progress-bar]');
+    if (!root || !bar) return;
+    const toTop = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
+    const ring = document.querySelector<SVGCircleElement>('[data-back-to-top-ring]');
+    const { lessonId, lessonTitle, lessonSection } = root.dataset;
+
+    controller = new AbortController();
+    const { signal } = controller;
     let ticking = false;
+    let progress = 0;
+    let saveTimer: number | undefined;
+
+    const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
+
+    // Coming from the "Continuar" button: jump back to the saved position once.
+    if (lessonId) {
+      let resume = false;
+      try {
+        resume = sessionStorage.getItem(RESUME_FLAG) === lessonId;
+        if (resume) sessionStorage.removeItem(RESUME_FLAG);
+      } catch {}
+      const saved = lastLesson.get();
+      if (resume && saved?.id === lessonId && saved.progress > 0) {
+        window.scrollTo({ top: saved.progress * maxScroll(), behavior: 'auto' });
+      }
+    }
+
+    const save = () => {
+      window.clearTimeout(saveTimer);
+      saveTimer = undefined;
+      if (!lessonId) return;
+      lastLesson.set({
+        id: lessonId,
+        title: lessonTitle ?? document.title,
+        section: lessonSection ?? '',
+        progress: Math.round(progress * 1000) / 1000,
+        at: Date.now(),
+      });
+    };
+    const scheduleSave = () => {
+      window.clearTimeout(saveTimer);
+      saveTimer = window.setTimeout(save, SAVE_DELAY);
+    };
+    // Save pending changes before leaving (client navigation or closing the tab).
+    flush = () => saveTimer !== undefined && save();
+    // Stop listening before the swap: the router scrolls the new page to the top, which must not
+    // be recorded as this lesson's position.
+    document.addEventListener(
+      'astro:before-swap',
+      () => {
+        flush?.();
+        flush = undefined;
+        controller?.abort();
+        controller = undefined;
+      },
+      { signal },
+    );
+    window.addEventListener('pagehide', () => flush?.(), { signal });
 
     const update = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      const max = maxScroll();
+      progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      scheduleSave();
       bar.style.width = `${progress * 100}%`;
       root.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
+
+      if (toTop) {
+        const visible = progress > SHOW_AFTER;
+        toTop.toggleAttribute('data-visible', visible);
+        toTop.tabIndex = visible ? 0 : -1;
+      }
+      ring?.setAttribute('stroke-dashoffset', String(100 - progress * 100));
       ticking = false;
     };
 
@@ -36,8 +151,17 @@
       }
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    toTop?.addEventListener(
+      'click',
+      () => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      },
+      { signal },
+    );
+
+    window.addEventListener('scroll', onScroll, { passive: true, signal });
+    window.addEventListener('resize', onScroll, { signal });
     update();
-  }
+  });
 </script>
