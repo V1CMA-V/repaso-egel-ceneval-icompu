@@ -5,16 +5,17 @@ interface Props {
 }
 const { type = 'tip', title } = Astro.props;
 const styles = {
-  que: { icon: '📘', label: '¿Qué es?', cls: 'border-sky-500/40 bg-sky-500/10' },
-  tip: { icon: '💡', label: 'Tip', cls: 'border-emerald-500/40 bg-emerald-500/10' },
-  importante: { icon: '⚠️', label: 'Importante recordar', cls: 'border-amber-500/50 bg-amber-500/10' },
-  error: { icon: '🚫', label: 'Error común', cls: 'border-red-500/40 bg-red-500/10' },
-  examen: { icon: '🎯', label: 'Cómo cae en el examen', cls: 'border-fuchsia-500/40 bg-fuchsia-500/10' },
+  // Light mode: paler fill + stronger border so the box doesn't read as a solid colored card; titles use -700 for contrast.
+  que: { icon: '📘', label: '¿Qué es?', cls: 'border-sky-600/30 bg-sky-500/[0.06] dark:border-sky-500/40 dark:bg-sky-500/10', title: 'text-sky-700 dark:text-sky-300' },
+  tip: { icon: '💡', label: 'Tip', cls: 'border-emerald-600/30 bg-emerald-500/[0.06] dark:border-emerald-500/40 dark:bg-emerald-500/10', title: 'text-emerald-700 dark:text-emerald-300' },
+  importante: { icon: '⚠️', label: 'Importante recordar', cls: 'border-amber-600/40 bg-amber-500/[0.08] dark:border-amber-500/50 dark:bg-amber-500/10', title: 'text-amber-800 dark:text-amber-300' },
+  error: { icon: '🚫', label: 'Error común', cls: 'border-red-600/30 bg-red-500/[0.06] dark:border-red-500/40 dark:bg-red-500/10', title: 'text-red-700 dark:text-red-300' },
+  examen: { icon: '🎯', label: 'Cómo cae en el examen', cls: 'border-fuchsia-600/30 bg-fuchsia-500/[0.06] dark:border-fuchsia-500/40 dark:bg-fuchsia-500/10', title: 'text-fuchsia-700 dark:text-fuchsia-300' },
 }[type];
 ---
 
 <aside class={`not-prose my-6 rounded-xl border p-4 ${styles.cls}`}>
-  <p class="mb-2 text-xs font-bold uppercase tracking-widest">
+  <p class={`mb-2 text-xs font-bold uppercase tracking-widest ${styles.title}`}>
     <span aria-hidden="true">{styles.icon}</span> {title ?? styles.label}
   </p>
   <div class="callout-body text-[0.95rem] leading-relaxed [&_p]:my-1 [&_ul]:my-1 [&_ul]:list-disc [&_ul]:pl-5">
