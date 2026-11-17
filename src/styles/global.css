@@ -141,3 +141,9 @@ html::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--color
   .review-body { font-size: 0.82rem; line-height: 1.4; }
   .review-body code { background: #eee; }
 }
+
+/* Pomodoro pill: the sidebar already shows the timer, so the pill only appears when the sidebar is hidden
+   (mobile, or collapsed on desktop). */
+@media (min-width: 64rem) {
+  :root:not(.sidebar-collapsed) .pomo-pill { display: none; }
+}

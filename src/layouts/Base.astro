@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Sidebar from '@/components/react/Sidebar';
+import PomodoroTimer from '@/components/react/PomodoroTimer';
 import { getSidebarAreas } from '@/lib/content';
 
 interface Props {
@@ -145,5 +146,11 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         <slot />
       </div>
     </main>
+    {/* Pomodoro: floating pill (only visible when the sidebar is hidden) and the engine that keeps it running. */}
+    <PomodoroTimer client:only="react" transition:persist="pomodoro-pill" variant="pill" />
+    <script>
+      import { startPomodoroEngine } from '@/lib/pomodoro-store';
+      startPomodoroEngine();
+    </script>
   </body>
 </html>

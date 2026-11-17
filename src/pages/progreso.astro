@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import ProgressPanel from '@/components/react/ProgressPanel';
 import StudyPlan from '@/components/react/StudyPlan';
+import StudyStats from '@/components/react/StudyStats';
 import { getSidebarAreas } from '@/lib/content';
 import { EXAM_START } from '@/lib/curriculum';
 
@@ -13,5 +14,6 @@ const areas = await getSidebarAreas();
   <div class="mt-6">
     <ProgressPanel client:load areas={areas} examStart={EXAM_START} tools />
   </div>
+  <div class="mt-12"><StudyStats client:only="react" /></div>
   <div class="mt-12"><StudyPlan client:load areas={areas} /></div>
 </Base>

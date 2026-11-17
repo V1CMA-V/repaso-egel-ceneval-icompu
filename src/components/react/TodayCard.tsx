@@ -3,6 +3,8 @@ import { useStore } from '@nanostores/react';
 import { progress } from '@/lib/progress';
 import { lastLesson, lessonPath, RESUME_FLAG } from '@/lib/resume';
 import { dueCards, nextStep, pendingErrors } from '@/lib/today';
+import { dayKey, dayMs, formatDuration, streak } from '@/lib/pomodoro';
+import { pomoSettings } from '@/lib/pomodoro-store';
 import type { SidebarArea } from './Sidebar';
 
 const dateFmt = new Intl.DateTimeFormat('es', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -56,6 +58,11 @@ export default function TodayCard({
 }) {
   const p = useStore(progress);
   const last = useStore(lastLesson);
+  const pomo = useStore(pomoSettings);
+  const today = dayKey(Date.now());
+  const pomos = p.study[today]?.pomodoros ?? 0;
+  const studied = dayMs(p.study[today]);
+  const days = streak(p.study, pomo.goal, today);
 
   const cards = dueCards(cardIds, p.cards);
   const errors = pendingErrors(questionIds, p.errors);
@@ -142,6 +149,20 @@ export default function TodayCard({
           <Task href="/errores" icon="❌" label="Errores" value="Limpio ✓" sub="Sin errores pendientes" done />
         )}
       </div>
+
+      <a
+        href="/enfoque"
+        className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 rounded-xl border border-[color:var(--line)] px-4 py-2.5 text-sm hover:border-accent"
+      >
+        <span>
+          🍅 Hoy: <b className={pomos >= pomo.goal ? 'text-emerald-600 dark:text-emerald-400' : 'text-accent'}>{pomos}/{pomo.goal}</b> pomodoros
+        </span>
+        {studied > 0 && <span className="text-[color:var(--muted)]">⏱ {formatDuration(studied)}</span>}
+        <span className="text-[color:var(--muted)]">
+          🔥 racha {days} {days === 1 ? 'día' : 'días'}
+        </span>
+        <span className="ml-auto text-xs font-bold text-accent">{pomos === 0 ? 'Empezar a enfocarte →' : 'Enfoque →'}</span>
+      </a>
     </section>
   );
 }

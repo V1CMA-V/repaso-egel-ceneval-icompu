@@ -1,6 +1,7 @@
 import { persistentAtom } from '@nanostores/persistent';
 import { newCard, review, type CardState, type Grade } from './sm2';
 import type { AreaScore, SimMode, SimState } from './simulacro';
+import { addEntry, type StudyEntry, type StudyLog } from './pomodoro';
 
 export interface ExamRecord {
   best: number;
@@ -29,9 +30,13 @@ export interface Progress {
   /** práctica mixta acumulada por área */
   practice: Record<string, AreaScore>;
   sims: SimRecord[];
+  /** tiempo de estudio (pomodoro) por día y área */
+  study: StudyLog;
+  /** último bloque registrado (evita duplicados entre pestañas) */
+  studyBlock: number;
 }
 
-const empty = (): Progress => ({ lessons: [], exams: {}, errors: {}, cards: {}, practice: {}, sims: [] });
+const empty = (): Progress => ({ lessons: [], exams: {}, errors: {}, cards: {}, practice: {}, sims: [], study: {}, studyBlock: 0 });
 
 export const progress = persistentAtom<Progress>('ceneval:progress', empty(), {
   encode: JSON.stringify,
@@ -137,4 +142,11 @@ export function exportProgress() {
 export function importProgress(json: string) {
   const parsed = JSON.parse(json);
   progress.set({ ...empty(), ...parsed });
+}
+
+/** Adds a pomodoro focus block to the study log (ignored if that block was already recorded). */
+export function recordStudy(entry: StudyEntry) {
+  const p = progress.get();
+  const next = addEntry(p.study, p.studyBlock, entry);
+  if (next) progress.set({ ...p, study: next.log, studyBlock: next.lastBlock });
 }

@@ -1,0 +1,23 @@
+---
+import Base from '@/layouts/Base.astro';
+import PomodoroTimer from '@/components/react/PomodoroTimer';
+import PomodoroSettings from '@/components/react/PomodoroSettings';
+import StudyStats from '@/components/react/StudyStats';
+---
+
+<Base title="Enfoque" description="Temporizador pomodoro y tiempo de estudio por área para el EGEL ICOMPU.">
+  <h1 class="font-display text-4xl font-extrabold">Enfoque</h1>
+  <p class="mt-2 text-sm text-[color:var(--muted)]">
+    Bloques de estudio y descanso (técnica pomodoro). El reloj sigue corriendo mientras navegas por las lecciones y el
+    tiempo se registra en el área que estás estudiando.
+  </p>
+
+  <div class="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
+    <PomodoroTimer client:only="react" variant="full" />
+    <PomodoroSettings client:only="react" />
+  </div>
+
+  <div class="mt-10">
+    <StudyStats client:only="react" />
+  </div>
+</Base>

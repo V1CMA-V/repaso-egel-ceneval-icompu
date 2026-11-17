@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { openAreas, progress, theme } from '@/lib/progress';
 import Countdown from './Countdown';
+import PomodoroTimer from './PomodoroTimer';
 
 export interface SidebarLesson {
   id: string;
@@ -85,6 +86,8 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
 
       <Countdown compact />
 
+      <PomodoroTimer variant="compact" />
+
       <input
         value={q}
         onChange={(e) => setQ(e.target.value)}
@@ -100,6 +103,7 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
           ❌ Errores ({Object.keys(p.errors).length})
         </a>
         <a href="/progreso" className="panel px-2 py-1 hover:border-accent">📊 Progreso</a>
+        <a href="/enfoque" className="panel px-2 py-1 hover:border-accent">⏱ Enfoque</a>
       </div>
 
       {areas.map((area, ai) => {
