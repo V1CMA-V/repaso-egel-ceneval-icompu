@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { progress, recordExam } from '@/lib/progress';
+import { emitPracticeFinished } from '@/lib/practice-events';
 import RichText from './RichText';
 import { useShortcuts } from './useShortcuts';
 import { attemptsLeft, neededToPass, score, shuffle, type Question, type ScoreResult, MAX_ATTEMPTS_PER_HOUR } from '@/lib/scoring';
@@ -77,6 +78,7 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
     const r = score(ordered, answers);
     setResult(r);
     onFinish?.(ordered, r);
+    if (!graded) emitPracticeFinished({ sectionKey, correct: r.correct, total: r.total, passed: r.passed });
     if (graded) {
       const rightIds = ordered.filter((q) => !r.wrongIds.includes(q.id)).map((q) => q.id);
       recordExam(sectionKey, r.correct, r.total, r.passed, r.wrongIds, rightIds);
