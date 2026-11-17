@@ -27,7 +27,12 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
   const opened = useStore(openAreas);
   // The area containing the current page is open by default; closing it only lasts for this page view.
   const currentArea = areas.find((a) =>
-    a.sections.some((s) => currentPath === `/examen/${s.key}` || s.lessons.some((l) => currentPath === `/leccion/${l.id}`)),
+    a.sections.some(
+      (s) =>
+        currentPath === `/examen/${s.key}` ||
+        currentPath === `/repaso/${s.key}` ||
+        s.lessons.some((l) => currentPath === `/leccion/${l.id}`),
+    ),
   )?.slug;
   const [currentClosed, setCurrentClosed] = useState(false);
   const navRef = useRef<HTMLElement>(null);
@@ -135,6 +140,7 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
               {sections.map((s) => {
                 const { lessons } = s;
                 const examPath = `/examen/${s.key}`;
+                const reviewPath = `/repaso/${s.key}`;
                 return (
                   <div key={s.key} className="ml-2 border-l border-[color:var(--line)] pl-3">
                     <p className="mt-2 text-[0.7rem] uppercase tracking-wider text-[color:var(--muted)]">{s.title}</p>
@@ -166,6 +172,18 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
                         >
                           <span>{p.exams[s.key]?.passed ? '✅' : '📋'}</span>
                           <span><b className="text-accent">examen</b> {s.title}</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href={reviewPath}
+                          aria-current={currentPath === reviewPath ? 'page' : undefined}
+                          className={`flex gap-2 rounded px-2 py-1 hover:bg-accent/10 ${
+                            currentPath === reviewPath ? 'bg-accent/15 font-semibold text-accent' : ''
+                          }`}
+                        >
+                          <span>🗒</span>
+                          <span><b className="text-accent">repaso</b> {s.title}</span>
                         </a>
                       </li>
                     </ul>

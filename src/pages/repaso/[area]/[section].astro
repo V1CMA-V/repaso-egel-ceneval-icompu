@@ -1,0 +1,75 @@
+---
+import Base from '@/layouts/Base.astro';
+import { AREAS } from '@/lib/curriculum';
+import { getSectionReview } from '@/lib/content';
+
+export function getStaticPaths() {
+  return AREAS.flatMap((a) =>
+    a.sections.map((s) => ({
+      params: { area: a.slug, section: s.slug },
+      props: { key: s.key, title: s.title, code: s.code, areaTitle: a.title },
+    })),
+  );
+}
+
+const { key, title, code, areaTitle } = Astro.props;
+const lessons = await getSectionReview(key);
+// Points = list items (a callout without a list counts as one point).
+const count = (k: 'importante' | 'error') =>
+  lessons.reduce((n, l) => n + l[k].reduce((m, html) => m + Math.max(1, html.match(/<li[\s>]/g)?.length ?? 0), 0), 0);
+---
+
+<Base title={`Repaso: ${title}`} description={`Hoja de repaso de ${code} ${title}: puntos clave y errores comunes.`}>
+  <header class="review-header">
+    <p class="text-xs uppercase tracking-widest text-accent">{areaTitle} · Hoja de repaso {code}</p>
+    <h1 class="font-display mt-1 text-4xl font-extrabold leading-tight">{title}</h1>
+    <p class="mt-3 text-sm text-[color:var(--muted)]" data-no-print>
+      Solo los puntos <b>⚠️ Importante recordar</b> y <b>🚫 Errores comunes</b> de las {lessons.length} lecciones de la
+      sección. Úsala para el repaso final.
+    </p>
+    <div class="mt-4 flex flex-wrap gap-2 text-xs" data-no-print>
+      <button type="button" class="panel px-3 py-1.5 hover:border-accent" data-print>🖨 Imprimir / guardar PDF</button>
+      <a href={`/examen/${key}`} class="panel px-3 py-1.5 hover:border-accent">📋 Examen de la sección</a>
+    </div>
+  </header>
+
+  {lessons.length === 0 ? (
+    <p class="panel mt-6 p-6 text-sm">Todavía no hay lecciones con puntos de repaso en esta sección.</p>
+  ) : (
+    <div class="mt-8 grid gap-6">
+      {lessons.map((l, i) => (
+        <section class="review-lesson panel p-5" aria-labelledby={`r-${i}`}>
+          <h2 id={`r-${i}`} class="font-display text-xl font-extrabold">
+            <span class="mr-2 text-accent">{String(i + 1).padStart(2, '0')}</span>
+            <a href={`/leccion/${l.id}`} class="hover:text-accent">{l.title}</a>
+          </h2>
+          <div class="review-cols mt-4 grid gap-4 md:grid-cols-2">
+            {l.importante.length > 0 && (
+              <div class="review-block review-importante rounded-xl border border-amber-500/50 bg-amber-500/10 p-4">
+                <p class="mb-2 text-xs font-bold uppercase tracking-widest">⚠️ Importante recordar</p>
+                {l.importante.map((html) => <div class="review-body" set:html={html} />)}
+              </div>
+            )}
+            {l.error.length > 0 && (
+              <div class="review-block review-error rounded-xl border border-red-500/40 bg-red-500/10 p-4">
+                <p class="mb-2 text-xs font-bold uppercase tracking-widest">🚫 Errores comunes</p>
+                {l.error.map((html) => <div class="review-body" set:html={html} />)}
+              </div>
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+  )}
+
+  <p class="mt-6 text-center text-xs text-[color:var(--muted)]" data-no-print>
+    {count('importante')} puntos clave · {count('error')} errores comunes
+  </p>
+</Base>
+
+<script>
+  // Bundled scripts run once with the ClientRouter; delegate so the button works after every navigation.
+  document.addEventListener('click', (e) => {
+    if (e.target instanceof Element && e.target.closest('[data-print]')) window.print();
+  });
+</script>
