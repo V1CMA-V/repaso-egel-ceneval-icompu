@@ -1,5 +1,8 @@
 import { useStore } from '@nanostores/react';
+import { progress } from '@/lib/progress';
 import { lastLesson, lessonPath, RESUME_FLAG } from '@/lib/resume';
+import { nextStep } from '@/lib/today';
+import type { SidebarArea } from './Sidebar';
 
 const rtf = new Intl.RelativeTimeFormat('es', { numeric: 'auto' });
 
@@ -13,12 +16,17 @@ function timeAgo(at: number) {
 }
 
 /** "Continuar donde te quedaste": links back to the last lesson and restores the reading position. */
-export default function ResumeReading() {
+export default function ResumeReading({ areas }: { areas: SidebarArea[] }) {
   const last = useStore(lastLesson);
+  const p = useStore(progress);
   if (!last) return null;
 
   const pct = Math.round(last.progress * 100);
   const finished = pct >= 95;
+  // "Hoy toca" already offers to resume it when it is also the next lesson of the plan.
+  const passed = Object.keys(p.exams).filter((k) => p.exams[k]?.passed);
+  const next = nextStep(areas, p.lessons, passed);
+  if (!finished && next?.kind === 'lesson' && next.id === last.id) return null;
 
   function markResume() {
     if (finished || !last) return;

@@ -5,6 +5,7 @@ import { getAllCards, getAllQuestions, getLessons, getSidebarAreas } from '@/lib
 import Countdown from '@/components/react/Countdown';
 import StudyPlan from '@/components/react/StudyPlan';
 import ResumeReading from '@/components/react/ResumeReading';
+import TodayCard from '@/components/react/TodayCard';
 
 const lessons = await getLessons();
 const questions = await getAllQuestions();
@@ -93,7 +94,11 @@ const faqs = [
     </div>
   </section>
 
-  <ResumeReading client:only="react" />
+  <TodayCard client:only="react" areas={sidebarAreas} cardIds={cards.map((c) => c.id)} questionIds={questions.map((q) => q.id)}>
+    <div slot="fallback" class="panel mt-6 h-56" aria-hidden="true"></div>
+  </TodayCard>
+
+  <ResumeReading client:only="react" areas={sidebarAreas} />
 
   <div class="mt-6 max-w-md"><Countdown client:load /></div>
 
