@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { attemptsLeft, neededToPass, score, type Question } from './scoring';
-import { isDue, newCard, review } from './sm2';
+import { formatInterval, isDue, newCard, previewIntervals, review } from './sm2';
 
 const q = (id: string, answer: number): Question => ({ id, text: id, options: ['a', 'b', 'c'], answer, explanation: '' });
 
@@ -32,5 +32,16 @@ describe('sm2', () => {
   it('failing resets repetitions', () => {
     const good = review(review(newCard(0), 2, 0), 2, 0);
     expect(review(good, 0, 0).reps).toBe(0);
+  });
+  it('previews the next interval for each grade', () => {
+    const p = previewIntervals(undefined, 0);
+    expect(formatInterval(p[0])).toBe('10 min');
+    expect(formatInterval(p[1])).toBe('1 día');
+    expect(formatInterval(p[3])).toBe('3 días');
+    expect(p[0] < p[1] && p[1] <= p[2] && p[2] < p[3]).toBe(true);
+  });
+  it('formats intervals in short Spanish', () => {
+    expect(formatInterval(5 * 3_600_000)).toBe('5 h');
+    expect(formatInterval(60 * 86_400_000)).toBe('2 meses');
   });
 });

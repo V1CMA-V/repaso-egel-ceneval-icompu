@@ -26,3 +26,26 @@ export function review(card: CardState, grade: Grade, now = Date.now()): CardSta
 }
 
 export const isDue = (card: CardState | undefined, now = Date.now()) => !card || card.due <= now;
+
+/** Time until the card would be due again for each grade (ms), to label the grade buttons. */
+export function previewIntervals(card: CardState | undefined, now = Date.now()): Record<Grade, number> {
+  const c = card ?? newCard(now);
+  return {
+    0: review(c, 0, now).due - now,
+    1: review(c, 1, now).due - now,
+    2: review(c, 2, now).due - now,
+    3: review(c, 3, now).due - now,
+  };
+}
+
+/** Short Spanish label for a duration: "10 min", "5 h", "1 día", "3 días", "2 meses". */
+export function formatInterval(ms: number): string {
+  const min = Math.max(1, Math.round(ms / 60_000));
+  if (min < 60) return `${min} min`;
+  const h = Math.round(min / 60);
+  if (h < 24) return `${h} h`;
+  const d = Math.round(ms / DAY);
+  if (d < 30) return d === 1 ? '1 día' : `${d} días`;
+  const m = Math.round(d / 30);
+  return m === 1 ? '1 mes' : `${m} meses`;
+}
