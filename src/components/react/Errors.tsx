@@ -28,6 +28,11 @@ export default function Errors({ questions }: { questions: Question[] }) {
               {q.passage && (
                 <blockquote className="mb-2 whitespace-pre-line border-l-4 border-accent pl-3 text-[color:var(--muted)]"><RichText>{q.passage}</RichText></blockquote>
               )}
+              {q.code && (
+                <pre className="mb-2 overflow-x-auto rounded-lg border border-[color:var(--line)] bg-black/20 p-3 text-sm">
+                  <code>{q.code}</code>
+                </pre>
+              )}
               <p><strong>Correcta:</strong> <RichText>{q.options[q.answer]!}</RichText></p>
               <p className="mt-1 text-[color:var(--muted)]"><RichText>{q.explanation}</RichText></p>
             </div>
