@@ -32,7 +32,7 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
   }
 
   return (
-    <nav className="flex h-full flex-col gap-4 overflow-y-auto p-4 text-sm" aria-label="Contenido">
+    <nav className="scroll-thin flex h-full flex-col gap-4 overflow-y-auto p-4 text-sm" aria-label="Contenido">
       <div className="flex items-center justify-between">
         <a href="/" className="font-display text-xl font-extrabold">
           EGEL <span className="text-accent">ICOMPU</span>
