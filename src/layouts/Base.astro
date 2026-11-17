@@ -27,7 +27,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     />
     <script is:inline>
       try {
-        const t = JSON.parse(localStorage.getItem('ceneval:theme') ?? '"dark"');
+        // persistentAtom stores the raw string ("light"/"dark"), not JSON.
+        const t = (localStorage.getItem('ceneval:theme') ?? 'dark').replace(/"/g, '');
         document.documentElement.classList.toggle('dark', t !== 'light');
       } catch {}
       try {
