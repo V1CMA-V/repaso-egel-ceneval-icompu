@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
+import { Brain, ChevronRight, Coffee, Pause, Play, RotateCcw, SkipForward, Square, Timer, type LucideIcon } from 'lucide-react';
 import { formatClock, isActive, PHASE_LABEL, remaining, total, type TimerState } from '@/lib/pomodoro';
 import { pomoSettings, pomoTimer, restartBlock, skipBlock, stopSession, toggleTimer } from '@/lib/pomodoro-store';
 
@@ -34,7 +35,10 @@ function usePomodoro() {
   return { t, s, left, pct, mounted };
 }
 
-const icon = (t: TimerState) => (t.phase === 'focus' ? '🍅' : '☕');
+const PhaseIcon = ({ t, size = 14 }: { t: TimerState; size?: number }) => {
+  const I: LucideIcon = t.phase === 'focus' ? Brain : Coffee;
+  return <I size={size} className="inline-block shrink-0 align-[-0.125em]" />;
+};
 
 function statusText(t: TimerState) {
   if (t.status === 'idle') return t.finished ? `Listo: ${PHASE_LABEL[t.phase]}` : PHASE_LABEL[t.phase];
@@ -42,97 +46,111 @@ function statusText(t: TimerState) {
 }
 
 function primaryLabel(t: TimerState) {
-  if (t.status === 'running') return '⏸ Pausar';
-  if (t.status === 'paused') return '▶ Reanudar';
-  if (t.finished) return t.phase === 'focus' ? '▶ Iniciar estudio' : '▶ Iniciar descanso';
-  return '▶ Iniciar';
+  if (t.status === 'running') return 'Pausar';
+  if (t.status === 'paused') return 'Reanudar';
+  if (t.finished) return t.phase === 'focus' ? 'Iniciar estudio' : 'Iniciar descanso';
+  return 'Iniciar';
 }
+
+const PlayPause = ({ t, size }: { t: TimerState; size: number }) =>
+  t.status === 'running' ? <Pause size={size} /> : <Play size={size} />;
 
 function Controls({ t, size = 'sm' }: { t: TimerState; size?: 'sm' | 'lg' }) {
   const big = size === 'lg';
-  const btn = `rounded-lg border border-[color:var(--line)] font-bold hover:border-accent hover:text-accent ${big ? 'px-4 py-2.5 text-sm' : 'px-2 py-1 text-xs'}`;
+  const btn = `inline-flex items-center gap-1.5 rounded-lg border border-[color:var(--line)] font-bold hover:border-accent hover:text-accent ${big ? 'px-4 py-2.5 text-sm' : 'px-2 py-1 text-xs'}`;
+  const is = big ? 16 : 12;
   return (
     <div className={`flex flex-wrap items-center ${big ? 'justify-center gap-3' : 'gap-2'}`}>
       <button
         type="button"
         onClick={toggleTimer}
-        className={`rounded-lg bg-accent font-bold text-white shadow-lg shadow-accent/30 hover:brightness-110 ${big ? 'px-6 py-2.5 text-sm' : 'px-3 py-1 text-xs'}`}
+        className={`inline-flex items-center gap-1.5 rounded-lg bg-accent font-bold text-white shadow-lg shadow-accent/30 hover:brightness-110 ${big ? 'px-6 py-2.5 text-sm' : 'px-3 py-1 text-xs'}`}
       >
+        <PlayPause t={t} size={is} />
         {primaryLabel(t)}
       </button>
       <button type="button" onClick={skipBlock} className={btn} title={t.phase === 'focus' ? 'Saltar al descanso' : 'Saltar al estudio'}>
-        ⏭{big && ' Saltar'}
+        <SkipForward size={is} />
+        {big && 'Saltar'}
       </button>
       {t.status !== 'idle' && (
         <button type="button" onClick={restartBlock} className={btn} title="Reiniciar este bloque">
-          ↺{big && ' Reiniciar'}
+          <RotateCcw size={is} />
+          {big && 'Reiniciar'}
         </button>
       )}
       {big && isActive(t) && (
         <button type="button" onClick={stopSession} className={btn} title="Terminar la sesión y volver al primer bloque">
-          ■ Terminar
+          <Square size={is} />
+          Terminar
         </button>
       )}
     </div>
   );
 }
 
-function Bar({ pct }: { pct: number }) {
+function Bar({ pct, flush = false }: { pct: number; flush?: boolean }) {
   return (
-    <span className="mt-2 block h-1 overflow-hidden rounded-full bg-[color:var(--line)]">
+    <span className={`${flush ? '' : 'mt-2 '}block h-0.5 overflow-hidden rounded-full bg-[color:var(--line)]`}>
       <span className="block h-full rounded-full bg-accent transition-[width] duration-500" style={{ width: `${pct * 100}%` }} />
     </span>
   );
 }
 
-/** Sidebar widget: clock + expandable controls. */
+/** Sidebar row (no border): one line with clock + expandable controls. The sidebar wraps it in a card. */
 function Compact() {
   const { t, s, left, pct, mounted } = usePomodoro();
   const [open, setOpen] = useState(false);
-  if (!mounted) return <div className="panel h-[3.25rem]" aria-hidden="true" />;
+  if (!mounted) return <div className="h-11" aria-hidden="true" />;
 
   if (!isActive(t)) {
     return (
-      <div className="panel flex items-center justify-between gap-2 px-3 py-2">
-        <button type="button" onClick={toggleTimer} className="flex items-center gap-2 text-left hover:text-accent">
-          <span aria-hidden="true">🍅</span>
-          <span className="text-xs">
-            <span className="block font-bold">Iniciar pomodoro</span>
-            <span className="text-[color:var(--muted)]">
-              {s.focus} min estudio · {s.short} descanso
-            </span>
+      <div className="flex h-11 items-center">
+        <button type="button" onClick={toggleTimer} className="flex h-full min-w-0 flex-1 items-center gap-2 px-3 text-left hover:bg-accent/10">
+          <span className="grid w-9 shrink-0 place-items-center text-accent">
+            <Play size={16} />
+          </span>
+          <span className="min-w-0 flex-1 truncate text-xs font-bold">Iniciar pomodoro</span>
+          <span className="shrink-0 text-xs text-[color:var(--muted)]">
+            {s.focus}/{s.short} min
           </span>
         </button>
-        <a href="/enfoque" className="text-xs text-[color:var(--muted)] hover:text-accent" title="Abrir enfoque">
-          ⏱
+        <a href="/enfoque" className="grid h-full w-9 shrink-0 place-items-center text-xs text-[color:var(--muted)] hover:bg-accent/10 hover:text-accent" title="Abrir enfoque" aria-label="Abrir enfoque">
+          <Timer size={16} />
         </a>
       </div>
     );
   }
 
+  const cycle = Math.min(t.cycle + (t.phase === 'focus' ? 1 : 0), s.every);
   return (
-    <div className={`panel px-3 py-2 ${t.status === 'running' ? 'border-accent/50' : ''}`}>
+    <div className={t.status === 'running' ? 'bg-accent/5' : ''}>
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex w-full items-center gap-3 text-left"
+        className="relative flex h-11 w-full items-center gap-2 px-3 text-left hover:bg-accent/10"
       >
-        <span aria-hidden="true">{icon(t)}</span>
-        <span className="font-display text-2xl font-extrabold tabular-nums leading-none text-accent">{formatClock(left)}</span>
-        <span className="min-w-0 flex-1 text-xs leading-tight">
-          <span className="block truncate font-bold">{statusText(t)}</span>
-          <span className="text-[color:var(--muted)]">
-            Ciclo {Math.min(t.cycle + (t.phase === 'focus' ? 1 : 0), s.every)}/{s.every}
-          </span>
+        <span className="w-9 shrink-0 text-center font-display text-sm font-extrabold tabular-nums leading-none text-accent">
+          {formatClock(left)}
         </span>
-        <span aria-hidden="true" className={`text-[0.6rem] text-[color:var(--muted)] transition-transform ${open ? 'rotate-90' : ''}`}>
-          ▶
+        <span className="min-w-0 flex-1 truncate text-xs font-bold">
+          <PhaseIcon t={t} /> {statusText(t)}
+        </span>
+        <span className="shrink-0 text-xs text-[color:var(--muted)]">
+          {cycle}/{s.every}
+        </span>
+        <ChevronRight
+          size={12}
+          strokeWidth={3}
+          className={`shrink-0 text-[color:var(--muted)] transition-transform ${open ? 'rotate-90' : ''}`}
+        />
+        <span className="absolute inset-x-3 bottom-0">
+          <Bar pct={pct} flush />
         </span>
       </button>
-      <Bar pct={pct} />
       {open && (
-        <div className="mt-3 space-y-2">
+        <div className="space-y-2 px-3 pb-3 pt-2">
           <Controls t={t} />
           <a href="/enfoque" className="block text-xs text-accent hover:underline">
             Abrir enfoque →
@@ -150,7 +168,7 @@ function Pill() {
   return (
     <div className="pomo-pill panel fixed bottom-6 left-6 z-30 flex items-center gap-2 !rounded-full py-1.5 pl-3 pr-1.5 shadow-lg">
       <a href="/enfoque" className="flex items-center gap-2 hover:text-accent" title={statusText(t)}>
-        <span aria-hidden="true">{icon(t)}</span>
+        <PhaseIcon t={t} size={16} />
         <span className="font-display text-lg font-extrabold tabular-nums text-accent">{formatClock(left)}</span>
         <span className="sr-only">{statusText(t)}</span>
       </a>
@@ -158,10 +176,10 @@ function Pill() {
       <button
         type="button"
         onClick={toggleTimer}
-        aria-label={primaryLabel(t).slice(2)}
+        aria-label={primaryLabel(t)}
         className="grid h-8 w-8 place-items-center rounded-full hover:bg-accent/15 hover:text-accent"
       >
-        {t.status === 'running' ? '⏸' : '▶'}
+        <PlayPause t={t} size={16} />
       </button>
       <span className="sr-only" aria-live="polite">{Math.round(pct * 100)}%</span>
     </div>
@@ -179,8 +197,8 @@ function Full() {
 
   return (
     <section className="panel flex flex-col items-center gap-6 px-6 py-10" aria-label="Temporizador pomodoro">
-      <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent">
-        {icon(t)} {statusText(t)}
+      <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-accent">
+        <PhaseIcon t={t} /> {statusText(t)}
       </p>
 
       <div className="relative grid h-64 w-64 place-items-center">
@@ -224,7 +242,8 @@ function Full() {
       )}
       {t.pausedBy === 'simulacro' && (
         <p role="status" className="text-center text-sm text-[color:var(--muted)]">
-          ⏸ Pausado durante el simulacro (tiene su propio tiempo). Reanúdalo cuando termines.
+          <Pause size={14} className="mr-1 inline-block align-[-0.125em]" />
+          Pausado durante el simulacro (tiene su propio tiempo). Reanúdalo cuando termines.
         </p>
       )}
 

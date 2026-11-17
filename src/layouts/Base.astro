@@ -4,6 +4,7 @@ import { ClientRouter } from 'astro:transitions';
 import Sidebar from '@/components/react/Sidebar';
 import PomodoroTimer from '@/components/react/PomodoroTimer';
 import { getSidebarAreas } from '@/lib/content';
+import { Menu } from '@lucide/astro';
 
 interface Props {
   title: string;
@@ -59,7 +60,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
   </head>
   <body class="min-h-screen">
     <input id="nav-toggle" type="checkbox" class="peer hidden" />
-    <label for="nav-toggle" class="panel fixed left-3 top-3 z-30 px-3 py-2 text-sm lg:hidden">☰ Menú</label>
+    <label for="nav-toggle" class="panel fixed left-3 top-3 z-30 flex items-center gap-2 px-3 py-2 text-sm lg:hidden"><Menu size={16} /> Menú</label>
     <aside
       id="app-sidebar"
       class="app-sidebar fixed inset-y-0 left-0 z-20 hidden w-80 border-r border-[color:var(--line)] bg-[color:var(--bg)] pt-12 peer-checked:block lg:block lg:pt-0"

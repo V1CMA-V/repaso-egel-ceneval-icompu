@@ -24,7 +24,7 @@ export default function Countdown({ compact = false }: { compact?: boolean }) {
   }, []);
 
   if (days === null || left === null) {
-    return <div className={compact ? 'panel h-12' : 'panel h-24'} aria-hidden="true" />;
+    return <div className={compact ? 'h-11' : 'panel h-24'} aria-hidden="true" />;
   }
 
   const inWindow = days <= 0 && left >= 0;
@@ -43,14 +43,15 @@ export default function Countdown({ compact = false }: { compact?: boolean }) {
   const weeks = days > 7 ? ` · ${Math.floor(days / 7)} sem ${days % 7} d` : '';
   const range = single ? label(EXAM_START) : `${label(EXAM_START)}–${label(EXAM_END)}`;
 
+  // Sidebar row (no border): the sidebar groups it with the pomodoro in one card.
   if (compact) {
     return (
-      <a href="/#plan" className="panel flex items-center gap-3 px-3 py-2 hover:border-accent" aria-label={`${text}: ${big}`}>
-        <span className="font-display text-3xl font-extrabold leading-none text-accent tabular-nums">{big}</span>
-        <span className="text-xs leading-tight">
-          <span className="block font-bold">{text}</span>
-          <span className="text-[color:var(--muted)]">EGEL {range}</span>
+      <a href="/#plan" className="flex h-11 items-center gap-2 px-3 hover:bg-accent/10" aria-label={`${text}: ${big}`}>
+        <span className="w-9 shrink-0 text-center font-display text-xl font-extrabold leading-none text-accent tabular-nums">
+          {big}
         </span>
+        <span className="min-w-0 flex-1 truncate text-xs font-bold">{text}</span>
+        <span className="shrink-0 text-xs text-[color:var(--muted)]">{range}</span>
       </a>
     );
   }

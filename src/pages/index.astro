@@ -6,6 +6,7 @@ import Countdown from '@/components/react/Countdown';
 import StudyPlan from '@/components/react/StudyPlan';
 import ResumeReading from '@/components/react/ResumeReading';
 import TodayCard from '@/components/react/TodayCard';
+import { ClipboardList, ClipboardPen, Layers, Target } from '@lucide/astro';
 
 const lessons = await getLessons();
 const questions = await getAllQuestions();
@@ -88,9 +89,9 @@ const faqs = [
         </a>
       )}
       <a href="#temario" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">Ver temario</a>
-      <a href="/flashcards" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">🃏 Flashcards</a>
-      <a href="/practica" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">🎯 Práctica mixta</a>
-      <a href="/simulacro" class="rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent">📝 Simulacros</a>
+      <a href="/flashcards" class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent"><Layers size={16} /> Flashcards</a>
+      <a href="/practica" class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent"><Target size={16} /> Práctica mixta</a>
+      <a href="/simulacro" class="inline-flex items-center gap-2 rounded-xl border border-[color:var(--line)] px-6 py-3 text-sm font-bold hover:border-accent"><ClipboardPen size={16} /> Simulacros</a>
     </div>
   </section>
 
@@ -146,7 +147,7 @@ const faqs = [
                       ))}
                     </ol>
                   )}
-                  <a href={`/examen/${s.key}`} class="mt-3 inline-block text-xs font-bold text-accent hover:underline">📋 Examen de la sección →</a>
+                  <a href={`/examen/${s.key}`} class="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:underline"><ClipboardList size={14} /> Examen de la sección →</a>
                 </div>
               ))}
             </div>

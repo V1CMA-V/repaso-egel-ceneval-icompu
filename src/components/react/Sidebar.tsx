@@ -1,5 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { useStore } from '@nanostores/react';
+import {
+  ChartColumn,
+  Check,
+  ChevronRight,
+  Circle,
+  CircleCheck,
+  CircleX,
+  ClipboardList,
+  ClipboardPen,
+  Layers,
+  Moon,
+  NotebookText,
+  Sun,
+  Target,
+  Timer,
+} from 'lucide-react';
 import { openAreas, progress, theme } from '@/lib/progress';
 import Countdown from './Countdown';
 import PomodoroTimer from './PomodoroTimer';
@@ -19,6 +35,18 @@ export interface SidebarArea {
   title: string;
   sections: SidebarSection[];
 }
+
+const TOOLS = [
+  { href: '/flashcards', Icon: Layers, label: 'Flashcards' },
+  { href: '/practica', Icon: Target, label: 'Práctica' },
+  { href: '/simulacro', Icon: ClipboardPen, label: 'Simulacro' },
+  { href: '/errores', Icon: CircleX, label: 'Errores' },
+  { href: '/progreso', Icon: ChartColumn, label: 'Progreso' },
+  { href: '/enfoque', Icon: Timer, label: 'Enfoque' },
+] as const;
+
+/** Lesson/exam/review rows: same size so titles line up. */
+const ITEM_ICON = { size: 14, strokeWidth: 2.25 } as const;
 
 export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; currentPath: string }) {
   const p = useStore(progress);
@@ -79,31 +107,66 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
         <a href="/" className="font-display text-xl font-extrabold">
           EGEL <span className="text-accent">ICOMPU</span>
         </a>
-        <button onClick={toggleTheme} aria-label="Cambiar tema" className="panel h-9 w-9">
-          {t === 'dark' ? '☾' : '☀'}
+        <button onClick={toggleTheme} aria-label="Cambiar tema" className="panel grid h-9 w-9 place-items-center hover:border-accent hover:text-accent">
+          {t === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
         </button>
       </div>
 
-      <Countdown compact />
+      {/*
+        Top-of-sidebar rules (keep the syllabus visible on short screens):
+        1. Status lives in ONE card; each row is h-11 with the same columns:
+           fixed w-9 lead (number/clock/icon) · one-line label · muted meta on the right.
+        2. Tools are ONE row of equal icon tiles (h-9); the name is in the tooltip and aria-label.
+           Max 6 tools; a 7th means one moves out of the sidebar.
+        3. Counts go in a corner badge on the tile, never in the name.
+        4. The active page's tile is highlighted the same way as the active lesson.
+        5. Nothing else goes above the syllabus; new widgets belong on /enfoque or /progreso.
+        6. Navigation icons are lucide (currentColor, no emojis): 18px tools, 16px buttons, 14px list rows.
+      */}
+      <div className="flex flex-col gap-2">
+        <div className="panel divide-y divide-[color:var(--line)] overflow-hidden">
+          <Countdown compact />
+          <PomodoroTimer variant="compact" />
+        </div>
 
-      <PomodoroTimer variant="compact" />
+        <input
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="> buscar lección…"
+          aria-label="Buscar lección"
+          className="panel w-full px-3 py-2 outline-none focus:border-accent"
+        />
 
-      <input
-        value={q}
-        onChange={(e) => setQ(e.target.value)}
-        placeholder="> buscar lección…"
-        className="panel w-full px-3 py-2 outline-none focus:border-accent"
-      />
-
-      <div className="flex flex-wrap gap-2 text-xs">
-        <a href="/flashcards" className="panel px-2 py-1 hover:border-accent">🃏 Flashcards</a>
-        <a href="/practica" className="panel px-2 py-1 hover:border-accent">🎯 Práctica</a>
-        <a href="/simulacro" className="panel px-2 py-1 hover:border-accent">📝 Simulacro</a>
-        <a href="/errores" className="panel px-2 py-1 hover:border-accent">
-          ❌ Errores ({Object.keys(p.errors).length})
-        </a>
-        <a href="/progreso" className="panel px-2 py-1 hover:border-accent">📊 Progreso</a>
-        <a href="/enfoque" className="panel px-2 py-1 hover:border-accent">⏱ Enfoque</a>
+        <ul className="grid grid-cols-6 gap-1.5" aria-label="Herramientas">
+          {TOOLS.map((tool) => {
+            const active = currentPath === tool.href;
+            const count = tool.href === '/errores' ? Object.keys(p.errors).length : 0;
+            const name = count > 0 ? `${tool.label} (${count})` : tool.label;
+            return (
+              <li key={tool.href}>
+                <a
+                  href={tool.href}
+                  aria-current={active ? 'page' : undefined}
+                  aria-label={name}
+                  title={name}
+                  className={`panel relative grid h-9 place-items-center hover:border-accent hover:bg-accent/10 hover:text-accent ${
+                    active ? '!border-accent bg-accent/15 text-accent' : ''
+                  }`}
+                >
+                  <tool.Icon size={18} />
+                  {count > 0 && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute -right-1.5 -top-1.5 min-w-4 rounded-full bg-accent px-1 text-center text-[0.6rem] font-bold leading-4 text-white"
+                    >
+                      {count > 99 ? '99+' : count}
+                    </span>
+                  )}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
 
       {areas.map((area, ai) => {
@@ -128,12 +191,11 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
                 className="flex w-full items-baseline justify-between gap-2 rounded px-1 py-1 text-left font-bold uppercase tracking-widest hover:bg-accent/10 disabled:cursor-default disabled:hover:bg-transparent"
               >
                 <span className="flex items-baseline">
-                  <span
-                    aria-hidden="true"
-                    className={`mr-1 inline-block w-3 text-[0.6rem] text-[color:var(--muted)] transition-transform ${open ? 'rotate-90' : ''}`}
-                  >
-                    ▶
-                  </span>
+                  <ChevronRight
+                    size={12}
+                    strokeWidth={3}
+                    className={`mr-1 shrink-0 self-center text-[color:var(--muted)] transition-transform ${open ? 'rotate-90' : ''}`}
+                  />
                   <span className="mr-2 text-2xl text-accent">{String(ai + 1).padStart(2, '0')}</span>
                   {area.title}
                 </span>
@@ -160,7 +222,7 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
                                 currentPath === path ? 'bg-accent/15 font-semibold text-accent' : ''
                               }`}
                             >
-                              <span>{p.lessons.includes(l.id) ? '✓' : '○'}</span>
+                              {p.lessons.includes(l.id) ? <Check {...ITEM_ICON} className="mt-0.5 shrink-0 text-accent" /> : <Circle {...ITEM_ICON} className="mt-0.5 shrink-0 text-[color:var(--muted)]" />}
                               <span>{l.title}</span>
                             </a>
                           </li>
@@ -174,7 +236,7 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
                             currentPath === examPath ? 'bg-accent/15 font-semibold text-accent' : ''
                           }`}
                         >
-                          <span>{p.exams[s.key]?.passed ? '✅' : '📋'}</span>
+                          {p.exams[s.key]?.passed ? <CircleCheck {...ITEM_ICON} className="mt-0.5 shrink-0 text-accent" /> : <ClipboardList {...ITEM_ICON} className="mt-0.5 shrink-0" />}
                           <span><b className="text-accent">examen</b> {s.title}</span>
                         </a>
                       </li>
@@ -186,7 +248,7 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
                             currentPath === reviewPath ? 'bg-accent/15 font-semibold text-accent' : ''
                           }`}
                         >
-                          <span>🗒</span>
+                          <NotebookText {...ITEM_ICON} className="mt-0.5 shrink-0" />
                           <span><b className="text-accent">repaso</b> {s.title}</span>
                         </a>
                       </li>
