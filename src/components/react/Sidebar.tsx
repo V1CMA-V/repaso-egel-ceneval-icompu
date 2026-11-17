@@ -50,7 +50,6 @@ const ITEM_ICON = { size: 14, strokeWidth: 2.25 } as const;
 
 export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; currentPath: string }) {
   const p = useStore(progress);
-  const t = useStore(theme);
   const [q, setQ] = useState('');
   const query = q.trim().toLowerCase();
   const opened = useStore(openAreas);
@@ -95,10 +94,13 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
     else openAreas.set(opened.includes(slug) ? opened.filter((s) => s !== slug) : [...opened, slug]);
   }
 
+  // The <html> class (set inline before paint) is the source of truth, so the icon never flashes the wrong theme.
   function toggleTheme() {
-    const next = t === 'dark' ? 'light' : 'dark';
+    const root = document.documentElement;
+    const next = root.classList.contains('dark') ? 'light' : 'dark';
     theme.set(next);
-    document.documentElement.classList.toggle('dark', next === 'dark');
+    root.classList.toggle('dark', next === 'dark');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0d0b0a' : '#fbf8f3');
   }
 
   return (
@@ -107,8 +109,15 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
         <a href="/" className="font-display text-xl font-extrabold">
           EGEL <span className="text-accent">ICOMPU</span>
         </a>
-        <button onClick={toggleTheme} aria-label="Cambiar tema" className="panel grid h-9 w-9 place-items-center hover:border-accent hover:text-accent">
-          {t === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
+        <button
+          type="button"
+          onClick={toggleTheme}
+          aria-label="Cambiar entre modo claro y oscuro"
+          title="Cambiar tema"
+          className="panel grid h-9 w-9 place-items-center hover:border-accent hover:text-accent"
+        >
+          <Sun size={16} className="dark:hidden" />
+          <Moon size={16} className="hidden dark:block" />
         </button>
       </div>
 
@@ -134,7 +143,7 @@ export default function Sidebar({ areas, currentPath }: { areas: SidebarArea[]; 
           onChange={(e) => setQ(e.target.value)}
           placeholder="> buscar lección…"
           aria-label="Buscar lección"
-          className="panel w-full px-3 py-2 outline-none focus:border-accent"
+          className="panel w-full px-3 py-2"
         />
 
         <ul className="grid grid-cols-6 gap-1.5" aria-label="Herramientas">

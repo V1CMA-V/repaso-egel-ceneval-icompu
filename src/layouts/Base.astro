@@ -43,6 +43,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
             // persistentAtom stores the raw string ("light"/"dark"), not JSON.
             const t = (localStorage.getItem('ceneval:theme') ?? 'dark').replace(/"/g, '');
             root.classList.toggle('dark', t !== 'light');
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t !== 'light' ? '#0d0b0a' : '#fbf8f3');
           } catch {}
           try {
             const collapsed = JSON.parse(localStorage.getItem('ceneval:sidebar-collapsed') ?? 'false');
