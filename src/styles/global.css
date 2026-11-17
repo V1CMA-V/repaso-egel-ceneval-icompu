@@ -9,6 +9,11 @@
   --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
   --color-accent: #ff6a1a;
   --color-accent-soft: #ff6a1a22;
+  --animate-reveal: reveal 180ms ease-out;
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+  }
 }
 
 :root {
