@@ -106,7 +106,7 @@ function Compact() {
   if (!isActive(t)) {
     return (
       <div className="flex h-11 items-center">
-        <button type="button" onClick={toggleTimer} className="flex h-full min-w-0 flex-1 items-center gap-2 px-3 text-left hover:bg-accent/10">
+        <button type="button" onClick={toggleTimer} className="focus-inset flex h-full min-w-0 flex-1 items-center gap-2 px-3 text-left hover:bg-accent/10">
           <span className="grid w-9 shrink-0 place-items-center text-accent">
             <Play size={16} />
           </span>
@@ -115,7 +115,7 @@ function Compact() {
             {s.focus}/{s.short} min
           </span>
         </button>
-        <a href="/enfoque" className="grid h-full w-9 shrink-0 place-items-center text-xs text-[color:var(--muted)] hover:bg-accent/10 hover:text-accent" title="Abrir enfoque" aria-label="Abrir enfoque">
+        <a href="/enfoque" className="focus-inset grid h-full w-9 shrink-0 place-items-center text-xs text-[color:var(--muted)] hover:bg-accent/10 hover:text-accent" title="Abrir enfoque" aria-label="Abrir enfoque">
           <Timer size={16} />
         </a>
       </div>
@@ -129,7 +129,7 @@ function Compact() {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="relative flex h-11 w-full items-center gap-2 px-3 text-left hover:bg-accent/10"
+        className="focus-inset relative flex h-11 w-full items-center gap-2 px-3 text-left hover:bg-accent/10"
       >
         <span className="w-9 shrink-0 text-center font-display text-sm font-extrabold tabular-nums leading-none text-accent">
           {formatClock(left)}

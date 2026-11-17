@@ -46,7 +46,7 @@ export default function Countdown({ compact = false }: { compact?: boolean }) {
   // Sidebar row (no border): the sidebar groups it with the pomodoro in one card.
   if (compact) {
     return (
-      <a href="/#plan" className="flex h-11 items-center gap-2 px-3 hover:bg-accent/10" aria-label={`${text}: ${big}`}>
+      <a href="/#plan" className="focus-inset flex h-11 items-center gap-2 px-3 hover:bg-accent/10" aria-label={`${text}: ${big}`}>
         <span className="w-9 shrink-0 text-center font-display text-xl font-extrabold leading-none text-accent tabular-nums">
           {big}
         </span>

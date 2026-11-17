@@ -25,7 +25,7 @@ function NumberField({ label, field, min, max, suffix }: { label: string; field:
             const n = Number(e.target.value);
             if (Number.isFinite(n) && n >= min) updateSettings({ [field]: n });
           }}
-          className="panel w-20 px-2 py-1 text-right tabular-nums outline-none focus:border-accent"
+          className="panel w-20 px-2 py-1 text-right tabular-nums"
         />
         <span className="w-10 text-xs text-[color:var(--muted)]">{suffix}</span>
       </span>
@@ -40,7 +40,7 @@ function Toggle({ label, hint, checked, onChange }: { label: string; hint?: stri
         {label}
         {hint && <span className="block text-xs text-[color:var(--muted)]">{hint}</span>}
       </span>
-      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-[#ff6a1a]" />
+      <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-1 h-4 w-4 accent-accent" />
     </label>
   );
 }

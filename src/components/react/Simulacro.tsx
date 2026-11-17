@@ -193,7 +193,7 @@ export default function Simulacro() {
           <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 className="font-display text-2xl font-extrabold">Revisión</h2>
             <label className="flex items-center gap-2 text-sm">
-              <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} className="accent-[#ff6a1a]" />
+              <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} className="accent-accent" />
               Mostrar también las correctas
             </label>
           </div>
@@ -318,7 +318,7 @@ export default function Simulacro() {
                 <input
                   type="radio"
                   name={`sim-${q.id}`}
-                  className="mt-1 accent-[#ff6a1a]"
+                  className="mt-1 accent-accent"
                   checked={sim.answers[q.id] === oi}
                   onChange={() => update({ answers: { ...sim.answers, [q.id]: oi } })}
                 />

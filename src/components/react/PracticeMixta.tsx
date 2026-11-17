@@ -131,7 +131,7 @@ export default function PracticeMixta() {
       </fieldset>
 
       <label className="flex items-center gap-2 text-sm">
-        <input type="checkbox" checked={onlyErrors} onChange={(e) => setOnlyErrors(e.target.checked)} className="accent-[#ff6a1a]" />
+        <input type="checkbox" checked={onlyErrors} onChange={(e) => setOnlyErrors(e.target.checked)} className="accent-accent" />
         Solo preguntas de mi Tabla de errores ({errorCount})
       </label>
 

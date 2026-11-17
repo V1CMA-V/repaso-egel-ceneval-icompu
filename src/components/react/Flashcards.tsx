@@ -33,7 +33,7 @@ const SECTION_INFO = new Map(
 );
 
 const chip = (active: boolean) =>
-  `rounded-full border px-3 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+  `rounded-full border px-3 py-1 transition-colors ${
     active ? 'border-accent bg-accent/15 font-semibold text-accent' : 'border-[color:var(--line)] hover:border-accent'
   }`;
 
@@ -200,7 +200,7 @@ export default function Flashcards({ cards }: { cards: Card[] }) {
               <button
                 type="button"
                 onClick={() => setRevealed(true)}
-                className="flex w-full items-center justify-center gap-3 border-t border-dashed border-[color:var(--line)] px-6 py-4 text-sm font-bold text-accent hover:bg-accent/10 focus-visible:bg-accent/10 focus-visible:outline-none"
+                className="flex w-full items-center justify-center gap-3 border-t border-dashed border-[color:var(--line)] px-6 py-4 text-sm font-bold text-accent focus-inset hover:bg-accent/10"
               >
                 Mostrar respuesta <Kbd>Espacio</Kbd>
               </button>
@@ -215,7 +215,7 @@ export default function Flashcards({ cards }: { cards: Card[] }) {
                     key={g}
                     type="button"
                     onClick={() => grade(g)}
-                    className={`rounded-xl border px-3 py-2 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${cls}`}
+                    className={`rounded-xl border px-3 py-2 text-left transition-colors ${cls}`}
                   >
                     <span className="flex items-center justify-between text-sm font-bold">
                       {label}

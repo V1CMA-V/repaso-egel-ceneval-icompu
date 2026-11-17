@@ -160,7 +160,7 @@ export default function Quiz({ sectionKey, title, questions, graded = true, limi
                       <input
                         type="radio"
                         name={`${sectionKey}-${q.id}`}
-                        className="mt-1 accent-[#ff6a1a]"
+                        className="mt-1 accent-accent"
                         checked={chosen === oi}
                         disabled={!!result}
                         onChange={() => setAnswers((a) => ({ ...a, [q.id]: oi }))}
