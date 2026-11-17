@@ -48,6 +48,28 @@ Si el requerimiento habla de **tiempo, rendimiento, seguridad, facilidad de uso 
 - **Estados**: **estados de un objeto** y las **transiciones** entre ellos (ej. un pedido: creado → pagado → enviado).
 - **Clases**: **clases, atributos, métodos y relaciones**.
 
+**Cómo distinguirlos cuando el reactivo muestra la imagen**:
+
+- **Óvalos + monigotes (actores)** → **casos de uso**.
+- **Líneas verticales punteadas (líneas de vida)** con **flechas horizontales numeradas** entre objetos → **secuencia**.
+- **Rectángulos redondeados** con **círculo negro** de inicio y círculo con anillo de fin, flechas con **eventos** ("login correcto", "timeout") que cambian de un estado a otro → **estados**.
+- **Acciones** con **rombos de decisión** y **barras de bifurcación/unión** (paralelismo), a veces en **carriles** → **actividades**.
+
+### Análisis estructurado: diagramas de flujo de datos (DFD)
+
+Antes de UML, el **análisis y diseño estructurado** modelaba los sistemas con **DFD**: una representación gráfica del **flujo de la información** y de las **transformaciones** que sufren los datos al pasar de la **entrada** a la **salida**. También se les llama **diagramas de burbujas**.
+
+| Elemento | Notación **Yourdon/DeMarco** | Notación **Gane-Sarson** |
+| --- | --- | --- |
+| **Proceso** (transforma datos) | **Círculo (burbuja)** | Rectángulo de esquinas redondeadas |
+| **Flujo de datos** | Flecha con nombre | Flecha con nombre |
+| **Almacén de datos** | Dos líneas paralelas | Rectángulo abierto por un lado |
+| **Entidad externa** (origen o destino) | Rectángulo | Cuadro sombreado |
+
+- Se construyen por **niveles**: el **nivel 0 o diagrama de contexto** muestra el sistema como **una sola burbuja** con sus entidades externas; cada nivel siguiente **descompone** los procesos.
+- **Complementos del modelo estructurado**: el **diccionario de datos** (define cada dato), el **diagrama entidad-relación** (datos almacenados) y el **diagrama de transición de estados** (comportamiento ante eventos, parte del **modelo de control**).
+- **UML no tiene DFD**: si el reactivo pide modelar **flujo de datos con diseño estructurado**, la notación es **Yourdon/DeMarco** (o Gane-Sarson), no UML ni ANSI (ANSI normaliza los símbolos del **diagrama de flujo** de algoritmos).
+
 ## Relaciones en el diagrama de clases
 
 | Relación | Símbolo | Significado |

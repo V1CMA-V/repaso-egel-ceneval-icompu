@@ -25,6 +25,14 @@ Funciona gracias al **principio de localidad**: los programas tienden a reutiliz
 - **Memorias no volátiles**: **ROM** (grabada de fábrica), **PROM** (programable una vez), **EPROM** (borrable con UV), **EEPROM** (borrable eléctricamente por byte) y **Flash** (borrable por bloques; base de SSD y USB; **NAND** para almacenamiento, **NOR** para ejecutar código).
 - **Volátil** significa que **pierde el contenido sin energía**.
 
+### Firmware: BIOS/UEFI, CMOS y POST
+
+- El **BIOS** (o su sucesor **UEFI**) es el **firmware** grabado en memoria **flash/EEPROM** de la tarjeta madre. Al encender: ejecuta el **POST** (*Power-On Self-Test*, **autodiagnóstico** de CPU, RAM, video y teclado), **inicializa** el hardware y busca el **dispositivo de arranque** para cargar el **gestor de arranque** del SO.
+- Si el POST falla **antes** de que haya video, el BIOS lo avisa con **códigos de pitidos (beep codes)**.
+- La **configuración** (fecha, hora, orden de arranque) se guarda en una pequeña **RAM CMOS** alimentada por una **pila de botón (CR2032)**. **Síntoma clásico**: "cada vez que apago la PC se pierde la configuración y la hora se reinicia" → la **pila CMOS está agotada**: hay que **reemplazarla**.
+- **UEFI** frente al BIOS clásico: admite discos **GPT** de más de 2 TB, interfaz gráfica y **Secure Boot** (solo arranca cargadores firmados).
+- **Actualizar el firmware** corrige errores o agrega compatibilidad, pero **no** resuelve que se pierda la configuración al apagar.
+
 **Capacidad direccionable**: con un bus de direcciones de $n$ bits se acceden $2^n$ posiciones. Un bus de 16 bits direcciona $2^{16} = 64\ \text{K}$ posiciones; con datos de 8 bits, **64 KB**.
 
 <Callout type="tip">

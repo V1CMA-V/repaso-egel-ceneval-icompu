@@ -49,6 +49,23 @@ Con realimentación **unitaria** ($H = 1$): $T = \dfrac{G}{1 + G}$. Ejemplo: $G 
 
 Ejemplo de bloques: $G_1 = 2$ y $G_2 = 5$ en cascada, en paralelo con $G_3 = 1$ → $G_{total} = 2\cdot 5 + 1 = 11$.
 
+**Dinámica de sistemas (ejemplo de la regadera)**: quieres agua a 38 °C. La **discrepancia** entre la temperatura **deseada** y la **percibida** te hace mover la llave; pero el agua tarda en **recorrer la tubería**, así que percibes el cambio **con retardo** y sueles corregir de más. Resultado: la temperatura **oscila** alrededor del valor deseado antes de estabilizarse. Es un **lazo de realimentación negativa con retardo**: el retardo es la causa de las oscilaciones y del sobreimpulso. Una gráfica de **temperatura contra tiempo** que sube, se pasa del valor deseado y oscila hasta asentarse corresponde a este sistema.
+
+### Estudio de simulación: etapas
+
+Cuando un sistema es **caro, peligroso o imposible** de experimentar directamente, se **simula**. Orden de las etapas (Banks / Coss Bu):
+
+1. **Definición del sistema** (objetivos, límites, variables).
+2. **Formulación del modelo** (lógico-matemático).
+3. **Colección (recolección) de datos**.
+4. **Implementación del modelo** en la computadora.
+5. **Verificación y validación** (¿el modelo representa bien la realidad?).
+6. **Experimentación** (correr escenarios).
+7. **Interpretación** de resultados.
+8. **Documentación**.
+
+Una pista: la **validación** siempre va **antes** de experimentar, y la **documentación** va **al final**.
+
 ## Respuesta de segundo orden
 
 Para un sistema de segundo orden subamortiguado ($0 < \zeta < 1$), con **frecuencia natural $\omega_n$**:

@@ -64,6 +64,37 @@ Ante una función recursiva, busca primero: **¿cuál es el caso base?** y **¿e
 **"Camino más corto sin pesos"** → **BFS**. **"Con pesos positivos"** → **Dijkstra**. **"Conectar todos los nodos con costo mínimo"** → **Prim/Kruskal**. **"Orden de dependencias"** → **topológico**.
 </Callout>
 
+### Caminos mínimos: cuál es cuál
+
+| Algoritmo | Problema que resuelve | Pesos negativos | Cómo trabaja | Complejidad |
+| --- | --- | --- | --- | --- |
+| **Dijkstra** | **Un origen → todos** | **No** | Voraz: toma el vértice no visitado con menor distancia (cola de prioridad) | $O((V+E)\log V)$ |
+| **Bellman-Ford** | **Un origen → todos** | **Sí**, y **detecta ciclos negativos** | **Relaja todas las aristas $V-1$ veces** | $O(V \cdot E)$ |
+| **Floyd-Warshall** | **Todos los pares** (todos → todos) | Sí (sin ciclos negativos) | Programación dinámica sobre una **matriz de distancias $V \times V$**: prueba cada vértice $k$ como intermedio | $O(V^3)$ |
+| **A\*** | **Un origen → un destino** | No | Dijkstra guiado por una **heurística** $f(n) = g(n) + h(n)$ (costo real + estimado al destino) | Depende de $h$ |
+
+**Cómo reconocerlos en un diagrama**: si el reactivo muestra una **matriz** que se actualiza con `D[i][j] = min(D[i][j], D[i][k] + D[k][j])` → **Floyd-Warshall**. Si muestra **aristas con peso negativo** y varias pasadas de relajación → **Bellman-Ford**. Si los nodos llevan un valor **h** (distancia estimada a la meta) → **A\***.
+
+**Reconocer el recorrido por el orden de visita**: numera los nodos según el orden en que se exploran. Si después de la raíz se visitan **todos sus vecinos** antes de bajar → **BFS**. Si se baja **por una rama hasta el fondo** y luego se retrocede (*backtracking*) → **DFS**.
+
+**Recorridos de un árbol binario** (raíz R, subárbol izquierdo I, derecho D):
+
+```
+        F
+      /   \
+     B     G
+    / \     \
+   A   D     I
+      / \   /
+     C   E H
+```
+
+- **Preorden (R-I-D)**: F, B, A, D, C, E, G, I, H → la **raíz va primero**.
+- **Inorden (I-R-D)**: A, B, C, D, E, F, G, H, I → en un **árbol binario de búsqueda** sale **ordenado**.
+- **Postorden (I-D-R)**: A, C, E, D, B, H, I, G, F → la **raíz va al final**.
+
+**BFS paso a paso** desde un vértice *s*: (1) se marca *s* y se mete en la cola; (2) se saca el primero de la cola y se descubren sus vecinos no visitados, anotando su distancia = distancia del padre + 1; (3) se encolan; (4) se repite hasta vaciar la cola. Así se alcanzan los nodos a distancia *k* solo después de todos los de distancia *k − 1*, y se obtiene un **árbol BFS** con raíz *s* que da los caminos más cortos en número de aristas.
+
 ## Importante recordar
 
 <Callout type="importante">

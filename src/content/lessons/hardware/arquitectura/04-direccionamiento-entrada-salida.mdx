@@ -74,6 +74,19 @@ Las interrupciones **enmascarables** pueden desactivarse; las **no enmascarables
 
 **Buses de E/S modernos**: **PCIe, USB, SATA** son **seriales** (punto a punto, de alta velocidad); los buses paralelos antiguos (PCI, IDE) fueron sustituidos por problemas de sincronización.
 
+### USB por dentro
+
+- **Topología**: un **host** (controlador) y hasta **127 dispositivos** conectados en **estrella escalonada** mediante **hubs**. El host **siempre inicia** las transferencias: el dispositivo nunca habla sin que se le pregunte.
+- **Enumeración**: un dispositivo recién conectado responde en la **dirección 0** (por defecto); el host le asigna después una dirección única de **7 bits** (1–127).
+- **Endpoint (punto final)**: **ubicación dentro del dispositivo** desde o hacia la que se transfieren datos. El **endpoint 0** (control) existe siempre; un dispositivo admite hasta 16 números de endpoint por dirección.
+- **Pipe (tubería)**: **canal lógico** entre el software del host y un endpoint. Las **pipes de mensajes** (control) son **bidireccionales**; las de flujo (stream) llevan datos en un solo sentido.
+- **Tipos de transferencia**: **control** (configuración), **bulk** (grandes volúmenes sin tiempo garantizado: impresoras, memorias), **interrupt** (poca información con latencia acotada: teclado, ratón) e **isócrona** (tiempo garantizado, sin reintentos: audio y video).
+- **Paquetes**: hay de **token**, de **datos** y de **handshake** (ACK/NAK/STALL), es decir, viajan **datos y control**. Un token tiene los campos **PID → ADDR (7 bits) → ENDP (4 bits) → CRC5**: el **PID** va **primero** (identifica el tipo de paquete) y el **CRC** va **al final**; el CRC5 del token se calcula sobre **ADDR y ENDP**. Los paquetes de datos usan **CRC16**.
+
+<Callout type="tip">
+Pistas de reactivo: **"dirección de un dispositivo recién conectado"** → **0**. **"Tamaño de la dirección USB"** → **7 bits**. **"Primer campo de un paquete"** → **PID**; **"último"** → **CRC**. **"Audio o video en tiempo real"** → transferencia **isócrona**.
+</Callout>
+
 <Callout type="importante">
 - **Una ISR debe ser corta** y no bloquear: lo largo se difiere al programa principal.
 - Los datos compartidos entre ISR y programa principal requieren **protección** (variables `volatile`, secciones críticas).

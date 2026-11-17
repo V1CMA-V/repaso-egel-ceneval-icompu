@@ -24,6 +24,7 @@ El **sistema operativo (SO)** es el software que **administra los recursos de ha
 - **PCB (bloque de control de proceso)**: estructura con la información del proceso (estado, registros, PC, prioridad, memoria).
 - **Estados**: **nuevo → listo → ejecución → bloqueado (espera E/S) → terminado**. De ejecución se pasa a **listo** si se le acaba el quantum (o lo expropian) y a **bloqueado** si espera E/S.
 - **Cambio de contexto**: **guardar el estado** del proceso actual y **cargar** el del siguiente; es **sobrecarga** (tiempo sin trabajo útil).
+- **Multiprogramación**: varios procesos **residen en memoria** a la vez; cuando el que se ejecuta se **bloquea esperando E/S**, la CPU pasa a otro. **No hace más rápida a la CPU**, pero **aumenta su utilización** porque **traslapa el cómputo de un proceso con la E/S de otro**, y así el conjunto de tareas termina antes. **Multitarea (tiempo compartido)** agrega el reparto por **quantum** para dar respuesta interactiva.
 - **Demonio (daemon)**: proceso en **segundo plano** que ofrece un servicio. **Tiempo real**: el SO garantiza **respuesta en plazos** (**duro**: fallar un plazo es una falla; **blando**: tolera retrasos).
 
 ## Planificación de la CPU
@@ -33,6 +34,7 @@ El **sistema operativo (SO)** es el software que **administra los recursos de ha
 | **FCFS** | **Primero en llegar, primero en atenderse** (sin expropiación) | **Efecto convoy**: un proceso largo retrasa a todos |
 | **SJF** | Primero el **trabajo más corto** | Da el **menor tiempo de espera promedio**; puede causar **inanición** de los largos |
 | **Prioridades** | Atiende por **prioridad** | **Inanición** de los de baja prioridad; se resuelve con **envejecimiento (aging)** |
+| **SRTF** (*Shortest Remaining Time First*) | Versión **expropiativa de SJF**: si llega un proceso cuyo **tiempo restante** es menor que el del que se ejecuta, **lo desaloja** | Óptimo en espera promedio con llegadas escalonadas; más cambios de contexto e inanición de largos |
 | **Round Robin** | Cada proceso recibe un **quantum** por turnos (**expropiativo**) | **Equitativo**; quantum muy **pequeño** → mucho cambio de contexto; muy **grande** → se parece a FCFS |
 
 **Ejemplo** (llegan todos en el instante 0): **P1 = 24 ms, P2 = 3 ms, P3 = 3 ms**.

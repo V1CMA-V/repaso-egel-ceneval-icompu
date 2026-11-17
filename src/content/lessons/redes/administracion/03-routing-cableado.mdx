@@ -48,6 +48,8 @@ El **enrutamiento** es el proceso por el que un **router** decide por qué inter
 
 **IGP** (dentro de un AS): RIP, OSPF, EIGRP. **EGP** (entre AS): **BGP**.
 
+**Horizonte dividido (split horizon)**: regla de los protocolos de **vector distancia** (RIP, EIGRP) para evitar bucles: **un router no anuncia una ruta por la misma interfaz por la que la aprendió**. Efecto secundario en una topología **hub-and-spoke** sobre **Frame Relay/NBMA** (un router central **RTA** con una sola interfaz física hacia dos sucursales **RTB** y **RTC**): RTA aprende las rutas de RTB por esa interfaz y **no las reenvía** a RTC por la misma interfaz, así que **las sucursales no reciben las rutas de la otra**. **Solución**: **desactivar el split horizon en la interfaz del hub** (`no ip split-horizon eigrp 1`) o usar **subinterfaces punto a punto**. Cambiar listas de acceso o la autosumarización no lo resuelve.
+
 <Callout type="tip">
 **"Red empresarial grande, convergencia rápida, estándar abierto"** → **OSPF**. **"Pequeña, simple, máximo 15 saltos"** → **RIP**. **"Entre proveedores de Internet / sistemas autónomos"** → **BGP**.
 </Callout>
@@ -62,6 +64,14 @@ Subsistemas:
 4. **Cuarto de telecomunicaciones**: racks, patch panels, switches de piso.
 5. **Cuarto de equipos**: servidores y equipos principales.
 6. **Acometida**: entrada de los servicios externos al edificio.
+
+**Fases de un proyecto de cableado estructurado** (orden cronológico):
+
+1. **Preinstalación**: levantamiento del sitio, planos, cálculo de nodos y materiales.
+2. **Precableado (instalación de canalizaciones)**: ductos, charolas, escalerillas, racks.
+3. **Tendido y terminación (cableado y recorte/ponchado)**: pasar el cable, recortarlo y conectorizarlo en jacks y patch panels, etiquetar.
+4. **Pruebas y certificación**: verificar con un certificador (mapa de cableado, longitud, atenuación, NEXT) y documentar.
+5. **Capacitación y entrega**: documentación final y capacitación al usuario.
 
 **Cables UTP**: **directo** = **mismo estándar en ambos extremos** (T568B–T568B) para conectar **dispositivos distintos** (PC–switch); **cruzado** = **568A en un extremo y 568B en el otro** (equipos iguales, hoy Auto-MDIX lo hace innecesario).
 

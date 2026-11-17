@@ -33,6 +33,22 @@ La **arquitectura de software** define la **estructura de alto nivel** del siste
 **"Separar interfaz, datos y lógica de control"** → **MVC**. **"Escalar y desplegar partes de forma independiente"** → **microservicios**. **"Presentación, negocio y datos"** → **capas**.
 </Callout>
 
+**Construir una SOA** (orden habitual de adopción):
+
+1. **Diseñar para la interoperabilidad** adoptando **estándares** (servicios web, contratos bien definidos).
+2. **Virtualizar los servicios mediante mediación** (un bus de servicios, ESB, desacopla al consumidor del proveedor).
+3. **Registrar y dar seguimiento** a los servicios (registro/repositorio de servicios).
+4. **Gobernar, proteger y gestionar** los servicios (políticas, seguridad, monitoreo de niveles de servicio).
+
+### Proceso genérico de diseño
+
+**Analizar el problema** (requerimientos, contexto) → **diseño arquitectónico** (**generar arquitecturas candidatas**, **evaluarlas**, **seleccionar y finalizar la arquitectura**) → **diseño detallado** (refinar componentes, interfaces, algoritmos y datos; **generar y mejorar alternativas** de diseño detallado y **finalizar el diseño**).
+
+- El **diseño arquitectónico** es **de alto nivel**: ve el sistema **en grande**, por componentes y sus relaciones.
+- El **diseño detallado** es **de bajo nivel**: baja a clases, métodos y estructuras de datos.
+- **Ojo con la palabra "resolución"**: los bancos de reactivos basados en Fox (*Introduction to Software Engineering Design*) llaman al arquitectónico proceso de **"alta resolución"** (*high-level*) y al detallado de **"baja resolución"** (*low-level*). Si una opción dice "el arquitectónico es de baja resolución" o "el detallado es de alta resolución", **es falsa** con esa convención.
+- Cada etapa produce un **diseño finalizado** antes de pasar a la siguiente: no se "finaliza el diseño" antes de **seleccionar** una alternativa.
+
 ## Patrones de diseño
 
 - **Creacionales**: **Singleton** (**una sola instancia** global, ej. configuración), **Factory** (**crea objetos** sin exponer la clase concreta), **Builder**.

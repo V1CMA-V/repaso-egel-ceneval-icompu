@@ -26,6 +26,20 @@ El **modelo OSI** divide la comunicación en **7 capas**, cada una con una funci
 | 2 | **Enlace de datos** | **Trama** | **MAC, ARP, Ethernet, VLAN** · **switch** |
 | 1 | **Física** | **Bits** | Cables, señales, **hub**, repetidor |
 
+**Protocolos por capa** (típico reactivo de relación de columnas):
+
+| Capa | Protocolos y elementos |
+| --- | --- |
+| 7 Aplicación | HTTP, FTP, SMTP, **POP3**, IMAP, **SNMP**, **SSH**, **Telnet**, **NNTP**, DNS, DHCP, **SMB/CIFS** |
+| 6 Presentación | **ASN.1**, **XDR**, MIME, JPEG, ASCII/EBCDIC, cifrado |
+| 5 Sesión | **NetBIOS**, **RPC**, PPTP, SOCKS (**SSL/TLS** suele ubicarse aquí o en la 6) |
+| 4 Transporte | **TCP**, **UDP**, **SPX**, SCTP |
+| 3 Red | **IPv4/IPv6**, **ICMP**, **IGMP**, IPsec, **X.25 (PLP)**, IPX, NetBEUI\* |
+| 2 Enlace | **Ethernet**, **Token Ring**, **HDLC**, **PPP**, **Frame Relay**, **CDP**, ARP\*, 802.11 MAC |
+| 1 Física | **Cable coaxial**, **par trenzado**, **fibra óptica**, RS-232, hubs, repetidores |
+
+\* ARP y NetBEUI tienen ubicación discutida (ARP entre 2 y 3); los reactivos suelen ponerlos en la 2 y la 3 respectivamente.
+
 <Callout type="tip">
 Regla mnemotécnica de arriba hacia abajo: **A**plicación, **P**resentación, **S**esión, **T**ransporte, **R**ed, **E**nlace, **F**ísica ("**A**ún **P**ienso **S**olo **T**odo **R**ápido **E**n **F**ísica"). Y las PDU de abajo hacia arriba: **bits → trama → paquete → segmento → datos**.
 </Callout>
