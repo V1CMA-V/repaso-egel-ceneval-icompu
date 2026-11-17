@@ -447,8 +447,12 @@
     {
       "id": "sw-dat-0710",
       "lesson": "software/datos/07-ia-generativa-conocimiento",
-      "text": "En el algoritmo A*, f(n) = g(n) + h(n). ¿Qué representa h(n)?",
-      "options": ["El costo real acumulado desde el inicio", "El número de nodos visitados", "Una estimación heurística del costo restante hasta la meta"],
+      "text": "Una aplicación de navegación usa A* para encontrar la ruta entre dos colonias, con f(n) = g(n) + h(n), donde h(n) es la distancia en línea recta desde cada cruce hasta el destino. ¿Qué representa h(n) en el algoritmo?",
+      "options": [
+        "El costo real acumulado desde el inicio",
+        "El número de nodos visitados",
+        "Una estimación heurística del costo restante hasta la meta"
+      ],
       "answer": 2,
       "explanation": "g es el costo real desde el inicio y h estima lo que falta. Si h no sobreestima, A* encuentra la solución óptima.",
       "difficulty": "media"
@@ -469,6 +473,102 @@
       "options": ["INNER JOIN", "LEFT JOIN", "CROSS JOIN"],
       "answer": 1,
       "explanation": "LEFT JOIN conserva todas las filas de la tabla izquierda aunque no tengan coincidencias. INNER JOIN las descartaría.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0307",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Analice el siguiente fragmento, aplicado a la matriz de distancias D de un grafo con n vértices. ¿A qué algoritmo corresponde?",
+      "code": "para k = 1 hasta n\n  para i = 1 hasta n\n    para j = 1 hasta n\n      D[i][j] = min(D[i][j], D[i][k] + D[k][j])",
+      "options": ["Bellman-Ford", "Floyd-Warshall", "Dijkstra"],
+      "answer": 1,
+      "explanation": "Floyd-Warshall calcula los caminos mínimos entre todos los pares probando cada vértice k como intermedio; los tres ciclos anidados dan O(n³). Bellman-Ford relaja aristas desde un solo origen y Dijkstra usa una cola de prioridad desde un origen.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0308",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Una casa de cambio modela divisas como vértices y el costo logarítmico de cada conversión como aristas; algunas aristas tienen peso negativo. Necesita calcular el costo mínimo desde el peso mexicano a las demás divisas y detectar si existe un ciclo de arbitraje (ciclo de peso negativo). ¿Qué algoritmo conviene?",
+      "options": ["Dijkstra", "Prim", "Bellman-Ford"],
+      "answer": 2,
+      "explanation": "Bellman-Ford admite pesos negativos y, si tras V − 1 rondas de relajación aún puede mejorar alguna distancia, reporta un ciclo negativo. Dijkstra falla con pesos negativos y Prim construye un árbol de expansión mínima, no caminos mínimos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0309",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Dado el siguiente árbol binario de búsqueda, ¿cuál es su recorrido en postorden?",
+      "code": "        50\n      /    \\\n    30      70\n   /  \\    /\n  20  40  60\n        \\\n        45",
+      "options": [
+        "50, 30, 20, 40, 45, 70, 60",
+        "20, 30, 40, 45, 50, 60, 70",
+        "20, 45, 40, 30, 60, 70, 50"
+      ],
+      "answer": 2,
+      "explanation": "Postorden visita izquierda, derecha y al final la raíz: 20, 45, 40, 30 (subárbol izquierdo), 60, 70 (derecho) y 50. La primera opción es el preorden (raíz primero) y la segunda el inorden, que en un ABB sale ordenado.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0310",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "En el siguiente árbol binario, ¿en qué recorrido se visitan más nodos antes de llegar al 45?",
+      "code": "        50\n      /    \\\n    30      70\n   /  \\    /\n  20  40  60\n        \\\n        45",
+      "options": ["Inorden", "Preorden", "Postorden"],
+      "answer": 1,
+      "explanation": "Preorden: 50, 30, 20, 40, 45 → 4 nodos antes. Inorden: 20, 30, 40, 45 → 3 nodos antes. Postorden: 20, 45 → solo 1 nodo antes.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-dat-0311",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Un programa recorre el siguiente grafo a partir del vértice A, tomando los vecinos en orden alfabético, y reporta el orden de visita A, B, D, E, F, C. ¿Qué recorrido aplicó?",
+      "code": "A: B, C\nB: D, E\nC: F\nD: —\nE: F\nF: —",
+      "options": [
+        "Búsqueda en profundidad (DFS)",
+        "Búsqueda en anchura (BFS)",
+        "Ordenamiento topológico por niveles (Kahn)"
+      ],
+      "answer": 0,
+      "explanation": "Tras A el recorrido baja por B hasta D, regresa a E, sigue a F y solo al final visita C: avanza por una rama hasta el fondo y retrocede, que es DFS. BFS daría A, B, C, D, E, F (por niveles), igual que el algoritmo de Kahn en este grafo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0312",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Ordene los pasos para realizar una búsqueda en anchura (BFS) desde un vértice s.",
+      "passage": "1. Insertar cada vecino recién descubierto al final de la cola\n2. Marcar s como descubierto con distancia 0 e insertarlo en la cola\n3. Repetir mientras la cola no esté vacía\n4. Extraer el primer vértice u de la cola\n5. Para cada vecino v de u no descubierto: marcarlo, asignar d[v] = d[u] + 1 y padre[v] = u",
+      "options": ["2, 4, 5, 1, 3", "2, 5, 4, 1, 3", "4, 2, 5, 3, 1"],
+      "answer": 0,
+      "explanation": "Se inicializa con s en la cola; luego se saca el primero, se descubren sus vecinos con distancia +1, se encolan y se repite hasta vaciar la cola. Así se alcanzan los vértices a distancia k solo después de todos los de distancia k − 1, y los padres forman el árbol BFS con raíz s.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-dat-0313",
+      "lesson": "software/datos/03-recursion-tecnicas-grafos",
+      "text": "Relacione cada algoritmo con el problema que resuelve.",
+      "passage": "Algoritmo\n1. Dijkstra\n2. Floyd-Warshall\n3. Prim\n4. Ordenamiento topológico\n\nProblema\na) Caminos mínimos entre todos los pares de vértices\nb) Árbol de expansión de costo mínimo\nc) Camino mínimo desde un origen con pesos no negativos\nd) Ordenar tareas respetando sus dependencias en un grafo dirigido acíclico",
+      "options": ["1a, 2c, 3b, 4d", "1c, 2a, 3d, 4b", "1c, 2a, 3b, 4d"],
+      "answer": 2,
+      "explanation": "Dijkstra: un origen con pesos no negativos. Floyd-Warshall: todos los pares. Prim: árbol de expansión mínima (voraz). Topológico: orden lineal de un DAG que respeta dependencias.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0108",
+      "lesson": "software/datos/01-estructuras-de-datos",
+      "text": "En un árbol binario de búsqueda, el recorrido ______ entrega las claves en orden ascendente.",
+      "options": ["preorden", "postorden", "inorden"],
+      "answer": 2,
+      "explanation": "Inorden visita subárbol izquierdo, raíz y subárbol derecho; como en un ABB todo lo de la izquierda es menor y todo lo de la derecha mayor, el resultado sale ordenado. Preorden pone la raíz primero y postorden al final.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-dat-0509",
+      "lesson": "software/datos/05-normalizacion-er-acid",
+      "text": "Para construir el modelo conceptual de la base de datos de una clínica se siguen seis pasos. Ordénelos.",
+      "passage": "1. Verificar el modelo con los usuarios\n2. Identificar claves primarias y foráneas\n3. Identificar atributos\n4. Trazar el diagrama entidad-relación\n5. Identificar relaciones\n6. Identificar entidades (futuras tablas)",
+      "options": ["6, 3, 5, 2, 1, 4", "6, 5, 3, 2, 4, 1", "1, 2, 3, 4, 5, 6"],
+      "answer": 1,
+      "explanation": "Primero se identifican las entidades y cómo se relacionan; después sus atributos y claves; con eso se traza el diagrama E-R y, al final, se verifica con los usuarios. Verificar al principio no tiene sentido porque aún no hay modelo.",
       "difficulty": "media"
     }
   ]

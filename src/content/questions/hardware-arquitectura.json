@@ -238,8 +238,12 @@
     {
       "id": "hw-arq-0503",
       "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
-      "text": "¿Qué ventaja tiene una unidad SSD sobre un disco duro mecánico (HDD)?",
-      "options": ["Siempre ofrece mayor capacidad por peso invertido", "No tiene partes móviles y ofrece menor latencia de acceso aleatorio", "Requiere una desfragmentación periódica obligatoria"],
+      "text": "Un área de diseño se queja de que sus equipos tardan mucho en abrir proyectos con miles de archivos pequeños. El técnico propone sustituir los discos duros mecánicos (HDD) por unidades SSD. ¿Qué ventaja de la SSD justifica el cambio?",
+      "options": [
+        "Siempre ofrece mayor capacidad por peso invertido",
+        "No tiene partes móviles y ofrece menor latencia de acceso aleatorio",
+        "Requiere una desfragmentación periódica obligatoria"
+      ],
       "answer": 1,
       "explanation": "El SSD usa memoria flash, sin cabezales ni platos, por lo que su acceso aleatorio es mucho más rápido.",
       "difficulty": "facil"
@@ -251,6 +255,83 @@
       "options": ["32 GiB", "4 MiB", "4 GiB (2³² bytes)"],
       "answer": 2,
       "explanation": "Con 32 bits de dirección hay 2³² posiciones de un byte: 4 GiB.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-arq-0307",
+      "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
+      "text": "Un ingeniero en sistemas computacionales atiende una PC que, al encenderse, emite una serie de tonos e indica que la configuración del BIOS cambió. Modifica la configuración, la guarda y la PC arranca; sin embargo, al apagarla y volver a encenderla aparece el mismo mensaje, la hora se reinicia y los cambios desaparecen. ¿Qué debe hacer para solucionar el problema?",
+      "options": [
+        "Actualizar el firmware del BIOS a la versión más reciente",
+        "Reemplazar la pila (batería) CMOS de la tarjeta madre",
+        "Reemplazar la tarjeta madre completa"
+      ],
+      "answer": 1,
+      "explanation": "La configuración del BIOS y el reloj se guardan en una RAM CMOS alimentada por una pila de botón. Si la pila se agota, todo se pierde al desconectar la energía. Actualizar el firmware no cambia esa memoria volátil, y cambiar la tarjeta madre es innecesario y caro.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-arq-0308",
+      "lesson": "hardware/arquitectura/03-memoria-cache-almacenamiento",
+      "text": "Al encender una computadora de escritorio no aparece imagen en el monitor, pero se escucha una secuencia de pitidos largos y cortos. ¿Qué rutina genera esos pitidos y qué indican?",
+      "options": [
+        "El POST del firmware (BIOS/UEFI), que detectó una falla de hardware antes de inicializar el video",
+        "El gestor de arranque del sistema operativo, que no encontró una partición activa",
+        "El controlador de video del sistema operativo, que no reconoce la resolución del monitor"
+      ],
+      "answer": 0,
+      "explanation": "El POST (Power-On Self-Test) se ejecuta antes de cargar el sistema operativo. Si encuentra un error cuando todavía no hay video (memoria, tarjeta gráfica), lo informa con códigos de pitidos. El gestor de arranque y los controladores del SO actúan después del POST.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-arq-0207",
+      "lesson": "hardware/arquitectura/02-cpu-pipeline-rendimiento",
+      "text": "Complete el esquema de la organización de una computadora: Unidad de control + ______ = Unidad central de procesamiento (CPU).",
+      "options": ["Unidad de memoria", "Unidad aritmético-lógica (ALU)", "Unidad de entrada"],
+      "answer": 1,
+      "explanation": "La unidad de control coordina y secuencia las operaciones, y la ALU realiza las operaciones aritméticas y lógicas. Juntas (con los registros) forman la CPU. La memoria y las unidades de entrada/salida son externas a la CPU en el modelo de Von Neumann.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-arq-0407",
+      "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
+      "text": "Las ubicaciones dentro de un dispositivo USB desde o hacia las cuales se pueden realizar transferencias de datos se denominan ______.",
+      "options": ["hosts", "pipes (tuberías)", "puntos finales (endpoints)"],
+      "answer": 2,
+      "explanation": "Un endpoint es un búfer direccionable dentro del dispositivo; el endpoint 0 (control) siempre existe. La pipe es el canal lógico entre el host y un endpoint, y el host es el controlador que inicia todas las transferencias.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "hw-arq-0408",
+      "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
+      "text": "Un técnico conecta una memoria USB a un hub. Antes de que el host termine la enumeración, ¿en qué dirección responde el dispositivo y de qué tamaño es la dirección única que el host le asignará después?",
+      "options": [
+        "Responde en la dirección 0; el host le asigna una dirección de 7 bits",
+        "Responde en la dirección 1; el host le asigna una dirección de 8 bits",
+        "Responde en la dirección 127; el host le asigna una dirección de 16 bits"
+      ],
+      "answer": 0,
+      "explanation": "Todo dispositivo recién conectado usa la dirección por defecto 0. Durante la enumeración el host le asigna una dirección única de 7 bits (1 a 127), por eso un controlador USB admite hasta 127 dispositivos.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-arq-0409",
+      "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
+      "text": "Ordene los campos de un paquete token USB, del primero que se transmite al último.",
+      "passage": "1. CRC5\n2. ENDP (número de endpoint)\n3. PID (identificador de paquete)\n4. ADDR (dirección del dispositivo)",
+      "options": ["4, 3, 2, 1", "3, 2, 4, 1", "3, 4, 2, 1"],
+      "answer": 2,
+      "explanation": "El PID va primero porque indica el tipo de paquete; le siguen la dirección (7 bits) y el endpoint (4 bits); al final va el CRC5, que se calcula sobre ADDR y ENDP para detectar errores.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-arq-0410",
+      "lesson": "hardware/arquitectura/04-direccionamiento-entrada-salida",
+      "text": "Relacione cada tipo de transferencia USB con el uso que le corresponde.",
+      "passage": "Tipo de transferencia\n1. Control\n2. Bulk (masiva)\n3. Interrupción\n4. Isócrona\n\nUso\na) Audio o cámara web: ancho de banda garantizado, sin reintentos\nb) Configuración y enumeración del dispositivo\nc) Teclado y ratón: pocos datos con latencia acotada\nd) Impresora o memoria: grandes volúmenes sin tiempo garantizado",
+      "options": ["1a, 2d, 3b, 4c", "1b, 2d, 3c, 4a", "1b, 2c, 3d, 4a"],
+      "answer": 1,
+      "explanation": "Control configura el dispositivo (endpoint 0); bulk mueve grandes volúmenes con detección de errores pero sin tiempo garantizado; interrupción sondea periódicamente dispositivos con pocos datos; isócrona garantiza la tasa de transferencia a costa de no reintentar, ideal para audio y video.",
       "difficulty": "media"
     }
   ]

@@ -219,10 +219,11 @@
     {
       "id": "red-adm-0501",
       "lesson": "redes/administracion/01-dhcp-dns",
-      "text": "¿Cuál es el orden de los mensajes DHCP para obtener una dirección IP?",
-      "options": ["Request, Discover, Acknowledge y Offer", "Discover, Offer, Request y Acknowledge (DORA)", "Offer, Discover, Acknowledge y Request"],
+      "text": "Una laptop se conecta a la red de la oficina y obtiene su configuración IP de forma automática. Ordene los mensajes DHCP que se intercambian.",
+      "passage": "1. DHCPOFFER\n2. DHCPACK\n3. DHCPDISCOVER\n4. DHCPREQUEST",
+      "options": ["3, 4, 1, 2", "3, 1, 4, 2", "1, 3, 4, 2"],
       "answer": 1,
-      "explanation": "El cliente descubre (Discover), el servidor ofrece (Offer), el cliente solicita (Request) y el servidor confirma (Acknowledge).",
+      "explanation": "DORA: el cliente difunde un DISCOVER, el servidor responde con un OFFER, el cliente solicita esa dirección con un REQUEST y el servidor la confirma con un ACK.",
       "difficulty": "facil"
     },
     {
@@ -291,10 +292,43 @@
     {
       "id": "red-adm-0509",
       "lesson": "redes/administracion/04-monitoreo-diagnostico",
-      "text": "En syslog, ¿cuál es el nivel de severidad más grave?",
+      "text": "El administrador configura un servidor syslog central y quiere recibir por correo solo los mensajes más críticos, aquellos que indican que el sistema quedó inutilizable. ¿Qué nivel de severidad corresponde al más grave?",
       "options": ["0 – Emergency", "7 – Debug", "4 – Warning"],
       "answer": 0,
       "explanation": "Syslog va de 0 (emergencia) a 7 (depuración); entre menor el número, más grave.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "red-adm-0307",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "El router RTA es el hub de una red Frame Relay hub-and-spoke que lo conecta con las sucursales RTB y RTC a través de una sola interfaz serial. Toda la red está configurada con EIGRP en el sistema autónomo 1. RTA aprende las rutas de ambas sucursales, pero RTB no recibe las rutas de RTC y viceversa. ¿Qué solución resuelve el problema?",
+      "options": [
+        "Configurar el comando de autosumarización bajo el proceso EIGRP de RTA",
+        "Desactivar el horizonte dividido (split horizon) de EIGRP en la interfaz serial de RTA",
+        "Modificar las listas de acceso de RTB y RTC para permitir el tráfico EIGRP"
+      ],
+      "answer": 1,
+      "explanation": "Por split horizon, RTA no anuncia por una interfaz las rutas que aprendió por esa misma interfaz; como ambas sucursales llegan por la misma serial, no se reenvían entre sí. Se resuelve con \"no ip split-horizon eigrp 1\" en el hub o con subinterfaces punto a punto. La autosumarización y las ACL no cambian ese comportamiento.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "red-adm-0308",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "Una empresa contrata la instalación de una red de cableado estructurado para su nuevo edificio. Ordene las fases del proyecto.",
+      "passage": "1. Pruebas y certificación\n2. Precableado (canalizaciones, charolas y racks)\n3. Capacitación y entrega\n4. Preinstalación (levantamiento y planos)\n5. Tendido, recorte y ponchado del cable",
+      "options": ["4, 2, 5, 1, 3", "2, 4, 5, 1, 3", "4, 5, 2, 3, 1"],
+      "answer": 0,
+      "explanation": "Primero se levanta el sitio y se planea (preinstalación); luego se colocan canalizaciones y racks (precableado); después se tiende y termina el cable; se certifica con pruebas y, al final, se entrega documentado y se capacita al usuario.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-adm-0309",
+      "lesson": "redes/administracion/03-routing-cableado",
+      "text": "Relacione cada protocolo de enrutamiento con su característica.",
+      "passage": "Protocolo\n1. RIP\n2. OSPF\n3. EIGRP\n4. BGP\n\nCaracterística\na) Estado de enlace, métrica de costo según ancho de banda y división en áreas\nb) Intercambia rutas entre sistemas autónomos; interconecta a los ISP\nc) Vector distancia con métrica de saltos y un máximo de 15\nd) Propietario de Cisco, vector distancia avanzado (híbrido)",
+      "options": ["1c, 2d, 3a, 4b", "1c, 2a, 3d, 4b", "1b, 2a, 3d, 4c"],
+      "answer": 1,
+      "explanation": "RIP cuenta saltos (16 = inalcanzable); OSPF usa Dijkstra con costos y áreas; EIGRP es el protocolo híbrido de Cisco; BGP es el protocolo exterior entre sistemas autónomos.",
       "difficulty": "facil"
     }
   ]

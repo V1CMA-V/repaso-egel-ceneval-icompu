@@ -255,8 +255,12 @@
     {
       "id": "hw-ctl-0504",
       "lesson": "hardware/control/05-dsp-vision-por-computador",
-      "text": "¿Qué característica es propia de un filtro FIR?",
-      "options": ["Usa realimentación de la salida y puede ser inestable", "Solo opera en el dominio analógico", "Respuesta al impulso de duración finita, siempre estable y con posibilidad de fase lineal"],
+      "text": "Un ingeniero diseña el filtro digital de un equipo de audio y necesita que sea siempre estable y que no distorsione la forma de onda, es decir, que tenga fase lineal. Elige un filtro FIR. ¿Qué característica es propia de ese tipo de filtro?",
+      "options": [
+        "Usa realimentación de la salida y puede ser inestable",
+        "Solo opera en el dominio analógico",
+        "Respuesta al impulso de duración finita, siempre estable y con posibilidad de fase lineal"
+      ],
       "answer": 2,
       "explanation": "Un FIR no tiene realimentación, por lo que siempre es estable. Los IIR sí usan realimentación y pueden volverse inestables.",
       "difficulty": "media"
@@ -282,8 +286,12 @@
     {
       "id": "hw-ctl-0507",
       "lesson": "hardware/control/05-dsp-vision-por-computador",
-      "text": "¿Qué operación se utiliza para resaltar los bordes de una imagen?",
-      "options": ["Calcular el promedio global de todos los píxeles", "Convertir la imagen de grises a RGB", "Convolución con un kernel de detección de bordes, como Sobel"],
+      "text": "Un sistema de visión de una línea de producción debe localizar el contorno de cada pieza antes de medirla. El primer paso del procesamiento consiste en resaltar los bordes de la imagen. ¿Qué operación se utiliza?",
+      "options": [
+        "Calcular el promedio global de todos los píxeles",
+        "Convertir la imagen de grises a RGB",
+        "Convolución con un kernel de detección de bordes, como Sobel"
+      ],
       "answer": 2,
       "explanation": "Los bordes son cambios bruscos de intensidad; se detectan convolucionando con kernels como Sobel.",
       "difficulty": "media"
@@ -313,6 +321,29 @@
       "options": ["Acción derivativa", "Un retardo en el sensor", "Acción integral"],
       "answer": 2,
       "explanation": "La acción integral acumula el error y lo lleva a cero en estado estable. La derivativa mejora la respuesta transitoria.",
+      "difficulty": "media"
+    },
+    {
+      "id": "hw-ctl-0407",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "Un equipo debe evaluar el rediseño de una línea de producción sin detenerla, por lo que hará un estudio de simulación. Ordene las etapas del estudio.",
+      "passage": "1. Experimentación\n2. Formulación del modelo\n3. Documentación\n4. Definición del sistema\n5. Validación del modelo\n6. Colección de datos\n7. Implementación del modelo en computadora\n8. Interpretación de resultados",
+      "options": ["4, 2, 6, 7, 5, 1, 8, 3", "4, 6, 2, 7, 1, 5, 8, 3", "2, 4, 6, 7, 1, 5, 3, 8"],
+      "answer": 0,
+      "explanation": "Primero se define el sistema y se formula el modelo; luego se recolectan datos y se implementa el modelo en la computadora. Antes de experimentar hay que validarlo; después se experimenta, se interpretan los resultados y al final se documenta.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "hw-ctl-0408",
+      "lesson": "hardware/control/04-senales-sistemas-lineales",
+      "text": "Al ajustar la regadera, una persona abre la llave del agua caliente; la temperatura tarda en cambiar, sube de más, la persona corrige, baja de más y la temperatura oscila varias veces alrededor de la deseada antes de estabilizarse. Desde la dinámica de sistemas, ¿qué explica principalmente este comportamiento?",
+      "options": [
+        "Un lazo de realimentación positiva que amplifica la discrepancia hasta la saturación",
+        "Un sistema en lazo abierto: la persona no percibe la temperatura del agua",
+        "Un lazo de realimentación negativa con retardo entre la acción y la percepción (el tránsito del agua por la tubería)"
+      ],
+      "answer": 2,
+      "explanation": "La persona compara la temperatura deseada con la percibida (realimentación negativa), pero el agua tarda en recorrer la tubería; ese retardo provoca correcciones excesivas, sobreimpulso y oscilaciones. La realimentación positiva divergiría en lugar de estabilizarse, y en lazo abierto no habría corrección.",
       "difficulty": "media"
     }
   ]

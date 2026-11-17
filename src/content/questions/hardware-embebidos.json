@@ -291,8 +291,12 @@
     {
       "id": "hw-emb-0504",
       "lesson": "hardware/embebidos/05-mecatronica-domotica-robotica",
-      "text": "¿Qué problema resuelve la cinemática inversa de un robot?",
-      "options": ["Calcular la posición del efector a partir de los ángulos de las articulaciones", "Calcular los ángulos de las articulaciones necesarios para que el efector llegue a una posición deseada", "Calcular la corriente de los motores a partir de su velocidad"],
+      "text": "Un brazo robótico de una línea de ensamble debe colocar su pinza exactamente sobre una pieza ubicada en las coordenadas (x, y, z). El controlador resuelve la cinemática inversa del robot. ¿Qué problema resuelve ese cálculo?",
+      "options": [
+        "Calcular la posición del efector a partir de los ángulos de las articulaciones",
+        "Calcular los ángulos de las articulaciones necesarios para que el efector llegue a una posición deseada",
+        "Calcular la corriente de los motores a partir de su velocidad"
+      ],
       "answer": 1,
       "explanation": "La cinemática inversa va de la posición deseada a los ángulos. La opción que calcula la posición a partir de los ángulos es la cinemática directa.",
       "difficulty": "media"
@@ -309,8 +313,12 @@
     {
       "id": "hw-emb-0506",
       "lesson": "hardware/embebidos/05-mecatronica-domotica-robotica",
-      "text": "¿Cómo se define la mecatrónica?",
-      "options": ["Como la integración de mecánica, electrónica, control y software en un mismo producto o sistema", "Como la rama de la electrónica que estudia únicamente los motores", "Como el diseño exclusivo de estructuras mecánicas"],
+      "text": "Una empresa desarrolla una aspiradora robótica que combina motores y sensores, una tarjeta electrónica, algoritmos de control y el software que planifica la ruta. Al describir el proyecto lo clasifica como un producto mecatrónico. ¿Cómo se define la mecatrónica?",
+      "options": [
+        "Como la integración de mecánica, electrónica, control y software en un mismo producto o sistema",
+        "Como la rama de la electrónica que estudia únicamente los motores",
+        "Como el diseño exclusivo de estructuras mecánicas"
+      ],
       "answer": 0,
       "explanation": "La mecatrónica es multidisciplinaria: combina mecánica, electrónica, control y computación.",
       "difficulty": "facil"

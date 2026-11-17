@@ -66,8 +66,12 @@
     {
       "id": "sw-ing-0202",
       "lesson": "software/ingenieria/02-requerimientos-uml",
-      "text": "¿Cuál de los siguientes enunciados es un requerimiento funcional?",
-      "options": ["El sistema tendrá una disponibilidad del 99.9 %", "Las contraseñas se almacenarán cifradas", "El usuario podrá exportar su historial de compras a PDF"],
+      "text": "Durante la elicitación de requerimientos de una tienda en línea, el analista anota varios enunciados del cliente y debe clasificarlos. ¿Cuál de ellos es un requerimiento funcional?",
+      "options": [
+        "El sistema tendrá una disponibilidad del 99.9 %",
+        "Las contraseñas se almacenarán cifradas",
+        "El usuario podrá exportar su historial de compras a PDF"
+      ],
       "answer": 2,
       "explanation": "Exportar el historial a PDF es una función que el sistema ofrece. Disponibilidad, seguridad y tiempo de carga son cualidades del sistema, es decir, requerimientos no funcionales.",
       "difficulty": "facil"
@@ -228,8 +232,12 @@
     {
       "id": "sw-ing-0407",
       "lesson": "software/ingenieria/04-pruebas-calidad",
-      "text": "¿Qué evalúa el modelo CMMI?",
-      "options": ["La calidad del producto de software mediante ocho características", "El costo total de un proyecto", "La madurez de los procesos de una organización, en niveles del 1 al 5"],
+      "text": "Una fábrica de software quiere demostrar a un cliente gubernamental que sus procesos de desarrollo están definidos, medidos y en mejora continua. Para ello contrata una evaluación con el modelo CMMI. ¿Qué evalúa ese modelo?",
+      "options": [
+        "La calidad del producto de software mediante ocho características",
+        "El costo total de un proyecto",
+        "La madurez de los procesos de una organización, en niveles del 1 al 5"
+      ],
       "answer": 2,
       "explanation": "CMMI mide la madurez del proceso (niveles 1 a 5). Las ocho características de calidad del producto corresponden a ISO/IEC 25010.",
       "difficulty": "media"
@@ -300,8 +308,12 @@
     {
       "id": "sw-ing-0601",
       "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
-      "text": "La 7.ª edición de la Guía del PMBOK del PMI se organiza en:",
-      "options": ["12 principios y 8 dominios de desempeño", "5 grupos de procesos y 10 áreas de conocimiento", "Tres fases: inicio, ejecución y cierre"],
+      "text": "Una gerente de proyectos se certificó hace años con la 6.ª edición del PMBOK y ahora debe alinear su oficina de proyectos con la 7.ª edición. ¿Cómo se organiza esa nueva edición?",
+      "options": [
+        "12 principios y 8 dominios de desempeño",
+        "5 grupos de procesos y 10 áreas de conocimiento",
+        "Tres fases: inicio, ejecución y cierre"
+      ],
       "answer": 0,
       "explanation": "El PMBOK 7 pasó a un enfoque basado en principios y dominios de desempeño. Los 5 grupos de procesos y 10 áreas corresponden a la 6.ª edición.",
       "difficulty": "media"
@@ -354,8 +366,12 @@
     {
       "id": "sw-ing-0607",
       "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
-      "text": "Según ISO 9241-11, la usabilidad se evalúa en términos de:",
-      "options": ["Eficacia, eficiencia y satisfacción del usuario en un contexto de uso", "Velocidad del procesador, memoria y almacenamiento", "Número de líneas de código y de módulos"],
+      "text": "Antes de liberar el portal de trámites de un municipio, el equipo realiza pruebas con ciudadanos para comprobar si pueden completar un trámite, cuánto tardan y qué tan satisfechos quedan. Según ISO 9241-11, ¿en qué términos se evalúa la usabilidad?",
+      "options": [
+        "Eficacia, eficiencia y satisfacción del usuario en un contexto de uso",
+        "Velocidad del procesador, memoria y almacenamiento",
+        "Número de líneas de código y de módulos"
+      ],
       "answer": 0,
       "explanation": "La norma define la usabilidad como el grado en que usuarios específicos logran objetivos con eficacia, eficiencia y satisfacción.",
       "difficulty": "media"
@@ -367,6 +383,126 @@
       "options": ["Reducir el tiempo de carga de la página", "Accesibilidad: que personas con discapacidad visual o auditiva puedan percibir el contenido", "Mejorar la seguridad de la red"],
       "answer": 1,
       "explanation": "Son medidas de accesibilidad (contenido perceptible) recomendadas por las pautas WCAG.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-ing-0107",
+      "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
+      "text": "Ordene cronológicamente las fases del patrón de ciclo de vida que sigue un sistema de información.",
+      "passage": "1. Fase de diseño\n2. Fase de uso\n3. Fase de planificación\n4. Fase de implantación\n5. Fase de análisis",
+      "options": ["5, 3, 1, 4, 2", "3, 5, 4, 1, 2", "3, 5, 1, 4, 2"],
+      "answer": 2,
+      "explanation": "Se planifica el proyecto, se analizan los requerimientos, se diseña la solución, se implanta (construye, prueba e instala) y finalmente se usa y mantiene. La fase de uso siempre va al final.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-ing-0108",
+      "lesson": "software/ingenieria/01-ciclo-vida-metodologias",
+      "text": "Antes de construir un sistema de inventarios, el analista propone un prototipo que incluye solo algunas funciones del sistema final, ya operativas, para que los usuarios trabajen con ellas. Una analogía sería un centro comercial que abre antes de terminar de construir todas sus tiendas. ¿Qué tipo de prototipo es?",
+      "options": [
+        "Prototipo no operacional",
+        "Prototipo de características seleccionadas",
+        "Prototipo primero de una serie"
+      ],
+      "answer": 1,
+      "explanation": "El prototipo de características seleccionadas implementa un subconjunto real del sistema. El no operacional es una maqueta que no funciona y el primero de una serie es un sistema completo instalado en un sitio piloto.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0208",
+      "lesson": "software/ingenieria/02-requerimientos-uml",
+      "text": "Un diseñador de software debe adaptar un sistema de información heredado utilizando el enfoque de diseño estructurado, con diagramas de flujo de datos en los que los procesos se dibujan como círculos. ¿Qué notación debe usar?",
+      "options": ["ANSI", "Yourdon/DeMarco", "UML"],
+      "answer": 1,
+      "explanation": "Yourdon/DeMarco es la notación clásica del análisis estructurado para DFD (procesos como burbujas). ANSI normaliza los símbolos de los diagramas de flujo de algoritmos y UML no incluye DFD.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0209",
+      "lesson": "software/ingenieria/02-requerimientos-uml",
+      "text": "Un(a) ______ es una representación gráfica que describe el flujo de información y las transformaciones que se aplican a los datos conforme pasan de la entrada a la salida.",
+      "options": [
+        "diagrama de flujo de datos (DFD)",
+        "diagrama de transición de estados",
+        "especificación de control"
+      ],
+      "answer": 0,
+      "explanation": "El DFD (también llamado gráfico de burbujas) muestra procesos que transforman datos, flujos, almacenes y entidades externas. El diagrama de transición de estados modela el comportamiento ante eventos y la especificación de control describe cómo se activan los procesos.",
+      "difficulty": "facil"
+    },
+    {
+      "id": "sw-ing-0210",
+      "lesson": "software/ingenieria/02-requerimientos-uml",
+      "text": "En la documentación de una aplicación aparece un diagrama UML con un círculo negro de inicio, rectángulos redondeados llamados \"Inactivo\", \"Validando credenciales\" y \"Sesión iniciada\", y flechas etiquetadas \"login\", \"credenciales correctas\" y \"timeout\" que conectan esos rectángulos. ¿Qué diagrama es?",
+      "options": ["Diagrama de estados", "Diagrama de actividades", "Diagrama de secuencia"],
+      "answer": 0,
+      "explanation": "Los rectángulos redondeados son estados de un objeto y las flechas con eventos son transiciones: es un diagrama de estados (máquina de estados). El de actividades muestra acciones con decisiones y bifurcaciones; el de secuencia, líneas de vida con mensajes en el tiempo.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0307",
+      "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
+      "text": "Una empresa quiere migrar sus aplicaciones aisladas a una arquitectura orientada a servicios (SOA). Ordene las actividades para construirla.",
+      "passage": "1. Gobernar, proteger y gestionar los servicios\n2. Diseñar para la interoperabilidad mediante la adopción de estándares\n3. Registrar y dar seguimiento a los servicios\n4. Virtualizar los servicios mediante mediación",
+      "options": ["2, 4, 3, 1", "3, 1, 4, 2", "2, 3, 4, 1"],
+      "answer": 0,
+      "explanation": "Primero se definen servicios interoperables con estándares; después se desacoplan consumidores y proveedores con mediación (ESB); luego se registran para descubrirlos y darles seguimiento; finalmente se gobiernan, protegen y gestionan.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-ing-0308",
+      "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
+      "text": "Con la terminología de Fox para el proceso genérico de diseño de ingeniería de software, ¿cuál de los siguientes enunciados es verdadero sobre la resolución de cada etapa?",
+      "options": [
+        "El diseño arquitectónico es un proceso de baja resolución",
+        "El diseño detallado es un proceso de alta resolución",
+        "Ninguno de los enunciados anteriores es verdadero"
+      ],
+      "answer": 2,
+      "explanation": "En esa terminología, el diseño arquitectónico es el proceso de alta resolución (alto nivel) y el diseño detallado el de baja resolución (bajo nivel), así que ambos enunciados son falsos.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-ing-0309",
+      "lesson": "software/ingenieria/03-arquitectura-patrones-solid",
+      "text": "Ordene las actividades del proceso genérico de diseño de software.",
+      "passage": "1. Seleccionar y finalizar la arquitectura\n2. Analizar el problema\n3. Finalizar el diseño detallado\n4. Generar arquitecturas candidatas\n5. Generar y mejorar alternativas de diseño detallado",
+      "options": ["2, 1, 4, 5, 3", "2, 4, 1, 5, 3", "4, 2, 1, 3, 5"],
+      "answer": 1,
+      "explanation": "Se analiza el problema; en el diseño arquitectónico se generan candidatas y luego se selecciona y finaliza la arquitectura; en el diseño detallado se generan y mejoran alternativas y al final se finaliza el diseño. No se puede seleccionar una arquitectura antes de generarlas.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0508",
+      "lesson": "software/ingenieria/05-estimacion-factibilidad",
+      "text": "Relacione cada tipo de sistema, según el nivel de la estructura organizacional, con su característica.",
+      "passage": "Sistema\n1. De nivel operativo\n2. De nivel del conocimiento\n3. De nivel estratégico\n4. De nivel administrativo\n\nCaracterística\na) Ayuda a los directores a enfrentar aspectos estratégicos y tendencias de largo plazo\nb) Apoya a los gerentes operativos en el seguimiento de actividades y transacciones elementales\nc) Sirve a la supervisión, el control y la toma de decisiones de los gerentes de nivel medio\nd) Apoya a los trabajadores del conocimiento y de datos",
+      "options": ["1b, 2d, 3a, 4c", "1b, 2c, 3a, 4d", "1d, 2b, 3c, 4a"],
+      "answer": 0,
+      "explanation": "Operativo → transacciones elementales (TPS). Conocimiento → ingenieros, diseñadores y oficinistas. Estratégico → alta dirección y largo plazo (ESS). Administrativo → gerencia media, control y decisiones (MIS, DSS).",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-ing-0509",
+      "lesson": "software/ingenieria/05-estimacion-factibilidad",
+      "text": "Las tecnologías de comercio electrónico reducen el costo de recopilar, almacenar, procesar y comunicar información, y la hacen más precisa y oportuna; es decir, aumentan la densidad de la información. ¿Qué tres consecuencias de negocio resultan de ese aumento?",
+      "options": [
+        "Ubicuidad, alcance global y estándares universales",
+        "Personalización, ubicuidad y adecuación",
+        "Transparencia de precios, transparencia de costos y discriminación de precios"
+      ],
+      "answer": 2,
+      "explanation": "Con más información, el cliente compara precios y descubre los costos del vendedor, mientras que el vendedor conoce al cliente lo bastante para segmentar y cobrar distinto. Ubicuidad, alcance global y estándares universales son características del comercio electrónico, no consecuencias de la densidad de información.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-ing-0609",
+      "lesson": "software/ingenieria/06-pmbok7-usabilidad-hci",
+      "text": "Una empresa de desarrollo de software consigue el contrato de un nuevo proyecto. De acuerdo con los grupos de procesos de dirección de proyectos del PMBOK, ¿en qué orden se llevan a cabo?",
+      "passage": "1. Ejecución\n2. Cierre\n3. Inicio\n4. Monitoreo y control\n5. Planificación",
+      "options": ["5, 3, 1, 4, 2", "3, 5, 4, 1, 2", "3, 5, 1, 4, 2"],
+      "answer": 2,
+      "explanation": "Primero se autoriza el proyecto (inicio, acta de constitución), luego se planifica, se ejecuta, se monitorea y controla (en paralelo a la ejecución) y se cierra. No puede empezar por la planificación porque el proyecto aún no está autorizado.",
       "difficulty": "facil"
     }
   ]

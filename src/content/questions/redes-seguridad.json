@@ -129,8 +129,12 @@
     {
       "id": "red-seg-015",
       "lesson": "redes/seguridad/03-criptografia",
-      "text": "¿Por qué HTTPS combina criptografía asimétrica y simétrica?",
-      "options": ["La asimétrica autentica y acuerda la clave de sesión, y la simétrica cifra los datos con mayor velocidad", "Porque la simétrica no puede cifrar datos", "Porque la asimétrica es más rápida para archivos grandes"],
+      "text": "Al revisar una conexión HTTPS con un analizador de tráfico, un estudiante observa que primero se intercambian certificados y claves públicas, y después todo el contenido viaja cifrado con AES. ¿Por qué el protocolo combina criptografía asimétrica y simétrica?",
+      "options": [
+        "La asimétrica autentica y acuerda la clave de sesión, y la simétrica cifra los datos con mayor velocidad",
+        "Porque la simétrica no puede cifrar datos",
+        "Porque la asimétrica es más rápida para archivos grandes"
+      ],
       "answer": 0,
       "explanation": "TLS usa asimétrica (certificado e intercambio de claves) para establecer una clave de sesión y luego cifra el volumen de datos con simétrica (AES), que es mucho más rápida.",
       "difficulty": "dificil"
@@ -237,8 +241,12 @@
     {
       "id": "red-seg-027",
       "lesson": "redes/seguridad/05-protocolos-seguros-evaluacion",
-      "text": "¿Qué describe correctamente la regla de respaldo 3-2-1?",
-      "options": ["3 días, 2 semanas y 1 mes de retención", "3 copias de los datos en 2 tipos de medios distintos, con 1 copia fuera del sitio", "3 usuarios autorizados, 2 contraseñas y 1 token"],
+      "text": "Tras perder información por un ransomware, una empresa contable define su nueva política de respaldos siguiendo la regla 3-2-1. ¿Qué establece esa regla?",
+      "options": [
+        "3 días, 2 semanas y 1 mes de retención",
+        "3 copias de los datos en 2 tipos de medios distintos, con 1 copia fuera del sitio",
+        "3 usuarios autorizados, 2 contraseñas y 1 token"
+      ],
       "answer": 1,
       "explanation": "3-2-1 significa mantener 3 copias, en 2 medios diferentes y al menos 1 fuera del sitio (o fuera de línea). Debe probarse periódicamente la restauración.",
       "difficulty": "facil"
@@ -291,8 +299,12 @@
     {
       "id": "red-seg-033",
       "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
-      "text": "¿Qué mejora principal incorpora WPA3-Personal frente a WPA2-Personal?",
-      "options": ["La autenticación SAE, que dificulta los ataques de diccionario fuera de línea contra la contraseña", "El uso de RC4 en lugar de AES", "La eliminación de la contraseña de la red"],
+      "text": "Una cafetería renueva sus puntos de acceso y el proveedor le ofrece configurar WPA3-Personal en lugar de WPA2-Personal, con la misma contraseña para los clientes. ¿Qué mejora principal obtiene?",
+      "options": [
+        "La autenticación SAE, que dificulta los ataques de diccionario fuera de línea contra la contraseña",
+        "El uso de RC4 en lugar de AES",
+        "La eliminación de la contraseña de la red"
+      ],
       "answer": 0,
       "explanation": "SAE protege el intercambio de claves y hace mucho más difícil probar contraseñas fuera de línea. WPA3 sigue usando contraseña y cifrado robusto, no RC4.",
       "difficulty": "media"
@@ -300,8 +312,12 @@
     {
       "id": "red-seg-034",
       "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
-      "text": "¿Por qué no debe usarse WEP?",
-      "options": ["Es demasiado reciente y casi ningún dispositivo lo soporta", "Usa RC4 con vectores de inicialización cortos y puede romperse en pocos minutos", "No cifra el tráfico en absoluto"],
+      "text": "En una auditoría se descubre que la red inalámbrica de una pequeña oficina sigue cifrada con WEP porque \"tiene contraseña y funciona\". ¿Por qué el auditor recomienda dejar de usarlo de inmediato?",
+      "options": [
+        "Es demasiado reciente y casi ningún dispositivo lo soporta",
+        "Usa RC4 con vectores de inicialización cortos y puede romperse en pocos minutos",
+        "No cifra el tráfico en absoluto"
+      ],
       "answer": 1,
       "explanation": "WEP sí cifra, pero con una debilidad estructural en RC4 y sus vectores de inicialización, por lo que está roto.",
       "difficulty": "facil"
@@ -345,8 +361,9 @@
     {
       "id": "red-seg-039",
       "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
-      "text": "¿Cuál es el orden típico de las fases de una prueba de penetración?",
-      "options": ["Reconocimiento, escaneo y enumeración, explotación, post-explotación y reporte", "Explotación, reconocimiento, reporte y escaneo", "Reporte, escaneo, explotación y reconocimiento"],
+      "text": "Una empresa contrata una prueba de penetración externa. Ordene las fases que sigue el equipo de pentesting.",
+      "passage": "1. Explotación\n2. Reporte\n3. Reconocimiento\n4. Post-explotación\n5. Escaneo y enumeración",
+      "options": ["3, 5, 1, 4, 2", "5, 3, 1, 2, 4", "3, 1, 5, 4, 2"],
       "answer": 0,
       "explanation": "Primero se recopila información, luego se escanea y enumera, después se explota, se evalúa el alcance obtenido y finalmente se reporta.",
       "difficulty": "media"
@@ -363,8 +380,12 @@
     {
       "id": "red-seg-041",
       "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
-      "text": "En un análisis de riesgos, ¿cómo se estima el riesgo de una amenaza?",
-      "options": ["Como el costo del firewall multiplicado por el número de usuarios", "Como el número de vulnerabilidades dividido entre los activos", "Como la probabilidad de ocurrencia multiplicada por el impacto"],
+      "text": "El comité de seguridad de un hospital debe priorizar qué amenazas atender primero con un presupuesto limitado, para lo cual realiza un análisis de riesgos cuantitativo. ¿Cómo se estima el riesgo de cada amenaza?",
+      "options": [
+        "Como el costo del firewall multiplicado por el número de usuarios",
+        "Como el número de vulnerabilidades dividido entre los activos",
+        "Como la probabilidad de ocurrencia multiplicada por el impacto"
+      ],
       "answer": 2,
       "explanation": "El riesgo combina qué tan probable es que ocurra el evento y qué tan grave sería su impacto.",
       "difficulty": "media"
@@ -381,8 +402,12 @@
     {
       "id": "red-seg-043",
       "lesson": "redes/seguridad/06-cripto-ligera-wifi-evaluacion",
-      "text": "¿Qué identifica un código como CVE-2024-12345?",
-      "options": ["La versión de un sistema operativo", "Una vulnerabilidad pública catalogada con un identificador único", "Un certificado digital vigente"],
+      "text": "El boletín de seguridad de un proveedor indica que su servidor web está afectado por CVE-2024-12345 y recomienda actualizar. El administrador busca ese código en bases de datos públicas. ¿Qué identifica?",
+      "options": [
+        "La versión de un sistema operativo",
+        "Una vulnerabilidad pública catalogada con un identificador único",
+        "Un certificado digital vigente"
+      ],
       "answer": 1,
       "explanation": "CVE es el catálogo de identificadores de vulnerabilidades y exposiciones conocidas.",
       "difficulty": "facil"

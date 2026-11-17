@@ -291,8 +291,12 @@
     {
       "id": "sw-so-0505",
       "lesson": "software/so/05-ensamblador-x86-web-movil",
-      "text": "¿Cuál es la función de un ensamblador?",
-      "options": ["Interpretar un programa de alto nivel instrucción por instrucción", "Enlazar varios archivos objeto en un ejecutable", "Traducir mnemónicos de ensamblador a código máquina"],
+      "text": "Un estudiante escribe una rutina para un microcontrolador usando mnemónicos como MOV, ADD y JMP y debe convertirla en un archivo que el procesador pueda ejecutar. ¿Qué función cumple el ensamblador en este proceso?",
+      "options": [
+        "Interpretar un programa de alto nivel instrucción por instrucción",
+        "Enlazar varios archivos objeto en un ejecutable",
+        "Traducir mnemónicos de ensamblador a código máquina"
+      ],
       "answer": 2,
       "explanation": "El ensamblador convierte el lenguaje ensamblador a código máquina. El enlazador une archivos objeto y un intérprete ejecuta alto nivel línea por línea.",
       "difficulty": "facil"
@@ -309,8 +313,12 @@
     {
       "id": "sw-so-0507",
       "lesson": "software/so/05-ensamblador-x86-web-movil",
-      "text": "Una API responde con el código 401. ¿Qué significa?",
-      "options": ["El recurso solicitado no existe", "La solicitud carece de credenciales de autenticación válidas", "El servidor tuvo un error interno"],
+      "text": "Al integrar la API de un proveedor de pagos, una aplicación móvil recibe la respuesta HTTP 401 cada vez que intenta consultar el saldo, aunque la URL es correcta. ¿Qué significa ese código?",
+      "options": [
+        "El recurso solicitado no existe",
+        "La solicitud carece de credenciales de autenticación válidas",
+        "El servidor tuvo un error interno"
+      ],
       "answer": 1,
       "explanation": "401 indica que falta autenticación válida. 404 es recurso no encontrado y 500 es error del servidor.",
       "difficulty": "facil"
@@ -323,6 +331,39 @@
       "answer": 2,
       "explanation": "Los frameworks multiplataforma permiten compartir una sola base de código y acceder a los sensores mediante módulos nativos.",
       "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0308",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "En una computadora con un solo procesador se instala un sistema operativo multiprogramado. La CPU no se vuelve más rápida, pero el mismo lote de tareas termina en menos tiempo. ¿Cuál es la razón?",
+      "options": [
+        "Los procesos se ejecutan estrictamente uno tras otro y las operaciones de E/S no interfieren",
+        "Aumenta la utilización del procesador porque se traslapa la ejecución de instrucciones de un proceso con la E/S de otros",
+        "El procesador queda inactivo cada vez que un proceso espera un dispositivo, lo que reduce el consumo"
+      ],
+      "answer": 1,
+      "explanation": "Con multiprogramación, cuando un proceso se bloquea en espera de E/S, la CPU se asigna a otro proceso listo. Así se reduce el tiempo ocioso de la CPU y el conjunto termina antes. La ejecución estrictamente secuencial y la CPU inactiva describen justo lo contrario.",
+      "difficulty": "media"
+    },
+    {
+      "id": "sw-so-0309",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "Con el algoritmo SRTF (el trabajo con menor tiempo restante primero, expropiativo), ¿cuál es el tiempo de espera promedio de los siguientes procesos?",
+      "passage": "Proceso | Llegada (ms) | Ráfaga (ms)\nP1 | 0 | 8\nP2 | 1 | 4\nP3 | 2 | 9\nP4 | 3 | 5",
+      "options": ["6.5 ms", "7.75 ms", "8.75 ms"],
+      "answer": 0,
+      "explanation": "Ejecución: P1 (0–1), P2 llega con 4 < 7 restantes y lo expropia (1–5), luego P4 (5–10), P1 (10–17) y P3 (17–26). Esperas: P1 = 17 − 0 − 8 = 9, P2 = 0, P3 = 26 − 2 − 9 = 15, P4 = 10 − 3 − 5 = 2 → 26/4 = 6.5 ms. 7.75 ms corresponde a SJF sin expropiación y 8.75 ms a FCFS.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "sw-so-0310",
+      "lesson": "software/so/03-so-procesos-planificacion-deadlock",
+      "text": "Relacione cada política de planificación de la CPU con su característica.",
+      "passage": "Política\n1. Round Robin\n2. First Come, First Served (FCFS)\n3. Shortest Job First (SJF)\n4. Shortest Remaining Time First (SRTF)\n5. Por prioridades\n\nCaracterística\na) Se asigna la CPU al proceso con mayor prioridad\nb) Cada proceso usa la CPU durante un quantum, por turnos\nc) Se atiende en estricto orden de llegada\nd) Se elige el proceso con la ráfaga más corta y no se le expropia\ne) Si llega un proceso con menor tiempo restante, desaloja al que se ejecuta",
+      "options": ["1b, 2c, 3e, 4d, 5a", "1c, 2b, 3d, 4e, 5a", "1b, 2c, 3d, 4e, 5a"],
+      "answer": 2,
+      "explanation": "Round Robin reparte quantums; FCFS atiende por llegada; SJF elige la ráfaga más corta sin expropiar; SRTF es su versión expropiativa basada en el tiempo restante; por prioridades asigna la CPU al de mayor prioridad (con riesgo de inanición).",
+      "difficulty": "facil"
     }
   ]
 }

@@ -242,6 +242,35 @@
       "answer": 2,
       "explanation": "Multicast envía un solo flujo a un grupo de suscriptores. Unicast duplicaría el flujo por cada usuario y broadcast lo enviaría a todos, incluso a quienes no lo pidieron.",
       "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0109",
+      "lesson": "redes/diseno/01-osi-tcpip",
+      "text": "Relacione los elementos de la columna izquierda con la capa del modelo OSI en la que se ubican.",
+      "passage": "Elementos\n1. HDLC, Token Ring, CDP\n2. NetBIOS, RPC\n3. ASN.1, XDR\n4. ICMP, IGMP, X.25\n5. TCP, UDP, SPX\n\nCapa\na) Red (3)\nb) Presentación (6)\nc) Enlace de datos (2)\nd) Transporte (4)\ne) Sesión (5)",
+      "options": ["1c, 2e, 3b, 4a, 5d", "1c, 2b, 3e, 4a, 5d", "1a, 2e, 3b, 4c, 5d"],
+      "answer": 0,
+      "explanation": "HDLC, Token Ring y CDP trabajan con tramas (capa 2); NetBIOS y RPC gestionan sesiones (capa 5); ASN.1 y XDR definen la representación de datos (capa 6); ICMP, IGMP y X.25 (nivel de paquete) están en la capa de red; TCP, UDP y SPX son de transporte.",
+      "difficulty": "dificil"
+    },
+    {
+      "id": "red-dis-0207",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "Relacione la descripción de cada topología con su nombre.",
+      "passage": "Descripción\n1. Cada nodo tiene un enlace directo con todos los demás\n2. Muchos nodos están interconectados, pero no todos entre sí\n3. Los nodos se organizan en niveles a partir de un nodo raíz\n4. Todos los nodos se conectan a un dispositivo central\n5. Cada nodo se conecta con dos vecinos y se forma un circuito cerrado\n\nTopología\na) Árbol (jerárquica)\nb) Anillo\nc) Malla completa (conexión total)\nd) Estrella\ne) Malla parcial",
+      "options": ["1c, 2e, 3d, 4a, 5b", "1e, 2c, 3a, 4d, 5b", "1c, 2e, 3a, 4d, 5b"],
+      "answer": 2,
+      "explanation": "Malla completa: todos con todos. Malla parcial: algunos enlaces redundantes, no todos. Árbol: jerarquía desde una raíz. Estrella: todos al switch o concentrador central. Anillo: cada nodo con dos vecinos en circuito cerrado.",
+      "difficulty": "media"
+    },
+    {
+      "id": "red-dis-0208",
+      "lesson": "redes/diseno/02-topologias-medios-dispositivos",
+      "text": "La topología de red que tiene un costo de instalación elevado en relación con las demás, pero un menor costo de comunicaciones porque cada nodo alcanza directamente a todos los demás, se denomina de conexión ______.",
+      "options": ["parcial", "total (malla completa)", "en bus"],
+      "answer": 1,
+      "explanation": "En la malla completa se necesitan n(n−1)/2 enlaces, por eso instalarla es caro; a cambio, cada nodo llega a cualquier otro en un salto y tolera fallas de enlaces. La malla parcial reduce enlaces y el bus comparte un único medio.",
+      "difficulty": "facil"
     }
   ]
 }
